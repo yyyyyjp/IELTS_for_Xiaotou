@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>剑雅18 Test3 Passage3 · 原文精读与答案核对</title>
+<style>
+:root{
+  --bg:#EDE8DD;
+  --paper:#FCFBF6;
+  --paper-2:#F6F3EB;
+  --ink:#23211D;
+  --ink-2:#4A473F;
+  --muted:#87816F;
+  --line:#DFD7C6;
+  --line-soft:#EDE7DA;
+  --accent:#C0603C;
+  --accent-hi:#D97757;
+  --accent-soft:#F5E7DE;
+  --good:#4A6F53;
+  --good-soft:#EBF1E8;
+  --good-line:#D5E3D0;
+  --bad:#A34329;
+  --bad-soft:#F8E7E0;
+  --bad-line:#EFD3C7;
+  --warn:#9A7B3C;
+  --serif:"Source Serif 4","Iowan Old Style","Songti SC",Georgia,"Times New Roman",serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"kern" 1;
+}
+.page{max-width:1680px;margin:0 auto;padding:0 22px 26px}
+
+/* ── 顶栏 ── */
+.topbar{
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  padding:18px 4px 15px;
+  background:linear-gradient(rgba(237,232,221,.97),rgba(237,232,221,.92));
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.kicker{
+  font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;
+}
+.topbar h1{
+  margin:7px 0 0;font-family:var(--serif);
+  font-size:27px;font-weight:600;letter-spacing:-.012em;line-height:1.2;color:#1D1B17;
+}
+.topbar .sub{margin-top:6px;font-size:12px;color:var(--muted);letter-spacing:.01em}
+.tb-right{display:flex;align-items:center;gap:9px;flex-shrink:0;padding-bottom:3px}
+.stat{
+  display:flex;flex-direction:column;gap:2px;
+  padding:6px 13px;border:1px solid var(--line);border-radius:8px;background:#FDFCF8;
+  min-width:74px;
+}
+.stat span{font-size:10.5px;color:var(--muted);letter-spacing:.09em}
+.stat b{font-size:15px;font-family:var(--serif);font-weight:600;color:#2B2822}
+.stat.bad b{color:var(--bad)}
+.btn{
+  appearance:none;border:1px solid #DCD5C6;background:#FDFCF8;color:var(--ink-2);
+  font-family:var(--sans);font-size:12.5px;padding:9px 15px;border-radius:8px;cursor:pointer;
+  transition:background .16s,border-color .16s,color .16s;white-space:nowrap;
+}
+.btn:hover{border-color:#C9BFA9;color:#2B2822;background:#F2EDE2}
+.btn.on{background:var(--accent);border-color:var(--accent);color:#FBF7F2}
+.btn.on:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
+
+/* ── 双栏 ── */
+.split{
+  display:grid;grid-template-columns:minmax(0,1.32fr) minmax(360px,.82fr);
+  gap:20px;align-items:start;
+}
+.pane{
+  background:var(--paper);border:1px solid var(--line);border-radius:12px;
+  height:calc(100vh - 132px);
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 1px 0 rgba(60,50,35,.02),0 14px 34px -30px rgba(60,50,35,.5);
+}
+.pane-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 20px;border-bottom:1px solid var(--line-soft);
+  font-size:11px;font-weight:600;letter-spacing:.12em;color:#6E6857;
+  background:var(--paper-2);
+  flex-shrink:0;text-transform:uppercase;
+}
+.pane-head .hint{
+  font-weight:400;letter-spacing:0;color:#9A9384;font-size:11.5px;text-align:right;
+  text-transform:none;
+}
+.scroll{overflow-y:auto;overscroll-behavior:contain;padding:16px 30px 60px;flex:1}
+.scroll::-webkit-scrollbar{width:9px}
+.scroll::-webkit-scrollbar-thumb{background:#DCD5C5;border-radius:6px;border:3px solid var(--paper)}
+.scroll::-webkit-scrollbar-track{background:transparent}
+
+/* ── 原文 ── */
+.para{
+  position:relative;margin:0 0 4px;padding:12px 0 12px 40px;
+  border-radius:8px;transition:background .2s;
+}
+.para:hover{background:#FCFAF4}
+.para + .para{border-top:1px dashed #E9E3D5}
+.pnum{
+  position:absolute;left:4px;top:14px;
+  width:24px;height:24px;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;color:#A9603F;
+  background:#F3E9DF;font-family:var(--sans);
+}
+.text{
+  font-family:var(--serif);font-size:17.5px;line-height:1.95;color:#26241F;
+  letter-spacing:.002em;
+}
+.sent{
+  cursor:pointer;border-radius:3px;
+  transition:background .14s;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
+.sent:hover{background:#F1EADC}
+.sent.open{background:#FAF0DA;box-shadow:0 0 0 2px #FAF0DA}
+.w{border-radius:2px;transition:background .1s,color .1s}
+.w:hover{background:var(--accent);color:#FCF8F3;cursor:help}
+.tr{
+  display:none;
+  margin:10px 0;padding:9px 14px;
+  font-family:var(--sans);font-size:13.5px;line-height:1.9;color:#5B564B;
+  background:#F6F2E8;border-left:2px solid #D9A184;border-radius:0 5px 5px 0;
+}
+.tr.show{display:block;animation:fade .18s ease-out}
+@keyframes fade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+
+/* ── 答案栏 ── */
+.ans-wrap{padding:18px 18px 60px}
+.sect{margin-bottom:22px}
+.sect-t{
+  display:flex;align-items:center;gap:9px;margin:0 0 10px;
+  font-size:11px;letter-spacing:.14em;color:#8C8577;font-weight:600;
+}
+.sect-t::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.sect-desc{font-size:11.5px;color:#9A9384;line-height:1.65;margin:-3px 0 11px}
+.qcard{
+  border:1px solid #E6E1D4;border-radius:10px;padding:13px 14px;margin-bottom:9px;
+  background:#FEFDF9;transition:border-color .16s,box-shadow .16s;
+}
+.qcard:hover{border-color:#D7CFBC;box-shadow:0 8px 22px -20px rgba(60,50,35,.6)}
+.qtop{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.qno{
+  font-family:var(--serif);font-size:13px;font-weight:600;
+  min-width:26px;height:22px;padding:0 6px;border-radius:4px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#F1EDE2;color:#6E6857;
+}
+.qcard.ok .qno{background:var(--good-soft);color:var(--good)}
+.qcard.no .qno{background:var(--bad-soft);color:var(--bad)}
+.tag{
+  font-size:10px;letter-spacing:.08em;padding:2px 7px;border-radius:3px;font-weight:600;
+}
+.tag.ok{background:var(--good-soft);color:var(--good)}
+.tag.no{background:var(--bad-soft);color:var(--bad)}
+.stem{
+  margin:0 0 9px;line-height:1.68;color:#2E2B25;
+  font-family:var(--serif);font-size:15px;
+}
+.opts{list-style:none;margin:0;padding:0}
+.opt{
+  display:flex;gap:8px;padding:5px 24px 5px 9px;border-radius:5px;font-size:13px;line-height:1.62;
+  color:#544F44;border:1px solid transparent;align-items:flex-start;position:relative;
+}
+.opt i{
+  font-style:normal;font-weight:600;color:#A69E8D;width:13px;flex-shrink:0;
+  font-family:var(--serif);
+}
+.opt span{flex:1}
+.mk{position:absolute;right:8px;top:4px;font-size:11px;font-weight:700;line-height:1.8}
+.opt.correct{background:var(--good-soft);color:#3D5C44;border-color:var(--good-line)}
+.opt.correct i{color:var(--good)}
+.opt.correct .mk{color:var(--good)}
+.opt.mine-wrong{background:var(--bad-soft);color:#8E3A26;border-color:var(--bad-line)}
+.opt.mine-wrong i{color:var(--bad)}
+.opt.mine-wrong .mk{color:var(--bad)}
+.ansline{
+  margin-top:9px;padding-top:8px;border-top:1px dashed var(--line-soft);
+  font-size:11.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+}
+.ansline b{font-family:var(--serif);font-size:13px}
+.ansline .good{color:var(--good)}
+.ansline .bad{color:var(--bad)}
+
+/* 摘要填空 */
+.sum-box{
+  border:1px solid #E6E1D4;border-radius:10px;padding:14px 15px;background:#FEFDF9;
+}
+.sum-t{
+  font-family:var(--serif);font-size:14.5px;font-weight:600;margin:0 0 9px;color:#2B2822;
+}
+.sum-text{font-family:var(--serif);font-size:14.8px;line-height:2.15;color:#282520}
+.blank{
+  display:inline-flex;align-items:baseline;gap:4px;margin:0 1px;
+  padding:1px 5px;border-radius:4px;font-family:var(--sans);font-size:12.5px;
+  font-weight:600;white-space:nowrap;
+}
+.blank.ok{background:var(--good-soft);color:var(--good);border:1px solid var(--good-line)}
+.blank.no{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad-line)}
+.blank b{font-size:10px;opacity:.72;font-weight:600}
+.blank .arrow{opacity:.5;font-weight:400;margin:0 1px}
+.optbox{
+  margin-top:12px;border-top:1px dashed var(--line-soft);padding-top:11px;
+  display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;
+}
+.optbox div{font-size:12.4px;color:#544F44;line-height:1.78;display:flex;gap:6px}
+.optbox em{font-style:normal;font-weight:700;color:#A69E8D;font-family:var(--serif);width:12px;flex-shrink:0}
+.optbox div.hit{color:var(--good);font-weight:600}
+.optbox div.hit em{color:var(--good)}
+.optbox div.mis{color:var(--bad);text-decoration:line-through;text-decoration-color:#E0B5A5}
+.optbox div.mis em{color:var(--bad)}
+
+/* YNNG */
+.ynrow{display:flex;align-items:center;gap:9px;margin-top:8px;flex-wrap:wrap}
+.chip{
+  font-family:var(--serif);font-size:12px;font-weight:600;
+  padding:2px 9px;border-radius:4px;letter-spacing:.03em;
+}
+.chip.ok{background:var(--good-soft);color:var(--good)}
+.chip.no{background:var(--bad-soft);color:var(--bad)}
+.chip.neu{background:#F1EDE2;color:#6E6857}
+.chip-lbl{font-size:10.5px;color:#9A9384;letter-spacing:.05em}
+
+/* 概览 */
+.overview{
+  border:1px solid #E6E1D4;border-radius:10px;padding:13px 15px;margin-bottom:18px;
+  background:linear-gradient(180deg,#FAF7F0,#FEFDF9);
+}
+.ov-row{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;color:#544F44}
+.ov-row b{font-family:var(--serif);font-size:13.5px;color:#2B2822}
+.ov-wrong{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line-soft);font-size:12px;color:#9A9384}
+.ov-wrong span{
+  display:inline-block;font-family:var(--serif);font-size:12px;font-weight:600;color:var(--bad);
+  background:var(--bad-soft);border-radius:3px;padding:1px 6px;margin:3px 4px 0 0;
+}
+
+/* tooltip */
+.tip{
+  position:fixed;z-index:100;pointer-events:none;opacity:0;
+  background:#26241F;color:#F7F3EA;border-radius:7px;
+  padding:7px 11px 9px;font-size:12.5px;line-height:1.6;max-width:330px;min-width:176px;
+  box-shadow:0 12px 30px -10px rgba(30,25,18,.5);
+  transform:translateY(3px);transition:opacity .12s,transform .12s;
+}
+.tip.show{opacity:1;transform:none;pointer-events:auto}
+.tip .tw{font-family:var(--serif);font-size:14px;font-weight:600;letter-spacing:.01em}
+.tip .tp{color:#E0A98D;font-size:11px;margin-left:5px}
+.tip .tg{color:#DCD5C6;margin-top:3px;font-size:12.5px}
+
+
+/* ── 可点开的题卡 ── */
+.sect-t .sect-tip{order:2;margin-left:8px;font-size:10px;font-weight:400;letter-spacing:0;color:#A79E8C;white-space:nowrap}
+.sect-t::after{order:1}
+.qclick{cursor:pointer}
+.qmore{margin-left:auto;font-size:10.5px;color:var(--accent);display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.qmore i{font-style:normal;font-size:10.5px;line-height:1;opacity:.85;transition:transform .2s}
+.qcard.open{border-color:#DCC9B4;background:#FEFCF6}
+.qcard.open .qmore i{transform:rotate(180deg)}
+.qrev{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line-soft)}
+.qcard.open .qrev{display:block;animation:qfade .18s ease-out}
+@keyframes qfade{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.qrev-d,.qrev-c{margin:0;font-size:12.7px;line-height:1.9;color:#4E4941}
+.qrev-c{margin-top:9px}
+.qrev-d b,.qrev-c b{
+  display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.05em;
+  color:#8A6A4E;background:#F6EEE2;border:1px solid #EADCC8;border-radius:3px;
+  padding:0 5px;margin-right:6px;vertical-align:1px;
+}
+.qrev-c b{color:#4F6B4A;background:#EDF3EA;border-color:#D8E5D3}
+.sum-rev{display:none;margin:11px 0 0;padding:11px 0 0;border-top:1px dashed var(--line-soft)}
+.sum-rev.open{display:block;animation:qfade .18s ease-out}
+.sum-rev .qrev{display:block;margin:0;padding:0;border:0}
+.blank{cursor:pointer;transition:box-shadow .14s}
+.blank:hover{box-shadow:0 0 0 2px #E7D8C2}
+.blank.on{box-shadow:0 0 0 2px #D9A184}
+.note-grp{
+  margin:12px 0 0;padding:10px 12px;border:1px dashed var(--line);border-radius:8px;
+  background:#FBF7EE;font-size:11.8px;line-height:1.82;color:#6E6857;
+}
+.note-grp b{display:inline-block;font-size:10px;letter-spacing:.06em;color:#9A7B5A;
+  border:1px solid #E7D9C4;background:#F6EEE2;border-radius:3px;padding:0 5px;margin-right:6px;vertical-align:1px}
+.note-grp em{font-style:normal;background:#F3E7D3;border-radius:3px;padding:0 3px}
+
+/* 左栏标注 */
+.sent.hl{background:#F8E4C4;box-shadow:0 0 0 2px #F8E4C4;font-weight:600;color:#1B1913}
+.sent.hl:hover{background:#F2D6AC;box-shadow:0 0 0 2px #F2D6AC}
+.cite-j{
+  display:inline-block;margin:9px 0 0;cursor:pointer;
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.02em;color:#9C8460;
+  transition:color .14s;
+}
+.cite-j:hover{color:var(--accent);text-decoration:underline}
+.cite-j em{font-style:normal;color:#B7AC95}
+.para.has-hl .pnum{background:var(--accent);color:#FCF8F2}
+
+@media (max-width:1100px){
+  .split{grid-template-columns:1fr}
+  .pane{height:auto;max-height:none}
+  .scroll{padding:8px 18px 40px}
+  .topbar{flex-direction:column;align-items:flex-start}
+  .text{font-size:17px}
+}
+
+/* ── 视图切换 ── */
+[hidden]{display:none!important}
+.tabs{display:inline-flex;gap:2px;margin-top:12px;padding:3px;background:#E7E1D2;border-radius:9px}
+.tab{
+  appearance:none;border:0;background:transparent;color:#6E6857;cursor:pointer;
+  font-family:var(--sans);font-size:12.5px;padding:6px 15px;border-radius:7px;
+  transition:background .15s,color .15s;
+}
+.tab:hover{color:#2B2822}
+.tab.on{background:#FEFCF7;color:#A9552F;font-weight:600;box-shadow:0 1px 2px rgba(60,50,35,.14)}
+
+/* ── 复盘 ── */
+.rev{max-width:1080px;margin:0 auto;padding:30px 0 90px}
+.rev-k{
+  font-size:11px;letter-spacing:.19em;text-transform:uppercase;color:var(--accent);font-weight:600;
+}
+.rev h2{
+  font-family:var(--serif);font-size:31px;line-height:1.32;font-weight:600;color:#1D1B17;
+  margin:9px 0 0;letter-spacing:-.012em;
+}
+.rev-lede{
+  font-size:14.5px;line-height:1.95;color:#4E4941;margin:14px 0 0;max-width:820px;
+}
+.rev-lede b{color:#23211D;font-weight:600;background:linear-gradient(180deg,transparent 62%,#F5E2CC 62%)}
+.rev-stats{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.rs{
+  flex:1;min-width:120px;background:#FCFBF6;border:1px solid #E4DECD;border-radius:10px;
+  padding:11px 14px;
+}
+.rs span{display:block;font-size:10.5px;letter-spacing:.1em;color:#948C7B}
+.rs b{display:block;font-family:var(--serif);font-size:20px;font-weight:600;color:#2B2822;margin-top:3px}
+.rs.bad b{color:var(--bad)}
+
+.bars{margin-top:16px;background:#FCFBF6;border:1px solid #E4DECD;border-radius:10px;padding:14px 16px}
+.bar{display:flex;align-items:center;gap:12px;padding:5px 0;font-size:12.5px;color:#544F44}
+.bar .bl{width:118px;flex-shrink:0;color:#6E6857}
+.bar .track{flex:1;height:7px;background:#EDE7D9;border-radius:4px;overflow:hidden}
+.bar .track i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#D9A184,#C0603C)}
+.bar .v{width:44px;text-align:right;font-family:var(--serif);font-weight:600;color:#2B2822}
+
+.sec-h{
+  display:flex;align-items:baseline;gap:12px;margin:38px 0 14px;
+  padding-bottom:9px;border-bottom:1px solid var(--line);
+}
+.sec-h h3{
+  margin:0;font-family:var(--serif);font-size:17.5px;font-weight:600;color:#23211D;letter-spacing:-.005em;
+}
+.sec-h em{
+  font-style:normal;font-size:11px;letter-spacing:.14em;color:var(--accent);font-weight:600;
+}
+.sec-h .cnt{margin-left:auto;font-size:11.5px;color:#948C7B}
+
+.rc{
+  background:#FEFDF9;border:1px solid #E4DECD;border-radius:11px;
+  padding:16px 18px;margin-bottom:13px;
+}
+.rc-h{display:flex;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
+.rc-no{
+  font-family:var(--serif);font-size:13px;font-weight:600;color:#8E3A26;background:var(--bad-soft);
+  border-radius:4px;padding:2px 8px;
+}
+.rc-no.ok{color:var(--good);background:var(--good-soft)}
+.rc-tag{font-size:10.5px;letter-spacing:.08em;color:#948C7B;border:1px solid var(--line);border-radius:3px;padding:1px 6px}
+.rc-v{margin-left:auto;font-family:var(--serif);font-size:13px;color:#6E6857}
+.rc-v b{font-weight:600}
+.rc-v .x{color:var(--bad)}
+.rc-v .o{color:var(--good)}
+.rc-q{font-family:var(--serif);font-size:15.5px;line-height:1.62;color:#2E2B25;margin:0 0 11px}
+.rc-diag,.rc-chain{font-size:13.6px;line-height:1.92;color:#4E4941;margin:11px 0 0}
+.rc-diag b,.rc-chain b{
+  display:inline-block;font-size:11px;letter-spacing:.08em;color:#A9552F;
+  border:1px solid #EBD6C4;background:#FAEEE4;border-radius:3px;padding:1px 6px;margin-right:7px;
+  vertical-align:1px;
+}
+.rc-chain b{color:var(--good);border-color:#D8E5D3;background:#EDF3EA}
+.rc em{font-style:normal;background:#F6EEDF;border-radius:3px;padding:0 3px;font-family:var(--serif);font-size:13.8px}
+
+/* 摘要表格 */
+.tbl{width:100%;border-collapse:collapse;margin-top:4px;font-size:13px}
+.tbl th{
+  text-align:left;font-weight:600;font-size:10.5px;letter-spacing:.1em;color:#948C7B;
+  padding:0 8px 7px;border-bottom:1px solid var(--line);text-transform:uppercase;
+}
+.tbl td{padding:7px 8px;border-bottom:1px dashed var(--line-soft);color:#4E4941;line-height:1.65}
+.tbl td:first-child{font-family:var(--serif);font-weight:600;color:#6E6857;width:42px}
+.tbl td.mk-c{color:var(--good);font-weight:600}
+.tbl td.mk-x{color:var(--bad);font-weight:600}
+.tbl td.mk-x s{color:#A34329;opacity:.75}
+.tbl .ph{font-family:var(--serif);font-size:13.4px}
+.tbl tr:last-child td{border-bottom:0}
+
+/* 判断题行 */
+.yn{
+  display:grid;grid-template-columns:38px 1fr;gap:10px 12px;
+  padding:11px 0;border-bottom:1px dashed var(--line-soft);
+}
+.yn:last-child{border-bottom:0}
+.yn-n{font-family:var(--serif);font-size:13px;font-weight:600;color:#6E6857;padding-top:1px}
+.yn-q{font-family:var(--serif);font-size:14.6px;line-height:1.6;color:#2E2B25;margin:0 0 6px}
+.yn-j{font-size:13.2px;line-height:1.85;color:#4E4941;margin:0}
+.yn-a{display:flex;gap:7px;align-items:center;margin-bottom:5px;flex-wrap:wrap}
+.chip2{font-family:var(--serif);font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:4px}
+.chip2.x{background:var(--bad-soft);color:var(--bad)}
+.chip2.o{background:var(--good-soft);color:var(--good)}
+.chip2.n{background:#F1EDE2;color:#6E6857}
+
+/* 病灶 & 行动 */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dg{background:#FCFBF6;border:1px solid #E4DECD;border-radius:11px;padding:15px 16px}
+.dg .t{font-family:var(--serif);font-size:15px;font-weight:600;color:#23211D;margin:0 0 6px}
+.dg .n{font-size:10.5px;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:7px}
+.dg p{font-size:13px;line-height:1.88;color:#4E4941;margin:0}
+.dg p em{font-style:normal;background:#F6EEDF;border-radius:3px;padding:0 3px;font-family:var(--serif)}
+
+.acts{counter-reset:a;margin:0;padding:0;list-style:none}
+.acts li{
+  position:relative;padding:10px 0 10px 38px;font-size:13.7px;line-height:1.9;color:#4E4941;
+  border-bottom:1px dashed var(--line-soft);
+}
+.acts li:last-child{border-bottom:0}
+.acts li::before{
+  counter-increment:a;content:counter(a);
+  position:absolute;left:0;top:11px;width:21px;height:21px;border-radius:5px;
+  background:#F1EADF;color:#A9552F;font-family:var(--serif);font-size:11.5px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.acts b{color:#23211D;font-weight:600}
+.acts em{font-style:normal;font-family:var(--serif);background:#F6EEDF;border-radius:3px;padding:0 3px}
+
+.rev-end{
+  margin-top:34px;padding:18px 20px;border:1px solid #EAD8C6;background:#FAF1E7;border-radius:11px;
+  font-family:var(--serif);font-size:16px;line-height:1.8;color:#6B4630;
+}
+.rev-end b{color:#8E3A26}
+
+.note-ok{
+  margin:2px 0 4px;padding:12px 16px;border:1px dashed #D5E0CF;background:#F1F5EE;
+  border-radius:9px;font-size:13.4px;line-height:1.92;color:#41533F;
+}
+.note-ok b{
+  display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--good);
+  border:1px solid #D5E3D0;background:#E9F1E5;border-radius:3px;padding:1px 6px;margin-right:7px;
+  vertical-align:1px;
+}
+
+.mn-thesis{
+  margin:22px 0 4px;padding:17px 21px;background:#FCFBF6;border:1px solid #E4DECD;
+  border-left:3px solid var(--accent);border-radius:3px 11px 11px 3px;
+}
+.mn-thesis em{
+  display:block;font-style:normal;font-size:10.5px;letter-spacing:.14em;
+  color:var(--accent);font-weight:600;margin-bottom:7px;
+}
+.mn-thesis p{
+  margin:0;font-family:var(--serif);font-size:16.5px;line-height:1.8;color:#2A2721;
+}
+.mn-band{display:grid;grid-template-columns:repeat(11,1fr);gap:5px}
+.mn-cell{border-radius:8px;padding:9px 5px 10px;text-align:center;border:1px solid transparent}
+.mn-cell b{display:block;font-size:13px;font-weight:600;line-height:1.2;letter-spacing:.02em}
+.mn-cell span{display:block;font-size:11px;margin-top:5px;line-height:1.35}
+.mn-cell.t{background:#EAF1E7;border-color:#C9DCC3;color:#3C5A44}
+.mn-cell.t b{color:#2F4A36}
+.mn-cell.a{background:#F8EEDF;border-color:#E7D3B4;color:#7A5320}
+.mn-cell.a b{color:#6B4611}
+.mn-cell.g{background:#F1EFE8;border-color:#DEDAD0;color:#5F5A4E}
+.mn-cell.g b{color:#4A473F}
+.mn-legend{display:flex;gap:18px;margin-top:11px;font-size:11.5px;color:#8A8474;flex-wrap:wrap}
+.mn-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.mn-duel{display:grid;grid-template-columns:1fr 1fr;gap:13px;align-items:start}
+.mn-col{background:#FCFBF6;border:1px solid #E4DECD;border-radius:11px;padding:15px 17px}
+.mn-col.neg{border-color:#E7D3B4;background:#FBF6ED}
+.mn-col.pos{border-color:#CBDDC5;background:#F6F9F3}
+.mn-col h4{
+  margin:0 0 11px;font-size:11px;letter-spacing:.1em;font-weight:600;
+  display:flex;align-items:center;gap:7px;
+}
+.mn-col.neg h4{color:#8A5C1E}
+.mn-col.pos h4{color:#3F5C46}
+.mn-col ol{margin:0;padding:0;list-style:none;counter-reset:m}
+.mn-col li{
+  counter-increment:m;position:relative;padding-left:23px;
+  font-size:13.2px;line-height:1.86;color:#46423A;margin-bottom:10px;
+}
+.mn-col li:last-child{margin-bottom:0}
+.mn-col li::before{
+  content:counter(m);position:absolute;left:0;top:4px;
+  width:15px;height:15px;border-radius:50%;font-size:10px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+.mn-col.neg li::before{background:#F0DFC6;color:#7A5320}
+.mn-col.pos li::before{background:#DCE9D6;color:#3A5741}
+.mn-col li b{font-weight:600;color:#2A2721}
+.mn-col li em{font-style:normal;font-family:var(--serif);background:#F2EBDB;border-radius:3px;padding:0 3px}
+.mn-punch{
+  margin-top:13px;padding:12px 18px;background:#23211D;color:#F3EEE2;
+  border-radius:9px;font-family:var(--serif);font-size:14.5px;line-height:1.72;
+}
+.mn-punch b{color:#F0C79A;font-weight:600}
+.mn-tbl{background:#FCFBF6;border:1px solid #E4DECD;border-radius:11px;overflow:hidden}
+.mn-row{
+  display:grid;grid-template-columns:46px 1fr 64px;gap:13px;
+  padding:11px 16px;border-bottom:1px solid #EFE9DB;align-items:start;
+}
+.mn-row:last-child{border-bottom:none}
+.mn-row:nth-child(even){background:#FAF8F2}
+.mn-row .n{font-family:var(--serif);font-size:13.5px;color:#9A9382;font-weight:600;padding-top:2px}
+.mn-row .d{font-size:13.2px;line-height:1.86;color:#46423A}
+.mn-row .d em{font-style:normal;font-family:var(--serif);background:#F4EDDF;border-radius:3px;padding:0 3px}
+.mn-row .w{
+  font-size:11px;text-align:center;padding:2px 0;border-radius:4px;
+  font-weight:500;margin-top:1px;
+}
+.mn-row .w.t{background:#EAF1E7;color:#3C5A44}
+.mn-row .w.a{background:#F8EEDF;color:#7A5320}
+.mn-row .w.g{background:#F1EFE8;color:#5F5A4E}
+.mn-terms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mn-term{background:#FCFBF6;border:1px solid #E4DECD;border-radius:11px;padding:15px 16px}
+.mn-term b{display:block;font-family:var(--serif);font-size:16px;color:#23211D;font-weight:600}
+.mn-term i{display:block;font-style:normal;font-size:11px;color:#9A9382;margin:3px 0 9px;letter-spacing:.02em}
+.mn-term p{margin:0;font-size:13px;line-height:1.86;color:#4E4941}
+.mn-term p em{font-style:normal;background:#F6EEDF;border-radius:3px;padding:0 3px;font-family:var(--serif)}
+.mn-echo{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.mn-q{
+  margin:0;font-family:var(--serif);font-size:13.6px;line-height:1.9;
+  color:#46423A;border-left:2px solid #E2D6BE;padding-left:12px;
+}
+.mn-col.pos .mn-q{border-left-color:#CBDDC5}
+.mn-q b{font-weight:600;color:#23211D;background:linear-gradient(180deg,transparent 64%,#EFE1CB 64%)}
+.mn-col.pos .mn-q b{background:linear-gradient(180deg,transparent 64%,#DCEBD5 64%)}
+.mn-echo-note{margin-top:11px;font-size:12.8px;line-height:1.9;color:#7A7466}
+.mn-echo-note b{color:#2A2721;font-weight:600}
+.mn-why{background:#FCFBF6;border:1px solid #E4DECD;border-radius:11px;padding:2px 19px}
+.mn-why > div{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid #EFE9DB}
+.mn-why > div:last-child{border-bottom:none}
+.mn-why .k{font-family:var(--serif);font-size:15px;color:var(--accent);font-weight:600;line-height:1.55}
+.mn-why .v{font-size:13.2px;line-height:1.9;color:#46423A}
+.mn-why .v b{display:block;font-weight:600;color:#2A2721;margin-bottom:2px}
+.mn-why .v em{font-style:normal;font-family:var(--serif);background:#F4EDDF;border-radius:3px;padding:0 3px}
+.mn-side{
+  margin-top:15px;padding:15px 18px;background:#F7F4EC;border:1px dashed #DCD3BF;
+  border-radius:9px;font-size:13.2px;line-height:1.92;color:#4A463D;
+}
+.mn-side b{color:#2A2721;font-weight:600}
+
+/* ── 复盘并入右栏 ── */
+.pane-ans .ans-wrap{padding-bottom:8px}
+.rev-in{max-width:none;margin:0;padding:0 18px 70px}
+.rev-sep{display:flex;align-items:center;margin:24px 0 13px}
+.rev-sep::before,.rev-sep::after{content:"";height:1px;background:var(--line);flex:1}
+.rev-sep span{padding:0 11px;font-size:10.5px;letter-spacing:.17em;font-weight:700;color:var(--accent);white-space:nowrap}
+.rev-in h2{font-size:19px;line-height:1.45;margin:0 0 8px}
+.rev-in .rev-lede{font-size:13.2px;line-height:1.95;margin:0 0 14px}
+.rev-in .bars{margin-top:14px;gap:7px}
+.rev-in .bar{font-size:11.5px}
+.rev-in .bar .bl{width:84px;flex:0 0 84px}
+.rev-in .sec-h{margin:26px 0 10px}
+.rev-in .sec-h em{font-size:9.6px;letter-spacing:.14em}
+.rev-in .sec-h h3{font-size:15px;line-height:1.5}
+.rev-in .sec-h .cnt{font-size:11px}
+.rev-in .rc{padding:13px 14px;border-radius:9px}
+.rev-in .rc-h{gap:7px;margin-bottom:8px}
+.rev-in .rc-v{flex:0 0 100%;width:100%;margin-left:0;order:9;font-size:12.4px;padding-top:1px}
+.rev-in .rc-q{font-size:14px;line-height:1.66;margin-bottom:9px}
+.rev-in .rc-diag,.rev-in .rc-chain{font-size:12.7px;line-height:1.92;margin-top:10px}
+.rev-in .rc em{font-size:13px}
+.rev-in .cite-j{font-size:12px;margin-top:10px}
+.rev-in .grid3{grid-template-columns:1fr;gap:9px}
+.rev-in .dg{padding:12px 14px}
+.rev-in .dg p{margin-top:6px}
+.rev-in .acts{padding-left:22px;margin-top:2px}
+.rev-in .acts li{font-size:12.7px;line-height:1.9;margin-bottom:10px}
+.rev-in .yn{gap:9px;padding:11px 0}
+.rev-in .yn-q{font-size:12.9px;line-height:1.72}
+.rev-in .yn-j{font-size:12.4px;line-height:1.88}
+.rev-in .note-ok{font-size:12.6px;line-height:1.9;padding:11px 13px}
+.rev-in .rev-end{font-size:12.7px;padding:14px 15px;margin-top:16px}
+
+/* 摘要竖排 */
+.srows{display:flex;flex-direction:column;margin:4px 0 12px;border-top:1px solid var(--line-soft)}
+.srow{padding:9px 1px 8px;border-bottom:1px dashed var(--line-soft)}
+.srow-h{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:12.7px;line-height:1.72}
+.sno{font-family:var(--serif);font-weight:600;color:#8C8473;min-width:17px;font-size:12.5px}
+.smark{font-weight:700;font-size:11.5px;line-height:1}
+.srow.ok .smark{color:var(--good)}
+.srow.no .smark{color:var(--bad)}
+.sv-o,.sv-x{font-weight:600}
+.sv-o{color:var(--good)}
+.sv-x{color:var(--bad)}
+.sv-o i,.sv-x i{font-style:normal;font-weight:400;font-family:var(--serif);font-size:12.3px;color:#6E6857}
+.arw{color:#B3AB9A;font-size:11px;padding:0 1px}
+.srow-s{font-size:11.4px;line-height:1.6;color:#948C7B;margin:4px 0 0 23px;font-family:var(--serif)}
+
+.ph-r{display:flex;align-items:center;gap:10px;margin-left:auto}
+.jump{font-style:normal;cursor:pointer;letter-spacing:0;white-space:nowrap;
+  font-size:10.5px;font-weight:500;color:var(--accent);
+  border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:2px 9px}
+.jump:hover{color:var(--accent-hi);border-color:#DCC9B4;background:#FBF3E8}
+.jump:hover{color:var(--accent-hi);text-decoration:underline;text-underline-offset:2px}
+
+@media (max-width:1100px){
+  .rev-in{max-width:820px;margin:0 auto;padding:0 18px 40px}
+  .ans-wrap .qrev-d,.ans-wrap .qrev-c{max-width:740px}
+  .sect-t .sect-tip{display:none}
+  .rev-in h2{font-size:22px;margin-top:2px}
+  .rev-in .rev-lede{font-size:14px}
+  .rev-in .sec-h h3{font-size:16.5px}
+  .rev-in .rc{padding:16px 18px}
+  .rev-in .rc-q{font-size:15px}
+  .rev-in .rc-diag,.rev-in .rc-chain{font-size:13.4px}
+  .rev-in .rc-v{flex:0 0 auto;width:auto;margin-left:auto;order:0;font-size:13px}
+  .rev-in .cite-j{font-size:12.4px}
+  .rev-in .grid3{grid-template-columns:repeat(3,1fr)}
+  .rev-in .acts li{font-size:13.2px}
+  .rev-in .srow-h{font-size:13.2px}
+}
+@media (max-width:900px){
+  .grid3{grid-template-columns:1fr}
+  .rev h2{font-size:24px}
+  .bar .bl{width:96px}
+}
+
+
+@media (max-width:900px){
+  .mn-band{grid-template-columns:repeat(4,1fr);gap:4px}
+  .mn-duel,.mn-echo,.mn-terms{grid-template-columns:1fr}
+  .mn-row{grid-template-columns:38px 1fr 58px;gap:9px;padding:10px 13px}
+  .mn-thesis p{font-size:15.5px}
+}
+
+/* ══════════ 生词本（本地临时存储版） ══════════ */
+.vb-badge{
+  display:inline-block;margin-left:6px;padding:0 5px;min-width:16px;text-align:center;
+  border-radius:999px;background:var(--accent);color:#FCF8F3;
+  font-family:var(--serif);font-size:10.5px;font-weight:600;line-height:15px;vertical-align:1px;
+  font-style:normal;
+}
+.vb-badge.zero{display:none}
+.btn.on .vb-badge{background:#FCF8F3;color:var(--accent)}
+
+/* 原文中已收录的词 */
+.w.saved{background:#F6E3D2;box-shadow:inset 0 -1.5px 0 #CB7A52;border-radius:2px}
+.w.saved:hover{background:var(--accent);box-shadow:none;color:#FCF8F3}
+
+/* tooltip 内的收词按钮 */
+.tip-save{
+  display:block;width:100%;margin-top:8px;appearance:none;cursor:pointer;
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.02em;text-align:center;
+  padding:5px 8px;border-radius:5px;border:1px solid #50493D;background:#332F27;color:#E9D8C6;
+  transition:background .14s,color .14s,border-color .14s;
+}
+.tip-save:hover{background:#3E382E;color:#FFF6EB;border-color:#7A6E5B}
+.tip-save.on{background:#2C3A2F;border-color:#4E6553;color:#C6DCC0}
+.tip-save.on:hover{background:#334537;color:#DCEBD5}
+
+/* 抽屉 */
+.vb-mask{
+  position:fixed;inset:0;z-index:110;background:rgba(35,29,22,.26);
+  opacity:0;pointer-events:none;transition:opacity .22s;
+}
+.vb-mask.open{opacity:1;pointer-events:auto}
+.vb-drawer{
+  position:fixed;top:0;right:0;bottom:0;z-index:120;width:396px;max-width:94vw;
+  display:flex;flex-direction:column;
+  background:var(--paper);border-left:1px solid var(--line);
+  box-shadow:-30px 0 70px -46px rgba(40,32,22,.75);
+  transform:translateX(101%);transition:transform .28s cubic-bezier(.22,.72,.24,1);
+}
+.vb-drawer.open{transform:none}
+.vb-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  padding:15px 18px 12px;border-bottom:1px solid var(--line-soft);background:var(--paper-2);
+}
+.vb-k{font-size:10px;letter-spacing:.19em;color:var(--accent);font-weight:600;text-transform:uppercase}
+.vb-head h3{margin:5px 0 0;font-family:var(--serif);font-size:19px;font-weight:600;color:#1D1B17}
+.vb-head h3 span{font-size:11.5px;color:#9A9384;font-weight:400;font-family:var(--sans);margin-left:6px}
+.vb-x{
+  appearance:none;border:1px solid var(--line);background:#FDFCF8;color:#6E6857;
+  width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:15px;line-height:1;
+  font-family:var(--sans);flex-shrink:0;
+}
+.vb-x:hover{background:#F2EDE2;color:#2B2822}
+.vb-tools{
+  padding:11px 18px 10px;border-bottom:1px solid var(--line-soft);
+  display:flex;flex-direction:column;gap:8px;
+}
+.vb-search{
+  width:100%;padding:6px 10px;border:1px solid var(--line);border-radius:6px;
+  background:#FDFCF8;font-family:var(--sans);font-size:12.5px;color:#2B2822;outline:none;
+}
+.vb-search:focus{border-color:#C9BFA9;background:#FFFDF9}
+.vb-btns{display:flex;gap:6px}
+.vb-btns .btn{flex:1;padding:5px 0;font-size:11.5px;border-radius:6px;text-align:center}
+.vb-btns .btn.danger{color:#A34329;border-color:#EFD3C7;background:#FBF0EB}
+.vb-btns .btn.danger:hover{background:#F8E3DA;border-color:#E5BFAF}
+.vb-list{flex:1;overflow-y:auto;padding:12px 16px 24px;overscroll-behavior:contain}
+.vb-list::-webkit-scrollbar{width:9px}
+.vb-list::-webkit-scrollbar-thumb{background:#DCD5C5;border-radius:6px;border:3px solid var(--paper)}
+.vb-item{
+  position:relative;border:1px solid #E6E1D4;border-radius:9px;background:#FEFDF9;
+  padding:10px 12px;margin-bottom:8px;
+}
+.vb-item .wd{font-family:var(--serif);font-size:15.5px;font-weight:600;color:#23211D;letter-spacing:.01em}
+.vb-item .lm{font-size:10.5px;color:#A79E8C;margin-left:6px;font-family:var(--sans)}
+.vb-item .df{font-size:12.2px;line-height:1.75;color:#4E4941;margin-top:4px}
+.vb-item .cx{
+  font-family:var(--serif);font-size:11.9px;line-height:1.72;color:#6E6857;
+  margin-top:8px;padding:1px 0 1px 8px;border-left:2px solid #E7D9C4;
+}
+.vb-item .cx b{font-weight:600;color:#A9552F;background:#F7E9DC;border-radius:2px;padding:0 2px}
+.vb-item .ft{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:10.5px;color:#A79E8C;flex-wrap:wrap}
+.vb-item .ft .src{color:#9A9384}
+.vb-item .del{
+  margin-left:auto;appearance:none;border:1px solid transparent;background:transparent;
+  color:#B0A794;font-size:11px;cursor:pointer;padding:1px 5px;border-radius:4px;
+  font-family:var(--sans);
+}
+.vb-item .del:hover{color:var(--bad);background:var(--bad-soft);border-color:var(--bad-line)}
+.vb-empty{padding:46px 14px;text-align:center;font-size:12.5px;line-height:1.95;color:#A79E8C}
+.vb-empty b{display:block;font-family:var(--serif);font-size:15px;color:#6E6857;font-weight:600;margin-bottom:5px}
+.vb-foot{
+  padding:10px 18px 14px;border-top:1px solid var(--line-soft);
+  font-size:10.8px;line-height:1.7;color:#A79E8C;background:#FBF8F1;
+}
+.vb-foot b{color:var(--bad);font-weight:600}
+
+/* 轻提示 */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,8px);z-index:200;
+  background:#26241F;color:#F7F3EA;border-radius:999px;padding:7px 16px;
+  font-family:var(--sans);font-size:12.5px;box-shadow:0 16px 34px -18px rgba(30,25,18,.6);
+  opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:520px){
+  .vb-drawer{width:100vw;max-width:100vw}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div>
+      <div class="kicker" id="kicker"></div>
+      <h1 id="title"></h1>
+      <div class="tabs" id="tabs"><button class="tab on" data-v="read">精读对照</button><button class="tab" data-v="means">读懂这篇</button></div>
+    </div>
+    <div class="tb-right">
+      <div class="stat"><span>用时</span><b id="dur"></b></div>
+      <div class="stat bad"><span>得分</span><b id="score"></b></div>
+      <button class="btn" id="btnVocab">生词本<i class="vb-badge zero" id="vbCountTop">0</i></button>
+      <button class="btn" id="btnAll">展开全部译文</button>
+    </div>
+  </header>
+
+  <div class="split" id="view-read">
+    <section class="pane pane-read">
+      <div class="pane-head"><span>原文 · READING PASSAGE 3</span><span class="hint">点击句子展开／收起译文 · 鼠标悬停单词可查释义、收进生词本</span></div>
+      <div class="scroll" id="essay">
+        <div id="text"></div>
+      </div>
+    </section>
+    <aside class="pane pane-ans">
+      <div class="pane-head"><span>作答 · 复盘</span><div class="ph-r"><span class="hint">绿＝正确 · 红＝错误</span><i class="jump" id="btnRev">展开复盘</i></div></div>
+      <div class="scroll" id="panel"><div class="ans-wrap" id="answers"></div><div class="rev rev-in" id="review"></div></div>
+    </aside>
+  </div>
+  <section class="rev" id="view-means" hidden></section>
+</div>
+<div class="tip" id="tip"></div>
+
+<!-- ══════════ 生词本抽屉 ══════════ -->
+<div class="vb-mask" id="vbMask"></div>
+<aside class="vb-drawer" id="vbDrawer" aria-label="生词本">
+  <div class="vb-head">
+    <div>
+      <div class="vb-k">Vocabulary</div>
+      <h3>生词本<span id="vbCount">0 条</span></h3>
+    </div>
+    <button class="vb-x" id="vbClose" title="关闭（Esc）">×</button>
+  </div>
+  <div class="vb-tools">
+    <input class="vb-search" id="vbSearch" type="search" placeholder="筛选单词 / 释义 / 例句…">
+    <div class="vb-btns">
+      <button class="btn" id="vbCsv">导出 CSV</button>
+      <button class="btn" id="vbJson">复制 JSON</button>
+      <button class="btn danger" id="vbClear">清空</button>
+    </div>
+  </div>
+  <div class="vb-list" id="vbList"></div>
+  <div class="vb-foot" id="vbFoot">暂存于本机浏览器（localStorage），不随文件走。换设备或清缓存前请先导出；后续接后端可直接拿「复制 JSON」的数据导入。</div>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = {
+ "meta": {
+  "book": "剑桥雅思 18",
+  "test": "Test 3",
+  "passage": "Passage 3",
+  "title": "The case for mixed-ability classes",
+  "duration": "30 分 09 秒",
+  "score": "5 / 14（正确率 36%）"
+ },
+ "paragraphs": [
+  {
+   "idx": 1,
+   "sentences": [
+    {
+     "en": "Picture this scene.",
+     "zh": "想象这样一幅场景。"
+    },
+    {
+     "en": "It's an English literature lesson in a UK school, and the teacher has just read an extract from Shakespeare's Romeo and Juliet with a class of 15-year-olds.",
+     "zh": "在英国一所学校里，这是一节英语文学课，老师刚刚和一群15岁的学生一起朗读了莎士比亚《罗密欧与朱丽叶》中的一段选文。"
+    },
+    {
+     "en": "He's given some of the students copies of No Fear Shakespeare, a kid-friendly translation of the original.",
+     "zh": "他给部分学生发了《No Fear Shakespeare》的文本，这是对原著进行的、更适合孩子阅读的译本。"
+    },
+    {
+     "en": "For three students, even these literacy demands are beyond them.",
+     "zh": "对其中三名学生而言，即便是这样的阅读与识字要求也超出了他们的能力范围。"
+    },
+    {
+     "en": "Another girl simply can't focus and he gives her pens and paper to draw with.",
+     "zh": "还有一个女孩根本无法集中注意力，于是老师给了她笔和纸，让她画画。"
+    },
+    {
+     "en": "The teacher can ask the No Fear group to identify the key characters and maybe provide a tentative plot summary.",
+     "zh": "老师可以让阅读《No Fear》版本的那一组识别主要人物，并尝试给出一个初步的情节概述。"
+    },
+    {
+     "en": "He can ask most of the class about character development, and five of them might be able to support their statements with textual evidence.",
+     "zh": "他也可以向班上大多数学生提问人物形象的发展变化，而其中大约有五个学生或许还能用文本证据来支持自己的观点。"
+    },
+    {
+     "en": "Now two curious students are wondering whether Shakespeare advocates living a life of moderation or one of passionate engagement.",
+     "zh": "此时，两名好奇的学生正在思考：莎士比亚是否主张过一种克制而适度的生活，还是一种充满激情、积极投入的人生。"
+    }
+   ]
+  },
+  {
+   "idx": 2,
+   "sentences": [
+    {
+     "en": "As a teacher myself, I'd think my lesson would be going rather well if the discussion went as described above.",
+     "zh": "作为一名教师，我会认为如果课堂讨论能像上述那样展开，我这节课就算进行得相当不错了。"
+    },
+    {
+     "en": "But wouldn't this kind of class work better if there weren't such a huge gap between the top and the bottom?",
+     "zh": "但如果班里优等生与后进生之间没有如此巨大的差距，这种课堂难道不会运转得更好吗？"
+    },
+    {
+     "en": "If we put all the kids who needed literacy support into one class, and all the students who want to discuss the virtue of moderation into another?",
+     "zh": "比如把所有需要读写能力支持的孩子编到一个班，而把那些想讨论“适度”这一美德的学生编到另一个班，岂不是更好？"
+    }
+   ]
+  },
+  {
+   "idx": 3,
+   "sentences": [
+    {
+     "en": "The practice of 'streaming', or 'tracking', involves separating students into classes depending on their diagnosed levels of attainment.",
+     "zh": "“分流”（streaming）或“分班跟踪”（tracking）的做法，是根据学生被评定的学习水平，将他们分到不同的班级。"
+    },
+    {
+     "en": "At a macro level, it requires the establishment of academically selective schools for the brightest students, and comprehensive schools for the rest.",
+     "zh": "从宏观层面看，这种做法要求设立面向最优秀学生的择优学术学校，以及面向其余学生的综合学校。"
+    },
+    {
+     "en": "Within schools, it means selecting students into a 'stream' of general ability, or 'sets' of subject-specific ability.",
+     "zh": "在校内层面，这意味着把学生按总体能力分入不同“梯队”，或按学科能力分入不同“组别”。"
+    },
+    {
+     "en": "The practice is intuitively appealing to almost every stakeholder.",
+     "zh": "这种做法在直觉上几乎对所有相关利益方都颇具吸引力。"
+    }
+   ]
+  },
+  {
+   "idx": 4,
+   "sentences": [
+    {
+     "en": "I have heard the mixed-ability model attacked by way of analogy: a group hike.",
+     "zh": "我曾听人用一个类比来批评混合能力分班模式：把它比作一次集体徒步。"
+    },
+    {
+     "en": "The fittest in the group take the lead and set a brisk pace, only to have to stop and wait every 20 minutes.",
+     "zh": "队伍里体能最好的人走在前面，带起轻快的节奏，却不得不每隔20分钟就停下来等待。"
+    },
+    {
+     "en": "This is frustrating, and their enthusiasm wanes.",
+     "zh": "这令人沮丧，他们的热情也随之减退。"
+    },
+    {
+     "en": "Meanwhile, the slowest ones are not only embarrassed but physically struggling to keep up.",
+     "zh": "与此同时，走得最慢的人不仅感到尴尬，在体力上也吃力地想跟上。"
+    },
+    {
+     "en": "What's worse, they never get a long enough break.",
+     "zh": "更糟的是，他们从来得不到足够长的休息时间。"
+    },
+    {
+     "en": "They honestly just want to quit.",
+     "zh": "他们真心只想放弃。"
+    },
+    {
+     "en": "Hiking, they feel, is not for them.",
+     "zh": "在他们看来，徒步这种活动并不适合自己。"
+    }
+   ]
+  },
+  {
+   "idx": 5,
+   "sentences": [
+    {
+     "en": "Mixed-ability classes bore students, frustrate parents and burn out teachers.",
+     "zh": "混合能力编班会让学生感到无聊，让家长感到沮丧，并使教师身心俱疲。"
+    },
+    {
+     "en": "The brightest ones will never summit Mount Qomolangma, and the stragglers won't enjoy the lovely stroll in the park they are perhaps more suited to.",
+     "zh": "最聪明的学生永远无法登顶珠穆朗玛峰，而那些落后者也无法享受他们或许更适合的公园漫步。"
+    },
+    {
+     "en": "Individuals suffer at the demands of the collective, mediocrity prevails.",
+     "zh": "个体在集体要求面前受苦，平庸便占据上风。"
+    },
+    {
+     "en": "So: is learning like hiking?",
+     "zh": "那么：学习真的像徒步一样吗？"
+    }
+   ]
+  },
+  {
+   "idx": 6,
+   "sentences": [
+    {
+     "en": "The current pedagogical paradigm is arguably that of constructivism, which emerged out of the work of psychologist Lev Vygotsky.",
+     "zh": "当前的教学范式可以说是建构主义，它源自心理学家列夫·维果茨基的研究成果。"
+    },
+    {
+     "en": "In the 1930s, Vygotsky emphasised the importance of targeting a student's specific 'zone of proximal development' (ZPD).",
+     "zh": "在20世纪30年代，维果茨基强调，教学应瞄准学生特定的“最近发展区”（ZPD）。"
+    },
+    {
+     "en": "This is the gap between what they can achieve only with support – teachers, textbooks, worked examples, parents and so on – and what they can achieve independently.",
+     "zh": "这指的是一种差距：一边是他们只有在支持之下——例如教师、教材、示范例题、家长等等——才能达成的水平，另一边是他们能够独立完成的水平。"
+    },
+    {
+     "en": "The purpose of teaching is to provide and then gradually remove this 'scaffolding' until they are autonomous.",
+     "zh": "教学的目的在于先提供这种“支架”，再逐步撤去，直到学生能够自主学习。"
+    },
+    {
+     "en": "If we accept this model, it follows that streaming students with similar ZPDs would be an efficient and effective solution.",
+     "zh": "如果我们接受这一模型，那么顺理成章的结论是：把ZPD相近的学生分流编班，会是一种高效且有效的解决方案。"
+    },
+    {
+     "en": "And that forcing everyone on the same hike – regardless of aptitude – would be madness.",
+     "zh": "而不顾能力差异，强迫所有人走同一条“徒步路线”——将会是疯狂之举。"
+    }
+   ]
+  },
+  {
+   "idx": 7,
+   "sentences": [
+    {
+     "en": "Despite all this, there is limited empirical evidence to suggest that streaming results in better outcomes for students.",
+     "zh": "尽管如此，支持“分流”能为学生带来更好学习结果的实证证据仍然十分有限。"
+    },
+    {
+     "en": "Professor John Hattie, director of the Melbourne Education Research Institute, notes that 'tracking has minimal effects on learning outcomes'.",
+     "zh": "墨尔本教育研究院院长约翰·哈蒂教授指出：“分层对学习成果的影响微乎其微。”"
+    },
+    {
+     "en": "What is more, streaming appears to significantly – and negatively – affect those students assigned to the lowest sets.",
+     "zh": "更重要的是，分流似乎会对被分到最低层级的学生产生显著且负面的影响。"
+    },
+    {
+     "en": "These students tend to have much higher representation of low socioeconomic class.",
+     "zh": "这些学生往往来自低社会经济阶层的比例要高得多。"
+    },
+    {
+     "en": "Less significant is the small benefit for those lucky clever students in the higher sets.",
+     "zh": "相比之下，对那些“幸运的聪明学生”——处在高层级的学生——所带来的小幅收益则并不明显。"
+    },
+    {
+     "en": "The overall result is that the smart stay smart and the dumb get dumber, further entrenching the social divide.",
+     "zh": "总体结果是：聪明的仍然聪明，落后的愈发落后，从而进一步固化社会鸿沟。"
+    }
+   ]
+  },
+  {
+   "idx": 8,
+   "sentences": [
+    {
+     "en": "In the latest update of Hattie's influential meta-analysis of factors influencing student achievement, one of the most significant factors is the teachers' estimate of achievement.",
+     "zh": "在哈蒂那项颇具影响力、关于影响学生学业成就因素的元分析最新更新中，最重要的因素之一是教师对学生成就水平的估计。"
+    },
+    {
+     "en": "Streaming students by diagnosed achievement automatically limits what the teacher feels the student is capable of.",
+     "zh": "按诊断出的成绩水平对学生分流，会自动限制教师对学生能力上限的判断。"
+    },
+    {
+     "en": "Meanwhile, in a mixed environment, teachers' estimates need to be more diverse and flexible.",
+     "zh": "相反，在混合能力的环境中，教师的判断必须更加多元且更具弹性。"
+    }
+   ]
+  },
+  {
+   "idx": 9,
+   "sentences": [
+    {
+     "en": "While streaming might seem to help teachers effectively target a student's ZPD, it can underestimate the importance of peer-to-peer learning.",
+     "zh": "尽管分流教学看似能帮助教师更有效地针对学生的“最近发展区”（ZPD）开展教学，但它可能低估了同伴之间相互学习的重要性。"
+    },
+    {
+     "en": "A crucial aspect of constructivist theory is the role of the MKO – 'more knowledgeable other' – in knowledge construction.",
+     "zh": "建构主义理论的一个关键要素，是“更有知识的他者”（MKO）在知识建构过程中所发挥的作用。"
+    },
+    {
+     "en": "While teachers are traditionally the MKOs in classrooms, the value of knowledgeable student peers must not go unrecognised either.",
+     "zh": "虽然在课堂上教师传统上被视为MKOs，但知识更丰富的学生同伴所具有的价值也绝不应被忽视。"
+    }
+   ]
+  },
+  {
+   "idx": 10,
+   "sentences": [
+    {
+     "en": "I find it amazing to watch students get over an idea to their peers in ways that I would never think of.",
+     "zh": "我觉得很令人惊叹的是，看着学生以我从未想到的方式把一个观点讲清楚、传达给同伴。"
+    },
+    {
+     "en": "They operate with different language tools and different social tools from teachers and, having just learnt it themselves, they possess similar cognitive structures to their struggling classmates.",
+     "zh": "他们使用的语言工具和社交工具与教师不同，而且由于自己刚学会不久，他们在认知结构上与那些学得吃力的同学更为相近。"
+    },
+    {
+     "en": "There is also something exciting about passing on skills and knowledge that you yourself have just mastered – a certain pride and zeal, a certain freshness to the interaction between 'teacher' and 'learner' that is often lost by the expert for whom the steps are obvious and the joy of discovery forgotten.",
+     "zh": "把自己刚刚掌握的技能与知识传授给别人同样令人兴奋——那是一种自豪与热忱，也让“教师”与“学习者”之间的互动更显新鲜；而对那些觉得步骤理所当然、早已忘却探索之乐的专家而言，这种新鲜感往往会消失。"
+    }
+   ]
+  },
+  {
+   "idx": 11,
+   "sentences": [
+    {
+     "en": "Having a variety of different abilities in a collaborative learning environment provides valuable resources for helping students meet their learning needs, not to mention improving their communication and social skills.",
+     "zh": "在协作式学习环境中汇聚不同能力水平的学生，能够提供宝贵的资源，帮助他们满足各自的学习需求，更不用说还能提升他们的沟通与社交能力。"
+    },
+    {
+     "en": "And today, more than ever, we need the many to flourish – not suffer at the expense of a few bright stars.",
+     "zh": "而在当下，比以往任何时候都更需要让大多数人都能发展得更好——而不是为了少数耀眼的“明星”让多数人付出代价、承受损失。"
+    },
+    {
+     "en": "Once a year, I go on a hike with my class, a mixed bunch of students.",
+     "zh": "每年我都会和班上的学生去徒步一次，这是一群能力与特点参差不齐的孩子。"
+    },
+    {
+     "en": "It is challenging.",
+     "zh": "这确实很有挑战。"
+    },
+    {
+     "en": "The fittest students realise they need to encourage the reluctant.",
+     "zh": "体能最好的学生会意识到，他们需要去鼓励那些不太情愿、想退缩的人。"
+    },
+    {
+     "en": "There are lookouts who report back, and extra items to carry for others.",
+     "zh": "有人负责前方探路并回报情况，也有人替他人分担额外的物品。"
+    },
+    {
+     "en": "We make it – together.",
+     "zh": "我们最终走完了全程——一起完成的。"
+    }
+   ]
+  }
+ ],
+ "mcq": [
+  {
+   "no": 27,
+   "stem": "The writer describes the Romeo and Juliet lesson in order to demonstrate",
+   "options": [
+    {
+     "k": "A",
+     "t": "how few students are interested in literature."
+    },
+    {
+     "k": "B",
+     "t": "how a teacher handles a range of learning needs."
+    },
+    {
+     "k": "C",
+     "t": "how unsuitable Shakespeare is for most teenagers."
+    },
+    {
+     "k": "D",
+     "t": "how weaker students can disrupt their classmates' learning."
+    }
+   ],
+   "mine": "C",
+   "correct": "B"
+  },
+  {
+   "no": 28,
+   "stem": "What does the writer say about streaming in the third paragraph?",
+   "options": [
+    {
+     "k": "A",
+     "t": "It has a very broad appeal."
+    },
+    {
+     "k": "B",
+     "t": "It favours cleverer students."
+    },
+    {
+     "k": "C",
+     "t": "It is relatively simple to implement."
+    },
+    {
+     "k": "D",
+     "t": "It works better in some schools than others."
+    }
+   ],
+   "mine": "A",
+   "correct": "A"
+  },
+  {
+   "no": 29,
+   "stem": "What idea is suggested by the reference to Mount Qomolangma in the fifth paragraph?",
+   "options": [
+    {
+     "k": "A",
+     "t": "students following unsuitable paths"
+    },
+    {
+     "k": "B",
+     "t": "students attempting interesting tasks"
+    },
+    {
+     "k": "C",
+     "t": "students not achieving their full potential"
+    },
+    {
+     "k": "D",
+     "t": "students not being aware of their limitations"
+    }
+   ],
+   "mine": "A",
+   "correct": "C"
+  },
+  {
+   "no": 30,
+   "stem": "What does the word 'scaffolding' in the sixth paragraph refer to?",
+   "options": [
+    {
+     "k": "A",
+     "t": "the factors which prevent a student from learning effectively"
+    },
+    {
+     "k": "B",
+     "t": "the environment where most of a student's learning takes place"
+    },
+    {
+     "k": "C",
+     "t": "the assistance given to a student in their initial stages of learning"
+    },
+    {
+     "k": "D",
+     "t": "the setting of appropriate learning targets for a student's aptitude"
+    }
+   ],
+   "mine": "D",
+   "correct": "C"
+  }
+ ],
+ "summary": {
+  "title": "Is streaming effective?",
+  "text": "According to Professor John Hattie of the Melbourne Education Research Institute, there is very little indication that streaming leads to {{31}}. He points out that, in schools which use streaming, the most significant impact is on those students placed in the {{32}} , especially where a large proportion of them have {{33}} . Meanwhile, for the {{34}} , there appears to be only minimal advantage. A further issue is that teachers tend to have {{35}} of students in streamed groups.",
+  "options": [
+   {
+    "k": "A",
+    "t": "wrong classes"
+   },
+   {
+    "k": "B",
+    "t": "lower expectations"
+   },
+   {
+    "k": "C",
+    "t": "average learners"
+   },
+   {
+    "k": "D",
+    "t": "bottom sets"
+   },
+   {
+    "k": "E",
+    "t": "brightest pupils"
+   },
+   {
+    "k": "F",
+    "t": "disadvantaged backgrounds"
+   },
+   {
+    "k": "G",
+    "t": "weaker students"
+   },
+   {
+    "k": "H",
+    "t": "higher achievements"
+   },
+   {
+    "k": "I",
+    "t": "positive impressions"
+   }
+  ],
+  "items": [
+   {
+    "no": 31,
+    "mine": "H",
+    "correct": "H"
+   },
+   {
+    "no": 32,
+    "mine": "A",
+    "correct": "D"
+   },
+   {
+    "no": 33,
+    "mine": "D",
+    "correct": "F"
+   },
+   {
+    "no": 34,
+    "mine": "E",
+    "correct": "E"
+   },
+   {
+    "no": 35,
+    "mine": "B",
+    "correct": "B"
+   }
+  ]
+ },
+ "yn": [
+  {
+   "no": 36,
+   "stem": "The Vygotsky model of education supports the concept of a mixed-ability class.",
+   "mine": "N",
+   "correct": "N"
+  },
+  {
+   "no": 37,
+   "stem": "Some teachers are uncertain about allowing students to take on MKO roles in the classroom.",
+   "mine": "Y",
+   "correct": "NG"
+  },
+  {
+   "no": 38,
+   "stem": "It can be rewarding to teach knowledge which you have only recently acquired.",
+   "mine": "NG",
+   "correct": "Y"
+  },
+  {
+   "no": 39,
+   "stem": "The priority should be to ensure that the highest-achieving students attain their goals.",
+   "mine": "NG",
+   "correct": "N"
+  },
+  {
+   "no": 40,
+   "stem": "Taking part in collaborative outdoor activities with teachers and classmates can improve student outcomes in the classroom.",
+   "mine": "Y",
+   "correct": "NG"
+  }
+ ],
+ "desc": [
+  "Questions 27–30\n\nChoose the correct letter, A, B, C or D.",
+  "Questions 31–35\n\nComplete the summary using the list of phrases, A–I, below",
+  "Questions 36–40\n\nDo the following statements agree with the views of the writer in Reading Passage 3?\nChoose\nYES if the statement agrees with the views of the writer\nNO if the statement contradicts the views of the writer\nNOT GIVEN if it is impossible to say what the writer thinks about this"
+ ]
+};
+const DICT = {"picture": "v. 想象；设想（picture this scene 想象这样的场景）", "this": "det./pron. 这个；这", "scene": "n. 场景；场面", "it's": "it is 的缩写：它是；这是", "an": "art. 一个（用于元音音素前）", "english": "adj. 英语的；英国的 n. 英语", "literature": "n. 文学；文学作品", "lesson": "n. 课；一节课", "in": "prep. 在……里；在……方面", "a": "art. 一个（不定冠词）", "uk": "n. 英国（United Kingdom 的缩写）", "school": "n. 学校", "and": "conj. 和；并且", "the": "art. 这；那（定冠词）", "teacher": "n. 教师；老师", "has": "v. have 的第三人称单数：有；已经（构成完成时）", "just": "adv. 刚刚；恰好；仅仅", "read": "v. 朗读；阅读（read 的过去分词）", "extract": "n. 摘录；选段", "from": "prep. 从；来自", "shakespeare's": "莎士比亚的（Shakespeare 的所有格）", "romeo": "n. 罗密欧（Romeo and Juliet《罗密欧与朱丽叶》）", "juliet": "n. 朱丽叶", "with": "prep. 和……一起；带有", "class": "n. 班级；课堂；全班学生", "of": "prep. ……的（表所属、数量）", "year-olds": "n. 十几岁的孩子（15-year-olds 十五岁的孩子）", "he's": "he is / he has 的缩写：他是；他已经", "given": "v. give 的过去分词：给；给予", "some": "det. 一些；某些", "students": "n. 学生（student 的复数）", "copies": "n. 副本；册（copy 的复数）", "no": "det. 没有；无（No Fear Shakespeare 为书名）", "fear": "n. 恐惧；害怕", "shakespeare": "n. 莎士比亚（英国剧作家）", "kid-friendly": "adj. 适合孩子阅读的；对孩子友好的", "translation": "n. 翻译；译本", "original": "n. 原著；原文 adj. 原来的；原创的", "for": "prep. 对于；为了；持续（时间）", "three": "num. 三；三个", "even": "adv. 甚至；即使", "these": "det. 这些", "literacy": "n. 读写能力；识字", "demands": "n. 要求；需要（demand 的复数）", "are": "v. be 的复数形式：是", "beyond": "prep. 超出；在……之外", "them": "pron. 他们；它们（宾格）", "another": "det. 另一个；又一个", "girl": "n. 女孩", "simply": "adv. 简直；仅仅；只是", "can't": "cannot 的缩写：不能；无法", "focus": "v. 集中注意力 n. 焦点", "he": "pron. 他", "gives": "v. give 的第三人称单数：给", "her": "pron. 她；她的（宾格/所有格）", "pens": "n. 钢笔（pen 的复数）", "paper": "n. 纸；纸张", "to": "prep. 到；向；（不定式符号）", "draw": "v. 画画；绘制", "can": "modal v. 能；可以", "ask": "v. 问；要求；请", "group": "n. 组；小组", "identify": "v. 识别；辨认出", "key": "adj. 关键的；主要的 n. 钥匙；关键", "characters": "n. 人物；角色；性格（character 的复数）", "maybe": "adv. 也许；可能", "provide": "v. 提供；给出", "tentative": "adj. 初步的；试探性的；暂定的", "plot": "n. 情节；剧情", "summary": "n. 摘要；概述", "most": "det. 大多数；大部分 adv. 最", "about": "prep. 关于；大约", "character": "n. 人物；性格；特征", "development": "n. 发展；成长；演变", "five": "num. 五；五个", "might": "modal v. 可能；也许（语气较弱）", "be": "v. 是；成为（原形）", "able": "adj. 能够的（be able to 能够）", "support": "v. 支持；支撑；证实", "their": "pron. 他们的", "statements": "n. 陈述；说法（statement 的复数）", "textual": "adj. 文本的；原文的", "evidence": "n. 证据；依据", "now": "adv. 现在；此时", "two": "num. 二；两个", "curious": "adj. 好奇的", "wondering": "v. 想知道；琢磨（wonder 的现在分词）", "whether": "conj. 是否", "advocates": "v. 主张；提倡（advocate 的第三人称单数）n. 拥护者", "living": "v. 过（生活）；生活（live 的现在分词）adj. 活着的", "life": "n. 生活；人生", "moderation": "n. 适度；节制", "or": "conj. 或者；还是", "one": "num. 一个 pron. 一个（代替前文名词）", "passionate": "adj. 充满激情的；热烈的", "engagement": "n. 投入；参与；交往", "as": "prep. 作为 conj. 当……时；正如", "myself": "pron. 我自己", "i'd": "I would / I had 的缩写：我会；我已", "think": "v. 认为；想", "my": "pron. 我的", "would": "modal v. 将会；会（表推测或虚拟）", "going": "v. 进行；去（go 的现在分词）", "rather": "adv. 相当；颇；（would rather 宁愿）", "well": "adv. 好；很好地", "if": "conj. 如果；是否", "discussion": "n. 讨论；讨论过程", "went": "v. go 的过去式：进行；去", "described": "v. 描述（describe 的过去分词）", "above": "adv./prep. 在上面；上述的", "but": "conj. 但是", "wouldn't": "would not 的缩写：不会", "kind": "n. 种类（this kind of 这种）adj. 友善的", "work": "v. 运作；起作用 n. 工作", "better": "adv./adj. 更好地；更好的（good 的比较级）", "there": "adv. 在那里；（there be 结构）有", "weren't": "were not 的缩写：不是；没有", "such": "det. 这样的；如此的", "huge": "adj. 巨大的", "gap": "n. 差距；空隙", "between": "prep. 在……之间", "top": "n. 顶端；上层 adj. 最高的", "bottom": "n. 底部；下层 adj. 最低的", "we": "pron. 我们", "put": "v. 放；安置", "all": "det. 所有的；全部", "kids": "n. 孩子（kid 的复数，口语）", "who": "pron. 谁；（关系代词）……的人", "needed": "v. 需要（need 的过去式/过去分词）", "into": "prep. 进入；到……里", "want": "v. 想要", "discuss": "v. 讨论", "virtue": "n. 美德；优点", "practice": "n. 做法；实践；惯例", "streaming": "n. （按能力）分流编班；分层教学", "tracking": "n. （按能力）分层；分轨教学", "involves": "v. 涉及；包含（involve 的第三人称单数）", "separating": "v. 把……分开（separate 的现在分词）", "classes": "n. 班级；阶级（class 的复数）", "depending": "v. 取决于（depend on 的现在分词）", "on": "prep. 在……上；依据", "diagnosed": "v./adj. 被诊断（评定）的（diagnose 的过去分词）", "levels": "n. 水平；层级（level 的复数）", "attainment": "n. 学业成就；达到的水平", "at": "prep. 在（某处/某水平）；在……方面", "macro": "adj. 宏观的（at a macro level 在宏观层面）", "level": "n. 层面；水平", "requires": "v. 需要；要求（require 的第三人称单数）", "establishment": "n. 建立；设立", "academically": "adv. 学术上；在学业方面", "selective": "adj. 择优的；有选择性的", "schools": "n. 学校（school 的复数）", "brightest": "adj. 最聪明的（bright 的最高级）", "comprehensive": "adj. 综合的（comprehensive school 综合中学）", "rest": "n. 其余；剩下的部分（the rest）", "within": "prep. 在……之内", "means": "v. 意味着（mean 的第三人称单数）n. 手段", "selecting": "v. 挑选（select 的现在分词）", "stream": "n. 能力梯队；流", "general": "adj. 总体的；一般的", "ability": "n. 能力", "sets": "n. 组；层（按学科能力分的班）", "subject-specific": "adj. 特定学科的；按科目划分的", "is": "v. be 的第三人称单数：是", "intuitively": "adv. 直觉上；凭直觉地", "appealing": "adj. 有吸引力的", "almost": "adv. 几乎；差不多", "every": "det. 每一个", "stakeholder": "n. 利益相关者；相关方", "have": "v. 有；（构成完成时）", "heard": "v. hear 的过去分词：听说", "mixed-ability": "adj. 混合能力的（学生水平不齐的）", "model": "n. 模式；模型", "attacked": "v. 抨击；攻击（attack 的过去分词）", "by": "prep. 被；通过；靠", "way": "n. 方式；方法（by way of 通过……的方式）", "analogy": "n. 类比；比喻", "hike": "n./v. 徒步；远足", "fittest": "adj. 体能最好的（fit 的最高级）", "take": "v. 拿；带领（take the lead 带头）", "lead": "n. 领先位置（take the lead 领头）v. 引导", "set": "v. 设定；定下（set a pace 定下速度）", "brisk": "adj. 轻快的；利落的", "pace": "n. 速度；步调", "only": "adv. 却；只是；仅仅", "stop": "v. 停下", "wait": "v. 等待", "minutes": "n. 分钟（minute 的复数）", "frustrating": "adj. 令人沮丧的；令人恼火的", "enthusiasm": "n. 热情；热忱", "wanes": "v. 减弱；消退（wane 的第三人称单数）", "meanwhile": "adv. 与此同时", "slowest": "adj. 最慢的（slow 的最高级）", "ones": "pron. 那些（人/物）（one 的复数）", "not": "adv. 不；没有", "embarrassed": "adj. 尴尬的；难为情的", "physically": "adv. 体力上；身体上", "struggling": "v. 挣扎；艰难地努力（struggle 的现在分词）", "keep": "v. 保持（keep up 跟上）", "up": "adv. 向上；（keep up 跟上）", "what's": "what is 的缩写：什么是；（what's worse 更糟的是）", "worse": "adj./adv. 更糟的（bad 的比较级）", "they": "pron. 他们", "never": "adv. 从不；从未", "get": "v. 得到；获得", "long": "adj. 长的（时间/长度）", "enough": "adj./adv. 足够的（地）", "break": "n. 休息；间歇", "honestly": "adv. 老实说；真的", "quit": "v. 放弃；退出", "hiking": "n. 徒步；远足", "feel": "v. 觉得；感到", "bore": "v. 使厌烦；使无聊", "frustrate": "v. 使沮丧；使受挫", "parents": "n. 父母（parent 的复数）", "burn": "v. 燃烧（burn out 使精疲力竭）", "out": "adv. 出；向外（burn out 耗尽）", "teachers": "n. 教师（teacher 的复数）", "will": "modal v. 将会；总是（表习惯）", "summit": "v. 登顶；到达峰顶 n. 顶峰", "mount": "n. 山（用于山名，Mount Qomolangma 珠穆朗玛峰）", "qomolangma": "n. 珠穆朗玛峰（Qomolangma）", "stragglers": "n. 落后者；掉队的人（straggler 的复数）", "won't": "will not 的缩写：不会", "enjoy": "v. 享受；喜爱", "lovely": "adj. 美好的；令人愉快的", "stroll": "n. 漫步；闲逛", "park": "n. 公园", "perhaps": "adv. 也许；或许", "more": "adv. 更；更多地 adj. 更多的", "suited": "adj. 适合的（be suited to 适合于）", "individuals": "n. 个体；个人（individual 的复数）", "suffer": "v. 受苦；遭受损失", "collective": "n. 集体 adj. 集体的", "mediocrity": "n. 平庸；平庸之辈", "prevails": "v. 盛行；占上风（prevail 的第三人称单数）", "so": "adv. 那么；如此 conj. 因此", "learning": "n. 学习", "like": "prep. 像；如同 v. 喜欢", "current": "adj. 当前的；现行的", "pedagogical": "adj. 教育学的；教学法的", "paradigm": "n. 范式；典范", "arguably": "adv. 可以说是；大概", "that": "pron./det. 那个 conj. （引导从句）", "constructivism": "n. 建构主义（一种学习理论）", "which": "pron. （关系代词）这/那个（指代前文）", "emerged": "v. 出现；形成（emerge 的过去式）", "psychologist": "n. 心理学家", "lev": "n. 列夫（Lev Vygotsky 列夫·维果茨基）", "vygotsky": "n. 维果茨基（苏联心理学家）", "s": "（构成所有格或复数的词尾；如 1930s 二十世纪三十年代）", "emphasised": "v. 强调（emphasise 的过去式，英式拼写）", "importance": "n. 重要性", "targeting": "v. 以……为目标；瞄准（target 的现在分词）", "student's": "学生的（student 的所有格）", "specific": "adj. 特定的；具体的", "zone": "n. 区域；地带（zone of proximal development 最近发展区）", "proximal": "adj. 近端的；最接近的（心理学用语）", "zpd": "n. 最近发展区（zone of proximal development 的缩写）", "achieve": "v. 达成；实现", "textbooks": "n. 教科书（textbook 的复数）", "worked": "adj. （worked example）已解出的（例题）", "examples": "n. 例子；例题（example 的复数）", "independently": "adv. 独立地；自主地", "purpose": "n. 目的", "teaching": "n. 教学", "then": "adv. 然后；接着", "gradually": "adv. 逐渐地", "remove": "v. 移除；撤去", "scaffolding": "n. 支架；脚手架（教育比喻：临时性支持）", "until": "conj./prep. 直到", "autonomous": "adj. 自主的；能自主学习的", "accept": "v. 接受；认可", "follows": "v. 由此可知（it follows that 由此推出）", "similar": "adj. 相似的；相近的", "zpds": "n. 最近发展区（ZPD 的复数）", "efficient": "adj. 高效的", "effective": "adj. 有效的", "solution": "n. 解决方案", "forcing": "v. 强迫（force 的现在分词）", "everyone": "pron. 每个人；所有人", "same": "adj. 相同的（the same 同一个）", "regardless": "adv. 不管；不顾（regardless of 不论）", "aptitude": "n. 天资；能力倾向", "madness": "n. 疯狂；愚蠢之举", "despite": "prep. 尽管", "limited": "adj. 有限的", "empirical": "adj. 实证的；经验性的", "suggest": "v. 表明；暗示；建议", "results": "v. 导致（result in 导致）n. 结果", "outcomes": "n. 结果；成果（outcome 的复数）", "professor": "n. 教授", "john": "n. 约翰（人名）", "hattie": "n. 哈蒂（John Hattie，教育学者）", "director": "n. 院长；主任；主管", "melbourne": "n. 墨尔本（澳大利亚城市）", "education": "n. 教育", "research": "n. 研究", "institute": "n. 研究院；学院", "notes": "v. 指出；提到（note 的第三人称单数）n. 笔记", "minimal": "adj. 极小的；微不足道的", "effects": "n. 影响；效果（effect 的复数）", "appears": "v. 似乎；显得（appear 的第三人称单数）", "significantly": "adv. 显著地；大幅度地", "negatively": "adv. 负面地；消极地", "affect": "v. 影响", "those": "det./pron. 那些", "assigned": "v. 被分配到（assign 的过去分词）", "lowest": "adj. 最低的（low 的最高级）", "tend": "v. 倾向于（tend to 往往）", "much": "adv. 得多；非常（修饰比较级）det. 许多", "higher": "adj. 更高的（high 的比较级）", "representation": "n. 占比；代表比例", "low": "adj. 低的；低下的", "socioeconomic": "adj. 社会经济的", "less": "adv./adj. 更少（地）；较小的", "significant": "adj. 显著的；重要的", "small": "adj. 小的", "benefit": "n. 好处；益处", "lucky": "adj. 幸运的", "clever": "adj. 聪明的", "overall": "adj. 总体的；全面的", "result": "n. 结果", "smart": "adj. 聪明的", "stay": "v. 保持；仍然是", "dumb": "adj. 愚笨的（口语）", "dumber": "adj. 更愚笨的（dumb 的比较级）", "further": "adv. 进一步地", "entrenching": "v. 使根深蒂固；加固（entrench 的现在分词）", "social": "adj. 社会的", "divide": "n. 鸿沟；分歧 v. 分开", "latest": "adj. 最新的", "update": "n. 更新；最新版本", "hattie's": "哈蒂的（Hattie 的所有格）", "influential": "adj. 有影响力的", "meta-analysis": "n. 元分析；荟萃分析（综合多项研究）", "factors": "n. 因素（factor 的复数）", "influencing": "v. 影响（influence 的现在分词）", "achievement": "n. 成就；学业成绩", "estimate": "n./v. 估计；判断", "automatically": "adv. 自动地；不自觉地", "limits": "v. 限制（limit 的第三人称单数）n. 限度", "feels": "v. 觉得；认为（feel 的第三人称单数）", "capable": "adj. 有能力的（be capable of 能够）", "mixed": "adj. 混合的", "environment": "n. 环境", "estimates": "n. 估计；判断（estimate 的复数）", "need": "v. 需要", "diverse": "adj. 多样的；多元的", "flexible": "adj. 灵活的；有弹性的", "while": "conj. 虽然；而；当……时", "seem": "v. 似乎；看起来", "help": "v. 帮助", "effectively": "adv. 有效地", "target": "v. 针对；以……为目标 n. 目标", "underestimate": "v. 低估", "peer-to-peer": "adj. 同伴之间的；同辈之间的", "crucial": "adj. 关键的；至关重要的", "aspect": "n. 方面", "constructivist": "adj. 建构主义的", "theory": "n. 理论", "role": "n. 作用；角色", "mko": "n. 更有知识的他者（more knowledgeable other 的缩写）", "knowledgeable": "adj. 知识丰富的；了解得多的", "other": "n./adj. 他者；另一个", "knowledge": "n. 知识", "construction": "n. 建构；建造", "traditionally": "adv. 传统上", "mkos": "n. 更有知识的他者（MKO 的复数）", "classrooms": "n. 教室；课堂（classroom 的复数）", "value": "n. 价值", "peers": "n. 同伴；同辈（peer 的复数）", "must": "modal v. 必须；一定", "go": "v. 去；（go unrecognised 未被认可）", "unrecognised": "adj. 未被认识到的；未获承认的", "either": "adv. 也（用于否定句末）", "find": "v. 觉得；发现", "amazing": "adj. 令人惊叹的", "watch": "v. 观看；看着", "over": "prep. 越过（get over 把……讲清楚、传达过去）", "idea": "n. 想法；观点", "ways": "n. 方式（way 的复数）", "operate": "v. 运作；操作", "different": "adj. 不同的", "language": "n. 语言", "tools": "n. 工具（tool 的复数）", "having": "v. 由于有；已经（have 的现在分词）", "learnt": "v. learn 的过去分词：学会（英式拼写）", "themselves": "pron. 他们自己", "possess": "v. 拥有；具备", "cognitive": "adj. 认知的", "structures": "n. 结构（structure 的复数）", "classmates": "n. 同学（classmate 的复数）", "also": "adv. 也；还", "something": "pron. 某事；某物", "exciting": "adj. 令人兴奋的", "passing": "v. 传递；传授（pass on 的现在分词）", "skills": "n. 技能（skill 的复数）", "you": "pron. 你；你们", "yourself": "pron. 你自己", "mastered": "v. 掌握（master 的过去分词）", "certain": "adj. 某种；一定的", "pride": "n. 自豪；骄傲", "zeal": "n. 热忱；激情", "freshness": "n. 新鲜感；清新", "interaction": "n. 互动；交流", "learner": "n. 学习者", "often": "adv. 经常；常常", "lost": "v. 失去（lose 的过去分词）", "expert": "n. 专家 adj. 熟练的", "whom": "pron. （关系代词）……的人（宾格）", "steps": "n. 步骤（step 的复数）", "obvious": "adj. 显而易见的；理所当然的", "joy": "n. 乐趣；喜悦", "discovery": "n. 发现；探索", "forgotten": "v. 忘记（forget 的过去分词）", "variety": "n. 多样性；各种", "abilities": "n. 能力（ability 的复数）", "collaborative": "adj. 协作的；合作的", "provides": "v. 提供（provide 的第三人称单数）", "valuable": "adj. 宝贵的；有价值的", "resources": "n. 资源（resource 的复数）", "helping": "v. 帮助（help 的现在分词）", "meet": "v. 满足（meet needs 满足需求）", "needs": "n. 需求（need 的复数）", "mention": "v. 提及（not to mention 更不用说）", "improving": "v. 提升；改善（improve 的现在分词）", "communication": "n. 沟通；交流", "today": "adv. 如今；今天", "than": "conj. 比（比较级连词）", "ever": "adv. 曾经；任何时候（more than ever 比以往任何时候都）", "many": "pron. 许多人；多数人 det. 许多", "flourish": "v. 茁壮成长；蓬勃发展", "expense": "n. 代价；费用（at the expense of 以……为代价）", "few": "det. 少数；几个（a few 几个）", "bright": "adj. 明亮的；聪明的", "stars": "n. 明星；星（star 的复数）", "once": "adv. 一次；一旦（once a year 每年一次）", "year": "n. 年", "bunch": "n. 一群；一帮（a bunch of 一群）", "challenging": "adj. 有挑战性的；困难的", "realise": "v. 意识到（realise 的第三人称单数，英式拼写）", "encourage": "v. 鼓励", "reluctant": "adj. 不情愿的；抵触的", "lookouts": "n. 瞭望者；负责观察报信的人（lookout 的复数）", "report": "v. 报告；汇报", "back": "adv. 回；向后（report back 回报情况）", "extra": "adj. 额外的", "items": "n. 物品（item 的复数）", "carry": "v. 携带；搬运", "others": "pron. 其他人（other 的复数）", "make": "v. 做到；成功（make it 成功到达）", "together": "adv. 一起；共同", "15-year-olds": "n. 十五岁的学生", "1930s": "n. 二十世纪三十年代", "it": "pron. 它；这（指代前文事物/情况）", "what": "pron. 什么；（关系代词）……的事物", "student": "n. 学生", "i": "pron. 我（第一人称主格）", "20": "num. 二十", "15": "num. 十五", "5": "num. 五（此处 five of them 指五个学生）"};
+
+/* ---------- 渲染原文 ---------- */
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function wordHTML(w){
+  return '<span class="w">' + esc(w) + '</span>';
+}
+function tokenize(sentence){
+  // 单词（含撇号/连字符）| 空白 | 其它（标点、引号、破折号）
+  const re = /([A-Za-z0-9](?:[A-Za-z0-9'\u2019\-]*[A-Za-z0-9])?)|(\s+)|([^A-Za-z0-9\s]+)/g;
+  let out = '', m;
+  while ((m = re.exec(sentence)) !== null){
+    if (m[1]) out += wordHTML(m[1]);
+    else out += esc(m[0]);
+  }
+  return out;
+}
+
+const textEl = document.getElementById('text');
+let html = '';
+DATA.paragraphs.forEach(p => {
+  html += '<div class="para"><span class="pnum">' + p.idx + '</span><p class="text" style="margin:0">';
+  p.sentences.forEach((s, i) => {
+    const id = 's' + p.idx + '_' + i;
+    html += '<span class="sent" data-id="' + id + '">' + tokenize(s.en) + '</span>';
+    html += '<span class="tr" id="' + id + '">' + esc(s.zh) + '</span>';
+    if (i < p.sentences.length - 1) html += ' ';
+  });
+  html += '</p></div>';
+});
+textEl.innerHTML = html;
+
+document.getElementById('kicker').textContent = DATA.meta.book + ' · ' + DATA.meta.test + ' · ' + DATA.meta.passage + ' · 原文与官方译文';
+document.getElementById('title').textContent = DATA.meta.title;
+document.getElementById('dur').textContent = DATA.meta.duration;
+document.getElementById('score').textContent = DATA.meta.score;
+
+/* ---------- 句子点击 ---------- */
+let allOpen = false;
+textEl.addEventListener('click', e => {
+  const s = e.target.closest('.sent');
+  if (!s) return;
+  s.classList.toggle('open');
+  const tr = document.getElementById(s.dataset.id);
+  if (tr) tr.classList.toggle('show');
+});
+document.getElementById('btnAll').addEventListener('click', e => {
+  allOpen = !allOpen;
+  document.querySelectorAll('.tr').forEach(t => t.classList.toggle('show', allOpen));
+  document.querySelectorAll('.sent').forEach(t => t.classList.toggle('open', allOpen));
+  e.currentTarget.classList.toggle('on', allOpen);
+  e.currentTarget.textContent = allOpen ? '收起全部译文' : '展开全部译文';
+});
+
+/* ---------- 单词悬停释义 ---------- */
+const tip = document.getElementById('tip');
+function lookup(raw){
+  const lw = raw.toLowerCase();
+  const cands = [lw];
+  if (lw.endsWith("'s") || lw.endsWith('\u2019s')) cands.push(lw.slice(0,-2));
+  if (lw.endsWith("s'")) cands.push(lw.slice(0,-1));
+  if (lw.endsWith("n't")) cands.push(lw.replace(/n't$/,''));
+  cands.push(lw.replace(/ies$/,'y'), lw.replace(/es$/,''), lw.replace(/s$/,''),
+             lw.replace(/ed$/,''), lw.replace(/ed$/,'e'), lw.replace(/ing$/,''),
+             lw.replace(/ing$/,'e'), lw.replace(/([a-z])\1(ed|ing)$/,'$1'));
+  for (const c of cands) if (DICT[c]) return [c, DICT[c]];
+  return null;
+}
+/* ══════════ 生词本 · 本地临时存储 ══════════ */
+const VOCAB_KEY = 'wb_vocab_v1';
+const SRC = [DATA.meta.book, DATA.meta.test, DATA.meta.passage].filter(Boolean).join(' · ');
+let vocab = [];
+let vocabMemOnly = false;
+
+function vocabLoad(){
+  try{
+    const raw = localStorage.getItem(VOCAB_KEY);
+    const arr = raw ? JSON.parse(raw) : [];
+    vocab = Array.isArray(arr) ? arr.filter(v => v && v.lemma && v.word) : [];
+  }catch(e){
+    vocab = []; vocabMemOnly = true;
+  }
+}
+function vocabSave(){
+  try{ localStorage.setItem(VOCAB_KEY, JSON.stringify(vocab)); }
+  catch(e){ vocabMemOnly = true; }
+}
+function vocabFind(lemma){ return vocab.find(v => v.lemma === lemma && v.src === SRC); }
+function vocabSavedSet(){
+  const s = new Set();
+  vocab.forEach(v => { if (v.src === SRC) s.add(v.lemma); });
+  return s;
+}
+/* 给原文里已收录的词加上标记 */
+function refreshMarks(){
+  const set = vocabSavedSet();
+  textEl.querySelectorAll('.w').forEach(w => {
+    const hit = lookup(w.textContent);
+    const lemma = hit ? hit[0] : w.textContent.toLowerCase();
+    w.classList.toggle('saved', set.has(lemma));
+  });
+}
+/* 取单词所在句子的英文原句 + 中文译文 */
+function sentenceOf(el){
+  const s = el.closest('.sent');
+  if (!s) return { id:'', en:'', zh:'', para:0 };
+  const id = s.dataset.id || '';
+  const m = /^s(\d+)_(\d+)$/.exec(id);
+  let zh = '', para = 0;
+  if (m){
+    para = +m[1];
+    const p = DATA.paragraphs.find(x => String(x.idx) === m[1]);
+    if (p && p.sentences[+m[2]]) zh = p.sentences[+m[2]].zh || '';
+  }
+  return { id, zh, para, en: s.textContent };
+}
+/* 收词 / 移除，返回最终是否已收录 */
+function vocabToggle(w){
+  const raw = w.textContent;
+  const hit = lookup(raw);
+  const lemma = hit ? hit[0] : raw.toLowerCase();
+  const existing = vocabFind(lemma);
+  if (existing){
+    vocab = vocab.filter(v => v !== existing);
+    vocabSave(); refreshMarks(); renderVocab();
+    toast('已从生词本移除：' + raw);
+    return false;
+  }
+  const s = sentenceOf(w);
+  vocab.push({
+    word: raw,
+    lemma: lemma,
+    gloss: hit ? hit[1] : '',
+    context: s.en,
+    zh: s.zh,
+    para: s.para,
+    sentId: s.id,
+    src: SRC,
+    ts: Date.now()
+  });
+  vocabSave(); refreshMarks(); renderVocab();
+  toast('已收进生词本：' + raw);
+  return true;
+}
+
+/* 抽屉渲染 */
+const vbList = document.getElementById('vbList');
+let vbFilter = '';
+const pad2 = n => String(n).padStart(2, '0');
+function fmtTime(ts){
+  const d = new Date(ts);
+  if (isNaN(d)) return '';
+  return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+}
+function hlContext(text, word){
+  const safe = esc(text);
+  const pat = esc(word).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  try{
+    return safe.replace(new RegExp('\\b(' + pat + ')\\b', 'i'), '<b>$1</b>');
+  }catch(e){ return safe; }
+}
+function renderVocab(){
+  const total = vocab.length;
+  document.getElementById('vbCount').textContent = total + ' 条';
+  const badge = document.getElementById('vbCountTop');
+  badge.textContent = total;
+  badge.classList.toggle('zero', total === 0);
+  const foot = document.getElementById('vbFoot');
+  if (vocabMemOnly){
+    foot.innerHTML = '⚠ 当前浏览器禁用了本地存储，记录只存在内存里，刷新即丢失。<b>请及时用「导出 CSV」或「复制 JSON」带走。</b>';
+  } else {
+    foot.innerHTML = '暂存于本机浏览器（localStorage），不随文件走。换设备或清缓存前请先导出；后续接后端可直接拿「复制 JSON」的数据导入。';
+  }
+
+  const q = vbFilter.trim().toLowerCase();
+  const list = vocab.slice()
+    .sort((a, b) => (b.ts || 0) - (a.ts || 0))
+    .filter(v => !q || (v.word + ' ' + v.lemma + ' ' + (v.gloss || '') + ' ' + (v.context || '')).toLowerCase().includes(q));
+
+  if (!total){
+    vbList.innerHTML = '<div class="vb-empty"><b>还没有生词</b>把鼠标停在原文的单词上，<br>点提示框里的「＋ 收进生词本」。</div>';
+    return;
+  }
+  if (!list.length){
+    vbList.innerHTML = '<div class="vb-empty">没有匹配「' + esc(vbFilter) + '」的词。</div>';
+    return;
+  }
+  vbList.innerHTML = list.map(v => {
+    const extra = (v.lemma && v.lemma !== String(v.word).toLowerCase()) ? '<span class="lm">' + esc(v.lemma) + '</span>' : '';
+    return '<div class="vb-item">' +
+      '<div><span class="wd">' + esc(v.word) + '</span>' + extra + '</div>' +
+      '<div class="df">' + (v.gloss ? esc(v.gloss) : '（词典未收录，可自行补充）') + '</div>' +
+      (v.context ? '<div class="cx">' + hlContext(v.context, v.word) + '</div>' : '') +
+      '<div class="ft">' +
+        (v.para ? '<span>第 ' + v.para + ' 段</span>' : '') +
+        '<span class="src">' + esc(v.src || '') + '</span>' +
+        '<span>' + fmtTime(v.ts) + '</span>' +
+        '<button class="del" data-lemma="' + esc(v.lemma) + '" data-src="' + esc(v.src || '') + '">删除</button>' +
+      '</div></div>';
+  }).join('');
+}
+
+/* 抽屉开关 */
+const vbDrawer = document.getElementById('vbDrawer');
+const vbMask = document.getElementById('vbMask');
+const btnVocab = document.getElementById('btnVocab');
+function openVocab(){
+  renderVocab();
+  vbDrawer.classList.add('open');
+  vbMask.classList.add('open');
+  btnVocab.classList.add('on');
+  tip.classList.remove('show');
+}
+function closeVocab(){
+  vbDrawer.classList.remove('open');
+  vbMask.classList.remove('open');
+  btnVocab.classList.remove('on');
+}
+btnVocab.addEventListener('click', () => {
+  vbDrawer.classList.contains('open') ? closeVocab() : openVocab();
+});
+document.getElementById('vbClose').addEventListener('click', closeVocab);
+vbMask.addEventListener('click', closeVocab);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVocab(); });
+document.getElementById('vbSearch').addEventListener('input', e => {
+  vbFilter = e.target.value || '';
+  renderVocab();
+});
+vbList.addEventListener('click', e => {
+  const b = e.target.closest('.del');
+  if (!b) return;
+  const lemma = b.dataset.lemma, src = b.dataset.src;
+  const hit = vocab.find(v => v.lemma === lemma && (v.src || '') === src);
+  vocab = vocab.filter(v => v !== hit);
+  vocabSave(); refreshMarks(); renderVocab();
+  toast('已删除：' + (hit ? hit.word : lemma));
+});
+
+/* 导出 / 迁移 */
+function download(name, text, type){
+  const blob = new Blob([text], { type: type || 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+function vocabRows(){
+  const rows = [['word', 'lemma', 'translation', 'context', 'context_zh', 'paragraph', 'source', 'added_at']];
+  vocab.slice().sort((a, b) => (a.ts || 0) - (b.ts || 0)).forEach(v => rows.push([
+    v.word, v.lemma, v.gloss || '', v.context || '', v.zh || '', v.para || '',
+    v.src || '', v.ts ? new Date(v.ts).toLocaleString('zh-CN') : ''
+  ]));
+  return rows;
+}
+document.getElementById('vbCsv').addEventListener('click', () => {
+  if (!vocab.length) return toast('生词本还是空的');
+  const csv = vocabRows().map(r => r.map(c => '"' + String(c == null ? '' : c).replace(/"/g, '""') + '"').join(',')).join('\r\n');
+  download('生词本-' + (DATA.meta.test || '').replace(/\s+/g, '') + '-' + (DATA.meta.passage || '').replace(/\s+/g, '') + '.csv',
+    '\ufeff' + csv, 'text/csv;charset=utf-8');
+  toast('已导出 CSV（Excel 可直接打开）');
+});
+document.getElementById('vbJson').addEventListener('click', () => {
+  if (!vocab.length) return toast('生词本还是空的');
+  const json = JSON.stringify(vocab.slice().sort((a, b) => (a.ts || 0) - (b.ts || 0)), null, 2);
+  const done = () => toast('已复制 JSON，可直接贴给后端/导入脚本');
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(json).then(done).catch(() => fallbackCopy(json, done));
+  } else {
+    fallbackCopy(json, done);
+  }
+});
+function fallbackCopy(text, cb){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+  document.body.appendChild(ta);
+  ta.select();
+  let ok = false;
+  try{ ok = document.execCommand('copy'); }catch(e){ ok = false; }
+  ta.remove();
+  if (ok) return cb();
+  download('生词本-' + (DATA.meta.test || '').replace(/\s+/g, '') + '-' + (DATA.meta.passage || '').replace(/\s+/g, '') + '.json',
+    text, 'application/json;charset=utf-8');
+  toast('浏览器不允许复制，已改为下载 JSON 文件');
+}
+document.getElementById('vbClear').addEventListener('click', () => {
+  if (!vocab.length) return toast('生词本已经是空的');
+  if (!confirm('确定清空生词本里的 ' + vocab.length + ' 条记录？清空后无法恢复。')) return;
+  vocab = [];
+  vocabSave(); refreshMarks(); renderVocab();
+  toast('生词本已清空');
+});
+
+/* 轻提示 */
+const toastEl = document.getElementById('toast');
+let toastTimer = null;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1700);
+}
+
+vocabLoad();
+refreshMarks();
+renderVocab();
+
+/* ---------- 单词悬停释义 + 收词 ---------- */
+let tipWord = null;
+let tipHideTimer = null;
+
+function showTip(w){
+  tipWord = w;
+  const raw = w.textContent;
+  const hit = lookup(raw);
+  const lemma = hit ? hit[0] : raw.toLowerCase();
+  const saved = !!vocabFind(lemma);
+  tip.innerHTML = '<div class="tw">' + esc(raw) +
+    (hit && lemma !== raw.toLowerCase() ? '<span class="tp">← ' + esc(lemma) + '</span>' : '') + '</div>' +
+    '<div class="tg">' + (hit ? esc(hit[1]) : '（词典未收录，仍可先收进生词本）') + '</div>' +
+    '<button class="tip-save' + (saved ? ' on' : '') + '" type="button">' +
+      (saved ? '✓ 已在生词本 · 点击移除' : '＋ 收进生词本') + '</button>';
+  tip.classList.add('show');
+  const r = w.getBoundingClientRect();
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let x = r.left + r.width / 2 - tw / 2;
+  let y = r.top - th - 9;
+  if (y < 8) y = r.bottom + 9;
+  x = Math.max(8, Math.min(x, window.innerWidth - tw - 8));
+  tip.style.left = x + 'px';
+  tip.style.top = y + 'px';
+}
+function hideTip(){
+  tip.classList.remove('show');
+  tipWord = null;
+}
+function syncTipBtn(saved){
+  const b = tip.querySelector('.tip-save');
+  if (!b) return;
+  b.classList.toggle('on', saved);
+  b.textContent = saved ? '✓ 已在生词本 · 点击移除' : '＋ 收进生词本';
+}
+
+textEl.addEventListener('mouseover', e => {
+  const w = e.target.closest('.w');
+  if (!w || w === tipWord) return;
+  clearTimeout(tipHideTimer);
+  showTip(w);
+});
+textEl.addEventListener('mouseout', e => {
+  if (!e.target.closest('.w')) return;
+  clearTimeout(tipHideTimer);
+  tipHideTimer = setTimeout(hideTip, 220);
+});
+tip.addEventListener('mouseenter', () => clearTimeout(tipHideTimer));
+tip.addEventListener('mouseleave', () => {
+  clearTimeout(tipHideTimer);
+  tipHideTimer = setTimeout(hideTip, 140);
+});
+tip.addEventListener('click', e => {
+  if (!e.target.closest('.tip-save') || !tipWord) return;
+  const now = vocabToggle(tipWord);
+  syncTipBtn(now);
+});
+/* 点击空白处收掉浮层 */
+document.addEventListener('click', e => {
+  if (e.target.closest('.tip') || e.target.closest('#essay')) return;
+  hideTip();
+});
+
+/* ---------- 右侧答案 ---------- */
+const A = DATA;
+
+function descHTML(i){
+  const raw = (A.desc && A.desc[i]) || '';
+  const body = raw.replace(/^Questions[^\n]*\n+/, '').trim();
+  if (!body) return '';
+  return '<div class="sect-desc">' + body.split('\n').filter(Boolean).map(esc).join('<br>') + '</div>';
+}
+
+const wrong = []
+  .concat(A.mcq.filter(q => q.mine !== q.correct).map(q => q.no))
+  .concat(A.summary.items.filter(q => q.mine !== q.correct).map(q => q.no))
+  .concat(A.yn.filter(q => q.mine !== q.correct).map(q => q.no))
+  .sort((a,b) => a-b);
+
+/* 单题复盘块 */
+function qrevHTML(no){
+  const r = QR[no];
+  if (!r) return '';
+  let x = '<div class="qrev">';
+  x += '<p class="qrev-d"><b>' + (r.label || '错在哪') + '</b>' + r.diag + '</p>';
+  const cites = r.cites || [];
+  if (cites.length){
+    const ps = cites.map(c => c.p).filter((v, i, a) => a.indexOf(v) === i);
+    x += '<p class="cite-j" data-p="' + cites[0].p + '" data-b="' + cites[0].b[0] + '" title="点一下滚到左栏">'
+       + '原文出处 · 第 ' + ps.join('、') + ' 段<em>（左栏已加粗）</em></p>';
+  }
+  if (r.chain) x += '<p class="qrev-c"><b>正确链条</b>' + r.chain + '</p>';
+  x += '</div>';
+  return x;
+}
+
+function buildAnswers(){
+  let h = '';
+
+  h += '<div class="overview">';
+  h += '<div class="ov-row"><span>篇目</span><b>' + A.meta.book + ' ' + A.meta.test + ' ' + A.meta.passage + '</b></div>';
+  h += '<div class="ov-row"><span>用时 / 得分</span><b>' + A.meta.duration + ' · ' + A.meta.score + '</b></div>';
+  h += '<div class="ov-wrong">错题 ' + wrong.length + ' 道：' + wrong.map(n => '<span>' + n + '</span>').join('') + '</div>';
+  h += '</div>';
+
+  /* 27–30 选择 */
+  h += '<div class="sect"><div class="sect-t">选择题 · 27–30<span class="sect-tip">点题卡看复盘</span></div>' + descHTML(0);
+  A.mcq.forEach(q => {
+    const ok = q.mine === q.correct;
+    h += '<div class="qcard qclick ' + (ok?'ok':'no') + '" data-q="' + q.no + '">';
+    h += '<div class="qtop"><span class="qno">' + q.no + '</span><span class="tag ' + (ok?'ok':'no') + '">' + (ok?'正确':'错误') + '</span>' +
+         '<span class="qmore">' + (ok?'为什么对':'复盘') + '<i>▾</i></span></div>';
+    h += '<p class="stem">' + esc(q.stem) + '</p><ul class="opts">';
+    q.options.forEach(o => {
+      let cls = 'opt';
+      if (o.k === q.correct) cls += ' correct';
+      if (o.k === q.mine && !ok) cls += ' mine-wrong';
+      h += '<li class="' + cls + '"><i>' + o.k + '</i><span>' + esc(o.t) + '</span>' +
+        (o.k === q.correct ? '<span class="mk">✓</span>' : (o.k === q.mine && !ok ? '<span class="mk">×</span>' : '')) + '</li>';
+    });
+    h += '</ul><div class="ansline">你选 <b class="' + (ok?'good':'bad') + '">' + q.mine + '</b> · 正确 <b class="good">' + q.correct + '</b></div>';
+    h += qrevHTML(q.no);
+    h += '</div>';
+  });
+  h += '</div>';
+
+  /* 31–35 摘要填空 */
+  h += '<div class="sect"><div class="sect-t">摘要填空 · 31–35<span class="sect-tip">点空号看复盘</span></div>' + descHTML(1);
+  h += '<div class="sum-box">';
+  h += '<p class="sum-t">' + esc(A.summary.title) + '</p>';
+  h += '<p class="sum-text">' + esc(A.summary.text).replace(/\{\{(\d+)\}\}/g, (m, no) => {
+    const it = A.summary.items.find(x => x.no === +no);
+    const ok = it.mine === it.correct;
+    const pm = {}; A.summary.options.forEach(o => pm[o.k] = o.t);
+    const tipTxt = '你的答案：' + it.mine + ' ' + pm[it.mine] + (ok ? '' : '　正确答案：' + it.correct + ' ' + pm[it.correct]);
+    return '<span class="blank ' + (ok?'ok':'no') + '" data-q="' + no + '" title="' + esc(tipTxt) + '"><b>' + no + '</b>' + it.mine +
+      (ok ? '' : '<span class="arrow">→</span>' + it.correct) + '</span>';
+  }) + '</p>';
+  h += '<div class="optbox">';
+  A.summary.options.forEach(o => {
+    const hit = A.summary.items.some(i => i.correct === o.k);
+    const mis = A.summary.items.some(i => i.mine === o.k && i.mine !== i.correct);
+    h += '<div class="' + (hit ? 'hit' : (mis ? 'mis' : '')) + '"><em>' + o.k + '</em>' + esc(o.t) + '</div>';
+  });
+  h += '</div></div>';
+  h += '<div class="qrev sum-rev" id="sumRev"></div>';
+  h += '<div class="note-grp"><b>本组一验</b>' + REV.sum_note + '</div>';
+  h += '</div>';
+
+  /* 36–40 YNNG */
+  h += '<div class="sect"><div class="sect-t">判断 YES / NO / NOT GIVEN · 36–40<span class="sect-tip">点题卡看复盘</span></div>' + descHTML(2);
+  A.yn.forEach(q => {
+    const ok = q.mine === q.correct;
+    h += '<div class="qcard qclick ' + (ok?'ok':'no') + '" data-q="' + q.no + '">';
+    h += '<div class="qtop"><span class="qno">' + q.no + '</span><span class="tag ' + (ok?'ok':'no') + '">' + (ok?'正确':'错误') + '</span>' +
+         '<span class="qmore">' + (ok?'为什么对':'复盘') + '<i>▾</i></span></div>';
+    h += '<p class="stem">' + esc(q.stem) + '</p>';
+    h += '<div class="ynrow"><span class="chip-lbl">你选</span><span class="chip ' + (ok?'ok':'no') + '">' + q.mine + (ok ? ' ✓' : ' ×') + '</span>';
+    h += '<span class="chip-lbl">正确</span><span class="chip ok">' + q.correct + '</span></div>';
+    h += qrevHTML(q.no);
+    h += '</div>';
+  });
+  h += '<div class="note-grp"><b>本组结论</b>' + REV.yn_diag + '</div>';
+  h += '</div>';
+
+  return h;
+}
+
+/* ================= 复盘视图 ================= */
+const REV = {"kicker": "复盘 · 剑桥雅思 18 · Test 3 · Passage 3", "title": "9 道错题：5 道指错了地方，4 道没回原文", "lede": "这篇 30 分 09 秒、5/14。逐题回看后，错误集中在三个动作上：选择题答了段落里另一个更显眼的名词（27、29、30）；摘要填空把找对的短语挂错了空（32、33）；判断题四题全错，且错的方向相反——两题多推一步，两题少认一步，说明判定那一步根本没回原文。<b>这不是词汇问题，是“题目问的和我答的不是同一件事”。</b>", "stats": [["5 / 14", "得分", 1], ["30:09", "用时", 0], ["9", "错题数", 1], ["1 / 5", "判断题", 1]], "bars": [["选择 27–30", 25, "1/4"], ["摘要 31–35", 60, "3/5"], ["判断 36–40", 20, "1/5"]], "mcq": [{"no": 27, "tag": "选择题", "mine": "C", "correct": "B", "stem": "The writer describes the Romeo and Juliet lesson in order to demonstrate", "diag": "题干问的是“作者讲这堂课的<em>目的</em>”，你答成了“这堂课<em>内容</em>好不好”——C 说的是莎士比亚对青少年不合适。两处硬伤：一是段落结尾作者自己的评价是“my lesson would be going rather well”，这是一堂成功的课，不是反例；二是 C 里的 <em>most teenagers</em> 在原文没有对应，原文只说 <em>three students</em> 连这种阅读要求都达不到。一个 most、一个 three，C 就已经出局了。", "cites": [{"p": 1, "b": [3, 5, 6]}, {"p": 2, "b": [0]}], "chain": "同一段里，教师对四类学生做了四件不同的事：给一部分人发 No Fear 译本、让读译本的一组认人物、让大多数讨论人物发展、给坐不住的学生纸笔——这就是“一个老师同时处理一串不同的学习需求”，对应 B。"}, {"no": 29, "tag": "选择题", "mine": "A", "correct": "C", "stem": "What idea is suggested by the reference to Mount Qomolangma in the fifth paragraph?", "diag": "题干问的是<em>珠峰这个比喻</em>暗示什么，而珠峰那句的主语是 <em>the brightest ones</em>——“最聪明的学生永远登不了顶”。你选的 A（学生走了不适合的路）对应的是后半句的 <em>stragglers</em>，主语换人了；而且 stragglers 是“去公园漫步、那才是他们适合的”，不是“走错路”。主语一换，A 和 C 就分开了。", "cites": [{"p": 5, "b": [1, 2]}], "chain": "登顶＝把潜力发挥到顶；“never summit” 就是<em>没兑现全部潜力</em>，这正是 C。紧接着一句“个体在集体的要求下受损、平庸占了上风”也在说同一件事：谁都没到顶。"}, {"no": 30, "tag": "选择题", "mine": "D", "correct": "C", "stem": "What does the word 'scaffolding' in the sixth paragraph refer to?", "diag": "看原文给 scaffolding 配的动词：<em>provide</em>（提供）和 <em>remove</em>（撤掉）。“先提供、再逐步撤掉”的东西，只能是给学生的临时支持。你选的 D（按能力设定合适的学习目标）是<em>上一句</em> ZPD 的内容——targeting a student's specific ‘zone of proximal development’。你把相邻概念当成了被问的概念，这是这篇最典型的一次“指代漂移”。", "cites": [{"p": 6, "b": [2, 3]}], "chain": "这一段是两个概念：ZPD＝学生现有水平和潜在水平之间的<em>差距</em>（是什么）；scaffolding＝填这个差距用的<em>支撑</em>（怎么帮）。题干问 scaffolding，答案只能落在“支撑”上，即 C。"}], "mcq_note": "题干问 what does the writer say about streaming，A 正对第 3 段末句 “The practice is intuitively appealing to almost every stakeholder.”——broad appeal 就是 intuitively appealing to almost every stakeholder 的改写。差别在问法：28 问“作者说了什么”，27、29、30 问的是“目的、暗示、指代”，一换问法就滑到内容层去了——同一段你读得懂，换个问法就答偏。",
+  "sum_diag": "32、33 两空你把<em>正确答案的短语找到了，但挂错了空</em>：bottom sets 被填进 <em>have ___</em>，而它该待的地方是 <em>placed in the ___</em>。判断依据其实是搭配，不是理解——“students have bottom sets” 这个动宾结构根本讲不通，“have disadvantaged backgrounds” 才通。另外 A（wrong classes）有两个硬伤：<em>wrong</em> 是评价词，原文通篇没有；<em>classes</em> 又和题干里已有的 students 语义重复。", "sum_rows": [{"no": 31, "mine": "H", "correct": "H", "ok": true, "mine_p": "higher achievements", "cor_p": "higher achievements", "src": "results in better outcomes / limited empirical evidence"}, {"no": 32, "mine": "A", "correct": "D", "ok": false, "mine_p": "wrong classes", "cor_p": "bottom sets", "src": "assigned to the lowest sets"}, {"no": 33, "mine": "D", "correct": "F", "ok": false, "mine_p": "bottom sets", "cor_p": "disadvantaged backgrounds", "src": "much higher representation of low socioeconomic class"}, {"no": 34, "mine": "E", "correct": "E", "ok": true, "mine_p": "brightest pupils", "cor_p": "brightest pupils", "src": "those lucky clever students in the higher sets"}, {"no": 35, "mine": "B", "correct": "B", "ok": true, "mine_p": "lower expectations", "cor_p": "lower expectations", "src": "teachers' estimate … limits what the teacher feels the student is capable of"}], "sum_cites": [{"p": 7, "b": [2, 3]}], "sum_note": "顺带验一下题面：本组没有 “You may use any letter more than once”，按题库规律五个答案必不重复——实际是 H、D、F、E、B，确实全不同。但你自己填的 H、A、D、E、B 也不重复，所以<em>查重这次救不了你</em>，能救的只有搭配检验。", "yn_rows": [{"no": 36, "mine": "N", "correct": "N", "ok": true, "q": "The Vygotsky model of education supports the concept of a mixed-ability class.", "j": "该模型推出的结论是“把 ZPD 相近的学生分流才高效”，而“不顾能力差异让所有人走同一条路是 madness”。所以它支持的是分流，不是混合能力班 → NO。"}, {"no": 37, "mine": "Y", "correct": "NG", "ok": false, "q": "Some teachers are uncertain about allowing students to take on MKO roles in the classroom.", "j": "原文只说“教师传统上是教室里的 MKO，但知识丰富的学生同伴的价值也不应被忽视”——<em>没有一句</em>提到教师犹豫、不确定、不愿放手。你补的是“既然强调学生同伴，说明老师大概不情愿”，这一步原文没写 → NG。"}, {"no": 38, "mine": "NG", "correct": "Y", "ok": false, "q": "It can be rewarding to teach knowledge which you have only recently acquired.", "j": "原文：“something <em>exciting</em> about passing on skills and knowledge that you yourself have just mastered – a certain <em>pride</em> and <em>zeal</em>”。exciting / pride / zeal 合起来就是 rewarding，这就是同义改写 → YES。你在等原词，把已经明说的话判成了“没提”。"}, {"no": 39, "mine": "NG", "correct": "N", "ok": false, "q": "The priority should be to ensure that the highest-achieving students attain their goals.", "j": "原文结尾：“we need the many to flourish – not suffer at the expense of a few bright stars.” 这是明确<em>反对</em>把少数尖子放在优先位置 → NO，不是 NG。"}, {"no": 40, "mine": "Y", "correct": "NG", "ok": false, "q": "Taking part in collaborative outdoor activities with teachers and classmates can improve student outcomes in the classroom.", "j": "徒步那段只写到“我们走完了——一起”，没有任何“因此课堂表现变好”的结论。你把“协作”这个共同点当成了因果，题干后半句（improve classroom outcomes）原文完全没有 → NG。"}], "yn_cites": [{"p": 6, "b": [4, 5]}, {"p": 9, "b": [2]}, {"p": 10, "b": [2]}, {"p": 11, "b": [1, 2, 6]}], "yn_diag": "四题错在四个方向：37、40 是<em>多推了一步</em>（把合理推测当成文中信息），38、39 是<em>少认了一步</em>（原文已经明说或已明确反对，却判了 NG）。方向相反，说明问题不在“我太爱推断”或“我太保守”，而在<em>判定那一步没有回原文找同一命题</em>——凭“读起来像不像”在答。", "bad": [{"n": "病灶 01", "t": "对象漂移", "p": "27、29、30 三题，题干问的分别是“目的、暗示、指代”，你答的都是段落里另一个更显眼的名词：莎士比亚合不合适 / 走错路的学生 / 学习目标。三题的正确项都锚在同一句的<em>主语</em>上，你锚在了修饰语上。"}, {"n": "病灶 02", "t": "搭配失守", "p": "32、33 短语找对了却挂错空。填空不是理解题，是<em>语法槽位题</em>：把空前两词＋空＋空后两词连读一遍，have bottom sets 立刻不通。这一步不做，找对短语也拿不到分。"}, {"n": "病灶 03", "t": "判定失据", "p": "37–40 四题全错，且两多两少、方向相反。真正的缺口是没有把题干压成一个命题（X 对 Y 做了什么），再回原文比对“成立 / 相反 / 不存在”。没有这一步，Y、N、NG 就变成手感。"}], "acts": ["<b>判断题先压命题再判</b>：把题干压成“谁 对 什么 做了什么”，回原文找同一个 X 和同一个 Y。找不到同一命题 → NG，无论作者“应该”怎么想。", "<b>同义改写要认账</b>：exciting / pride / zeal = rewarding，results in better outcomes = leads to higher achievements。判 Y 前先问“原文有没有等价表达”，不要等原词复现。", "<b>选择题先圈疑问词</b>：purpose / suggest / refer to 问的是功能、暗示、指代，不是内容对错。答完回头对一遍“我答的是不是它问的那一层”。", "<b>填空先过搭配闸</b>：空前两词＋空＋空后两词连读，语序或动宾不通立即划掉（have bottom sets ×，placed in the bottom sets ✓）。", "<b>同组查重</b>：无 NB 的题组答案必不重复（本文 H D F E B）。自己填出重复字母就是警报；但查重只能抓“重复”，抓不到“互换”，所以不能替代搭配检查。", "<b>时间闸</b>：30:09 换 5 分，是全篇性价比最低的一次。超过 26 分钟就停止通读，切成“读题干 → 只读该段 → 定位一句”。"], "end": "这篇的目标从来不是“读懂”，而是<em>每一道题都指得出原文那一句</em>。9 道错题里，有 5 道其实指得出句子，只是指错了主语或槽位；另外 4 道判断，根本没回原文。前者改动作就行，后者要改习惯——都比读不懂好治。"};
+
+function revHTML(){
+  let h = '';
+  h += '<div class="rev-sep"><span>总览 · 三个病灶</span></div>';
+  h += '<h2>' + REV.title + '</h2>';
+  h += '<p class="rev-lede">' + REV.lede + '</p>';
+
+  h += '<div class="bars">';
+  REV.bars.forEach(b => {
+    h += '<div class="bar"><span class="bl">' + b[0] + '</span><div class="track"><i style="width:' + b[1] + '%"></i></div><span class="v">' + b[2] + '</span></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec-h"><em>DIAGNOSIS</em><h3>三个反复出现的动作</h3></div>';
+  h += '<div class="grid3">';
+  REV.bad.forEach(d => {
+    h += '<div class="dg"><div class="n">' + d.n + '</div><div class="t">' + d.t + '</div><p>' + d.p + '</p></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec-h"><em>NEXT</em><h3>下一篇动手前，先执行这 6 条</h3></div>';
+  h += '<ol class="acts">';
+  REV.acts.forEach(a => h += '<li>' + a + '</li>');
+  h += '</ol>';
+
+  h += '<div class="rev-end">' + REV.end + '</div>';
+  return h;
+}
+
+const MEANS = {
+  kicker: "读懂 · 剑桥雅思 18 · Test 3 · Passage 3 · The case for mixed-ability classes",
+  title: "它在为「混合能力班级」辩护",
+  lede: "标题已经把答案写在脸上了：<b>The case for mixed-ability classes</b>——一篇支持混合能力班级的文章，所以立场是<b>不该按成绩分班</b>。但作者用了 5 段替反方说话，全文只留 2 个路标词。你感觉「读不懂」，不是句子难，是<b>没分清哪一段是谁在说话</b>。",
+  thesis: "分流（按成绩分班）在直觉上很有道理，但实证上没用、对弱班有害、还会让老师低估学生。混班真正的价值是同伴互教——这件事老师替代不了。",
+  band: [
+    {n:1, f:"样板课", s:"t"},
+    {n:2, f:"反问", s:"a"},
+    {n:3, f:"定义", s:"g"},
+    {n:4, f:"徒步类比", s:"a"},
+    {n:5, f:"全面否定", s:"a"},
+    {n:6, f:"理论铺路", s:"a"},
+    {n:7, f:"实证打脸", s:"t"},
+    {n:8, f:"教师期待", s:"t"},
+    {n:9, f:"同伴学习", s:"t"},
+    {n:10, f:"亲身观察", s:"t"},
+    {n:11, f:"结论", s:"t"}
+  ],
+  neg: [
+    {t:"反问　", p:"（第 2 段）如果一个班里没有那么大差距，课不是上得更好？把需要读写支持的分一班、想讨论「节制」的分一班，岂不是更理想？"},
+    {t:"徒步类比　", p:"（第 4 段）混班就像集体徒步：最强的人领跑却要停下来等，最慢的人尴尬、跟不上、还永远休息不够。"},
+    {t:"三条控诉　", p:"（第 5 段）混班让学生无聊、家长沮丧、教师耗竭；个体为集体牺牲，平庸占了上风。"}
+  ],
+  pos: [
+    {t:"第一刀 · 实证　", p:"（第 7 段）Hattie 的元分析：tracking 对学习成果影响<em>微乎其微</em>；对最低层级学生显著负面，而这些学生里低社会经济阶层的比例高得多。结果是聪明的更聪明、落后的更落后，社会鸿沟被固化。"},
+    {t:"第二刀 · 教师期待　", p:"（第 8 段）按成绩分流会自动限制老师觉得你能做到什么。而「教师对学生的估计」恰恰是影响成绩最重要的因素之一。"},
+    {t:"第三刀 · 同伴学习　", p:"（第 9 段）分流低估了同伴互教。MKO 不只老师——懂得更多的学生同样是知识建构的资源。"},
+    {t:"第四刀 · 亲历　", p:"（第 10 段）学生把观点讲给同伴听的方式，作者自己都想不出来。他们刚学会，认知结构更接近，还带着一种专家早就丢掉的新鲜感。"}
+  ],
+  punch: "所以他的结论不是「混班对弱者更公平」，而是「混班给<b>所有人</b>多配了一个老师」。",
+  rows: [
+    {n:1, w:"作者", s:"t", d:"一堂 15 岁学生的《罗密欧与朱丽叶》课：三个连简化译本都读不进去、一个坐不住、大多数能谈人物、五个能用文本证据、两个在争「节制还是激情」。一个老师，五个层次，全接住了。"},
+    {n:2, w:"反方", s:"a", d:"作者先承认这课上得不错，随即替反方发问：<em>如果没有那么大的差距，这门课不是上得更好？</em>"},
+    {n:3, w:"中立", s:"g", d:"介绍 <em>streaming / tracking</em>：按成绩分班。宏观上分重点校与综合校，校内分「梯队」与「科目组」。"},
+    {n:4, w:"反方", s:"a", d:"引述反方的徒步类比：强者领跑却要每 20 分钟停下来等，弱者尴尬又吃力，<em>双方都在受损</em>。"},
+    {n:5, w:"反方", s:"a", d:"升级成三条控诉：学生无聊、家长沮丧、教师耗竭；最聪明的登不了顶，落后的也享受不了公园。末句 <em>So: is learning like hiking?</em> 是作者第一次亮剑。"},
+    {n:6, w:"假设", s:"a", d:"用建构主义替反方把理论补全：<em>ZPD</em>、<em>支架</em>。「如果接受这个模型」，按 ZPD 分流就顺理成章。注意这是条件句，不是表态。"},
+    {n:7, w:"作者", s:"t", d:"转折。<em>Despite all this</em>：Hattie 的元分析说 tracking 对成绩影响微乎其微，对最低层级学生显著负面，社会鸿沟被固化。"},
+    {n:8, w:"作者", s:"t", d:"分流会自动限制老师觉得「这个学生能做到什么」，而<em>教师对学生的期待</em>本身就是影响成绩最重要的因素之一。"},
+    {n:9, w:"作者", s:"t", d:"分流低估同伴互教。建构主义里的 <em>MKO</em> 不只老师，也可以是刚学会的同学。"},
+    {n:10, w:"作者", s:"t", d:"学生用的语言工具不同、认知结构更接近、还带着刚学会的新鲜感——这些是专家早就丢掉的东西。"},
+    {n:11, w:"作者", s:"t", d:"结论。然后把 第 4 段 的徒步类比捡回来反转：强者去鼓励不情愿的，有人探路、有人分担，<em>We make it – together</em>。"}
+  ],
+  terms: [
+    {k:"ZPD", en:"zone of proximal development · 最近发展区", d:"学生「有人帮才能做到」和「自己独立能做到」之间的那段差距。教学的任务就是去填这段差距。"},
+    {k:"scaffolding", en:"支架", d:"填 ZPD 用的临时支撑——老师的讲解、教材、示范例题、家长。关键在原文给的动词：<em>provide</em> 之后要 <em>remove</em>，所以它是临时的，不是目标。"},
+    {k:"MKO", en:"more knowledgeable other · 更有知识的他者", d:"帮你建构知识的那个人。传统上是老师，但这篇的论点正是：<em>也可以是刚学会的同学</em>。"}
+  ],
+  echoNeg: "队伍里体能最好的人走在前面、带起轻快节奏，却不得不每 20 分钟停下来等——这令人沮丧，热情随之消退。与此同时，最慢的人不仅尴尬，体力上也很吃力，而且<b>永远得不到足够长的休息</b>。他们真心只想放弃，觉得徒步并不适合自己。",
+  echoPos: "每年我带混合能力的一个班去徒步一次，很有挑战。<b>体能最好的学生意识到，他们需要去鼓励那些不情愿的</b>；有人负责探路并回报，有人替别人多背东西。我们走完了全程——<b>一起</b>。",
+  echoNote: "同一场徒步，反方看见的是「强者被拖累、弱者被羞辱」，作者看见的是「强者学会照顾人、弱者被人接住」。结尾那句 <b>We make it – together</b> 不是煽情，是对 第 4 段 的正面回答——读漏了 第 4 段，结尾就只是一句鸡汤。",
+  why: [
+    {t:"第 5 段：整段没有归属标记", p:"「<em>Mixed-ability classes bore students, frustrate parents and burn out teachers.</em>」孤立来看，这句百分之百像作者在骂混班。但它其实是反方的第三段话，而下一段（第 6 段）已经开始讲理论，读者会以为作者顺着往下说。"},
+    {t:"第 6 段：用条件句伪装立场", p:"「<em>If we accept this model, it follows that...</em>」是「如果……那么……」，在替对方把逻辑推到底，不是表态。英文条件句太容易被读成作者的断言。"},
+    {t:"全文只有两个路标词", p:"第 4 段 的 <em>attacked</em>（我听到有人这样攻击混班）和 第 7 段 的 <em>Despite all this</em>（尽管如此）。这两个词滑过去，整篇就没有坐标系了。"},
+    {t:"这套题没有一道要求你建模", p:"4 道选择问「为什么写这段／这词什么意思」，5 道摘要填空，5 道判断，全是局部对位。没有匹配题，所以你做完整篇，从没被逼着回答「这篇文章在论证什么」。合上页面时你觉得「读了一堆句子但不知道在讲什么」——这个感受是准确的。"}
+  ],
+  side: "<b>顺带回答你的问题：精译还要不要做？</b><br>要，但它练的不是这个。精译练的是句子内部的语法切分、词义精度、指代关系。这篇平均句长 17 词，30 词以上只有 2 句——你的句子解码没到瓶颈。它练不出来的是：这段是谁在说话、这个类比是谁提的、作者在哪一段翻盘。<br>所以精译继续做，但换个做法：<b>做完题之后，只精译你读糊的那两三段</b>，而不是全篇。",
+  end: "读完一段，能用一句话说出这段在干什么，比译对每个词有用得多。这篇 11 段就是 11 个动作：样板、反问、定义、类比、控诉、铺路、打脸、期待、同伴、亲历、结论。认得出这 11 个动作，这篇文章里就没有难句。"
+};
+
+function meansHTML(){
+  let h = '';
+  h += '<div class="rev-k">' + MEANS.kicker + '</div>';
+  h += '<h2>' + MEANS.title + '</h2>';
+  h += '<div class="rev-lede">' + MEANS.lede + '</div>';
+
+  h += '<div class="mn-thesis"><em>一句话主旨</em><p>' + MEANS.thesis + '</p></div>';
+
+  h += '<div class="sec-h"><em>STRUCTURE</em><h3>11 段里，有 5 段不是作者在说话</h3><span class="cnt">段落 1 – 11</span></div>';
+  h += '<div class="mn-band">';
+  MEANS.band.forEach(b => {
+    h += '<div class="mn-cell ' + b.s + '"><b>' + b.n + '</b><span>' + b.f + '</span></div>';
+  });
+  h += '</div>';
+  h += '<div class="mn-legend">'
+    + '<span><i style="background:#C9DCC3"></i>作者本人在说话（6 段）</span>'
+    + '<span><i style="background:#E7D3B4"></i>反方，或替反方做的假设推演（4 段）</span>'
+    + '<span><i style="background:#DEDAD0"></i>中立定义（1 段）</span>'
+    + '</div>';
+
+  h += '<div class="sec-h"><em>ARGUMENT</em><h3>他要拆的是一个类比，不是一个观点</h3></div>';
+  h += '<div class="mn-duel">';
+  h += '<div class="mn-col neg"><h4>反方：前 5 段在说这个</h4><ol>';
+  MEANS.neg.forEach(x => h += '<li><b>' + x.t + '</b>' + x.p + '</li>');
+  h += '</ol></div>';
+  h += '<div class="mn-col pos"><h4>作者：四刀拆掉它</h4><ol>';
+  MEANS.pos.forEach(x => h += '<li><b>' + x.t + '</b>' + x.p + '</li>');
+  h += '</ol></div>';
+  h += '</div>';
+  h += '<div class="mn-punch">' + MEANS.punch + '</div>';
+
+  h += '<div class="sec-h"><em>PARAGRAPH BY PARAGRAPH</em><h3>逐段在干什么</h3><span class="cnt">11 段</span></div>';
+  h += '<div class="mn-tbl">';
+  MEANS.rows.forEach(r => {
+    h += '<div class="mn-row"><div class="n">' + r.n + '</div>'
+       + '<div class="d">' + r.d + '</div>'
+       + '<div class="w ' + r.s + '">' + r.w + '</div></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec-h"><em>TERMS</em><h3>三个词，卡住的就是这里</h3></div>';
+  h += '<div class="mn-terms">';
+  MEANS.terms.forEach(t => {
+    h += '<div class="mn-term"><b>' + t.k + '</b><i>' + t.en + '</i><p>' + t.d + '</p></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="sec-h"><em>THE LOOP</em><h3>同一场徒步，他读了两次</h3></div>';
+  h += '<div class="mn-echo">';
+  h += '<div class="mn-col neg"><h4>第 4 段　反方的徒步</h4><p class="mn-q">' + MEANS.echoNeg + '</p></div>';
+  h += '<div class="mn-col pos"><h4>第 11 段　作者的徒步</h4><p class="mn-q">' + MEANS.echoPos + '</p></div>';
+  h += '</div>';
+  h += '<div class="mn-echo-note">' + MEANS.echoNote + '</div>';
+
+  h += '<div class="sec-h"><em>WHY IT FELT UNREADABLE</em><h3>四个机制，缺一不可</h3></div>';
+  h += '<div class="mn-why">';
+  MEANS.why.forEach((w, i) => {
+    h += '<div><div class="k">0' + (i + 1) + '</div>'
+       + '<div class="v"><b>' + w.t + '</b>' + w.p + '</div></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="mn-side">' + MEANS.side + '</div>';
+  h += '<div class="rev-end">' + MEANS.end + '</div>';
+  return h;
+}
+
+
+/* ---------- 每题复盘索引 ---------- */
+const SUMNOTE = {
+  31: '题干 leads to higher achievements 与原文 results in better outcomes 是同义改写，五个选项里没有第二个能对上，直接落 H。',
+  32: 'bottom sets 该待的地方是 placed in the ___（被动、被分进去）。塞进 have ___ 就成了 “students have bottom sets”，动宾根本不通。另一个硬伤在 A：<em>wrong</em> 是评价词，原文通篇没出现过。',
+  33: '这一空后面紧跟 backgrounds，能搭配的只有 disadvantaged。而且 bottom sets 已经用在 32 空——同一组答案不重复，两空互换是最典型的丢分方式。',
+  34: 'those lucky clever students in the higher sets 就是 brightest pupils，原文甚至替你点明了 lucky clever。',
+  35: '原文 teachers\' estimate … limits what the teacher feels the student is capable of，压成短语就是 lower expectations。'
+};
+const YNCITE = {
+  36: [{p: 6, b: [4, 5]}],
+  37: [{p: 9, b: [1, 2]}],
+  38: [{p: 10, b: [2]}],
+  39: [{p: 11, b: [1]}],
+  40: [{p: 11, b: [2, 3, 4, 5, 6]}]
+};
+
+const QR = {};
+REV.mcq.forEach(q => { QR[q.no] = {label: '错在哪', diag: q.diag, cites: q.cites, chain: q.chain}; });
+if (REV.mcq_note) QR[28] = {label: '为什么对', diag: REV.mcq_note, cites: [{p: 3, b: [3]}], chain: ''};
+REV.sum_rows.forEach(r => {
+  QR[r.no] = {
+    label: r.ok ? '为什么对' : '错在哪',
+    diag: SUMNOTE[r.no] || '',
+    cites: (r.no === 32 || r.no === 33) ? REV.sum_cites : [],
+    chain: ''
+  };
+});
+REV.yn_rows.forEach(r => {
+  QR[r.no] = {label: r.ok ? '为什么对' : '错在哪', diag: r.j, cites: YNCITE[r.no] || [], chain: ''};
+});
+
+document.getElementById('answers').innerHTML = buildAnswers();
+document.getElementById('review').innerHTML = revHTML();
+document.getElementById('view-means').innerHTML = meansHTML();
+
+/* ---------- 点题卡 → 展开复盘 + 原文标注 ---------- */
+const answersEl = document.getElementById('answers');
+const sumRevEl = document.getElementById('sumRev');
+const essayEl = document.getElementById('essay');
+let sumNo = 0;
+
+function activeSources(){
+  const out = [];
+  document.querySelectorAll('.qcard.open[data-q]').forEach(c => out.push(+c.dataset.q));
+  if (sumNo) out.push(sumNo);
+  return out;
+}
+
+/* 只标注唯一打开的那一题；多题同时展开时不做标注 */
+function openCites(){
+  const keys = [], qs = [];
+  const src = activeSources();
+  if (src.length !== 1) return {keys, qs};
+  const no = src[0], r = QR[no];
+  if (!r) return {keys, qs};
+  (r.cites || []).forEach(ci => ci.b.forEach(bi => { keys.push(ci.p + '_' + bi); qs.push(no); }));
+  return {keys, qs};
+}
+
+function clearHL(){
+  document.querySelectorAll('#text .sent.hl').forEach(e => e.classList.remove('hl'));
+  document.querySelectorAll('#text .para.has-hl').forEach(e => e.classList.remove('has-hl'));
+}
+
+function paintHL(){
+  clearHL();
+  const {keys, qs} = openCites();
+  if (!keys.length) return;
+  keys.forEach((k, n) => {
+    const el = document.querySelector('#text .sent[data-id="s' + k + '"]');
+    if (!el) return;
+    el.classList.add('hl');
+    el.title = '第 ' + qs[n] + ' 题出处';
+    const para = el.closest('.para');
+    if (para) para.classList.add('has-hl');
+  });
+}
+
+function scrollToCite(p, idx, force){
+  const target = document.querySelector('#text .sent[data-id="s' + p + '_' + idx + '"]');
+  if (!target) return;
+  const essay = essayEl;
+  const box = essay.getBoundingClientRect();
+  const scrollable = essay.scrollHeight - essay.clientHeight > 8 && box.height > 240;
+  if (!scrollable){
+    /* 单栏堆叠：打开题卡时不拽走用户；但点「原文出处」是明确要求跳转 */
+    if (force) target.scrollIntoView({behavior: 'smooth', block: 'center'});
+    return;
+  }
+  const top = target.getBoundingClientRect().top - box.top + essay.scrollTop - box.height * 0.32;
+  essay.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
+}
+
+function ensureVisible(el){
+  const p = document.getElementById('panel');
+  if (!el || p.scrollHeight - p.clientHeight < 8) return;
+  const pb = p.getBoundingClientRect(), eb = el.getBoundingClientRect();
+  if (eb.top >= pb.top + 6 && eb.bottom <= pb.bottom - 6) return;
+  p.scrollTo({top: Math.max(0, p.scrollTop + (eb.top - pb.top) - 12), behavior: 'smooth'});
+}
+
+function revealCites(no){
+  const r = QR[no];
+  if (!r || !r.cites || !r.cites.length) return;
+  scrollToCite(r.cites[0].p, r.cites[0].b[0]);
+}
+
+answersEl.addEventListener('click', e => {
+  /* 摘要空号 */
+  const blank = e.target.closest('.blank[data-q]');
+  if (blank){
+    const no = +blank.dataset.q;
+    const same = sumNo === no;
+    document.querySelectorAll('.qcard.open').forEach(c => c.classList.remove('open'));
+    sumNo = same ? 0 : no;
+    sumRevEl.classList.toggle('open', !same);
+    sumRevEl.innerHTML = same ? '' : qrevHTML(no);
+    document.querySelectorAll('.blank[data-q]').forEach(b => b.classList.toggle('on', !same && +b.dataset.q === no));
+    paintHL();
+    if (!same){ revealCites(no); ensureVisible(sumRevEl); }
+    return;
+  }
+
+  /* 题卡：一次只开一张 */
+  const card = e.target.closest('.qcard[data-q]');
+  if (!card || e.target.closest('.qrev')) return;
+  if (window.getSelection && String(window.getSelection()).length > 3) return;
+
+  const was = card.classList.contains('open');
+  document.querySelectorAll('.qcard.open').forEach(c => c.classList.remove('open'));
+  if (sumNo){
+    sumNo = 0;
+    sumRevEl.classList.remove('open');
+    sumRevEl.innerHTML = '';
+    document.querySelectorAll('.blank.on').forEach(b => b.classList.remove('on'));
+  }
+  if (!was) card.classList.add('open');
+  paintHL();
+  if (!was){ revealCites(+card.dataset.q); ensureVisible(card); }
+});
+
+/* 点「原文出处」→ 滚到左栏那段 */
+answersEl.addEventListener('click', e => {
+  const c = e.target.closest('.cite-j[data-p]');
+  if (!c) return;
+  e.stopPropagation();
+  scrollToCite(+c.dataset.p, +c.dataset.b || 0, true);
+});
+
+/* 跳到复盘 */
+
+(function(){
+  const btn = document.getElementById('btnRev');
+  btn.addEventListener('click', () => {
+    const on = btn.classList.toggle('on');
+    document.querySelectorAll('.qcard[data-q]').forEach(c => c.classList.toggle('open', on));
+    btn.textContent = on ? '收起复盘' : '展开复盘';
+    paintHL();
+    if (on){
+      const first = document.querySelector('.qcard.open[data-q]');
+      if (first) revealCites(+first.dataset.q);
+    }
+    tip.classList.remove('show');
+  });
+})();
+
+/* 视图切换 */
+const btnAll = document.getElementById('btnAll');
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    const v = t.dataset.v;
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+    document.getElementById('view-read').hidden = (v !== 'read');
+    document.getElementById('view-means').hidden = (v !== 'means');
+    btnAll.style.display = (v === 'read') ? '' : 'none';
+    window.scrollTo({top: 0, behavior: 'instant'});
+    tip.classList.remove('show');
+  });
+});
+
+</script>
+</body>
+</html>

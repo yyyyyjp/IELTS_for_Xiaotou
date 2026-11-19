@@ -1,0 +1,37 @@
+# 依赖
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 构建产物
+dist/
+build/
+*.local
+
+# 运行时数据（数据库与 WAL 属于本地状态，不入库）
+app/server/data/*.db
+app/server/data/*.db-shm
+app/server/data/*.db-wal
+app/server/data/audio/
+
+# 本地工具状态与记忆
+.workbuddy/
+
+# 逆向分析临时素材（第三方平台截图，约 20MB）
+_rea/
+
+# 环境变量与密钥
+.env
+.env.*
+*.pem
+*.key
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+npm-debug.log*
