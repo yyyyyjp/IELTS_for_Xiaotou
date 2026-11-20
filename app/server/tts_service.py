@@ -1,26 +1,23 @@
 """用微软 Edge 的神经网络 TTS 生成 mp3，落盘缓存。
 
-设计要点：
-- 同一句（同音色、同语速）只生成一次，缓存命中直接返回文件名
-- 导入词书后后台并发预生成，前端轮询进度
-- 生成失败重试 3 次，仍失败则返回 None，由前端回退浏览器合成
+同一个「文本 + 音色 + 语速」只生成一次，文件名是内容哈希，
+所以改词、改音色都会自然产生新文件，不需要清缓存。
 """
 from __future__ import annotations
 
 import asyncio
 import hashlib
 import logging
-from pathlib import Path
 
 import edge_tts
 
-import db
+import config
 
 log = logging.getLogger("tts")
 
-DEFAULT_VOICE = "en-GB-SoniaNeural"
-DEFAULT_RATE = "-5%"  # 0.95 倍速，雅思听力约 150 wpm
-CONCURRENCY = 4
+DEFAULT_VOICE = config.DEFAULT_VOICE
+DEFAULT_RATE = config.DEFAULT_RATE
+CONCURRENCY = config.TTS_CONCURRENCY
 
 VOICES = [
     {"id": "en-GB-SoniaNeural", "label": "英音女声 Sonia（最接近雅思）", "lang": "en-GB"},
@@ -32,14 +29,18 @@ VOICES = [
     {"id": "en-AU-WilliamNeural", "label": "澳音男声 William", "lang": "en-AU"},
 ]
 
-# book_id -> {"total": n, "done": n, "failed": n, "ready": bool}
-_progress: dict[str, dict] = {}
-_tasks: dict[str, asyncio.Task] = {}
+VOICE_IDS = {v["id"] for v in VOICES}
 
 
-def cache_name(text: str, voice: str, rate: str = DEFAULT_RATE) -> str:
+def cache_name(text: str, voice: str = DEFAULT_VOICE, rate: str = DEFAULT_RATE) -> str:
     key = hashlib.md5(f"{voice}|{rate}|{text}".encode("utf-8")).hexdigest()[:20]
     return f"{key}.mp3"
+
+
+def cached(text: str, voice: str = DEFAULT_VOICE, rate: str = DEFAULT_RATE) -> str | None:
+    name = cache_name(text, voice, rate)
+    p = config.AUDIO_DIR / name
+    return name if p.exists() and p.stat().st_size > 1024 else None
 
 
 async def synthesize(text: str, voice: str = DEFAULT_VOICE, rate: str = DEFAULT_RATE) -> str | None:
@@ -47,16 +48,16 @@ async def synthesize(text: str, voice: str = DEFAULT_VOICE, rate: str = DEFAULT_
     text = (text or "").strip()
     if not text:
         return None
-    name = cache_name(text, voice, rate)
-    path = db.AUDIO_DIR / name
-    if path.exists() and path.stat().st_size > 1024:
-        return name
+    hit = cached(text, voice, rate)
+    if hit:
+        return hit
 
-    tmp = db.AUDIO_DIR / (name + ".part")
+    name = cache_name(text, voice, rate)
+    path = config.AUDIO_DIR / name
+    tmp = config.AUDIO_DIR / (name + ".part")
     for attempt in range(3):
         try:
-            comm = edge_tts.Communicate(text, voice, rate=rate)
-            await comm.save(str(tmp))
+            await edge_tts.Communicate(text, voice, rate=rate).save(str(tmp))
             if tmp.exists() and tmp.stat().st_size > 1024:
                 tmp.replace(path)
                 return name
@@ -72,49 +73,24 @@ async def synthesize(text: str, voice: str = DEFAULT_VOICE, rate: str = DEFAULT_
     return None
 
 
-async def _run_book(book_id: str, voice: str) -> None:
-    rows = db.query(
-        "SELECT id, text FROM questions WHERE book_id=? AND audio='' AND source_audio=''",
-        (book_id,),
-    )
-    items = [dict(r) for r in rows]
-    prog = _progress.setdefault(book_id, {"total": 0, "done": 0, "failed": 0, "ready": False})
-    prog.update(total=len(items), done=0, failed=0, ready=(len(items) == 0))
-    if not items:
-        return
-
+async def prepare(texts: list[str], voice: str = DEFAULT_VOICE, rate: str = DEFAULT_RATE,
+                  on_done=None) -> dict:
+    """并发预生成一批文本。on_done(done, total, failed) 用于上报进度。"""
+    todo = [t for t in dict.fromkeys((t or "").strip() for t in texts) if t]
+    total, done, failed = len(todo), 0, 0
     sem = asyncio.Semaphore(CONCURRENCY)
 
-    async def one(item: dict) -> None:
+    async def one(text: str) -> bool:
+        nonlocal done, failed
         async with sem:
-            name = await synthesize(item["text"], voice)
-            if name:
-                db.execute("UPDATE questions SET audio=? WHERE id=?", (name, item["id"]))
-            else:
-                prog["failed"] += 1
-            prog["done"] += 1
+            name = await synthesize(text, voice, rate)
+            done += 1
+            if not name:
+                failed += 1
+            if on_done:
+                on_done(done, total, failed)
+            return bool(name)
 
-    try:
-        await asyncio.gather(*(one(i) for i in items))
-    finally:
-        prog["ready"] = True
-
-
-def start_prepare(book_id: str, voice: str = DEFAULT_VOICE) -> None:
-    """启动后台预生成（幂等：同一本书不重复起任务）。"""
-    task = _tasks.get(book_id)
-    if task and not task.done():
-        return
-    _progress[book_id] = {"total": 0, "done": 0, "failed": 0, "ready": False}
-    _tasks[book_id] = asyncio.create_task(_run_book(book_id, voice))
-
-
-def progress_of(book_id: str) -> dict:
-    return _progress.get(book_id, {"total": 0, "done": 0, "failed": 0, "ready": True})
-
-
-def audio_path(name: str) -> Path | None:
-    if not name or "/" in name or "\\" in name or ".." in name:
-        return None
-    p = db.AUDIO_DIR / name
-    return p if p.exists() else None
+    results = await asyncio.gather(*(one(t) for t in todo)) if todo else []
+    return {"total": total, "done": done, "failed": failed,
+            "ok": sum(1 for r in results if r)}

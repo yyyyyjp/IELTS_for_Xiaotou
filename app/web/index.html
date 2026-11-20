@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tifo · 雅思听写</title>
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#faf9f5" />
+  <title>tifo · 雅思备考</title>
+  <script>
+    try {
+      var saved = localStorage.getItem('tifo.theme')
+      var theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      document.documentElement.dataset.theme = theme
+      var lang = localStorage.getItem('tifo.lang')
+      if (lang) document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
+    } catch (e) { }
+  </script>
 </head>
 <body>
   <div id="app"></div>

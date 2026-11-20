@@ -1,0 +1,1025 @@
+{
+  "schemaVersion": 1,
+  "id": "cam18-t3-p3",
+  "kind": "reading",
+  "origin": "builtin",
+  "meta": {
+    "book": "剑桥雅思 18",
+    "test": "Test 3",
+    "passage": "Passage 3",
+    "title": "The case for mixed-ability classes",
+    "durationSec": 1809
+  },
+  "paragraphs": [
+    {
+      "no": 1,
+      "sentences": [
+        {
+          "id": "p1s1",
+          "en": "Picture this scene.",
+          "zh": "想象这样一幅场景。"
+        },
+        {
+          "id": "p1s2",
+          "en": "It's an English literature lesson in a UK school, and the teacher has just read an extract from Shakespeare's Romeo and Juliet with a class of 15-year-olds.",
+          "zh": "在英国一所学校里，这是一节英语文学课，老师刚刚和一群15岁的学生一起朗读了莎士比亚《罗密欧与朱丽叶》中的一段选文。"
+        },
+        {
+          "id": "p1s3",
+          "en": "He's given some of the students copies of No Fear Shakespeare, a kid-friendly translation of the original.",
+          "zh": "他给部分学生发了《No Fear Shakespeare》的文本，这是对原著进行的、更适合孩子阅读的译本。"
+        },
+        {
+          "id": "p1s4",
+          "en": "For three students, even these literacy demands are beyond them.",
+          "zh": "对其中三名学生而言，即便是这样的阅读与识字要求也超出了他们的能力范围。"
+        },
+        {
+          "id": "p1s5",
+          "en": "Another girl simply can't focus and he gives her pens and paper to draw with.",
+          "zh": "还有一个女孩根本无法集中注意力，于是老师给了她笔和纸，让她画画。"
+        },
+        {
+          "id": "p1s6",
+          "en": "The teacher can ask the No Fear group to identify the key characters and maybe provide a tentative plot summary.",
+          "zh": "老师可以让阅读《No Fear》版本的那一组识别主要人物，并尝试给出一个初步的情节概述。"
+        },
+        {
+          "id": "p1s7",
+          "en": "He can ask most of the class about character development, and five of them might be able to support their statements with textual evidence.",
+          "zh": "他也可以向班上大多数学生提问人物形象的发展变化，而其中大约有五个学生或许还能用文本证据来支持自己的观点。"
+        },
+        {
+          "id": "p1s8",
+          "en": "Now two curious students are wondering whether Shakespeare advocates living a life of moderation or one of passionate engagement.",
+          "zh": "此时，两名好奇的学生正在思考：莎士比亚是否主张过一种克制而适度的生活，还是一种充满激情、积极投入的人生。"
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "sentences": [
+        {
+          "id": "p2s1",
+          "en": "As a teacher myself, I'd think my lesson would be going rather well if the discussion went as described above.",
+          "zh": "作为一名教师，我会认为如果课堂讨论能像上述那样展开，我这节课就算进行得相当不错了。"
+        },
+        {
+          "id": "p2s2",
+          "en": "But wouldn't this kind of class work better if there weren't such a huge gap between the top and the bottom?",
+          "zh": "但如果班里优等生与后进生之间没有如此巨大的差距，这种课堂难道不会运转得更好吗？"
+        },
+        {
+          "id": "p2s3",
+          "en": "If we put all the kids who needed literacy support into one class, and all the students who want to discuss the virtue of moderation into another?",
+          "zh": "比如把所有需要读写能力支持的孩子编到一个班，而把那些想讨论“适度”这一美德的学生编到另一个班，岂不是更好？"
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "sentences": [
+        {
+          "id": "p3s1",
+          "en": "The practice of 'streaming', or 'tracking', involves separating students into classes depending on their diagnosed levels of attainment.",
+          "zh": "“分流”（streaming）或“分班跟踪”（tracking）的做法，是根据学生被评定的学习水平，将他们分到不同的班级。"
+        },
+        {
+          "id": "p3s2",
+          "en": "At a macro level, it requires the establishment of academically selective schools for the brightest students, and comprehensive schools for the rest.",
+          "zh": "从宏观层面看，这种做法要求设立面向最优秀学生的择优学术学校，以及面向其余学生的综合学校。"
+        },
+        {
+          "id": "p3s3",
+          "en": "Within schools, it means selecting students into a 'stream' of general ability, or 'sets' of subject-specific ability.",
+          "zh": "在校内层面，这意味着把学生按总体能力分入不同“梯队”，或按学科能力分入不同“组别”。"
+        },
+        {
+          "id": "p3s4",
+          "en": "The practice is intuitively appealing to almost every stakeholder.",
+          "zh": "这种做法在直觉上几乎对所有相关利益方都颇具吸引力。"
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "sentences": [
+        {
+          "id": "p4s1",
+          "en": "I have heard the mixed-ability model attacked by way of analogy: a group hike.",
+          "zh": "我曾听人用一个类比来批评混合能力分班模式：把它比作一次集体徒步。"
+        },
+        {
+          "id": "p4s2",
+          "en": "The fittest in the group take the lead and set a brisk pace, only to have to stop and wait every 20 minutes.",
+          "zh": "队伍里体能最好的人走在前面，带起轻快的节奏，却不得不每隔20分钟就停下来等待。"
+        },
+        {
+          "id": "p4s3",
+          "en": "This is frustrating, and their enthusiasm wanes.",
+          "zh": "这令人沮丧，他们的热情也随之减退。"
+        },
+        {
+          "id": "p4s4",
+          "en": "Meanwhile, the slowest ones are not only embarrassed but physically struggling to keep up.",
+          "zh": "与此同时，走得最慢的人不仅感到尴尬，在体力上也吃力地想跟上。"
+        },
+        {
+          "id": "p4s5",
+          "en": "What's worse, they never get a long enough break.",
+          "zh": "更糟的是，他们从来得不到足够长的休息时间。"
+        },
+        {
+          "id": "p4s6",
+          "en": "They honestly just want to quit.",
+          "zh": "他们真心只想放弃。"
+        },
+        {
+          "id": "p4s7",
+          "en": "Hiking, they feel, is not for them.",
+          "zh": "在他们看来，徒步这种活动并不适合自己。"
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "sentences": [
+        {
+          "id": "p5s1",
+          "en": "Mixed-ability classes bore students, frustrate parents and burn out teachers.",
+          "zh": "混合能力编班会让学生感到无聊，让家长感到沮丧，并使教师身心俱疲。"
+        },
+        {
+          "id": "p5s2",
+          "en": "The brightest ones will never summit Mount Qomolangma, and the stragglers won't enjoy the lovely stroll in the park they are perhaps more suited to.",
+          "zh": "最聪明的学生永远无法登顶珠穆朗玛峰，而那些落后者也无法享受他们或许更适合的公园漫步。"
+        },
+        {
+          "id": "p5s3",
+          "en": "Individuals suffer at the demands of the collective, mediocrity prevails.",
+          "zh": "个体在集体要求面前受苦，平庸便占据上风。"
+        },
+        {
+          "id": "p5s4",
+          "en": "So: is learning like hiking?",
+          "zh": "那么：学习真的像徒步一样吗？"
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "sentences": [
+        {
+          "id": "p6s1",
+          "en": "The current pedagogical paradigm is arguably that of constructivism, which emerged out of the work of psychologist Lev Vygotsky.",
+          "zh": "当前的教学范式可以说是建构主义，它源自心理学家列夫·维果茨基的研究成果。"
+        },
+        {
+          "id": "p6s2",
+          "en": "In the 1930s, Vygotsky emphasised the importance of targeting a student's specific 'zone of proximal development' (ZPD).",
+          "zh": "在20世纪30年代，维果茨基强调，教学应瞄准学生特定的“最近发展区”（ZPD）。"
+        },
+        {
+          "id": "p6s3",
+          "en": "This is the gap between what they can achieve only with support – teachers, textbooks, worked examples, parents and so on – and what they can achieve independently.",
+          "zh": "这指的是一种差距：一边是他们只有在支持之下——例如教师、教材、示范例题、家长等等——才能达成的水平，另一边是他们能够独立完成的水平。"
+        },
+        {
+          "id": "p6s4",
+          "en": "The purpose of teaching is to provide and then gradually remove this 'scaffolding' until they are autonomous.",
+          "zh": "教学的目的在于先提供这种“支架”，再逐步撤去，直到学生能够自主学习。"
+        },
+        {
+          "id": "p6s5",
+          "en": "If we accept this model, it follows that streaming students with similar ZPDs would be an efficient and effective solution.",
+          "zh": "如果我们接受这一模型，那么顺理成章的结论是：把ZPD相近的学生分流编班，会是一种高效且有效的解决方案。"
+        },
+        {
+          "id": "p6s6",
+          "en": "And that forcing everyone on the same hike – regardless of aptitude – would be madness.",
+          "zh": "而不顾能力差异，强迫所有人走同一条“徒步路线”——将会是疯狂之举。"
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "sentences": [
+        {
+          "id": "p7s1",
+          "en": "Despite all this, there is limited empirical evidence to suggest that streaming results in better outcomes for students.",
+          "zh": "尽管如此，支持“分流”能为学生带来更好学习结果的实证证据仍然十分有限。"
+        },
+        {
+          "id": "p7s2",
+          "en": "Professor John Hattie, director of the Melbourne Education Research Institute, notes that 'tracking has minimal effects on learning outcomes'.",
+          "zh": "墨尔本教育研究院院长约翰·哈蒂教授指出：“分层对学习成果的影响微乎其微。”"
+        },
+        {
+          "id": "p7s3",
+          "en": "What is more, streaming appears to significantly – and negatively – affect those students assigned to the lowest sets.",
+          "zh": "更重要的是，分流似乎会对被分到最低层级的学生产生显著且负面的影响。"
+        },
+        {
+          "id": "p7s4",
+          "en": "These students tend to have much higher representation of low socioeconomic class.",
+          "zh": "这些学生往往来自低社会经济阶层的比例要高得多。"
+        },
+        {
+          "id": "p7s5",
+          "en": "Less significant is the small benefit for those lucky clever students in the higher sets.",
+          "zh": "相比之下，对那些“幸运的聪明学生”——处在高层级的学生——所带来的小幅收益则并不明显。"
+        },
+        {
+          "id": "p7s6",
+          "en": "The overall result is that the smart stay smart and the dumb get dumber, further entrenching the social divide.",
+          "zh": "总体结果是：聪明的仍然聪明，落后的愈发落后，从而进一步固化社会鸿沟。"
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "sentences": [
+        {
+          "id": "p8s1",
+          "en": "In the latest update of Hattie's influential meta-analysis of factors influencing student achievement, one of the most significant factors is the teachers' estimate of achievement.",
+          "zh": "在哈蒂那项颇具影响力、关于影响学生学业成就因素的元分析最新更新中，最重要的因素之一是教师对学生成就水平的估计。"
+        },
+        {
+          "id": "p8s2",
+          "en": "Streaming students by diagnosed achievement automatically limits what the teacher feels the student is capable of.",
+          "zh": "按诊断出的成绩水平对学生分流，会自动限制教师对学生能力上限的判断。"
+        },
+        {
+          "id": "p8s3",
+          "en": "Meanwhile, in a mixed environment, teachers' estimates need to be more diverse and flexible.",
+          "zh": "相反，在混合能力的环境中，教师的判断必须更加多元且更具弹性。"
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "sentences": [
+        {
+          "id": "p9s1",
+          "en": "While streaming might seem to help teachers effectively target a student's ZPD, it can underestimate the importance of peer-to-peer learning.",
+          "zh": "尽管分流教学看似能帮助教师更有效地针对学生的“最近发展区”（ZPD）开展教学，但它可能低估了同伴之间相互学习的重要性。"
+        },
+        {
+          "id": "p9s2",
+          "en": "A crucial aspect of constructivist theory is the role of the MKO – 'more knowledgeable other' – in knowledge construction.",
+          "zh": "建构主义理论的一个关键要素，是“更有知识的他者”（MKO）在知识建构过程中所发挥的作用。"
+        },
+        {
+          "id": "p9s3",
+          "en": "While teachers are traditionally the MKOs in classrooms, the value of knowledgeable student peers must not go unrecognised either.",
+          "zh": "虽然在课堂上教师传统上被视为MKOs，但知识更丰富的学生同伴所具有的价值也绝不应被忽视。"
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "sentences": [
+        {
+          "id": "p10s1",
+          "en": "I find it amazing to watch students get over an idea to their peers in ways that I would never think of.",
+          "zh": "我觉得很令人惊叹的是，看着学生以我从未想到的方式把一个观点讲清楚、传达给同伴。"
+        },
+        {
+          "id": "p10s2",
+          "en": "They operate with different language tools and different social tools from teachers and, having just learnt it themselves, they possess similar cognitive structures to their struggling classmates.",
+          "zh": "他们使用的语言工具和社交工具与教师不同，而且由于自己刚学会不久，他们在认知结构上与那些学得吃力的同学更为相近。"
+        },
+        {
+          "id": "p10s3",
+          "en": "There is also something exciting about passing on skills and knowledge that you yourself have just mastered – a certain pride and zeal, a certain freshness to the interaction between 'teacher' and 'learner' that is often lost by the expert for whom the steps are obvious and the joy of discovery forgotten.",
+          "zh": "把自己刚刚掌握的技能与知识传授给别人同样令人兴奋——那是一种自豪与热忱，也让“教师”与“学习者”之间的互动更显新鲜；而对那些觉得步骤理所当然、早已忘却探索之乐的专家而言，这种新鲜感往往会消失。"
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "sentences": [
+        {
+          "id": "p11s1",
+          "en": "Having a variety of different abilities in a collaborative learning environment provides valuable resources for helping students meet their learning needs, not to mention improving their communication and social skills.",
+          "zh": "在协作式学习环境中汇聚不同能力水平的学生，能够提供宝贵的资源，帮助他们满足各自的学习需求，更不用说还能提升他们的沟通与社交能力。"
+        },
+        {
+          "id": "p11s2",
+          "en": "And today, more than ever, we need the many to flourish – not suffer at the expense of a few bright stars.",
+          "zh": "而在当下，比以往任何时候都更需要让大多数人都能发展得更好——而不是为了少数耀眼的“明星”让多数人付出代价、承受损失。"
+        },
+        {
+          "id": "p11s3",
+          "en": "Once a year, I go on a hike with my class, a mixed bunch of students.",
+          "zh": "每年我都会和班上的学生去徒步一次，这是一群能力与特点参差不齐的孩子。"
+        },
+        {
+          "id": "p11s4",
+          "en": "It is challenging.",
+          "zh": "这确实很有挑战。"
+        },
+        {
+          "id": "p11s5",
+          "en": "The fittest students realise they need to encourage the reluctant.",
+          "zh": "体能最好的学生会意识到，他们需要去鼓励那些不太情愿、想退缩的人。"
+        },
+        {
+          "id": "p11s6",
+          "en": "There are lookouts who report back, and extra items to carry for others.",
+          "zh": "有人负责前方探路并回报情况，也有人替他人分担额外的物品。"
+        },
+        {
+          "id": "p11s7",
+          "en": "We make it – together.",
+          "zh": "我们最终走完了全程——一起完成的。"
+        }
+      ]
+    }
+  ],
+  "questionGroups": [
+    {
+      "id": "mcq",
+      "type": "mcq",
+      "from": 27,
+      "to": 30,
+      "instruction": "Questions 27–30\n\nChoose the correct letter, A, B, C or D.",
+      "items": [
+        {
+          "no": 27,
+          "stem": "The writer describes the Romeo and Juliet lesson in order to demonstrate",
+          "options": [
+            {
+              "key": "A",
+              "text": "how few students are interested in literature."
+            },
+            {
+              "key": "B",
+              "text": "how a teacher handles a range of learning needs."
+            },
+            {
+              "key": "C",
+              "text": "how unsuitable Shakespeare is for most teenagers."
+            },
+            {
+              "key": "D",
+              "text": "how weaker students can disrupt their classmates' learning."
+            }
+          ],
+          "answer": "B"
+        },
+        {
+          "no": 28,
+          "stem": "What does the writer say about streaming in the third paragraph?",
+          "options": [
+            {
+              "key": "A",
+              "text": "It has a very broad appeal."
+            },
+            {
+              "key": "B",
+              "text": "It favours cleverer students."
+            },
+            {
+              "key": "C",
+              "text": "It is relatively simple to implement."
+            },
+            {
+              "key": "D",
+              "text": "It works better in some schools than others."
+            }
+          ],
+          "answer": "A"
+        },
+        {
+          "no": 29,
+          "stem": "What idea is suggested by the reference to Mount Qomolangma in the fifth paragraph?",
+          "options": [
+            {
+              "key": "A",
+              "text": "students following unsuitable paths"
+            },
+            {
+              "key": "B",
+              "text": "students attempting interesting tasks"
+            },
+            {
+              "key": "C",
+              "text": "students not achieving their full potential"
+            },
+            {
+              "key": "D",
+              "text": "students not being aware of their limitations"
+            }
+          ],
+          "answer": "C"
+        },
+        {
+          "no": 30,
+          "stem": "What does the word 'scaffolding' in the sixth paragraph refer to?",
+          "options": [
+            {
+              "key": "A",
+              "text": "the factors which prevent a student from learning effectively"
+            },
+            {
+              "key": "B",
+              "text": "the environment where most of a student's learning takes place"
+            },
+            {
+              "key": "C",
+              "text": "the assistance given to a student in their initial stages of learning"
+            },
+            {
+              "key": "D",
+              "text": "the setting of appropriate learning targets for a student's aptitude"
+            }
+          ],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "type": "summary",
+      "from": 31,
+      "to": 35,
+      "instruction": "Questions 31–35\n\nComplete the summary using the list of phrases, A–I, below",
+      "title": "Is streaming effective?",
+      "text": "According to Professor John Hattie of the Melbourne Education Research Institute, there is very little indication that streaming leads to {{31}}. He points out that, in schools which use streaming, the most significant impact is on those students placed in the {{32}} , especially where a large proportion of them have {{33}} . Meanwhile, for the {{34}} , there appears to be only minimal advantage. A further issue is that teachers tend to have {{35}} of students in streamed groups.",
+      "options": [
+        {
+          "key": "A",
+          "text": "wrong classes"
+        },
+        {
+          "key": "B",
+          "text": "lower expectations"
+        },
+        {
+          "key": "C",
+          "text": "average learners"
+        },
+        {
+          "key": "D",
+          "text": "bottom sets"
+        },
+        {
+          "key": "E",
+          "text": "brightest pupils"
+        },
+        {
+          "key": "F",
+          "text": "disadvantaged backgrounds"
+        },
+        {
+          "key": "G",
+          "text": "weaker students"
+        },
+        {
+          "key": "H",
+          "text": "higher achievements"
+        },
+        {
+          "key": "I",
+          "text": "positive impressions"
+        }
+      ],
+      "items": [
+        {
+          "no": 31,
+          "stem": "",
+          "options": [],
+          "answer": "H"
+        },
+        {
+          "no": 32,
+          "stem": "",
+          "options": [],
+          "answer": "D"
+        },
+        {
+          "no": 33,
+          "stem": "",
+          "options": [],
+          "answer": "F"
+        },
+        {
+          "no": 34,
+          "stem": "",
+          "options": [],
+          "answer": "E"
+        },
+        {
+          "no": 35,
+          "stem": "",
+          "options": [],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "ynng",
+      "type": "ynng",
+      "from": 36,
+      "to": 40,
+      "instruction": "Questions 36–40\n\nDo the following statements agree with the views of the writer in Reading Passage 3?\nChoose\nYES if the statement agrees with the views of the writer\nNO if the statement contradicts the views of the writer\nNOT GIVEN if it is impossible to say what the writer thinks about this",
+      "items": [
+        {
+          "no": 36,
+          "stem": "The Vygotsky model of education supports the concept of a mixed-ability class.",
+          "options": [],
+          "answer": "N"
+        },
+        {
+          "no": 37,
+          "stem": "Some teachers are uncertain about allowing students to take on MKO roles in the classroom.",
+          "options": [],
+          "answer": "NG"
+        },
+        {
+          "no": 38,
+          "stem": "It can be rewarding to teach knowledge which you have only recently acquired.",
+          "options": [],
+          "answer": "Y"
+        },
+        {
+          "no": 39,
+          "stem": "The priority should be to ensure that the highest-achieving students attain their goals.",
+          "options": [],
+          "answer": "N"
+        },
+        {
+          "no": 40,
+          "stem": "Taking part in collaborative outdoor activities with teachers and classmates can improve student outcomes in the classroom.",
+          "options": [],
+          "answer": "NG"
+        }
+      ]
+    }
+  ],
+  "lexicon": {
+    "picture": "v. 想象；设想（picture this scene 想象这样的场景）",
+    "this": "det./pron. 这个；这",
+    "scene": "n. 场景；场面",
+    "it's": "it is 的缩写：它是；这是",
+    "an": "art. 一个（用于元音音素前）",
+    "english": "adj. 英语的；英国的 n. 英语",
+    "literature": "n. 文学；文学作品",
+    "lesson": "n. 课；一节课",
+    "in": "prep. 在……里；在……方面",
+    "a": "art. 一个（不定冠词）",
+    "uk": "n. 英国（United Kingdom 的缩写）",
+    "school": "n. 学校",
+    "and": "conj. 和；并且",
+    "the": "art. 这；那（定冠词）",
+    "teacher": "n. 教师；老师",
+    "has": "v. have 的第三人称单数：有；已经（构成完成时）",
+    "just": "adv. 刚刚；恰好；仅仅",
+    "read": "v. 朗读；阅读（read 的过去分词）",
+    "extract": "n. 摘录；选段",
+    "from": "prep. 从；来自",
+    "shakespeare's": "莎士比亚的（Shakespeare 的所有格）",
+    "romeo": "n. 罗密欧（Romeo and Juliet《罗密欧与朱丽叶》）",
+    "juliet": "n. 朱丽叶",
+    "with": "prep. 和……一起；带有",
+    "class": "n. 班级；课堂；全班学生",
+    "of": "prep. ……的（表所属、数量）",
+    "year-olds": "n. 十几岁的孩子（15-year-olds 十五岁的孩子）",
+    "he's": "he is / he has 的缩写：他是；他已经",
+    "given": "v. give 的过去分词：给；给予",
+    "some": "det. 一些；某些",
+    "students": "n. 学生（student 的复数）",
+    "copies": "n. 副本；册（copy 的复数）",
+    "no": "det. 没有；无（No Fear Shakespeare 为书名）",
+    "fear": "n. 恐惧；害怕",
+    "shakespeare": "n. 莎士比亚（英国剧作家）",
+    "kid-friendly": "adj. 适合孩子阅读的；对孩子友好的",
+    "translation": "n. 翻译；译本",
+    "original": "n. 原著；原文 adj. 原来的；原创的",
+    "for": "prep. 对于；为了；持续（时间）",
+    "three": "num. 三；三个",
+    "even": "adv. 甚至；即使",
+    "these": "det. 这些",
+    "literacy": "n. 读写能力；识字",
+    "demands": "n. 要求；需要（demand 的复数）",
+    "are": "v. be 的复数形式：是",
+    "beyond": "prep. 超出；在……之外",
+    "them": "pron. 他们；它们（宾格）",
+    "another": "det. 另一个；又一个",
+    "girl": "n. 女孩",
+    "simply": "adv. 简直；仅仅；只是",
+    "can't": "cannot 的缩写：不能；无法",
+    "focus": "v. 集中注意力 n. 焦点",
+    "he": "pron. 他",
+    "gives": "v. give 的第三人称单数：给",
+    "her": "pron. 她；她的（宾格/所有格）",
+    "pens": "n. 钢笔（pen 的复数）",
+    "paper": "n. 纸；纸张",
+    "to": "prep. 到；向；（不定式符号）",
+    "draw": "v. 画画；绘制",
+    "can": "modal v. 能；可以",
+    "ask": "v. 问；要求；请",
+    "group": "n. 组；小组",
+    "identify": "v. 识别；辨认出",
+    "key": "adj. 关键的；主要的 n. 钥匙；关键",
+    "characters": "n. 人物；角色；性格（character 的复数）",
+    "maybe": "adv. 也许；可能",
+    "provide": "v. 提供；给出",
+    "tentative": "adj. 初步的；试探性的；暂定的",
+    "plot": "n. 情节；剧情",
+    "summary": "n. 摘要；概述",
+    "most": "det. 大多数；大部分 adv. 最",
+    "about": "prep. 关于；大约",
+    "character": "n. 人物；性格；特征",
+    "development": "n. 发展；成长；演变",
+    "five": "num. 五；五个",
+    "might": "modal v. 可能；也许（语气较弱）",
+    "be": "v. 是；成为（原形）",
+    "able": "adj. 能够的（be able to 能够）",
+    "support": "v. 支持；支撑；证实",
+    "their": "pron. 他们的",
+    "statements": "n. 陈述；说法（statement 的复数）",
+    "textual": "adj. 文本的；原文的",
+    "evidence": "n. 证据；依据",
+    "now": "adv. 现在；此时",
+    "two": "num. 二；两个",
+    "curious": "adj. 好奇的",
+    "wondering": "v. 想知道；琢磨（wonder 的现在分词）",
+    "whether": "conj. 是否",
+    "advocates": "v. 主张；提倡（advocate 的第三人称单数）n. 拥护者",
+    "living": "v. 过（生活）；生活（live 的现在分词）adj. 活着的",
+    "life": "n. 生活；人生",
+    "moderation": "n. 适度；节制",
+    "or": "conj. 或者；还是",
+    "one": "num. 一个 pron. 一个（代替前文名词）",
+    "passionate": "adj. 充满激情的；热烈的",
+    "engagement": "n. 投入；参与；交往",
+    "as": "prep. 作为 conj. 当……时；正如",
+    "myself": "pron. 我自己",
+    "i'd": "I would / I had 的缩写：我会；我已",
+    "think": "v. 认为；想",
+    "my": "pron. 我的",
+    "would": "modal v. 将会；会（表推测或虚拟）",
+    "going": "v. 进行；去（go 的现在分词）",
+    "rather": "adv. 相当；颇；（would rather 宁愿）",
+    "well": "adv. 好；很好地",
+    "if": "conj. 如果；是否",
+    "discussion": "n. 讨论；讨论过程",
+    "went": "v. go 的过去式：进行；去",
+    "described": "v. 描述（describe 的过去分词）",
+    "above": "adv./prep. 在上面；上述的",
+    "but": "conj. 但是",
+    "wouldn't": "would not 的缩写：不会",
+    "kind": "n. 种类（this kind of 这种）adj. 友善的",
+    "work": "v. 运作；起作用 n. 工作",
+    "better": "adv./adj. 更好地；更好的（good 的比较级）",
+    "there": "adv. 在那里；（there be 结构）有",
+    "weren't": "were not 的缩写：不是；没有",
+    "such": "det. 这样的；如此的",
+    "huge": "adj. 巨大的",
+    "gap": "n. 差距；空隙",
+    "between": "prep. 在……之间",
+    "top": "n. 顶端；上层 adj. 最高的",
+    "bottom": "n. 底部；下层 adj. 最低的",
+    "we": "pron. 我们",
+    "put": "v. 放；安置",
+    "all": "det. 所有的；全部",
+    "kids": "n. 孩子（kid 的复数，口语）",
+    "who": "pron. 谁；（关系代词）……的人",
+    "needed": "v. 需要（need 的过去式/过去分词）",
+    "into": "prep. 进入；到……里",
+    "want": "v. 想要",
+    "discuss": "v. 讨论",
+    "virtue": "n. 美德；优点",
+    "practice": "n. 做法；实践；惯例",
+    "streaming": "n. （按能力）分流编班；分层教学",
+    "tracking": "n. （按能力）分层；分轨教学",
+    "involves": "v. 涉及；包含（involve 的第三人称单数）",
+    "separating": "v. 把……分开（separate 的现在分词）",
+    "classes": "n. 班级；阶级（class 的复数）",
+    "depending": "v. 取决于（depend on 的现在分词）",
+    "on": "prep. 在……上；依据",
+    "diagnosed": "v./adj. 被诊断（评定）的（diagnose 的过去分词）",
+    "levels": "n. 水平；层级（level 的复数）",
+    "attainment": "n. 学业成就；达到的水平",
+    "at": "prep. 在（某处/某水平）；在……方面",
+    "macro": "adj. 宏观的（at a macro level 在宏观层面）",
+    "level": "n. 层面；水平",
+    "requires": "v. 需要；要求（require 的第三人称单数）",
+    "establishment": "n. 建立；设立",
+    "academically": "adv. 学术上；在学业方面",
+    "selective": "adj. 择优的；有选择性的",
+    "schools": "n. 学校（school 的复数）",
+    "brightest": "adj. 最聪明的（bright 的最高级）",
+    "comprehensive": "adj. 综合的（comprehensive school 综合中学）",
+    "rest": "n. 其余；剩下的部分（the rest）",
+    "within": "prep. 在……之内",
+    "means": "v. 意味着（mean 的第三人称单数）n. 手段",
+    "selecting": "v. 挑选（select 的现在分词）",
+    "stream": "n. 能力梯队；流",
+    "general": "adj. 总体的；一般的",
+    "ability": "n. 能力",
+    "sets": "n. 组；层（按学科能力分的班）",
+    "subject-specific": "adj. 特定学科的；按科目划分的",
+    "is": "v. be 的第三人称单数：是",
+    "intuitively": "adv. 直觉上；凭直觉地",
+    "appealing": "adj. 有吸引力的",
+    "almost": "adv. 几乎；差不多",
+    "every": "det. 每一个",
+    "stakeholder": "n. 利益相关者；相关方",
+    "have": "v. 有；（构成完成时）",
+    "heard": "v. hear 的过去分词：听说",
+    "mixed-ability": "adj. 混合能力的（学生水平不齐的）",
+    "model": "n. 模式；模型",
+    "attacked": "v. 抨击；攻击（attack 的过去分词）",
+    "by": "prep. 被；通过；靠",
+    "way": "n. 方式；方法（by way of 通过……的方式）",
+    "analogy": "n. 类比；比喻",
+    "hike": "n./v. 徒步；远足",
+    "fittest": "adj. 体能最好的（fit 的最高级）",
+    "take": "v. 拿；带领（take the lead 带头）",
+    "lead": "n. 领先位置（take the lead 领头）v. 引导",
+    "set": "v. 设定；定下（set a pace 定下速度）",
+    "brisk": "adj. 轻快的；利落的",
+    "pace": "n. 速度；步调",
+    "only": "adv. 却；只是；仅仅",
+    "stop": "v. 停下",
+    "wait": "v. 等待",
+    "minutes": "n. 分钟（minute 的复数）",
+    "frustrating": "adj. 令人沮丧的；令人恼火的",
+    "enthusiasm": "n. 热情；热忱",
+    "wanes": "v. 减弱；消退（wane 的第三人称单数）",
+    "meanwhile": "adv. 与此同时",
+    "slowest": "adj. 最慢的（slow 的最高级）",
+    "ones": "pron. 那些（人/物）（one 的复数）",
+    "not": "adv. 不；没有",
+    "embarrassed": "adj. 尴尬的；难为情的",
+    "physically": "adv. 体力上；身体上",
+    "struggling": "v. 挣扎；艰难地努力（struggle 的现在分词）",
+    "keep": "v. 保持（keep up 跟上）",
+    "up": "adv. 向上；（keep up 跟上）",
+    "what's": "what is 的缩写：什么是；（what's worse 更糟的是）",
+    "worse": "adj./adv. 更糟的（bad 的比较级）",
+    "they": "pron. 他们",
+    "never": "adv. 从不；从未",
+    "get": "v. 得到；获得",
+    "long": "adj. 长的（时间/长度）",
+    "enough": "adj./adv. 足够的（地）",
+    "break": "n. 休息；间歇",
+    "honestly": "adv. 老实说；真的",
+    "quit": "v. 放弃；退出",
+    "hiking": "n. 徒步；远足",
+    "feel": "v. 觉得；感到",
+    "bore": "v. 使厌烦；使无聊",
+    "frustrate": "v. 使沮丧；使受挫",
+    "parents": "n. 父母（parent 的复数）",
+    "burn": "v. 燃烧（burn out 使精疲力竭）",
+    "out": "adv. 出；向外（burn out 耗尽）",
+    "teachers": "n. 教师（teacher 的复数）",
+    "will": "modal v. 将会；总是（表习惯）",
+    "summit": "v. 登顶；到达峰顶 n. 顶峰",
+    "mount": "n. 山（用于山名，Mount Qomolangma 珠穆朗玛峰）",
+    "qomolangma": "n. 珠穆朗玛峰（Qomolangma）",
+    "stragglers": "n. 落后者；掉队的人（straggler 的复数）",
+    "won't": "will not 的缩写：不会",
+    "enjoy": "v. 享受；喜爱",
+    "lovely": "adj. 美好的；令人愉快的",
+    "stroll": "n. 漫步；闲逛",
+    "park": "n. 公园",
+    "perhaps": "adv. 也许；或许",
+    "more": "adv. 更；更多地 adj. 更多的",
+    "suited": "adj. 适合的（be suited to 适合于）",
+    "individuals": "n. 个体；个人（individual 的复数）",
+    "suffer": "v. 受苦；遭受损失",
+    "collective": "n. 集体 adj. 集体的",
+    "mediocrity": "n. 平庸；平庸之辈",
+    "prevails": "v. 盛行；占上风（prevail 的第三人称单数）",
+    "so": "adv. 那么；如此 conj. 因此",
+    "learning": "n. 学习",
+    "like": "prep. 像；如同 v. 喜欢",
+    "current": "adj. 当前的；现行的",
+    "pedagogical": "adj. 教育学的；教学法的",
+    "paradigm": "n. 范式；典范",
+    "arguably": "adv. 可以说是；大概",
+    "that": "pron./det. 那个 conj. （引导从句）",
+    "constructivism": "n. 建构主义（一种学习理论）",
+    "which": "pron. （关系代词）这/那个（指代前文）",
+    "emerged": "v. 出现；形成（emerge 的过去式）",
+    "psychologist": "n. 心理学家",
+    "lev": "n. 列夫（Lev Vygotsky 列夫·维果茨基）",
+    "vygotsky": "n. 维果茨基（苏联心理学家）",
+    "s": "（构成所有格或复数的词尾；如 1930s 二十世纪三十年代）",
+    "emphasised": "v. 强调（emphasise 的过去式，英式拼写）",
+    "importance": "n. 重要性",
+    "targeting": "v. 以……为目标；瞄准（target 的现在分词）",
+    "student's": "学生的（student 的所有格）",
+    "specific": "adj. 特定的；具体的",
+    "zone": "n. 区域；地带（zone of proximal development 最近发展区）",
+    "proximal": "adj. 近端的；最接近的（心理学用语）",
+    "zpd": "n. 最近发展区（zone of proximal development 的缩写）",
+    "achieve": "v. 达成；实现",
+    "textbooks": "n. 教科书（textbook 的复数）",
+    "worked": "adj. （worked example）已解出的（例题）",
+    "examples": "n. 例子；例题（example 的复数）",
+    "independently": "adv. 独立地；自主地",
+    "purpose": "n. 目的",
+    "teaching": "n. 教学",
+    "then": "adv. 然后；接着",
+    "gradually": "adv. 逐渐地",
+    "remove": "v. 移除；撤去",
+    "scaffolding": "n. 支架；脚手架（教育比喻：临时性支持）",
+    "until": "conj./prep. 直到",
+    "autonomous": "adj. 自主的；能自主学习的",
+    "accept": "v. 接受；认可",
+    "follows": "v. 由此可知（it follows that 由此推出）",
+    "similar": "adj. 相似的；相近的",
+    "zpds": "n. 最近发展区（ZPD 的复数）",
+    "efficient": "adj. 高效的",
+    "effective": "adj. 有效的",
+    "solution": "n. 解决方案",
+    "forcing": "v. 强迫（force 的现在分词）",
+    "everyone": "pron. 每个人；所有人",
+    "same": "adj. 相同的（the same 同一个）",
+    "regardless": "adv. 不管；不顾（regardless of 不论）",
+    "aptitude": "n. 天资；能力倾向",
+    "madness": "n. 疯狂；愚蠢之举",
+    "despite": "prep. 尽管",
+    "limited": "adj. 有限的",
+    "empirical": "adj. 实证的；经验性的",
+    "suggest": "v. 表明；暗示；建议",
+    "results": "v. 导致（result in 导致）n. 结果",
+    "outcomes": "n. 结果；成果（outcome 的复数）",
+    "professor": "n. 教授",
+    "john": "n. 约翰（人名）",
+    "hattie": "n. 哈蒂（John Hattie，教育学者）",
+    "director": "n. 院长；主任；主管",
+    "melbourne": "n. 墨尔本（澳大利亚城市）",
+    "education": "n. 教育",
+    "research": "n. 研究",
+    "institute": "n. 研究院；学院",
+    "notes": "v. 指出；提到（note 的第三人称单数）n. 笔记",
+    "minimal": "adj. 极小的；微不足道的",
+    "effects": "n. 影响；效果（effect 的复数）",
+    "appears": "v. 似乎；显得（appear 的第三人称单数）",
+    "significantly": "adv. 显著地；大幅度地",
+    "negatively": "adv. 负面地；消极地",
+    "affect": "v. 影响",
+    "those": "det./pron. 那些",
+    "assigned": "v. 被分配到（assign 的过去分词）",
+    "lowest": "adj. 最低的（low 的最高级）",
+    "tend": "v. 倾向于（tend to 往往）",
+    "much": "adv. 得多；非常（修饰比较级）det. 许多",
+    "higher": "adj. 更高的（high 的比较级）",
+    "representation": "n. 占比；代表比例",
+    "low": "adj. 低的；低下的",
+    "socioeconomic": "adj. 社会经济的",
+    "less": "adv./adj. 更少（地）；较小的",
+    "significant": "adj. 显著的；重要的",
+    "small": "adj. 小的",
+    "benefit": "n. 好处；益处",
+    "lucky": "adj. 幸运的",
+    "clever": "adj. 聪明的",
+    "overall": "adj. 总体的；全面的",
+    "result": "n. 结果",
+    "smart": "adj. 聪明的",
+    "stay": "v. 保持；仍然是",
+    "dumb": "adj. 愚笨的（口语）",
+    "dumber": "adj. 更愚笨的（dumb 的比较级）",
+    "further": "adv. 进一步地",
+    "entrenching": "v. 使根深蒂固；加固（entrench 的现在分词）",
+    "social": "adj. 社会的",
+    "divide": "n. 鸿沟；分歧 v. 分开",
+    "latest": "adj. 最新的",
+    "update": "n. 更新；最新版本",
+    "hattie's": "哈蒂的（Hattie 的所有格）",
+    "influential": "adj. 有影响力的",
+    "meta-analysis": "n. 元分析；荟萃分析（综合多项研究）",
+    "factors": "n. 因素（factor 的复数）",
+    "influencing": "v. 影响（influence 的现在分词）",
+    "achievement": "n. 成就；学业成绩",
+    "estimate": "n./v. 估计；判断",
+    "automatically": "adv. 自动地；不自觉地",
+    "limits": "v. 限制（limit 的第三人称单数）n. 限度",
+    "feels": "v. 觉得；认为（feel 的第三人称单数）",
+    "capable": "adj. 有能力的（be capable of 能够）",
+    "mixed": "adj. 混合的",
+    "environment": "n. 环境",
+    "estimates": "n. 估计；判断（estimate 的复数）",
+    "need": "v. 需要",
+    "diverse": "adj. 多样的；多元的",
+    "flexible": "adj. 灵活的；有弹性的",
+    "while": "conj. 虽然；而；当……时",
+    "seem": "v. 似乎；看起来",
+    "help": "v. 帮助",
+    "effectively": "adv. 有效地",
+    "target": "v. 针对；以……为目标 n. 目标",
+    "underestimate": "v. 低估",
+    "peer-to-peer": "adj. 同伴之间的；同辈之间的",
+    "crucial": "adj. 关键的；至关重要的",
+    "aspect": "n. 方面",
+    "constructivist": "adj. 建构主义的",
+    "theory": "n. 理论",
+    "role": "n. 作用；角色",
+    "mko": "n. 更有知识的他者（more knowledgeable other 的缩写）",
+    "knowledgeable": "adj. 知识丰富的；了解得多的",
+    "other": "n./adj. 他者；另一个",
+    "knowledge": "n. 知识",
+    "construction": "n. 建构；建造",
+    "traditionally": "adv. 传统上",
+    "mkos": "n. 更有知识的他者（MKO 的复数）",
+    "classrooms": "n. 教室；课堂（classroom 的复数）",
+    "value": "n. 价值",
+    "peers": "n. 同伴；同辈（peer 的复数）",
+    "must": "modal v. 必须；一定",
+    "go": "v. 去；（go unrecognised 未被认可）",
+    "unrecognised": "adj. 未被认识到的；未获承认的",
+    "either": "adv. 也（用于否定句末）",
+    "find": "v. 觉得；发现",
+    "amazing": "adj. 令人惊叹的",
+    "watch": "v. 观看；看着",
+    "over": "prep. 越过（get over 把……讲清楚、传达过去）",
+    "idea": "n. 想法；观点",
+    "ways": "n. 方式（way 的复数）",
+    "operate": "v. 运作；操作",
+    "different": "adj. 不同的",
+    "language": "n. 语言",
+    "tools": "n. 工具（tool 的复数）",
+    "having": "v. 由于有；已经（have 的现在分词）",
+    "learnt": "v. learn 的过去分词：学会（英式拼写）",
+    "themselves": "pron. 他们自己",
+    "possess": "v. 拥有；具备",
+    "cognitive": "adj. 认知的",
+    "structures": "n. 结构（structure 的复数）",
+    "classmates": "n. 同学（classmate 的复数）",
+    "also": "adv. 也；还",
+    "something": "pron. 某事；某物",
+    "exciting": "adj. 令人兴奋的",
+    "passing": "v. 传递；传授（pass on 的现在分词）",
+    "skills": "n. 技能（skill 的复数）",
+    "you": "pron. 你；你们",
+    "yourself": "pron. 你自己",
+    "mastered": "v. 掌握（master 的过去分词）",
+    "certain": "adj. 某种；一定的",
+    "pride": "n. 自豪；骄傲",
+    "zeal": "n. 热忱；激情",
+    "freshness": "n. 新鲜感；清新",
+    "interaction": "n. 互动；交流",
+    "learner": "n. 学习者",
+    "often": "adv. 经常；常常",
+    "lost": "v. 失去（lose 的过去分词）",
+    "expert": "n. 专家 adj. 熟练的",
+    "whom": "pron. （关系代词）……的人（宾格）",
+    "steps": "n. 步骤（step 的复数）",
+    "obvious": "adj. 显而易见的；理所当然的",
+    "joy": "n. 乐趣；喜悦",
+    "discovery": "n. 发现；探索",
+    "forgotten": "v. 忘记（forget 的过去分词）",
+    "variety": "n. 多样性；各种",
+    "abilities": "n. 能力（ability 的复数）",
+    "collaborative": "adj. 协作的；合作的",
+    "provides": "v. 提供（provide 的第三人称单数）",
+    "valuable": "adj. 宝贵的；有价值的",
+    "resources": "n. 资源（resource 的复数）",
+    "helping": "v. 帮助（help 的现在分词）",
+    "meet": "v. 满足（meet needs 满足需求）",
+    "needs": "n. 需求（need 的复数）",
+    "mention": "v. 提及（not to mention 更不用说）",
+    "improving": "v. 提升；改善（improve 的现在分词）",
+    "communication": "n. 沟通；交流",
+    "today": "adv. 如今；今天",
+    "than": "conj. 比（比较级连词）",
+    "ever": "adv. 曾经；任何时候（more than ever 比以往任何时候都）",
+    "many": "pron. 许多人；多数人 det. 许多",
+    "flourish": "v. 茁壮成长；蓬勃发展",
+    "expense": "n. 代价；费用（at the expense of 以……为代价）",
+    "few": "det. 少数；几个（a few 几个）",
+    "bright": "adj. 明亮的；聪明的",
+    "stars": "n. 明星；星（star 的复数）",
+    "once": "adv. 一次；一旦（once a year 每年一次）",
+    "year": "n. 年",
+    "bunch": "n. 一群；一帮（a bunch of 一群）",
+    "challenging": "adj. 有挑战性的；困难的",
+    "realise": "v. 意识到（realise 的第三人称单数，英式拼写）",
+    "encourage": "v. 鼓励",
+    "reluctant": "adj. 不情愿的；抵触的",
+    "lookouts": "n. 瞭望者；负责观察报信的人（lookout 的复数）",
+    "report": "v. 报告；汇报",
+    "back": "adv. 回；向后（report back 回报情况）",
+    "extra": "adj. 额外的",
+    "items": "n. 物品（item 的复数）",
+    "carry": "v. 携带；搬运",
+    "others": "pron. 其他人（other 的复数）",
+    "make": "v. 做到；成功（make it 成功到达）",
+    "together": "adv. 一起；共同",
+    "15-year-olds": "n. 十五岁的学生",
+    "1930s": "n. 二十世纪三十年代",
+    "it": "pron. 它；这（指代前文事物/情况）",
+    "what": "pron. 什么；（关系代词）……的事物",
+    "student": "n. 学生",
+    "i": "pron. 我（第一人称主格）",
+    "20": "num. 二十",
+    "15": "num. 十五",
+    "5": "num. 五（此处 five of them 指五个学生）"
+  }
+}

@@ -14,20 +14,33 @@ if not exist "server\.venv\Scripts\python.exe" (
   python -m venv server\.venv || goto :err
 )
 
-echo  [2/4] 检查后端依赖...
-server\.venv\Scripts\python.exe -m pip install -q -r server\requirements.txt || goto :err
-
-if not exist "web\node_modules" (
-  echo  [3/4] 安装前端依赖（首次较慢）...
-  pushd web
-  call npm install || goto :err
-  popd
+server\.venv\Scripts\python.exe -c "import fastapi, uvicorn" >nul 2>nul
+if errorlevel 1 (
+  echo  [2/4] 安装后端依赖...
+  server\.venv\Scripts\python.exe -m pip install -q -r server\requirements.txt || goto :err
+) else (
+  echo  [2/4] 后端依赖已就绪
 )
 
-echo  [4/4] 构建前端...
-pushd web
-call npm run build || goto :err
-popd
+if exist "web\dist\index.html" (
+  echo  [3/4] 前端已构建，跳过
+  echo  [4/4] 启动服务...
+) else (
+  echo  [3/4] 构建前端（首次较慢）...
+  pushd web
+  call npm install || goto :err
+  call npm run build || goto :err
+  popd
+  echo  [4/4] 启动服务...
+)
+
+netstat -ano | findstr ":8000" | findstr "LISTENING" >nul 2>nul
+if not errorlevel 1 (
+  echo.
+  echo  服务已经在运行，直接打开页面
+  start "" http://127.0.0.1:8000
+  goto :eof
+)
 
 echo.
 echo  服务地址： http://127.0.0.1:8000
