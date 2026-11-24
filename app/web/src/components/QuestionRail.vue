@@ -351,7 +351,7 @@ function answeredAll(): boolean {
   margin-bottom: 12px;
   border: 0.5px solid var(--line-strong);
   border-radius: 10px;
-  background: var(--bg-raise);
+  background: transparent;
   transition: border-color 0.16s var(--ease-out-cubic);
 }
 
@@ -386,12 +386,12 @@ function answeredAll(): boolean {
 
 .qcard.ok .qno {
   background: var(--ok-bg);
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .qcard.no .qno {
   background: var(--bad-bg);
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .tag {
@@ -405,12 +405,12 @@ function answeredAll(): boolean {
 
 .tag.ok {
   background: var(--ok-bg);
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .tag.no {
   background: var(--bad-bg);
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .stem {
@@ -469,21 +469,21 @@ function answeredAll(): boolean {
 .opt.correct {
   background: var(--ok-bg);
   border-color: var(--ok-line);
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .opt.correct i {
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .opt.mine-wrong {
   background: var(--bad-bg);
   border-color: var(--bad-line);
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .opt.mine-wrong i {
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .mk {
@@ -496,11 +496,11 @@ function answeredAll(): boolean {
 }
 
 .opt.correct .mk {
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .opt.mine-wrong .mk {
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .ynrow {
@@ -535,13 +535,13 @@ function answeredAll(): boolean {
 .chip.ok {
   background: var(--ok-bg);
   border-color: var(--ok-line);
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .chip.no {
   background: var(--bad-bg);
   border-color: var(--bad-line);
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .ansline {
@@ -564,22 +564,22 @@ function answeredAll(): boolean {
 }
 
 .ansline b.good {
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .ansline b.no {
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .ansline b.ok {
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .sum-box {
   padding: 16px 18px;
   border: 0.5px solid var(--line-strong);
   border-radius: 10px;
-  background: var(--bg-raise);
+  background: transparent;
 }
 
 .sum-t {
@@ -651,13 +651,13 @@ function answeredAll(): boolean {
 .blank.ok {
   border-color: var(--ok-line);
   background: var(--ok-bg);
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .blank.no {
   border-color: var(--bad-line);
   background: var(--bad-bg);
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .optbox {
@@ -697,22 +697,22 @@ function answeredAll(): boolean {
 }
 
 .optbox .hit {
-  color: var(--ok);
+  color: var(--fg);
   font-weight: 600;
 }
 
 .optbox .hit em {
-  color: var(--ok);
+  color: var(--fg);
 }
 
 .optbox .mis {
-  color: var(--bad);
+  color: var(--fg);
   text-decoration: line-through;
   text-decoration-color: var(--bad-line);
 }
 
 .optbox .mis em {
-  color: var(--bad);
+  color: var(--fg);
 }
 
 .optbox .pick {

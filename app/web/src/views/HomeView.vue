@@ -22,7 +22,7 @@ const newWords = computed(() => vocab.value?.byState.new ?? 0)
 const readings = computed(() =>
   [...packs.value]
     .filter((pack) => pack.kind === 'reading')
-    .sort((a, b) => (b.progress?.lastAt ?? 0) - (a.progress?.lastAt ?? 0))
+    .sort((a, b) => lastAt(b) - lastAt(a))
     .slice(0, 4),
 )
 const maxActivity = computed(() =>
@@ -61,10 +61,32 @@ const metrics = computed(() => [
   },
 ])
 
+function attemptTs(pack: PackSummary): number {
+  const raw = pack.attempt?.submittedAt
+  if (!raw) return 0
+  const ts = Date.parse(raw)
+  return Number.isNaN(ts) ? 0 : Math.floor(ts / 1000)
+}
+
+function lastAt(pack: PackSummary): number {
+  return Math.max(pack.progress?.lastAt ?? 0, attemptTs(pack))
+}
+
 function packAccuracy(pack: PackSummary): string {
+  if (pack.attempt) return `${pack.attempt.score} / ${pack.attempt.total}`
   const reading = pack.progress?.reading
   if (!reading || reading.answered === 0) return '—'
   return pct(reading.correct / reading.answered)
+}
+
+function packStatLabel(pack: PackSummary): string {
+  return pack.attempt ? t('reader.score') : t('stats.readingAccuracy')
+}
+
+function lastLabel(pack: PackSummary): string {
+  const ts = lastAt(pack)
+  if (ts) return fmtShort(ts)
+  return pack.attempt ? t('read.imported') : t('stats.never')
 }
 
 async function load(): Promise<void> {
@@ -156,10 +178,10 @@ onMounted(load)
             </div>
             <div class="pack-stat">
               <span class="pack-value num">{{ packAccuracy(pack) }}</span>
-              <span class="pack-label">{{ t('stats.readingAccuracy') }}</span>
+              <span class="pack-label">{{ packStatLabel(pack) }}</span>
             </div>
             <div class="pack-last">
-              {{ pack.progress?.lastAt ? fmtShort(pack.progress.lastAt) : t('stats.never') }}
+              {{ lastLabel(pack) }}
             </div>
             <Icon name="chevronRight" :size="16" class="pack-arrow" />
           </RouterLink>

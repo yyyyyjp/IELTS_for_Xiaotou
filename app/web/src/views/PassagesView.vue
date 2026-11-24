@@ -17,16 +17,38 @@ const ordered = computed(() =>
   [...packs.value]
     .filter((pack) => pack.kind === 'reading')
     .sort((a, b) => {
-      const recent = (b.progress?.lastAt ?? 0) - (a.progress?.lastAt ?? 0)
+      const recent = lastAt(b) - lastAt(a)
       if (recent !== 0) return recent
       return a.meta.title.localeCompare(b.meta.title)
     }),
 )
 
-function accuracy(pack: PackSummary): string {
+function attemptTs(pack: PackSummary): number {
+  const raw = pack.attempt?.submittedAt
+  if (!raw) return 0
+  const ts = Date.parse(raw)
+  return Number.isNaN(ts) ? 0 : Math.floor(ts / 1000)
+}
+
+function lastAt(pack: PackSummary): number {
+  return Math.max(pack.progress?.lastAt ?? 0, attemptTs(pack))
+}
+
+function statValue(pack: PackSummary): string {
+  if (pack.attempt) return `${pack.attempt.score} / ${pack.attempt.total}`
   const reading = pack.progress?.reading
   if (!reading || reading.answered === 0) return '—'
   return pct(reading.correct / reading.answered)
+}
+
+function statLabel(pack: PackSummary): string {
+  return pack.attempt ? t('reader.score') : t('stats.readingAccuracy')
+}
+
+function lastLabel(pack: PackSummary): string {
+  const ts = lastAt(pack)
+  if (ts) return fmtShort(ts)
+  return pack.attempt ? t('read.imported') : t('stats.never')
 }
 
 async function load(): Promise<void> {
@@ -64,7 +86,10 @@ onMounted(load)
       >
         <span class="index serif num">{{ String(index + 1).padStart(2, '0') }}</span>
         <div class="main">
-          <div class="title">{{ pack.meta.title }}</div>
+          <div class="title-line">
+            <div class="title">{{ pack.meta.title }}</div>
+            <span v-if="pack.hasReview" class="pill">{{ t('read.reviewReady') }}</span>
+          </div>
           <div class="meta">
             {{ pack.meta.book }} · {{ pack.meta.test }} · {{ pack.meta.passage }}
             <span class="sep">·</span>
@@ -74,11 +99,11 @@ onMounted(load)
           </div>
         </div>
         <div class="stat">
-          <span class="value num">{{ accuracy(pack) }}</span>
-          <span class="label">{{ t('stats.readingAccuracy') }}</span>
+          <span class="value num">{{ statValue(pack) }}</span>
+          <span class="label">{{ statLabel(pack) }}</span>
         </div>
         <div class="last">
-          {{ pack.progress?.lastAt ? fmtShort(pack.progress.lastAt) : t('stats.never') }}
+          {{ lastLabel(pack) }}
         </div>
         <Icon name="chevronRight" :size="16" class="arrow" />
       </RouterLink>
@@ -128,6 +153,13 @@ onMounted(load)
   font-variant-numeric: tabular-nums;
 }
 
+.title-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
 .title {
   font-family: var(--font-serif);
   font-size: 19px;
@@ -136,6 +168,18 @@ onMounted(load)
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.pill {
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border: 0.5px solid var(--line-soft);
+  border-radius: var(--radius-xs);
+  color: var(--accent-strong);
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 
 .meta {

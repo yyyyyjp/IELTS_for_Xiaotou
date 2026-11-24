@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    variant?: 'primary' | 'secondary' | 'ghost' | 'clay'
+    variant?: 'primary' | 'secondary' | 'ghost' | 'clay' | 'outline'
     size?: 'sm' | 'md'
     block?: boolean
     disabled?: boolean
@@ -82,6 +82,16 @@ withDefaults(
 .ghost:hover:not(.disabled) {
   background: var(--bg-sunken);
   color: var(--fg);
+}
+
+.outline {
+  background: var(--bg-page);
+  color: var(--fg);
+  border: 1px solid var(--fg);
+}
+
+.outline:hover:not(.disabled) {
+  background: var(--bg-sunken);
 }
 
 .clay {

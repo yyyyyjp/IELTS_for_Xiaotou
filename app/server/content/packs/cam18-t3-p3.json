@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "cam18-t3-p3",
   "kind": "reading",
   "origin": "builtin",
@@ -8,7 +8,39 @@
     "test": "Test 3",
     "passage": "Passage 3",
     "title": "The case for mixed-ability classes",
-    "durationSec": 1809
+    "durationSec": 1809,
+    "score": "5 / 14（正确率 36%）"
+  },
+  "attempt": {
+    "source": "idictation",
+    "submittedAt": "",
+    "durationSec": 1809,
+    "score": 5,
+    "total": 14,
+    "answered": 14,
+    "blank": 0,
+    "wrong": 9,
+    "accuracy": 0.3571,
+    "byType": [
+      {
+        "label": "选择题",
+        "correct": 1,
+        "total": 4,
+        "accuracy": 0.25
+      },
+      {
+        "label": "摘要填空",
+        "correct": 3,
+        "total": 5,
+        "accuracy": 0.6
+      },
+      {
+        "label": "判断题",
+        "correct": 1,
+        "total": 5,
+        "accuracy": 0.2
+      }
+    ]
   },
   "paragraphs": [
     {
@@ -343,7 +375,7 @@
       "type": "mcq",
       "from": 27,
       "to": 30,
-      "instruction": "Questions 27–30\n\nChoose the correct letter, A, B, C or D.",
+      "instruction": "Choose the correct letter, A, B, C or D.",
       "items": [
         {
           "no": 27,
@@ -366,7 +398,9 @@
               "text": "how weaker students can disrupt their classmates' learning."
             }
           ],
-          "answer": "B"
+          "answer": "B",
+          "mine": "C",
+          "correct": false
         },
         {
           "no": 28,
@@ -389,7 +423,9 @@
               "text": "It works better in some schools than others."
             }
           ],
-          "answer": "A"
+          "answer": "A",
+          "mine": "A",
+          "correct": true
         },
         {
           "no": 29,
@@ -412,7 +448,9 @@
               "text": "students not being aware of their limitations"
             }
           ],
-          "answer": "C"
+          "answer": "C",
+          "mine": "A",
+          "correct": false
         },
         {
           "no": 30,
@@ -435,7 +473,9 @@
               "text": "the setting of appropriate learning targets for a student's aptitude"
             }
           ],
-          "answer": "C"
+          "answer": "C",
+          "mine": "D",
+          "correct": false
         }
       ]
     },
@@ -444,7 +484,7 @@
       "type": "summary",
       "from": 31,
       "to": 35,
-      "instruction": "Questions 31–35\n\nComplete the summary using the list of phrases, A–I, below",
+      "instruction": "Complete the summary using the list of phrases, A–I, below",
       "title": "Is streaming effective?",
       "text": "According to Professor John Hattie of the Melbourne Education Research Institute, there is very little indication that streaming leads to {{31}}. He points out that, in schools which use streaming, the most significant impact is on those students placed in the {{32}} , especially where a large proportion of them have {{33}} . Meanwhile, for the {{34}} , there appears to be only minimal advantage. A further issue is that teachers tend to have {{35}} of students in streamed groups.",
       "options": [
@@ -488,33 +528,33 @@
       "items": [
         {
           "no": 31,
-          "stem": "",
-          "options": [],
-          "answer": "H"
+          "answer": "H",
+          "mine": "H",
+          "correct": true
         },
         {
           "no": 32,
-          "stem": "",
-          "options": [],
-          "answer": "D"
+          "answer": "D",
+          "mine": "A",
+          "correct": false
         },
         {
           "no": 33,
-          "stem": "",
-          "options": [],
-          "answer": "F"
+          "answer": "F",
+          "mine": "D",
+          "correct": false
         },
         {
           "no": 34,
-          "stem": "",
-          "options": [],
-          "answer": "E"
+          "answer": "E",
+          "mine": "E",
+          "correct": true
         },
         {
           "no": 35,
-          "stem": "",
-          "options": [],
-          "answer": "B"
+          "answer": "B",
+          "mine": "B",
+          "correct": true
         }
       ]
     },
@@ -523,37 +563,42 @@
       "type": "ynng",
       "from": 36,
       "to": 40,
-      "instruction": "Questions 36–40\n\nDo the following statements agree with the views of the writer in Reading Passage 3?\nChoose\nYES if the statement agrees with the views of the writer\nNO if the statement contradicts the views of the writer\nNOT GIVEN if it is impossible to say what the writer thinks about this",
+      "instruction": "Do the following statements agree with the views of the writer in Reading Passage 3?\nChoose\nYES if the statement agrees with the views of the writer\nNO if the statement contradicts the views of the writer\nNOT GIVEN if it is impossible to say what the writer thinks about this",
       "items": [
         {
           "no": 36,
           "stem": "The Vygotsky model of education supports the concept of a mixed-ability class.",
-          "options": [],
-          "answer": "N"
+          "answer": "N",
+          "mine": "N",
+          "correct": true
         },
         {
           "no": 37,
           "stem": "Some teachers are uncertain about allowing students to take on MKO roles in the classroom.",
-          "options": [],
-          "answer": "NG"
+          "answer": "NG",
+          "mine": "Y",
+          "correct": false
         },
         {
           "no": 38,
           "stem": "It can be rewarding to teach knowledge which you have only recently acquired.",
-          "options": [],
-          "answer": "Y"
+          "answer": "Y",
+          "mine": "NG",
+          "correct": false
         },
         {
           "no": 39,
           "stem": "The priority should be to ensure that the highest-achieving students attain their goals.",
-          "options": [],
-          "answer": "N"
+          "answer": "N",
+          "mine": "NG",
+          "correct": false
         },
         {
           "no": 40,
           "stem": "Taking part in collaborative outdoor activities with teachers and classmates can improve student outcomes in the classroom.",
-          "options": [],
-          "answer": "NG"
+          "answer": "NG",
+          "mine": "Y",
+          "correct": false
         }
       ]
     }
@@ -1021,5 +1066,572 @@
     "20": "num. 二十",
     "15": "num. 十五",
     "5": "num. 五（此处 five of them 指五个学生）"
+  },
+  "review": {
+    "kicker": "复盘 · 剑桥雅思 18 · Test 3 · Passage 3",
+    "title": "9 道错题：5 道指错了地方，4 道没回原文",
+    "lede": "这篇 30 分 09 秒、5/14。逐题回看后，错误集中在三个动作上：选择题答了段落里另一个更显眼的名词（27、29、30）；摘要填空把找对的短语挂错了空（32、33）；判断题四题全错，且错的方向相反——两题多推一步，两题少认一步，说明判定那一步根本没回原文。<b>这不是词汇问题，是“题目问的和我答的不是同一件事”。</b>",
+    "stats": [
+      [
+        "5 / 14",
+        "得分",
+        1
+      ],
+      [
+        "30:09",
+        "用时",
+        0
+      ],
+      [
+        "9",
+        "错题数",
+        1
+      ],
+      [
+        "1 / 5",
+        "判断题",
+        1
+      ]
+    ],
+    "bars": [
+      [
+        "选择 27–30",
+        25,
+        "1/4"
+      ],
+      [
+        "摘要 31–35",
+        60,
+        "3/5"
+      ],
+      [
+        "判断 36–40",
+        20,
+        "1/5"
+      ]
+    ],
+    "sections": [
+      {
+        "id": "mcq",
+        "kind": "mcq",
+        "title": "选择题 27–30",
+        "from": 27,
+        "to": 30,
+        "items": [
+          {
+            "no": 27,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "题干问的是“作者讲这堂课的<em>目的</em>”，你答成了“这堂课<em>内容</em>好不好”——C 说的是莎士比亚对青少年不合适。两处硬伤：一是段落结尾作者自己的评价是“my lesson would be going rather well”，这是一堂成功的课，不是反例；二是 C 里的 <em>most teenagers</em> 在原文没有对应，原文只说 <em>three students</em> 连这种阅读要求都达不到。一个 most、一个 three，C 就已经出局了。",
+            "chain": "同一段里，教师对四类学生做了四件不同的事：给一部分人发 No Fear 译本、让读译本的一组认人物、让大多数讨论人物发展、给坐不住的学生纸笔——这就是“一个老师同时处理一串不同的学习需求”，对应 B。",
+            "cites": [
+              {
+                "p": 1,
+                "b": [
+                  3,
+                  5,
+                  6
+                ]
+              },
+              {
+                "p": 2,
+                "b": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "no": 28,
+            "label": "why-right",
+            "tag": "选择题",
+            "diag": "题干问 what does the writer say about streaming，A 正对第 3 段末句 “The practice is intuitively appealing to almost every stakeholder.”——broad appeal 就是 intuitively appealing to almost every stakeholder 的改写。差别在问法：28 问“作者说了什么”，27、29、30 问的是“目的、暗示、指代”，一换问法就滑到内容层去了——同一段你读得懂，换个问法就答偏。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 3,
+                "b": [
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "no": 29,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "题干问的是<em>珠峰这个比喻</em>暗示什么，而珠峰那句的主语是 <em>the brightest ones</em>——“最聪明的学生永远登不了顶”。你选的 A（学生走了不适合的路）对应的是后半句的 <em>stragglers</em>，主语换人了；而且 stragglers 是“去公园漫步、那才是他们适合的”，不是“走错路”。主语一换，A 和 C 就分开了。",
+            "chain": "登顶＝把潜力发挥到顶；“never summit” 就是<em>没兑现全部潜力</em>，这正是 C。紧接着一句“个体在集体的要求下受损、平庸占了上风”也在说同一件事：谁都没到顶。",
+            "cites": [
+              {
+                "p": 5,
+                "b": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 30,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "看原文给 scaffolding 配的动词：<em>provide</em>（提供）和 <em>remove</em>（撤掉）。“先提供、再逐步撤掉”的东西，只能是给学生的临时支持。你选的 D（按能力设定合适的学习目标）是<em>上一句</em> ZPD 的内容——targeting a student's specific ‘zone of proximal development’。你把相邻概念当成了被问的概念，这是这篇最典型的一次“指代漂移”。",
+            "chain": "这一段是两个概念：ZPD＝学生现有水平和潜在水平之间的<em>差距</em>（是什么）；scaffolding＝填这个差距用的<em>支撑</em>（怎么帮）。题干问 scaffolding，答案只能落在“支撑”上，即 C。",
+            "cites": [
+              {
+                "p": 6,
+                "b": [
+                  2,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "diag": "",
+        "cites": []
+      },
+      {
+        "id": "summary",
+        "kind": "summary",
+        "title": "摘要填空 31–35",
+        "from": 31,
+        "to": 35,
+        "items": [],
+        "rows": [
+          {
+            "no": 31,
+            "minePhrase": "higher achievements",
+            "corPhrase": "higher achievements",
+            "src": "results in better outcomes / limited empirical evidence",
+            "diag": "题干 leads to higher achievements 与原文 results in better outcomes 是同义改写，五个选项里没有第二个能对上，直接落 H。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "no": 32,
+            "minePhrase": "wrong classes",
+            "corPhrase": "bottom sets",
+            "src": "assigned to the lowest sets",
+            "diag": "bottom sets 该待的地方是 placed in the ___（被动、被分进去）。塞进 have ___ 就成了 “students have bottom sets”，动宾根本不通。另一个硬伤在 A：<em>wrong</em> 是评价词，原文通篇没出现过。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 33,
+            "minePhrase": "bottom sets",
+            "corPhrase": "disadvantaged backgrounds",
+            "src": "much higher representation of low socioeconomic class",
+            "diag": "这一空后面紧跟 backgrounds，能搭配的只有 disadvantaged。而且 bottom sets 已经用在 32 空——同一组答案不重复，两空互换是最典型的丢分方式。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "no": 34,
+            "minePhrase": "brightest pupils",
+            "corPhrase": "brightest pupils",
+            "src": "those lucky clever students in the higher sets",
+            "diag": "those lucky clever students in the higher sets 就是 brightest pupils，原文甚至替你点明了 lucky clever。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "no": 35,
+            "minePhrase": "lower expectations",
+            "corPhrase": "lower expectations",
+            "src": "teachers' estimate … limits what the teacher feels the student is capable of",
+            "diag": "原文 teachers' estimate … limits what the teacher feels the student is capable of，压成短语就是 lower expectations。",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          }
+        ],
+        "diag": "32、33 两空你把<em>正确答案的短语找到了，但挂错了空</em>：bottom sets 被填进 <em>have ___</em>，而它该待的地方是 <em>placed in the ___</em>。判断依据其实是搭配，不是理解——“students have bottom sets” 这个动宾结构根本讲不通，“have disadvantaged backgrounds” 才通。另外 A（wrong classes）有两个硬伤：<em>wrong</em> 是评价词，原文通篇没有；<em>classes</em> 又和题干里已有的 students 语义重复。",
+        "note": "顺带验一下题面：本组没有 “You may use any letter more than once”，按题库规律五个答案必不重复——实际是 H、D、F、E、B，确实全不同。但你自己填的 H、A、D、E、B 也不重复，所以<em>查重这次救不了你</em>，能救的只有搭配检验。",
+        "cites": [
+          {
+            "p": 7,
+            "b": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ynng",
+        "kind": "ynng",
+        "title": "判断题 36–40",
+        "from": 36,
+        "to": 40,
+        "items": [
+          {
+            "no": 36,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "该模型推出的结论是“把 ZPD 相近的学生分流才高效”，而“不顾能力差异让所有人走同一条路是 madness”。所以它支持的是分流，不是混合能力班 → NO。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 6,
+                "b": [
+                  4,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "no": 37,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "原文只说“教师传统上是教室里的 MKO，但知识丰富的学生同伴的价值也不应被忽视”——<em>没有一句</em>提到教师犹豫、不确定、不愿放手。你补的是“既然强调学生同伴，说明老师大概不情愿”，这一步原文没写 → NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 9,
+                "b": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 38,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "原文：“something <em>exciting</em> about passing on skills and knowledge that you yourself have just mastered – a certain <em>pride</em> and <em>zeal</em>”。exciting / pride / zeal 合起来就是 rewarding，这就是同义改写 → YES。你在等原词，把已经明说的话判成了“没提”。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 10,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 39,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "原文结尾：“we need the many to flourish – not suffer at the expense of a few bright stars.” 这是明确<em>反对</em>把少数尖子放在优先位置 → NO，不是 NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 11,
+                "b": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 40,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "徒步那段只写到“我们走完了——一起”，没有任何“因此课堂表现变好”的结论。你把“协作”这个共同点当成了因果，题干后半句（improve classroom outcomes）原文完全没有 → NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 11,
+                "b": [
+                  2,
+                  3,
+                  4,
+                  5,
+                  6
+                ]
+              }
+            ]
+          }
+        ],
+        "diag": "四题错在四个方向：37、40 是<em>多推了一步</em>（把合理推测当成文中信息），38、39 是<em>少认了一步</em>（原文已经明说或已明确反对，却判了 NG）。方向相反，说明问题不在“我太爱推断”或“我太保守”，而在<em>判定那一步没有回原文找同一命题</em>——凭“读起来像不像”在答。",
+        "cites": []
+      }
+    ],
+    "diagnoses": [
+      {
+        "n": "病灶 01",
+        "t": "对象漂移",
+        "p": "27、29、30 三题，题干问的分别是“目的、暗示、指代”，你答的都是段落里另一个更显眼的名词：莎士比亚合不合适 / 走错路的学生 / 学习目标。三题的正确项都锚在同一句的<em>主语</em>上，你锚在了修饰语上。"
+      },
+      {
+        "n": "病灶 02",
+        "t": "搭配失守",
+        "p": "32、33 短语找对了却挂错空。填空不是理解题，是<em>语法槽位题</em>：把空前两词＋空＋空后两词连读一遍，have bottom sets 立刻不通。这一步不做，找对短语也拿不到分。"
+      },
+      {
+        "n": "病灶 03",
+        "t": "判定失据",
+        "p": "37–40 四题全错，且两多两少、方向相反。真正的缺口是没有把题干压成一个命题（X 对 Y 做了什么），再回原文比对“成立 / 相反 / 不存在”。没有这一步，Y、N、NG 就变成手感。"
+      }
+    ],
+    "actions": [
+      "<b>判断题先压命题再判</b>：把题干压成“谁 对 什么 做了什么”，回原文找同一个 X 和同一个 Y。找不到同一命题 → NG，无论作者“应该”怎么想。",
+      "<b>同义改写要认账</b>：exciting / pride / zeal = rewarding，results in better outcomes = leads to higher achievements。判 Y 前先问“原文有没有等价表达”，不要等原词复现。",
+      "<b>选择题先圈疑问词</b>：purpose / suggest / refer to 问的是功能、暗示、指代，不是内容对错。答完回头对一遍“我答的是不是它问的那一层”。",
+      "<b>填空先过搭配闸</b>：空前两词＋空＋空后两词连读，语序或动宾不通立即划掉（have bottom sets ×，placed in the bottom sets ✓）。",
+      "<b>同组查重</b>：无 NB 的题组答案必不重复（本文 H D F E B）。自己填出重复字母就是警报；但查重只能抓“重复”，抓不到“互换”，所以不能替代搭配检查。",
+      "<b>时间闸</b>：30:09 换 5 分，是全篇性价比最低的一次。超过 26 分钟就停止通读，切成“读题干 → 只读该段 → 定位一句”。"
+    ],
+    "end": "这篇的目标从来不是“读懂”，而是<em>每一道题都指得出原文那一句</em>。9 道错题里，有 5 道其实指得出句子，只是指错了主语或槽位；另外 4 道判断，根本没回原文。前者改动作就行，后者要改习惯——都比读不懂好治。"
+  },
+  "guide": {
+    "kicker": "读懂 · 剑桥雅思 18 · Test 3 · Passage 3 · The case for mixed-ability classes",
+    "title": "它在为「混合能力班级」辩护",
+    "lede": "标题已经把答案写在脸上了：<b>The case for mixed-ability classes</b>——一篇支持混合能力班级的文章，所以立场是<b>不该按成绩分班</b>。但作者用了 5 段替反方说话，全文只留 2 个路标词。你感觉「读不懂」，不是句子难，是<b>没分清哪一段是谁在说话</b>。",
+    "thesis": "分流（按成绩分班）在直觉上很有道理，但实证上没用、对弱班有害、还会让老师低估学生。混班真正的价值是同伴互教——这件事老师替代不了。",
+    "structureTitle": "11 段里，有 5 段不是作者在说话",
+    "band": [
+      {
+        "n": 1,
+        "f": "样板课",
+        "s": "t"
+      },
+      {
+        "n": 2,
+        "f": "反问",
+        "s": "a"
+      },
+      {
+        "n": 3,
+        "f": "定义",
+        "s": "g"
+      },
+      {
+        "n": 4,
+        "f": "徒步类比",
+        "s": "a"
+      },
+      {
+        "n": 5,
+        "f": "全面否定",
+        "s": "a"
+      },
+      {
+        "n": 6,
+        "f": "理论铺路",
+        "s": "a"
+      },
+      {
+        "n": 7,
+        "f": "实证打脸",
+        "s": "t"
+      },
+      {
+        "n": 8,
+        "f": "教师期待",
+        "s": "t"
+      },
+      {
+        "n": 9,
+        "f": "同伴学习",
+        "s": "t"
+      },
+      {
+        "n": 10,
+        "f": "亲身观察",
+        "s": "t"
+      },
+      {
+        "n": 11,
+        "f": "结论",
+        "s": "t"
+      }
+    ],
+    "legend": [
+      {
+        "s": "t",
+        "text": "作者本人在说话（6 段）"
+      },
+      {
+        "s": "a",
+        "text": "反方，或替反方做的假设推演（4 段）"
+      },
+      {
+        "s": "g",
+        "text": "中立定义（1 段）"
+      }
+    ],
+    "argument": {
+      "negativeTitle": "反方：前 5 段在说这个",
+      "negative": [
+        {
+          "t": "反问　",
+          "p": "（第 2 段）如果一个班里没有那么大差距，课不是上得更好？把需要读写支持的分一班、想讨论「节制」的分一班，岂不是更理想？"
+        },
+        {
+          "t": "徒步类比　",
+          "p": "（第 4 段）混班就像集体徒步：最强的人领跑却要停下来等，最慢的人尴尬、跟不上、还永远休息不够。"
+        },
+        {
+          "t": "三条控诉　",
+          "p": "（第 5 段）混班让学生无聊、家长沮丧、教师耗竭；个体为集体牺牲，平庸占了上风。"
+        }
+      ],
+      "positiveTitle": "作者：四刀拆掉它",
+      "positive": [
+        {
+          "t": "第一刀 · 实证　",
+          "p": "（第 7 段）Hattie 的元分析：tracking 对学习成果影响<em>微乎其微</em>；对最低层级学生显著负面，而这些学生里低社会经济阶层的比例高得多。结果是聪明的更聪明、落后的更落后，社会鸿沟被固化。"
+        },
+        {
+          "t": "第二刀 · 教师期待　",
+          "p": "（第 8 段）按成绩分流会自动限制老师觉得你能做到什么。而「教师对学生的估计」恰恰是影响成绩最重要的因素之一。"
+        },
+        {
+          "t": "第三刀 · 同伴学习　",
+          "p": "（第 9 段）分流低估了同伴互教。MKO 不只老师——懂得更多的学生同样是知识建构的资源。"
+        },
+        {
+          "t": "第四刀 · 亲历　",
+          "p": "（第 10 段）学生把观点讲给同伴听的方式，作者自己都想不出来。他们刚学会，认知结构更接近，还带着一种专家早就丢掉的新鲜感。"
+        }
+      ],
+      "punch": "所以他的结论不是「混班对弱者更公平」，而是「混班给<b>所有人</b>多配了一个老师」。"
+    },
+    "rows": [
+      {
+        "n": 1,
+        "w": "作者",
+        "s": "t",
+        "d": "一堂 15 岁学生的《罗密欧与朱丽叶》课：三个连简化译本都读不进去、一个坐不住、大多数能谈人物、五个能用文本证据、两个在争「节制还是激情」。一个老师，五个层次，全接住了。"
+      },
+      {
+        "n": 2,
+        "w": "反方",
+        "s": "a",
+        "d": "作者先承认这课上得不错，随即替反方发问：<em>如果没有那么大的差距，这门课不是上得更好？</em>"
+      },
+      {
+        "n": 3,
+        "w": "中立",
+        "s": "g",
+        "d": "介绍 <em>streaming / tracking</em>：按成绩分班。宏观上分重点校与综合校，校内分「梯队」与「科目组」。"
+      },
+      {
+        "n": 4,
+        "w": "反方",
+        "s": "a",
+        "d": "引述反方的徒步类比：强者领跑却要每 20 分钟停下来等，弱者尴尬又吃力，<em>双方都在受损</em>。"
+      },
+      {
+        "n": 5,
+        "w": "反方",
+        "s": "a",
+        "d": "升级成三条控诉：学生无聊、家长沮丧、教师耗竭；最聪明的登不了顶，落后的也享受不了公园。末句 <em>So: is learning like hiking?</em> 是作者第一次亮剑。"
+      },
+      {
+        "n": 6,
+        "w": "假设",
+        "s": "a",
+        "d": "用建构主义替反方把理论补全：<em>ZPD</em>、<em>支架</em>。「如果接受这个模型」，按 ZPD 分流就顺理成章。注意这是条件句，不是表态。"
+      },
+      {
+        "n": 7,
+        "w": "作者",
+        "s": "t",
+        "d": "转折。<em>Despite all this</em>：Hattie 的元分析说 tracking 对成绩影响微乎其微，对最低层级学生显著负面，社会鸿沟被固化。"
+      },
+      {
+        "n": 8,
+        "w": "作者",
+        "s": "t",
+        "d": "分流会自动限制老师觉得「这个学生能做到什么」，而<em>教师对学生的期待</em>本身就是影响成绩最重要的因素之一。"
+      },
+      {
+        "n": 9,
+        "w": "作者",
+        "s": "t",
+        "d": "分流低估同伴互教。建构主义里的 <em>MKO</em> 不只老师，也可以是刚学会的同学。"
+      },
+      {
+        "n": 10,
+        "w": "作者",
+        "s": "t",
+        "d": "学生用的语言工具不同、认知结构更接近、还带着刚学会的新鲜感——这些是专家早就丢掉的东西。"
+      },
+      {
+        "n": 11,
+        "w": "作者",
+        "s": "t",
+        "d": "结论。然后把 第 4 段 的徒步类比捡回来反转：强者去鼓励不情愿的，有人探路、有人分担，<em>We make it – together</em>。"
+      }
+    ],
+    "terms": [
+      {
+        "k": "ZPD",
+        "en": "zone of proximal development · 最近发展区",
+        "d": "学生「有人帮才能做到」和「自己独立能做到」之间的那段差距。教学的任务就是去填这段差距。"
+      },
+      {
+        "k": "scaffolding",
+        "en": "支架",
+        "d": "填 ZPD 用的临时支撑——老师的讲解、教材、示范例题、家长。关键在原文给的动词：<em>provide</em> 之后要 <em>remove</em>，所以它是临时的，不是目标。"
+      },
+      {
+        "k": "MKO",
+        "en": "more knowledgeable other · 更有知识的他者",
+        "d": "帮你建构知识的那个人。传统上是老师，但这篇的论点正是：<em>也可以是刚学会的同学</em>。"
+      }
+    ],
+    "echo": {
+      "neg": "队伍里体能最好的人走在前面、带起轻快节奏，却不得不每 20 分钟停下来等——这令人沮丧，热情随之消退。与此同时，最慢的人不仅尴尬，体力上也很吃力，而且<b>永远得不到足够长的休息</b>。他们真心只想放弃，觉得徒步并不适合自己。",
+      "pos": "每年我带混合能力的一个班去徒步一次，很有挑战。<b>体能最好的学生意识到，他们需要去鼓励那些不情愿的</b>；有人负责探路并回报，有人替别人多背东西。我们走完了全程——<b>一起</b>。",
+      "note": "同一场徒步，反方看见的是「强者被拖累、弱者被羞辱」，作者看见的是「强者学会照顾人、弱者被人接住」。结尾那句 <b>We make it – together</b> 不是煽情，是对 第 4 段 的正面回答——读漏了 第 4 段，结尾就只是一句鸡汤。"
+    },
+    "why": [
+      {
+        "t": "第 5 段：整段没有归属标记",
+        "p": "「<em>Mixed-ability classes bore students, frustrate parents and burn out teachers.</em>」孤立来看，这句百分之百像作者在骂混班。但它其实是反方的第三段话，而下一段（第 6 段）已经开始讲理论，读者会以为作者顺着往下说。"
+      },
+      {
+        "t": "第 6 段：用条件句伪装立场",
+        "p": "「<em>If we accept this model, it follows that...</em>」是「如果……那么……」，在替对方把逻辑推到底，不是表态。英文条件句太容易被读成作者的断言。"
+      },
+      {
+        "t": "全文只有两个路标词",
+        "p": "第 4 段 的 <em>attacked</em>（我听到有人这样攻击混班）和 第 7 段 的 <em>Despite all this</em>（尽管如此）。这两个词滑过去，整篇就没有坐标系了。"
+      },
+      {
+        "t": "这套题没有一道要求你建模",
+        "p": "4 道选择问「为什么写这段／这词什么意思」，5 道摘要填空，5 道判断，全是局部对位。没有匹配题，所以你做完整篇，从没被逼着回答「这篇文章在论证什么」。合上页面时你觉得「读了一堆句子但不知道在讲什么」——这个感受是准确的。"
+      }
+    ],
+    "side": "<b>顺带回答你的问题：精译还要不要做？</b><br>要，但它练的不是这个。精译练的是句子内部的语法切分、词义精度、指代关系。这篇平均句长 17 词，30 词以上只有 2 句——你的句子解码没到瓶颈。它练不出来的是：这段是谁在说话、这个类比是谁提的、作者在哪一段翻盘。<br>所以精译继续做，但换个做法：<b>做完题之后，只精译你读糊的那两三段</b>，而不是全篇。",
+    "end": "读完一段，能用一句话说出这段在干什么，比译对每个词有用得多。这篇 11 段就是 11 个动作：样板、反问、定义、类比、控诉、铺路、打脸、期待、同伴、亲历、结论。认得出这 11 个动作，这篇文章里就没有难句。"
   }
 }

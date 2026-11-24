@@ -69,7 +69,7 @@ const parts = computed(() =>
     </div>
 
     <AppButton
-      :variant="saved ? 'secondary' : 'primary'"
+      :variant="saved ? 'secondary' : 'outline'"
       size="sm"
       block
       class="toggle"
@@ -131,7 +131,7 @@ const parts = computed(() =>
   display: flex;
   gap: 8px;
   margin-top: 4px;
-  color: var(--fg-3);
+  color: var(--fg);
   font-size: var(--text-xs);
 }
 
@@ -153,7 +153,7 @@ const parts = computed(() =>
 }
 
 .en {
-  color: var(--fg-2);
+  color: var(--fg);
   font-size: var(--text-sm);
   line-height: 1.55;
 }
@@ -161,12 +161,12 @@ const parts = computed(() =>
 .hit {
   color: var(--fg);
   font-weight: 500;
-  box-shadow: inset 0 -1px 0 var(--accent);
+  box-shadow: inset 0 -1px 0 var(--fg);
 }
 
 .zh {
   margin-top: 4px;
-  color: var(--fg-3);
+  color: var(--fg);
   font-size: var(--text-xs);
   line-height: 1.5;
 }

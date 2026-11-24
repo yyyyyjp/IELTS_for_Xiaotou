@@ -21,6 +21,25 @@ def test_detail_hides_answers_by_default(client):
     assert with_answers["questionGroups"][0]["items"][0]["answer"] == "A"
 
 
+def test_review_fields_are_opt_in(client):
+    """attempt 常驻；review/guide 只在 answers=1 时下发，避免做题时泄题。"""
+    body = client.get("/api/packs/cam18-t3-p3").json()
+    assert body["attempt"]["score"] == 5
+    assert body["attempt"]["total"] == 14
+    assert body["hasReview"] is True
+    assert body["hasGuide"] is True
+    assert body["review"] is None
+    assert body["guide"] is None
+    assert body["questionGroups"][0]["items"][0]["mine"] == "C"
+
+    full = client.get("/api/packs/cam18-t3-p3?answers=1").json()
+    assert full["review"]["title"]
+    assert len(full["review"]["sections"]) == 3
+    assert full["review"]["sections"][0]["items"][0]["cites"]
+    assert full["guide"]["band"]
+    assert full["questionGroups"][0]["items"][0]["answer"] == "B"
+
+
 def test_group_keeps_shared_options_and_placeholders(client):
     body = client.get("/api/packs/cam18-t3-p3").json()
     summary = next(g for g in body["questionGroups"] if g["type"] == "summary")

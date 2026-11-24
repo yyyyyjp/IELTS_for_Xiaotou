@@ -36,6 +36,8 @@ class Question(BaseModel):
     stem: str = ""
     options: list[Option] = Field(default_factory=list)
     answer: str | list[str] = ""
+    mine: str = ""                     # 我在 idictation 上的作答；空 = 未作答
+    correct: bool | None = None        # 站点判定；None = 无记录
 
     def answer_list(self) -> list[str]:
         a = self.answer
@@ -94,6 +96,23 @@ class PackMeta(BaseModel):
         return " · ".join([p for p in parts if p]) or self.title
 
 
+class Attempt(BaseModel):
+    """一次站外作答（目前来自 idictation 导出）的元信息。"""
+
+    model_config = ConfigDict(extra="allow")
+
+    source: str = "idictation"
+    submittedAt: str = ""
+    durationSec: int = 0
+    score: int = 0
+    total: int = 0
+    answered: int = 0
+    blank: int = 0
+    wrong: int = 0
+    accuracy: float = 0.0
+    byType: list[dict] = Field(default_factory=list)
+
+
 class LexEntry(BaseModel):
     model_config = ConfigDict(extra="allow")
 
@@ -140,10 +159,13 @@ class Pack(BaseModel):
     kind: Literal["reading", "deck"] = "reading"
     origin: Literal["builtin", "custom"] = "custom"
     meta: PackMeta = Field(default_factory=PackMeta)
+    attempt: Attempt | None = None          # 站外作答（idictation）
     paragraphs: list[Paragraph] = Field(default_factory=list)
     questionGroups: list[QuestionGroup] = Field(default_factory=list)
     lexicon: dict[str, LexEntry] = Field(default_factory=dict)
     items: list[DeckItem] = Field(default_factory=list)
+    review: dict | None = None              # 逐题复盘（AI 生成）
+    guide: dict | None = None               # 读懂这篇（AI 生成）
 
     @field_validator("id")
     @classmethod
@@ -225,6 +247,11 @@ class LoadedPack:
             "questionGroups": groups,
             "lexicon": {k: v.model_dump() for k, v in self.doc.lexicon.items()},
             "items": [i.model_dump() for i in self.doc.items],
+            "attempt": self.doc.attempt.model_dump() if self.doc.attempt else None,
+            "hasReview": bool(self.doc.review),
+            "hasGuide": bool(self.doc.guide),
+            "review": self.doc.review if with_answers else None,
+            "guide": self.doc.guide if with_answers else None,
         }
 
     def summary(self) -> dict:
@@ -239,6 +266,9 @@ class LoadedPack:
                 "words": len(self.doc.lexicon),
                 "items": len(self.doc.items),
             },
+            "attempt": self.doc.attempt.model_dump() if self.doc.attempt else None,
+            "hasReview": bool(self.doc.review),
+            "hasGuide": bool(self.doc.guide),
         }
 
 

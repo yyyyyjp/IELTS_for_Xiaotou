@@ -36,3 +36,6 @@ desktop.ini
 *.log
 npm-debug.log*
 .pytest_cache/
+
+# 验证截图
+.shots/

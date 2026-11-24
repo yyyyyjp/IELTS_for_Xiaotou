@@ -16,6 +16,19 @@ export interface PackCounts {
   items: number
 }
 
+export interface Attempt {
+  source: string
+  submittedAt: string
+  durationSec: number
+  score: number
+  total: number
+  answered: number
+  blank: number
+  wrong: number
+  accuracy: number
+  byType: { label: string; correct?: number; total?: number; accuracy?: number }[]
+}
+
 export interface PackProgress {
   dictation: { attempts: number; correct: number }
   reading: { answered: number; correct: number }
@@ -29,6 +42,9 @@ export interface PackSummary {
   meta: PackMeta
   counts: PackCounts
   progress?: PackProgress
+  attempt?: Attempt | null
+  hasReview?: boolean
+  hasGuide?: boolean
 }
 
 export interface Sentence {
@@ -52,6 +68,8 @@ export interface Question {
   stem?: string
   options?: Option[]
   answer?: string | string[]
+  mine?: string
+  correct?: boolean | null
 }
 
 export interface QuestionGroup {
@@ -74,6 +92,101 @@ export interface LexEntry {
   raw?: string
 }
 
+export interface Cite {
+  p: number
+  b: number[]
+}
+
+export interface ReviewItem {
+  no: number
+  label?: string
+  tag?: string
+  diag?: string
+  chain?: string
+  cites?: Cite[]
+}
+
+export interface ReviewRow {
+  no: number
+  minePhrase?: string
+  corPhrase?: string
+  src?: string
+  diag?: string
+  cites?: Cite[]
+}
+
+export interface ReviewSection {
+  id: string
+  kind: string
+  title: string
+  from?: number | null
+  to?: number | null
+  diag?: string
+  note?: string
+  cites?: Cite[]
+  items?: ReviewItem[]
+  rows?: ReviewRow[]
+}
+
+export interface ReviewDoc {
+  kicker?: string
+  title?: string
+  lede?: string
+  stats?: [string, string, number][]
+  bars?: [string, number, string][]
+  sections?: ReviewSection[]
+  diagnoses?: { n: string; t: string; p: string }[]
+  actions?: string[]
+  end?: string
+}
+
+export interface GuideCell {
+  n: number
+  f: string
+  s: string
+}
+
+export interface GuideBlock {
+  t: string
+  p: string
+}
+
+export interface GuideRow {
+  n: number
+  w: string
+  s: string
+  d: string
+}
+
+export interface GuideTerm {
+  k: string
+  en?: string
+  d: string
+}
+
+export interface GuideDoc {
+  kicker?: string
+  title?: string
+  lede?: string
+  thesis?: string
+  structureTitle?: string
+  band?: GuideCell[]
+  legend?: { s: string; text: string }[]
+  argument?: {
+    negativeTitle?: string
+    negative?: GuideBlock[]
+    positiveTitle?: string
+    positive?: GuideBlock[]
+    punch?: string
+  }
+  rows?: GuideRow[]
+  terms?: GuideTerm[]
+  echo?: { neg?: string; pos?: string; note?: string }
+  why?: GuideBlock[]
+  side?: string
+  end?: string
+}
+
 export interface DeckItem {
   word?: string
   sentence?: string
@@ -91,6 +204,8 @@ export interface PackDetail extends PackSummary {
   questionGroups: QuestionGroup[]
   lexicon: Record<string, LexEntry>
   items: DeckItem[]
+  review?: ReviewDoc | null
+  guide?: GuideDoc | null
 }
 
 export interface VocabContext {
