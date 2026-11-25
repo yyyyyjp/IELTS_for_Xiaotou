@@ -3,12 +3,19 @@ import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } 
 import { useRouter } from 'vue-router'
 import { api } from '../api'
 import { t } from '../i18n'
+import {
+  clearLookupScope,
+  closeLookup,
+  hasActiveSelection,
+  setLookupScope,
+  wasRecentSelection,
+} from '../lookup'
+import type { LookupSentenceContext } from '../lookup'
 import { refreshVocabCounts } from '../state'
 import { toast } from '../toast'
 import type {
   Attempt,
   Cite,
-  LexEntry,
   PackDetail,
   ReadingResultItem,
   ReviewItem,
@@ -16,16 +23,17 @@ import type {
   ReviewSection,
   Sentence,
 } from '../types'
-import { resolveLemma, lookup, tokenize } from '../utils/words'
+import { resolveLemma, tokenize } from '../utils/words'
 import { fmtDuration, fmtShort } from '../utils/format'
 import AppButton from '../components/AppButton.vue'
 import GuidePane from '../components/GuidePane.vue'
 import Icon from '../components/Icon.vue'
 import QuestionRail from '../components/QuestionRail.vue'
 import ReviewOverview from '../components/ReviewOverview.vue'
+import ReviewImportModal from '../components/ReviewImportModal.vue'
 import ReviewRail from '../components/ReviewRail.vue'
 import Segmented from '../components/Segmented.vue'
-import WordPopover from '../components/WordPopover.vue'
+import SyncStatus from '../components/SyncStatus.vue'
 
 const props = defineProps<{ id: string }>()
 
@@ -40,11 +48,12 @@ const showAll = ref(false)
 const openIds = reactive(new Set<string>())
 const hiddenIds = reactive(new Set<string>())
 
-const tab = ref<'text' | 'guide'>('text')
-const railMode = ref<'questions' | 'overview'>('questions')
+const railMode = ref<'questions' | 'overview' | 'guide'>('questions')
 const openNo = ref<number | null>(null)
 const openGap = ref<number | null>(null)
+const activePara = ref<number | null>(null)
 const quizMode = ref(false)
+const importOpen = ref(false)
 
 const answers = ref<Record<number, string>>({})
 const quizSubmitted = ref(false)
@@ -56,26 +65,23 @@ const finishedMs = ref(0)
 const now = ref(Date.now())
 let timer = 0
 
-interface PopoverState {
-  word: string
-  lemma: string
-  entry: LexEntry | null
-  context: string
-  contextZh: string
-  sentenceId: string
-  para: number
-  x: number
-  y: number
-  saved: boolean
-}
-
-const popover = ref<PopoverState | null>(null)
-const busyWord = ref(false)
-
 const attempt = computed<Attempt | null>(() => pack.value?.attempt ?? null)
 const canReview = computed(() => Boolean(attempt.value))
 const isReview = computed(() => canReview.value && !quizMode.value)
 const hasGuide = computed(() => Boolean(pack.value?.hasGuide || pack.value?.guide))
+
+const railOptions = computed(() => {
+  const opts: { value: 'questions' | 'overview' | 'guide'; label: string }[] = [
+    { value: 'questions', label: t('reader.rail.questions') },
+  ]
+  if (isReview.value && pack.value?.review) {
+    opts.push({ value: 'overview', label: t('reader.rail.review') })
+  }
+  if ((isReview.value || quizSubmitted.value) && hasGuide.value) {
+    opts.push({ value: 'guide', label: t('reader.tab.guide') })
+  }
+  return opts
+})
 
 const source = computed(() => {
   if (!pack.value) return ''
@@ -172,7 +178,7 @@ function addCites(set: Set<string>, cites?: Cite[]): void {
 
 const citedIds = computed<Set<string>>(() => {
   const set = new Set<string>()
-  if (!isReview.value || tab.value !== 'text') return set
+  if (!isReview.value || railMode.value !== 'questions') return set
   addCites(set, activeCites.value)
   return set
 })
@@ -186,6 +192,7 @@ function isCited(sentence: Sentence): boolean {
 }
 
 function toggleSentence(id: string): void {
+  if (hasActiveSelection() || wasRecentSelection()) return
   if (isVisible(id)) {
     openIds.delete(id)
     if (showAll.value) hiddenIds.add(id)
@@ -203,27 +210,11 @@ function toggleAll(): void {
 
 function isSaved(word: string): boolean {
   if (!pack.value) return false
-  return savedMap.value[resolveLemma(word, pack.value.lexicon)] !== undefined
-}
-
-function openWord(event: Event, word: string, sentence: Sentence, para: number): void {
-  if (!pack.value) return
-  const target = event.currentTarget as HTMLElement
-  const rect = target.getBoundingClientRect()
-  const hit = lookup(word, pack.value.lexicon)
-  const lemma = hit?.lemma ?? word.toLowerCase()
-  popover.value = {
-    word,
-    lemma,
-    entry: hit?.entry ?? null,
-    context: sentence.en,
-    contextZh: sentence.zh,
-    sentenceId: sentence.id,
-    para,
-    x: rect.left,
-    y: rect.bottom,
-    saved: savedMap.value[lemma] !== undefined,
-  }
+  const low = word.toLowerCase()
+  return (
+    savedMap.value[low] !== undefined ||
+    savedMap.value[resolveLemma(word, pack.value.lexicon)] !== undefined
+  )
 }
 
 function setAnswer(no: number, value: string): void {
@@ -231,48 +222,35 @@ function setAnswer(no: number, value: string): void {
   void ensureSession()
 }
 
-function closePopover(): void {
-  popover.value = null
-}
-
-async function toggleWord(): Promise<void> {
-  if (!pack.value || !popover.value || busyWord.value) return
-  const item = popover.value
-  busyWord.value = true
-  try {
-    if (item.saved) {
-      const id = savedMap.value[item.lemma]
-      if (id !== undefined) await api.vocabDelete(id)
-      const next = { ...savedMap.value }
-      delete next[item.lemma]
-      savedMap.value = next
-      item.saved = false
-      toast(t('toast.removed'))
-    } else {
-      const response = await api.vocabAdd({
-        lemma: item.lemma,
-        word: item.word,
-        gloss: item.entry?.gloss ?? '',
-        pos: item.entry?.pos ?? '',
-        source: source.value,
-        context: {
-          packId: props.id,
-          sentenceId: item.sentenceId,
-          en: item.context,
-          zh: item.contextZh,
-          para: item.para,
-        },
-      })
-      savedMap.value = { ...savedMap.value, [item.lemma]: response.item.id }
-      item.saved = true
-      toast(t('toast.added'))
+function registerScope(full: PackDetail): void {
+  const sentencesById: Record<string, LookupSentenceContext> = {}
+  for (const para of full.paragraphs) {
+    for (const s of para.sentences) {
+      sentencesById[s.id] = {
+        sentenceId: s.id,
+        en: s.en,
+        zh: s.zh,
+        para: para.no,
+      }
     }
-    await refreshVocabCounts()
-  } catch (error) {
-    toast(error instanceof Error ? error.message : t('toast.loadFailed'))
-  } finally {
-    busyWord.value = false
   }
+  const src = [full.meta.book, full.meta.test, full.meta.passage].filter(Boolean).join(' · ')
+  setLookupScope({
+    packId: props.id,
+    source: src,
+    lexicon: full.lexicon,
+    sentencesById,
+    onVocabChange(lemma, vocabId) {
+      const key = lemma.toLowerCase()
+      if (vocabId == null) {
+        const next = { ...savedMap.value }
+        delete next[key]
+        savedMap.value = next
+      } else {
+        savedMap.value = { ...savedMap.value, [key]: vocabId }
+      }
+    },
+  })
 }
 
 let creating: Promise<void> | null = null
@@ -308,11 +286,11 @@ function resetQuiz(): void {
 async function load(): Promise<void> {
   loading.value = true
   failed.value = false
-  popover.value = null
-  tab.value = 'text'
+  closeLookup()
   railMode.value = 'questions'
   openNo.value = null
   openGap.value = null
+  activePara.value = null
   showAll.value = false
   openIds.clear()
   hiddenIds.clear()
@@ -329,6 +307,7 @@ async function load(): Promise<void> {
     const map: Record<string, number> = {}
     for (const item of vocab.items) map[item.lemma] = item.id
     savedMap.value = map
+    registerScope(full)
     quizMode.value = !(full.attempt || full.hasReview)
     resetQuiz()
   } catch {
@@ -359,7 +338,6 @@ async function submit(): Promise<void> {
 
 function redo(): void {
   quizMode.value = true
-  tab.value = 'text'
   railMode.value = 'questions'
   resetQuiz()
   document.querySelector('.pane-ans .scroll')?.scrollTo({ top: 0, behavior: 'smooth' })
@@ -405,12 +383,27 @@ async function jumpToGap(no: number): Promise<void> {
   row?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
 
+function jumpToPara(no: number): void {
+  if (activePara.value === no) {
+    activePara.value = null
+    return
+  }
+  activePara.value = no
+  const el = document.querySelector(`.pane-read .para[data-para="${no}"]`)
+  el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+}
+
 function back(): void {
   router.push('/read')
 }
 
-function onKey(event: KeyboardEvent): void {
-  if (event.key === 'Escape') closePopover()
+async function onImported(packId: string): Promise<void> {
+  importOpen.value = false
+  if (packId === props.id) {
+    await load()
+  } else {
+    router.push(`/read/${packId}`)
+  }
 }
 
 onMounted(() => {
@@ -418,22 +411,23 @@ onMounted(() => {
   timer = window.setInterval(() => {
     if (!isReview.value && !quizSubmitted.value) now.value = Date.now()
   }, 1000)
-  document.addEventListener('click', closePopover)
-  document.addEventListener('keydown', onKey)
 })
 
 onBeforeUnmount(() => {
   window.clearInterval(timer)
-  document.removeEventListener('click', closePopover)
-  document.removeEventListener('keydown', onKey)
+  clearLookupScope(props.id)
+  closeLookup()
 })
 
 watch(() => props.id, load)
 
 watch(railMode, (value) => {
-  if (value === 'overview') {
+  if (value !== 'questions') {
     openNo.value = null
     openGap.value = null
+  }
+  if (value !== 'guide') {
+    activePara.value = null
   }
 })
 </script>
@@ -481,64 +475,63 @@ watch(railMode, (value) => {
         </div>
 
         <div class="tb-right">
-          <Segmented
-            v-if="hasGuide"
-            v-model="tab"
-            class="tabs"
-            :aria-label="t('reader.tab.text')"
-            :options="[
-              { value: 'text', label: t('reader.tab.text') },
-              { value: 'guide', label: t('reader.tab.guide') },
-            ]"
-          />
+          <span v-if="!isReview && !quizSubmitted" class="progress num">
+            {{ answered }} / {{ questionsCount }}
+          </span>
+          <SyncStatus compact />
+          <AppButton size="sm" @click="router.push('/vocab')">
+            {{ t('reader.vocab') }}
+            <span v-if="vocabCount" class="badge">{{ vocabCount }}</span>
+          </AppButton>
+          <AppButton size="sm" @click="toggleAll">
+            {{ showAll ? t('reader.hideAll') : t('reader.showAll') }}
+          </AppButton>
+          <AppButton size="sm" @click="importOpen = true">
+            <Icon name="sparkles" :size="14" />
+            {{ t('import.readerButton') }}
+          </AppButton>
 
-          <template v-if="tab === 'text'">
-            <span v-if="!isReview && !quizSubmitted" class="progress num">
-              {{ answered }} / {{ questionsCount }}
-            </span>
-            <AppButton size="sm" @click="router.push('/vocab')">
-              {{ t('reader.vocab') }}
-              <span v-if="vocabCount" class="badge">{{ vocabCount }}</span>
+          <template v-if="isReview">
+            <AppButton size="sm" @click="redo">{{ t('reader.redo') }}</AppButton>
+          </template>
+          <template v-else>
+            <AppButton
+              v-if="!quizSubmitted"
+              size="sm"
+              variant="outline"
+              :disabled="answered === 0 || submitting"
+              @click="submit"
+            >
+              {{ t('reader.submit') }}
             </AppButton>
-            <AppButton size="sm" @click="toggleAll">
-              {{ showAll ? t('reader.hideAll') : t('reader.showAll') }}
-            </AppButton>
-
-            <template v-if="isReview">
-              <AppButton size="sm" @click="redo">{{ t('reader.redo') }}</AppButton>
-            </template>
             <template v-else>
-              <AppButton
-                v-if="!quizSubmitted"
-                size="sm"
-                variant="outline"
-                :disabled="answered === 0 || submitting"
-                @click="submit"
-              >
-                {{ t('reader.submit') }}
+              <AppButton v-if="canReview" size="sm" variant="outline" @click="backToReview">
+                {{ t('reader.rail.review') }}
               </AppButton>
-              <template v-else>
-                <AppButton v-if="canReview" size="sm" variant="outline" @click="backToReview">
-                  {{ t('reader.rail.review') }}
-                </AppButton>
-                <AppButton v-else size="sm" @click="redo">{{ t('reader.redo') }}</AppButton>
-              </template>
+              <AppButton v-else size="sm" @click="redo">{{ t('reader.redo') }}</AppButton>
             </template>
           </template>
         </div>
       </header>
 
-      <div v-if="tab === 'guide'" class="guide-wrap">
-        <GuidePane :guide="pack.guide ?? null" />
-      </div>
-
-      <div v-else class="split">
+      <div class="split">
         <section class="pane pane-read">
           <div class="scroll">
-            <div v-for="paragraph in pack.paragraphs" :key="paragraph.no" class="para">
+            <div
+              v-for="paragraph in pack.paragraphs"
+              :key="paragraph.no"
+              class="para"
+              :class="{ 'para-hl': railMode === 'guide' && activePara === paragraph.no }"
+              :data-para="paragraph.no"
+            >
               <span class="pnum num">{{ paragraph.no }}</span>
               <div class="text">
-                <template v-for="sentence in paragraph.sentences" :key="sentence.id">
+                <template v-for="(sentence, sIdx) in paragraph.sentences" :key="sentence.id">
+                  <span
+                    v-if="isVisible(sentence.id) && sIdx > 0"
+                    class="sent-break"
+                    aria-hidden="true"
+                  />
                   <span
                     class="sent"
                     :class="{ open: isVisible(sentence.id), hl: isCited(sentence) }"
@@ -550,11 +543,6 @@ watch(railMode, (value) => {
                         v-if="token.word"
                         class="w"
                         :class="{ saved: isSaved(token.text) }"
-                        role="button"
-                        tabindex="0"
-                        @click.stop="openWord($event, token.text, sentence, paragraph.no)"
-                        @keydown.enter.prevent.stop="openWord($event, token.text, sentence, paragraph.no)"
-                        @keydown.space.prevent.stop="openWord($event, token.text, sentence, paragraph.no)"
                       >{{ token.text }}</span>
                       <template v-else>{{ token.text }}</template>
                     </template>
@@ -566,20 +554,20 @@ watch(railMode, (value) => {
         </section>
 
         <aside class="pane pane-ans">
-          <div v-if="isReview && pack.review" class="rail-head">
+          <div v-if="railOptions.length > 1" class="rail-head">
             <span class="rh-title">{{ t('reader.rail.answer') }}</span>
-            <Segmented
-              v-model="railMode"
-              :options="[
-                { value: 'questions', label: t('reader.rail.questions') },
-                { value: 'overview', label: t('reader.rail.review') },
-              ]"
-            />
+            <Segmented v-model="railMode" :options="railOptions" />
           </div>
 
           <div class="scroll scroll-ans">
+            <GuidePane
+              v-if="railMode === 'guide'"
+              :guide="pack.guide ?? null"
+              :active-para="activePara"
+              @jump-para="jumpToPara"
+            />
             <ReviewOverview
-              v-if="isReview && railMode === 'overview'"
+              v-else-if="isReview && railMode === 'overview'"
               :review="pack.review ?? null"
               :attempt="pack.attempt ?? null"
             />
@@ -607,20 +595,15 @@ watch(railMode, (value) => {
         </aside>
       </div>
     </template>
-  </div>
 
-  <WordPopover
-    v-if="popover"
-    :word="popover.word"
-    :entry="popover.entry"
-    :context="popover.context"
-    :context-zh="popover.contextZh"
-    :saved="popover.saved"
-    :x="popover.x"
-    :y="popover.y"
-    @close="closePopover"
-    @toggle="toggleWord"
-  />
+    <ReviewImportModal
+      :open="importOpen"
+      initial-mode="existing"
+      :initial-pack-id="props.id"
+      @close="importOpen = false"
+      @imported="onImported"
+    />
+  </div>
 </template>
 
 <style scoped>
@@ -871,6 +854,15 @@ h1 {
   letter-spacing: 0.002em;
 }
 
+.sent-break {
+  display: block;
+  height: 8px;
+}
+
+.tr + .sent-break {
+  height: 0;
+}
+
 .sent {
   cursor: pointer;
   border-radius: 3px;
@@ -897,21 +889,19 @@ h1 {
   font-weight: 600;
 }
 
-.para:has(.hl) .pnum {
+.para:has(.hl) .pnum,
+.para.para-hl .pnum {
   background: var(--bg-raise);
   color: var(--fg);
   box-shadow: inset 2px 0 0 var(--hl-line);
 }
 
-.w {
-  border-radius: 2px;
-  transition: background-color 0.1s, color 0.1s;
+.para.para-hl {
+  background: color-mix(in srgb, var(--hl-answer) 38%, var(--bg-page));
 }
 
-.w:hover {
-  background: var(--bg-sunken);
-  color: var(--fg);
-  cursor: help;
+.w {
+  border-radius: 2px;
 }
 
 .w.saved {
@@ -940,25 +930,6 @@ h1 {
     opacity: 0;
     transform: translateY(-3px);
   }
-}
-
-/* ── 读懂这篇 ── */
-.guide-wrap {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 12px 0 0;
-}
-
-.guide-wrap::-webkit-scrollbar {
-  width: 9px;
-}
-
-.guide-wrap::-webkit-scrollbar-thumb {
-  background: var(--line-soft);
-  border: 3px solid var(--bg-page);
-  border-radius: 6px;
 }
 
 @media (max-width: 1240px) {
@@ -1008,11 +979,6 @@ h1 {
     padding-top: 6px;
     background: var(--bg-page);
   }
-
-  .guide-wrap {
-    overflow: visible;
-    padding: 8px 0 0;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1033,12 +999,6 @@ h1 {
     width: 20px;
     height: 20px;
     font-size: 10px;
-  }
-
-  .tabs {
-    order: -1;
-    width: 100%;
-    margin-bottom: 2px;
   }
 }
 </style>

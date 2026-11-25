@@ -1,0 +1,343 @@
+{
+  "packId": "cam18-t4-p3",
+  "review": {
+    "kicker": "复盘 · 剑桥雅思 18 · Test 4 · Passage 3",
+    "title": "7 道错题：你划对了定位句，却在限定词与逻辑合取上翻了车",
+    "lede": "这篇书评序言用时 32 分 25 秒、7/14（判断 1/4、摘要 4/6、单选 2/4）。最值得警惕的现象是：<b>好几道错题你明明把答案句划出来了，最后一步却选反了</b>——第 27 题你亲手高亮了 <em>international controversy</em> 和 <em>his lifetime</em> 却判 NO；第 36 题你高亮了整串学科名词却漏掉紧挨在前面的 <em>a small circle of</em>，选了意思完全相反的 <em>vast range</em>。问题不在定位，而在<b>限定词精度、逻辑范围与段落修辞功能</b>。",
+    "stats": [
+      ["7 / 14", "得分", 1],
+      ["32:25", "用时", 0],
+      ["1 / 4", "判断题", 1],
+      ["4 / 6", "摘要填空", 0]
+    ],
+    "bars": [
+      ["判断 27–30", 25, "1/4"],
+      ["摘要 31–36", 67, "4/6"],
+      ["单选 37–40", 50, "2/4"]
+    ],
+    "sections": [
+      {
+        "id": "ynng",
+        "kind": "ynng",
+        "title": "判断题 27–30",
+        "from": 27,
+        "to": 30,
+        "diag": "四道判断错三道，且三种错法各占一个典型坑：27 把“生前且死后都争议”误判成与“生前争议”矛盾；28 看到“大陆固定不动”就脑补“受权威期刊捍卫”；29 漏看后半句列举的多门学科，把明确反驳判成了 NG。",
+        "items": [
+          {
+            "no": 27,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "你在第 1 段末句同时高亮了 <em>international controversy</em>、<em>his lifetime</em>、<em>and</em>、<em>for some years after his death</em>，最后却选了 NO！唯一合理的解释是：你把题干 <em>while he was alive</em> 当成了“<b>仅仅</b>在他生前”，觉得原文还多了“死后若干年”就算矛盾。这是致命的逻辑误区：只要题干没写 <em>only</em>，“生前且死后都引发国际争论（A ∧ B）”必然推出“生前受到广泛争议（A）”成立 → YES！",
+            "chain": "",
+            "cites": [
+              {"p": 1, "b": [3]}
+            ]
+          },
+          {
+            "no": 28,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "你在第 2 段首句高亮了 <em>fixed</em> 和 <em>in place</em>，随即选了 YES。但回看原句：它只说魏格纳设想大陆水平移动，“而不是假定它们固定不动（<em>rather than supposing that they remained fixed in place</em>）”。至于题干后半截的核心谓语——“这一观点曾在若干受尊敬的科学出版物中得到辩护（<em>defended in a number of respected scientific publications</em>）”——原文连一个字都没提！又是“主语对上就奉送 YES” → NG。",
+            "chain": "",
+            "cites": [
+              {"p": 2, "b": [0]}
+            ]
+          },
+          {
+            "no": 29,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "题干说魏格纳依赖“有限的几个学科领域（<em>a limited range of scientific fields</em>）”，你在第 2 段第 2 句高亮到 <em>plausible</em> 和 <em>evidence</em> 就停了，漏看了紧跟在后面的 <em>from a large number of sciences including geology, geophysics, paleontology, and climatology</em>！“大量学科（一口气列了四门）”与“有限范围”是教科书级的数量反义 → NO，绝不是 NG。",
+            "chain": "",
+            "cites": [
+              {"p": 2, "b": [1]}
+            ]
+          },
+          {
+            "no": 30,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 2 段第 4 句明确指出板块构造学说在诸多方面与魏格纳当年的提议“大相径庭”（<em>in many respects quite different</em>），就像现代进化论不同于达尔文最初的设想一样，直接反驳题干 <em>similarities ... are enormous</em> → NO。",
+            "chain": "",
+            "cites": [
+              {"p": 2, "b": [3, 4]}
+            ]
+          }
+        ]
+      },
+      {
+        "id": "summary",
+        "kind": "summary",
+        "title": "摘要填空 31–36",
+        "from": 31,
+        "to": 36,
+        "items": [],
+        "rows": [
+          {
+            "no": 31,
+            "minePhrase": "biographer's perspective",
+            "corPhrase": "biographer's perspective",
+            "src": "When I started writing about Wegener's life and work, one of the most intriguing things about him for me...",
+            "diag": "第 3 段首句传记作者以第一人称 <em>for me</em> 切入，<em>intriguing</em> 对应题干 <em>remarkable</em>，视角正是 I（传记作者的视角）。",
+            "cites": [
+              {"p": 3, "b": [0]}
+            ]
+          },
+          {
+            "no": 32,
+            "minePhrase": "professional interests",
+            "corPhrase": "professional interests",
+            "src": "pursued a career in atmospheric physics",
+            "diag": "<em>pursued a career in atmospheric physics</em> 对应他的职业志趣（F. professional interests）局限于大气物理学。",
+            "cites": [
+              {"p": 3, "b": [1]}
+            ]
+          },
+          {
+            "no": 33,
+            "minePhrase": "narrow investigation",
+            "corPhrase": "modest fame",
+            "src": "However, he was not an 'unknown'.",
+            "diag": "错填 J（narrow investigation）犯了双重硬伤：① 英语搭配上只说 <em>a person of modest fame</em>（小有名气的人），绝不说“一个狭窄研究的人”；② 句首有强转折 <em>However</em>，且后两句紧接着举热气球世界纪录、格陵兰探险来证明他“早已出名”——对应原文双重否定 <em>not an 'unknown'</em>（并非无名之辈）＝ A（modest fame）。",
+            "cites": [
+              {"p": 3, "b": [2, 3]}
+            ]
+          },
+          {
+            "no": 34,
+            "minePhrase": "record-breaking achievement",
+            "corPhrase": "record-breaking achievement",
+            "src": "In 1906 he had set a world record ... for time aloft in a hot-air balloon: 52 hours.",
+            "diag": "<em>set a world record</em> 直接同义改写为 C（record-breaking achievement）。",
+            "cites": [
+              {"p": 3, "b": [4]}
+            ]
+          },
+          {
+            "no": 35,
+            "minePhrase": "hazardous exploration",
+            "corPhrase": "hazardous exploration",
+            "src": "a highly publicized and extremely dangerous expedition to the coast of northeast Greenland",
+            "diag": "<em>extremely dangerous expedition</em> 精确对应 H（hazardous exploration）。",
+            "cites": [
+              {"p": 3, "b": [5]}
+            ]
+          },
+          {
+            "no": 36,
+            "minePhrase": "vast range",
+            "corPhrase": "select group",
+            "src": "made a name for himself amongst a small circle of meteorologists and atmospheric physicists in Germany",
+            "diag": "这道题最可惜：你在第 3 段末句高亮了 <em>meteorologists</em>、<em>atmospheric</em>、<em>physicists</em>，眼睛却直接跳过了紧挨在前面的量词 <em>a small circle of</em>（一小圈人），顺手填了读起来很顺口的 B（vast range）——把“小圈子精英”填成了“广大科学家”，正好填反！<em>a small circle of</em> ＝ E（select group）。",
+            "cites": [
+              {"p": 3, "b": [6]}
+            ]
+          }
+        ],
+        "diag": "整组 31–36 全部密集锁死在原文<b>第 3 段</b>，一句一空严格顺叙。错的 33 和 36 都是形容词+名词短语，一个漏了双重否定 <em>not an 'unknown'</em>，一个漏了量词限定 <em>a small circle of</em>。",
+        "note": "做选词式 Summary 时，除了看语法词性（这里 A、B、E、J 都是形容词+单数/不可数名词，语法槽位都能塞进 a ___ of），必须核对<b>数量级与褒贬方向</b>：small circle 绝不能对 vast，However 后绝不能顺接负面狭隘。",
+        "cites": [
+          {"p": 3, "b": [2, 3, 6]}
+        ]
+      },
+      {
+        "id": "mcq",
+        "kind": "mcq",
+        "title": "选择题 37–40",
+        "from": 37,
+        "to": 40,
+        "diag": "39、40 两道拿得很稳；37、38 两道失分都在“把段落铺垫细节当成核心立意，或把原文明确肯定的惯例读反”。",
+        "items": [
+          {
+            "no": 37,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "题干问“作者 Greene 在第 5 段<b>在做什么</b>（What is ... doing）”，考的是言语行为（写作意图）。你选 C（解释魏格纳为何追求如此多不同职业）：第 5 段前两句只陈述了他频繁中断又重拾研究的<b>现象</b>，压根没解释“为什么（why）”。",
+            "chain": "盯住第 5 段第 4–5 句的转折落点：前面先让步说只看某一部分的读者可以查索引，紧接着 <em>My own feeling, however, is that the parts do not make as much sense on their own as do all of his activities taken together. In this respect I urge readers to...</em>——孤立看片段不如合看全貌有意义，因此力劝读者通读他完整的一生 → B（解释为何宜通读全书）。",
+            "cites": [
+              {"p": 5, "b": [2, 3, 4]}
+            ]
+          },
+          {
+            "no": 38,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "你选 C（他没有采纳当时的许多科学惯例），直接与第 6 段第 1 句正面相撞：<em>as was standard practice, these reported the results of his work – not the journey</em>！原文写得清清楚楚“<b>按照当时的标准惯例</b>，他的著作只报告结果不写心路历程”——他恰恰遵循了当时的科学发表惯例，只是没留私人日记和书信而已。",
+            "chain": "看第 6 段末句的人物性格画像：<em>He was not active ... in scientific societies, and did not seek to find influence or advance his ideas through professional contacts and politics</em>——不混学会、不靠人脉和学界政治钻营求名，整天宅在书房或跑野外 → A（他并不是一个特别追名逐利/有野心的人）。",
+            "cites": [
+              {"p": 6, "b": [0, 2]}
+            ]
+          },
+          {
+            "no": 39,
+            "label": "why-right",
+            "tag": "选择题",
+            "diag": "第 7 段拿牛顿、达尔文、爱因斯坦、法拉第留下的海量笔记书信与第 6 段魏格纳的匮乏史料对比：留存材料越多，传记作者越容易还原思想演变——言下之意，那些大科学家比魏格纳更好写 → D。",
+            "chain": "",
+            "cites": [
+              {"p": 7, "b": [0, 1, 2]}
+            ]
+          },
+          {
+            "no": 40,
+            "label": "why-right",
+            "tag": "选择题",
+            "diag": "末段主旨句开门见山：<em>most of us, Wegener included, are not in any real sense the authors of our own lives</em>，人生大多是偶然“发生在我们身上（happen to us）”事后才被编成连贯叙事 → C（人对生活诸多方面掌控有限）。",
+            "chain": "",
+            "cites": [
+              {"p": 8, "b": [0, 1]}
+            ]
+          }
+        ]
+      }
+    ],
+    "diagnoses": [
+      {
+        "n": "病灶 01",
+        "t": "限定词滑读",
+        "p": "29 漏读 <em>a large number of</em>、36 漏读 <em>a small circle of</em>、38 看反 <em>as was standard practice</em>。你的视线习惯直接跳向核心学科名词，把决定答案正负号的数量词和状语插入语滑过去了。"
+      },
+      {
+        "n": "病灶 02",
+        "t": "充分条件误作排他",
+        "p": "27 题原文说“生前＋死后都争议”，题干说“生前有争议”，你因为原文范围更大就判 NO。在逻辑判断里，没有 <em>only</em> 时，大范围成立必然保证子范围成立。"
+      },
+      {
+        "n": "病灶 03",
+        "t": "现象与意图混淆",
+        "p": "37 题问作者在这一段<em>在干什么</em>，答案一定在 <em>My own feeling, however / I urge readers</em> 这类一阶表态句上，不在前半段铺垫的传主生平现象里；且原文只讲了 what 没讲 why。"
+      }
+    ],
+    "actions": [
+      "<b>量词与范围词强迫圈画</b>：凡在题干或选项见到 <em>limited / vast / select / modest / widely</em>，回原文必须先圈出对应的数量修饰语（<em>small circle / large number</em>），严禁只对后面的名词。",
+      "<b>区分「陈述现象」与「解释原因」</b>：单选题选项出现 <em>suggesting why / explaining why</em> 时，原文必须有因果链；只写“他经常中断研究”却没写为何中断，带 <em>why</em> 的选项直接划掉。",
+      "<b>段落功能题锁死转折后的一人称</b>：问 <em>What is the writer doing in paragraph X</em>，直接找该段的 <em>however + I / my own feeling / I urge</em>，那才是作者写这段的动作。",
+      "<b>无 only 不排他</b>：题干问“生前受争议”，原文说“生前和死后都受争议”，一律判 YES；只有题干写成 <em>only while he was alive</em> 才能判 NO。"
+    ],
+    "end": "这篇其实是一篇结构极其工整的传记导言（Introduction）。你用时 32 分半，说明在句意上反复纠结了很久，但丢的 7 分里至少有 4 分（27、29、33、36）都在非常表层的数量词与双否词上——把“看清修饰语再落笔”练成肌肉记忆，这种传记序言完全是送分题。"
+  },
+  "guide": {
+    "kicker": "读懂 · 剑桥雅思 18 · Test 4 · Passage 3 · Alfred Wegener",
+    "title": "这不是一本「大陆漂移科普书」，而是一个跨界科学家的真实人生还原",
+    "lede": "很多人一看到标题里的 <b>continental drift</b> 就当地球科学论文去硬啃，越读越迷糊：怎么一会儿热气球、一会儿章节索引、一会儿牛顿达尔文写日记？其实第 1 行已经写明了体裁——<b>Introduction（传记序言）</b>。整篇是传记作者 Mott T Greene 在向读者交代：<b>我为什么要这样写魏格纳的传记、难写在哪、你该怎么读这本书。</b>",
+    "thesis": "魏格纳虽以大陆漂移闻名并成为现代板块构造论的先驱，但他的主业其实是大气物理，且一生兴趣多变、史料稀缺、淡泊学界名利；唯有通读他充满中断与偶然的全部科研经历，才能看懂真实的科学人生并非事后编排的宏大剧本。",
+    "structureTitle": "8 段序言的四步章法：定位遗产 → 还原跨界 → 交待写法 → 人生哲学",
+    "band": [
+      {"n": 1, "f": "传主与争议", "s": "g"},
+      {"n": 2, "f": "漂移论与板块论", "s": "g"},
+      {"n": 3, "f": "非地质学出身", "s": "t"},
+      {"n": 4, "f": "主业与副业反转", "s": "t"},
+      {"n": 5, "f": "劝读者通读全书", "s": "t"},
+      {"n": 6, "f": "史料少与淡泊名利", "s": "a"},
+      {"n": 7, "f": "对比牛顿达尔文", "s": "a"},
+      {"n": 8, "f": "人生并非自主剧本", "s": "t"}
+    ],
+    "legend": [
+      {"s": "t", "text": "传记作者的写作视角与核心主张（4 段）"},
+      {"s": "a", "text": "传记还原面临的史料困境与对比（2 段）"},
+      {"s": "g", "text": "魏格纳科学遗产的客观定位（2 段）"}
+    ],
+    "argument": {
+      "negativeTitle": "世人对魏格纳与科学家的「刻板印象」",
+      "negative": [
+        {"t": "标签化认知　", "p": "（第 1–4 段）以为魏格纳只是“提出大陆漂移的地质学家”，或者以为现代板块构造论和他的理论完全一回事。"},
+        {"t": "线性叙事幻觉　", "p": "（第 5、8 段）只想挑自己感兴趣的章节翻索引，并以为大科学家的一生都是按宏伟计划一步步兑现意图的过程。"}
+      ],
+      "positiveTitle": "传记作者 Greene 还原的「四个真相」",
+      "positive": [
+        {"t": "真相一 · 理论血统　", "p": "（第 2 段）板块构造论与魏格纳原说差异极大，但确系其“直系后裔”——恰如现代进化论之于达尔文自然选择学说。"},
+        {"t": "真相二 · 跨界底色　", "p": "（第 3–4 段）他学天文出身、主攻大气物理，靠热气球破纪录、格陵兰探险和热力学教材早已小有名气；大陆漂移反而是他的“副业（sideline）”。"},
+        {"t": "真相三 · 史料空白　", "p": "（第 6–7 段）不同于留下万封书信笔记的牛顿、达尔文、法拉第，魏格纳不记日记、信件散佚、不混学会政治，极难追踪思想过程。"},
+        {"t": "真相四 · 偶然人生　", "p": "（第 5、8 段）他的研究屡屡中断数年又重拾；人并非自己人生的真正作者，生活大多是偶然降临（happenstance），事后才被追认成剧本。"}
+      ],
+      "punch": "所以这本书写的不仅是魏格纳<b>计划中的科研人生</b>，更是那个<b>意外降临在他身上的真实人生</b>——而这两件事从来不是一回事。"
+    },
+    "rows": [
+      {"n": 1, "w": "背景", "s": "g", "d": "开篇点明本书写魏格纳生平与科研：1912 年提出大陆位移论，专著再版四次，生前死后均处国际论战旋涡中心。"},
+      {"n": 2, "w": "背景", "s": "g", "d": "概括大陆水平移动假说调用了地质、地球物理、古生物、气候等多学科证据；用“达尔文 vs 现代进化论”精准类比他与当代板块构造论的源流关系。"},
+      {"n": 3, "w": "作者", "s": "t", "d": "抛出第一个反差：提出大陆漂移的人竟不是地质学家，而是天文学与大气物理学者；但 1912 年前他已凭 52 小时热气球世界纪录、格陵兰险途与热力学教材在小圈子里成名。"},
+      {"n": 4, "w": "作者", "s": "t", "d": "交代全书详略布局：大陆漂移其实只是他大气与古气候主业之外的“副业（sideline）”，本书对其他研究同样详写，但因漂移论争议最大而多着墨其学界反响。"},
+      {"n": 5, "w": "作者", "s": "t", "d": "给读者的阅读指南：按不同学科生涯分章并配索引供局部查阅，但作者力劝读者通读全书，去体会他不断中断、改弦更张又重整旗鼓的整体人生。"},
+      {"n": 6, "w": "困境", "s": "a", "d": "披露传记写作难处与传主性格：论著按惯例只写结论不写过程，书信仅存数百、不记日记；且他淡泊名利，极少混迹科学学会或靠人脉政治推销学说。"},
+      {"n": 7, "w": "对比", "s": "a", "d": "以牛顿、达尔文、爱因斯坦、法拉第留下的如山手稿日志作参照：史料越丰厚越容易还原思想演化——反衬写魏格纳之难。"},
+      {"n": 8, "w": "作者", "s": "t", "d": "升华全书哲学：人都不是自己人生的真正作者，生活多半“发生在我们身上（happen to us）”，事后才被合理化；本书正是计划与际遇的双线故事。"}
+    ],
+    "terms": [
+      {
+        "k": "continental displacements",
+        "en": "大陆位移（大陆漂移原名）",
+        "d": "魏格纳 1912 年原始用词，通称 continental drift，核心主张是大陆会发生水平移动（moved laterally）而非固定原地。"
+      },
+      {
+        "k": "plate tectonics",
+        "en": "板块构造学说",
+        "d": "当代地球科学的核心指导理论。具体机制与魏格纳当年设想差异甚大，但继承了“大陆在动”的内核，是漂移论的学术后裔（descendant）。"
+      },
+      {
+        "k": "happenstance",
+        "en": "偶然际遇；机缘巧合",
+        "d": "末段点睛词：人们总以为人生是实现既定意图的连贯叙事，实则充满偶然降临的际遇，事后（retrospectively）才被我们编圆。"
+      }
+    ],
+    "echo": {
+      "neg": "读者若只对魏格纳人生的某一方面感兴趣，索引足以指引；但<b>孤立地看这些片段，远不如把他所有活动合在一起更有意义</b>。",
+      "pos": "我们计划、思考、行动，看似自由，但大多数时候<b>生活其实是“发生在我们身上”的</b>，我们只是事后才把偶然际遇编成连贯叙事。",
+      "note": "第 5 段劝你“别只查索引看片段、要整本连起来读”，第 8 段给出了底层原因：因为真实人生本来就不是按学科整齐切块的计划表，而是充满打断与偶然的整体。"
+    },
+    "why": [
+      {
+        "t": "体裁错位：把「书评/序言」当成「地质科普」读",
+        "p": "一旦意识到说话人 `I` 是传记作者 Greene，第 31 题（<em>biographer's perspective</em>）、第 37 题（劝读者通读全书）、第 39 题（其他科学家更好写）瞬间全串成一条线。"
+      },
+      {
+        "t": "第 3 段：双重否定与小量词连环设伏",
+        "p": "<em>not an 'unknown'</em>（小有名气）紧接 <em>a small circle of</em>（精选小圈子），两处都考修饰尺度，粗看名词必掉坑。"
+      },
+      {
+        "t": "第 6 段：插入语 as was standard practice 的反向保护",
+        "p": "作者说他的论文“只写结果不写过程”，紧跟着补了一句插入语 <em>as was standard practice</em>（正如当时惯例），专门用来封死“他不守当时学术常规”的干扰项（38 题 C）。"
+      }
+    ],
+    "side": "<b>给工科背景读者的一个抓手：</b><br>读人文/传记序言类 P3 时，先分清<b>对象层（魏格纳干了什么）</b>和<b>元叙事层（作者 Greene 怎么写这本书）</b>。这篇前 3 段偏对象层，第 4–8 段全是元叙事层——抓住了 `I` 的视角切换，后半篇四道单选根本不会迷路。",
+    "end": "8 个自然段，前半篇拆解“外行气象学家如何提出震动地球科学的假说”，后半篇拆解“传记作者如何打捞一个不留日记、不混圈子的真实灵魂”。结构看透了，每个题组落在哪几段一目了然。"
+  },
+  "lexicon": {
+    "displacement": "n. 位移；取代",
+    "extensively": "adv. 广泛深入地",
+    "controversy": "n. 争论；论战",
+    "laterally": "adv. 横向地；水平地",
+    "plausible": "adj. 貌似可信的；合乎情理的",
+    "paleontology": "n. 古生物学",
+    "climatology": "n. 气候学",
+    "tectonics": "n. 构造学（plate tectonics 板块构造论）",
+    "descendant": "n. 后裔；派生物",
+    "intriguing": "adj. 引人入胜的；令人着迷的",
+    "atmospheric": "adj. 大气的",
+    "aloft": "adv./adj. 在高空；滞空",
+    "publicize": "v. 宣传；公开报道",
+    "expedition": "n. 探险；科学考察",
+    "meteorologist": "n. 气象学家",
+    "thermodynamics": "n. 热力学",
+    "sideline": "n. 副业；兼职方向",
+    "paleoclimatology": "n. 古气候学",
+    "reception": "n. （学界或公众的）反响；接受度",
+    "pursuit": "n. 追求；研究探索",
+    "investigation": "n. 调查；科学研究",
+    "guidepost": "n. 路标；指引",
+    "characterize": "v. 描绘；将……概括为",
+    "entail": "v. 伴随；意味着；需要",
+    "survive": "v. 留存下来；幸存",
+    "advance": "v. 推进；促进（观点或事业）",
+    "speculation": "n. 推测；思索",
+    "parallel": "adj./n. 并行的；平行对照物",
+    "biographer": "n. 传记作家",
+    "evolve": "v. 逐步演变；进化",
+    "apparent": "adj. 表面上的；看似的",
+    "retrospectively": "adv. 回顾地；事后追认地",
+    "happenstance": "n. 偶然事件；机缘巧合",
+    "coherent": "adj. 连贯的；条理一致的",
+    "narrative": "n. 叙事；故事线",
+    "fulfil": "v. 实现；兑现"
+  }
+}

@@ -1,0 +1,1083 @@
+{
+  "schemaVersion": 2,
+  "id": "cam19-t3-p3",
+  "kind": "reading",
+  "origin": "builtin",
+  "meta": {
+    "book": "剑桥雅思 19",
+    "test": "Test 3",
+    "passage": "Passage 3",
+    "title": "Is the era of artificial speech translation upon us?",
+    "durationSec": 1858,
+    "score": "7 / 14",
+    "source": "idictation"
+  },
+  "attempt": {
+    "source": "idictation",
+    "submittedAt": "2026-11-25T08:22:53.000000Z",
+    "durationSec": 1858,
+    "score": 7,
+    "total": 14,
+    "answered": 14,
+    "blank": 0,
+    "wrong": 7,
+    "accuracy": 0.5,
+    "byType": [
+      {
+        "label": "判断题(Y/N/NG)",
+        "correct": 3,
+        "total": 6,
+        "accuracy": 0.5
+      },
+      {
+        "label": "单选",
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      {
+        "label": "句子结尾匹配",
+        "correct": 4,
+        "total": 4,
+        "accuracy": 1.0
+      }
+    ]
+  },
+  "paragraphs": [
+    {
+      "no": 1,
+      "sentences": [
+        {
+          "id": "p1s1",
+          "en": "Once the stuff of science fiction, technology that enables people to talk using different languages is now here. But how effective is it?",
+          "zh": "让使用不同语言的人交谈的技术，曾经只存在于科幻作品中，如今已成为现实。但它的效果到底如何？"
+        },
+        {
+          "id": "p1s2",
+          "en": "Noise, Alex Waibel tells me, is one of the major challenges that artificial speech translation has to meet.",
+          "zh": "亚历克斯·魏贝尔告诉我，噪音是自动语音翻译必须应对的主要挑战之一。"
+        },
+        {
+          "id": "p1s3",
+          "en": "A device may be able to recognise speech in a laboratory, or a meeting room, but will struggle to cope with the kind of background noise I can hear in my office surrounding Professor Waibel as he speaks to me from Kyoto station in Japan.",
+          "zh": "设备也许能在实验室或会议室里识别语音，但面对我在办公室里听到的那种背景噪声——此刻魏贝尔教授在日本京都站与我通话，周围嘈杂——它就会难以招架。"
+        },
+        {
+          "id": "p1s4",
+          "en": "I'm struggling to follow him in English, on a scratchy line that reminds me we are nearly 10,000 kilometres apart—and that distance is still an obstacle to communication even if you're speaking the same language, as we are.",
+          "zh": "我用英语都很难听清他；电话线路刺耳沙哑，提醒我我们相隔将近一万公里——而且即便像我们这样说着同一种语言，距离仍然是沟通的障碍。"
+        },
+        {
+          "id": "p1s5",
+          "en": "We haven't reached the future yet.",
+          "zh": "我们还没有抵达“未来”。"
+        },
+        {
+          "id": "p1s6",
+          "en": "If we had, Waibel would have been able to speak more comfortably in his native German and I would have been able to hear his words in English.",
+          "zh": "如果真的到了那一步，魏贝尔就能更自在地用母语德语交流，而我也能用英语听到他的话。"
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "sentences": [
+        {
+          "id": "p2s1",
+          "en": "At Karlsruhe Institute of Technology, where he is a professor of computer science, Waibel and his colleagues already give lectures in German that their students can follow in English via an electronic translator.",
+          "zh": "在卡尔斯鲁厄理工学院——他在此担任计算机科学教授——韦贝尔和同事们已经用德语授课，而学生可以通过电子翻译器用英语跟上课程内容。"
+        },
+        {
+          "id": "p2s2",
+          "en": "The system generates text that students can read on their laptops or phones, so the process is somewhat similar to subtitling.",
+          "zh": "该系统会生成文本，学生可在笔记本电脑或手机上阅读，因此这一过程在某种程度上类似于字幕呈现。"
+        },
+        {
+          "id": "p2s3",
+          "en": "It helps that lecturers speak clearly, don't have to compete with background chatter, and say much the same thing each year.",
+          "zh": "有利条件在于授课者表达清晰，无需与背景嘈杂声竞争注意力，而且每年讲授的内容大同小异。"
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "sentences": [
+        {
+          "id": "p3s1",
+          "en": "The idea of artificial speech translation has been around for a long time.",
+          "zh": "人工语音翻译这一概念早已存在很长时间。"
+        },
+        {
+          "id": "p3s2",
+          "en": "Douglas Adams' science fiction novel, The Hitchhiker's Guide to the Galaxy, published in 1979, featured a life form called the \"Babel fish\" which, when placed in the ear, enabled a listener to understand any language in the universe.",
+          "zh": "道格拉斯·亚当斯于1979年出版的科幻小说《银河系漫游指南》中，描写了一种名为“巴别鱼”的生物，把它放入耳中，听者便能听懂宇宙中的任何语言。"
+        },
+        {
+          "id": "p3s3",
+          "en": "It came to represent one of those devices that technology enthusiasts dream of long before they become practically realisable, like TVs flat enough to hang on walls: objects that we once could only dream of having but that are now commonplace.",
+          "zh": "它逐渐成为一种象征——就像薄到可以挂在墙上的电视那样，科技爱好者往往在这些装置真正具备实用可行性之前很久便已梦寐以求：这些物件曾经只存在于想象之中，如今却已司空见惯。"
+        },
+        {
+          "id": "p3s4",
+          "en": "Now devices that look like prototype Babel fish have started to appear, riding a wave of advances in artificial translation and voice recognition.",
+          "zh": "如今，借助人工翻译与语音识别技术的进步浪潮，看起来像“巴别鱼”原型的设备已经开始出现。"
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "sentences": [
+        {
+          "id": "p4s1",
+          "en": "At this stage, however, they seem to be regarded as eye-catching novelties rather than steps towards what Waibel calls \"making a language-transparent society\".",
+          "zh": "然而在现阶段，它们似乎更多被视为吸睛的新奇玩意儿，而不是迈向韦贝尔所谓“打造语言透明社会”的一步。"
+        },
+        {
+          "id": "p4s2",
+          "en": "They tend to be domestic devices or applications suitable for hotel check-ins, for example, providing a practical alternative to speaking traveller's English.",
+          "zh": "它们往往是家用设备，或是适用于酒店入住办理等场景的应用程序，例如为“旅行英语”提供一种切实可行的替代方案。"
+        },
+        {
+          "id": "p4s3",
+          "en": "The efficiency of the translator is less important than the social function.",
+          "zh": "相较于翻译的效率，其社会功能反而没那么重要。"
+        },
+        {
+          "id": "p4s4",
+          "en": "However, \"Professionals are less inclined to be patient in a conversation,\" founder and CEO at Waverly Labs, Andrew Ochoa, observes.",
+          "zh": "不过，Waverly Labs 的创始人兼首席执行官安德鲁·奥乔亚指出：“专业人士在对话中不太愿意保持耐心。”"
+        },
+        {
+          "id": "p4s5",
+          "en": "To redress this, Waverly is now preparing a new model for professional applications, which entails performance improvements in speech recognition, translation accuracy and the time it takes to deliver the translated speech.",
+          "zh": "为纠正这一点，Waverly 目前正为专业用途准备一款新机型，其中将提升语音识别性能、翻译准确度，以及输出译后语音所需的时间。"
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "sentences": [
+        {
+          "id": "p5s1",
+          "en": "For a conversation, both speakers need to have devices called Pilots (translator earpieces) in their ears.",
+          "zh": "在一次对话中，双方说话者都需要在耳朵里佩戴一种名为 Pilots 的设备（翻译耳机）。"
+        },
+        {
+          "id": "p5s2",
+          "en": "\"We find that there's a barrier with sharing one of the earphones with a stranger,\" says Ochoa.",
+          "zh": "奥乔亚说：“我们发现，把其中一只耳机与陌生人共用会形成一道障碍。”"
+        },
+        {
+          "id": "p5s3",
+          "en": "That can't have been totally unexpected.",
+          "zh": "这不可能是完全出乎意料的。"
+        },
+        {
+          "id": "p5s4",
+          "en": "The problem would be solved if earpiece translators became sufficiently prevalent that strangers would be likely to already have their own in their ears.",
+          "zh": "如果翻译耳机普及到一定程度，以至于陌生人很可能本就戴着自己的耳机，那么这个问题就能得到解决。"
+        },
+        {
+          "id": "p5s5",
+          "en": "Whether that happens, and how quickly, will probably depend not so much on the earpieces themselves, but on the prevalence of voice-controlled devices and artificial translation in general.",
+          "zh": "这种情况是否会发生、又会以多快的速度发生，恐怕与耳机本身关系不大，而更多取决于语音控制设备以及人工翻译技术整体的普及程度。"
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "sentences": [
+        {
+          "id": "p6s1",
+          "en": "Waibel highlights the significance of certain Asian nations, noting that voice translation has really taken off in countries such as Japan with a range of systems.",
+          "zh": "Waibel 强调了一些亚洲国家的重要性，并指出语音翻译在日本等国家已凭借多种系统真正迅速发展起来。"
+        },
+        {
+          "id": "p6s2",
+          "en": "There is still a long way to go, though.",
+          "zh": "不过，要走的路仍然很长。"
+        },
+        {
+          "id": "p6s3",
+          "en": "A translation system needs to be simultaneous, like the translator's voice speaking over the foreign politician being interviewed on the TV, rather than in sections that oblige speakers to pause after every few remarks and wait for the translation to be delivered.",
+          "zh": "翻译系统需要做到同步进行，就像电视上采访外国政要时译员的声音覆盖其讲话那样，而不是分段翻译——后者会迫使说话者每说几句就停下来，等待译文输出。"
+        },
+        {
+          "id": "p6s4",
+          "en": "It needs to work offline, for situations where internet access isn't possible, and to address apprehensions about the amount of private speech data accumulating in the cloud, having been sent to servers for processing.",
+          "zh": "它还需要支持离线运行，以应对无法联网的场景，并缓解人们对大量私人语音数据因被发送至服务器处理而在云端不断累积的担忧。"
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "sentences": [
+        {
+          "id": "p7s1",
+          "en": "Systems not only need to cope with physical challenges such as noise, they will also need to be socially aware by addressing people in the right way.",
+          "zh": "系统不仅需要应对诸如噪声等物理层面的挑战，还必须具备社会情境意识，以恰当的方式称呼和对待他人。"
+        },
+        {
+          "id": "p7s2",
+          "en": "Some cultural traditions demand solemn respect for academic status, for example, and it is only polite to respect this.",
+          "zh": "例如，某些文化传统要求对学术地位保持郑重的尊重，而遵循这一点才算得体有礼。"
+        },
+        {
+          "id": "p7s3",
+          "en": "Etiquette-sensitive artificial translators could relieve people of the need to know these differing cultural norms.",
+          "zh": "对礼仪敏感的人工翻译器可以让人们不必再去了解这些各不相同的文化规范。"
+        },
+        {
+          "id": "p7s4",
+          "en": "At the same time, they might help to preserve local customs, slowing the spread of habits associated with international English, such as its readiness to get on first-name terms.",
+          "zh": "与此同时，它们也可能有助于保存地方习俗，减缓与国际英语相关的行为方式的传播——例如英语文化中较为随意、很快就直呼其名的倾向。"
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "sentences": [
+        {
+          "id": "p8s1",
+          "en": "Professors and other professionals will not outsource language awareness to software, though.",
+          "zh": "不过，教授及其他专业人士不会把对语言的判断交给软件代劳。"
+        },
+        {
+          "id": "p8s2",
+          "en": "If the technology matures into seamless, ubiquitous artificial speech translation, it will actually add value to language skills.",
+          "zh": "如果这项技术发展成熟，形成无缝且无处不在的人工语音翻译，它实际上反而会提升语言技能的价值。"
+        },
+        {
+          "id": "p8s3",
+          "en": "Whether it will help people conduct their family lives or relationships is open to question—though one noteworthy possibility is that it could overcome the language barriers that often arise between generations after migration, leaving children and their grandparents without a shared language.",
+          "zh": "它是否能帮助人们经营家庭生活或维系亲密关系仍是个未知数——不过，一个值得注意的可能性是，它或许能克服移民后代际之间常见的语言障碍，因为这种障碍往往会使孩子与祖父母之间缺乏共同语言。"
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "sentences": [
+        {
+          "id": "p9s1",
+          "en": "Whatever uses it is put to, though, it will never be as good as the real thing.",
+          "zh": "不过，无论它被用于何种用途，都永远不可能像真实交流那样出色。"
+        },
+        {
+          "id": "p9s2",
+          "en": "Even if voice-morphing technology simulates the speaker's voice, their lip movements won't match, and they will look like they are in a dubbed movie.",
+          "zh": "即便变声技术能够模拟说话者的嗓音，他们的唇部动作也不会同步，看起来就像置身于一部配音电影之中。"
+        },
+        {
+          "id": "p9s3",
+          "en": "The contrast will underline the value of shared languages, and the value of learning them.",
+          "zh": "这种反差会凸显共享语言的价值，以及学习语言的价值。"
+        },
+        {
+          "id": "p9s4",
+          "en": "Sharing a language can promote a sense of belonging and community, as with the international scientists who use English as a lingua franca, where their predecessors used Latin.",
+          "zh": "共享一种语言能够增强归属感与共同体意识，例如国际科学家以英语作为通用语，而他们的前辈曾使用拉丁语。"
+        },
+        {
+          "id": "p9s5",
+          "en": "Though the practical need for a common language will diminish, the social value of sharing one will persist.",
+          "zh": "尽管对共同语言的实际需求将会减弱，但共享一种语言的社会价值仍将持续。"
+        },
+        {
+          "id": "p9s6",
+          "en": "And software will never be a substitute for the subtle but vital understanding that comes with knowledge of a language.",
+          "zh": "而软件永远无法替代因掌握一门语言而产生的那种细微却至关重要的理解力。"
+        }
+      ]
+    }
+  ],
+  "questionGroups": [
+    {
+      "id": "reading:2742:8039",
+      "type": "mcq",
+      "from": 27,
+      "to": 30,
+      "instruction": "Questions 27-30 Choose the correct letter, A, B, C or D. Write the correct letter in boxes 27-30 on your answer sheet.",
+      "items": [
+        {
+          "no": 27,
+          "stem": "What does the reader learn about the conversation in the first paragraph?",
+          "options": [
+            {
+              "key": "A",
+              "text": "The speakers are communicating in different languages."
+            },
+            {
+              "key": "B",
+              "text": "Neither of the speakers is familiar with their environment."
+            },
+            {
+              "key": "C",
+              "text": "The topic of the conversation is difficult for both speakers."
+            },
+            {
+              "key": "D",
+              "text": "Aspects of the conversation are challenging for both speakers."
+            }
+          ],
+          "answer": "D",
+          "mine": "A",
+          "correct": false
+        },
+        {
+          "no": 28,
+          "stem": "What assists the electronic translator during lectures at Karlsruhe Institute of Technology?",
+          "options": [
+            {
+              "key": "A",
+              "text": "the repeated content of lectures"
+            },
+            {
+              "key": "B",
+              "text": "the students' reading skills"
+            },
+            {
+              "key": "C",
+              "text": "the languages used"
+            },
+            {
+              "key": "D",
+              "text": "the lecturers' technical ability"
+            }
+          ],
+          "answer": "A",
+          "mine": "C",
+          "correct": false
+        },
+        {
+          "no": 29,
+          "stem": "When referring to The Hitchhiker's Guide to the Galaxy, the writer suggests that",
+          "options": [
+            {
+              "key": "A",
+              "text": "the Babel fish was considered undesirable at the time."
+            },
+            {
+              "key": "B",
+              "text": "this book was not seriously intending to predict the future."
+            },
+            {
+              "key": "C",
+              "text": "artificial speech translation was not a surprising development."
+            },
+            {
+              "key": "D",
+              "text": "some speech translation techniques are better than others."
+            }
+          ],
+          "answer": "C",
+          "mine": "A",
+          "correct": false
+        },
+        {
+          "no": 30,
+          "stem": "What does the writer say about sharing earpieces?",
+          "options": [
+            {
+              "key": "A",
+              "text": "It is something people will get used to doing."
+            },
+            {
+              "key": "B",
+              "text": "The reluctance to do this is understandable."
+            },
+            {
+              "key": "C",
+              "text": "The equipment will be unnecessary in the future."
+            },
+            {
+              "key": "D",
+              "text": "It is something few people need to worry about."
+            }
+          ],
+          "answer": "B",
+          "mine": "C",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "reading:2742:8040",
+      "type": "matching",
+      "from": 31,
+      "to": 34,
+      "instruction": "Questions 31-34 Complete each sentence with the correct ending, A-F, below. Write the correct letter, A-F, in boxes 31-34 on your answer sheet.",
+      "options": [
+        {
+          "key": "A",
+          "text": "but there are concerns about this."
+        },
+        {
+          "key": "B",
+          "text": "as systems do not need to conform to standard practices."
+        },
+        {
+          "key": "C",
+          "text": "but they are far from perfect."
+        },
+        {
+          "key": "D",
+          "text": "despite the noise issues."
+        },
+        {
+          "key": "E",
+          "text": "because translation is immediate."
+        },
+        {
+          "key": "F",
+          "text": "and have an awareness of good manners."
+        }
+      ],
+      "items": [
+        {
+          "no": 31,
+          "stem": "Speech translation methods are developing fast in Japan",
+          "answer": "C",
+          "mine": "C",
+          "correct": true
+        },
+        {
+          "no": 32,
+          "stem": "TV interviews that use translation voiceover methods are successful",
+          "answer": "E",
+          "mine": "E",
+          "correct": true
+        },
+        {
+          "no": 33,
+          "stem": "Future translation systems should address people appropriately",
+          "answer": "F",
+          "mine": "F",
+          "correct": true
+        },
+        {
+          "no": 34,
+          "stem": "Users may be able to maintain their local customs",
+          "answer": "B",
+          "mine": "B",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "reading:2742:8041",
+      "type": "ynng",
+      "from": 35,
+      "to": 40,
+      "instruction": "Questions 35-40 Do the following statements agree with the views of the writer in Reading Passage 3? In boxes 35-40 on your answer sheet, write YES if the statement agrees with the views of the writer NO if the statement contradicts the views of the writer NOT GIVEN if it is impossible to say what the writer thinks about this",
+      "items": [
+        {
+          "no": 35,
+          "stem": "Language translation systems will be seen as very useful throughout the academic and professional worlds.",
+          "answer": "N",
+          "mine": "Y",
+          "correct": false
+        },
+        {
+          "no": 36,
+          "stem": "The overall value of automated translation to family life is yet to be shown.",
+          "answer": "Y",
+          "mine": "N",
+          "correct": false
+        },
+        {
+          "no": 37,
+          "stem": "Automated translation could make life more difficult for immigrant families.",
+          "answer": "N",
+          "mine": "N",
+          "correct": true
+        },
+        {
+          "no": 38,
+          "stem": "Visual aspects of language translation are being considered by scientists.",
+          "answer": "NG",
+          "mine": "Y",
+          "correct": false
+        },
+        {
+          "no": 39,
+          "stem": "International scientists have found English easier to translate into other languages than Latin.",
+          "answer": "NG",
+          "mine": "NG",
+          "correct": true
+        },
+        {
+          "no": 40,
+          "stem": "As far as language is concerned, there is a difference between people's social and practical needs.",
+          "answer": "Y",
+          "mine": "Y",
+          "correct": true
+        }
+      ]
+    }
+  ],
+  "lexicon": {
+    "artificial": "adj. 人工的；人造的",
+    "struggle": "v. 艰难应对；吃力",
+    "scratchy": "adj. 刺耳沙哑的；嘈杂不清的",
+    "obstacle": "n. 障碍；阻碍",
+    "subtitle": "n./v. 字幕；加字幕",
+    "chatter": "n. 嘈杂闲聊声",
+    "enthusiast": "n. 热衷者；爱好者",
+    "realisable": "adj. 可实现的",
+    "commonplace": "adj. 司空见惯的；寻常的",
+    "prototype": "n. 原型；雏形",
+    "novelty": "n. 新奇事物；小玩意",
+    "transparent": "adj. 透明的；无障碍的",
+    "domestic": "adj. 家用的；国内的",
+    "inclined": "adj. 倾向于……的；愿意的",
+    "redress": "v. 纠正；弥补",
+    "entail": "v. 牵涉；需要；意味着",
+    "earpiece": "n. 入耳式耳机；听筒",
+    "reluctance": "n. 不情愿；抗拒",
+    "prevalent": "adj. 普遍的；盛行的",
+    "prevalence": "n. 普及；流行程度",
+    "simultaneous": "adj. 同步的；同时发生的",
+    "oblige": "v. 迫使；使不得不",
+    "offline": "adj./adv. 离线的（地）",
+    "apprehension": "n. 忧虑；顾虑",
+    "accumulate": "v. 累积；堆积",
+    "solemn": "adj. 庄重的；郑重的",
+    "etiquette": "n. 礼仪；礼节规范",
+    "relieve": "v. 免除；减轻",
+    "norm": "n. 规范；准则",
+    "preserve": "v. 保存；维护",
+    "outsource": "v. 外包；交由外部代劳",
+    "mature": "v. 成熟；完善",
+    "seamless": "adj. 无缝的；流畅无感的",
+    "ubiquitous": "adj. 无处不在的",
+    "noteworthy": "adj. 值得注意的",
+    "migration": "n. 移民；迁徙",
+    "simulate": "v. 模拟；模仿",
+    "dub": "v. 为（电影）配音",
+    "underline": "v. 凸显；强调",
+    "predecessor": "n. 前辈；前任",
+    "diminish": "v. 减弱；减少",
+    "persist": "v. 持续存在；留存",
+    "substitute": "n. 替代品；代替物",
+    "subtle": "adj. 微妙的；精细入微的",
+    "vital": "adj. 至关重要的"
+  },
+  "review": {
+    "kicker": "复盘 · 剑桥雅思 19 · Test 3 · Passage 3",
+    "title": "7 道错题：单选 0/4 全军覆没，全败在「语气算子」与「半句截断」",
+    "lede": "这篇用时 30 分 58 秒、7/14。成绩结构极其割裂：句子结尾匹配 4/4 全对，说明你的句间逻辑与局部同义改写完全在线；但<b>单选题 27–30 四题全错，判断题 35–40 错了一半</b>。对照你在原文留下的 85 处高亮轨迹，病根非常清晰：你习惯抓实词（名词/动词）快速拼意，却系统性漏读了决定真假值的<b>语法与修辞算子</b>——虚拟语气（27）、三并列末项（28）、科幻类比的论证意图（29）、双重否定（30）、让步破折号（36）以及谓语动作归属（38）。",
+    "stats": [
+      [
+        "7 / 14",
+        "得分",
+        1
+      ],
+      [
+        "30:58",
+        "用时",
+        0
+      ],
+      [
+        "0 / 4",
+        "单选题",
+        1
+      ],
+      [
+        "4 / 4",
+        "句尾匹配",
+        0
+      ]
+    ],
+    "bars": [
+      [
+        "单选 27–30",
+        0,
+        "0/4"
+      ],
+      [
+        "匹配 31–34",
+        100,
+        "4/4"
+      ],
+      [
+        "判断 35–40",
+        50,
+        "3/6"
+      ]
+    ],
+    "sections": [
+      {
+        "id": "mcq",
+        "kind": "mcq",
+        "title": "选择题 27–30",
+        "from": 27,
+        "to": 30,
+        "diag": "四道单选无一命中，但每一道你都定位到了正确段落。失分不在找不到地方，而在<b>把虚拟当事实（27）、读完前两项就停（28）、凭常识脑补嫌弃（29）、跳过双重否定句（30）</b>。",
+        "items": [
+          {
+            "no": 27,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "你选 A（两人用不同语言交流），是把段首导语 <em>talk using different languages</em> 和段末虚拟语气 <em>If we had, Waibel would have been able to speak more comfortably in his native German</em> 当成了这通电话的事实。但第 4 句明明白白写着：<em>even if you're speaking the same language, as we are</em>——两人此刻都在讲英语！英文里的过去虚拟（If we had... would have...）恰恰证明现实相反。",
+            "chain": "两人的困难分别在哪？作者这边：线路嘈杂（scratchy line）+ 京东站背景噪音，连听英语都很吃力（struggling to follow him in English）；Waibel 那边：母语是德语，被迫在嘈杂车站讲非母语不够自在（speak more comfortably in his native German）。双方各有各的难处，正对应 D（Aspects of the conversation are challenging for both speakers）。",
+            "cites": [
+              {
+                "p": 1,
+                "b": [
+                  2,
+                  3,
+                  5
+                ]
+              }
+            ]
+          },
+          {
+            "no": 28,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "你的高亮轨迹直接暴露了错因：在第 2 段末句 <em>It helps that lecturers speak clearly, don't have to compete with background chatter, and say much the same thing each year</em> 里，你高亮了 <em>speak clearly</em>、<em>don't</em>、<em>background chatte</em>，唯独在第三个并列分句前停了笔！前两点选项里没给，你就退回第一句看到德语和英语，硬猜了 C（使用的语言）。",
+            "chain": "题干 <em>assists</em> 精确对应末句句首 <em>It helps that...</em>。剑雅单选最经典的设题手法就是「三并列考末项」：老师吐字清晰 + 没有背景闲聊干扰 + <em>每年讲的内容大同小异（say much the same thing each year）</em> = <em>the repeated content of lectures</em>，直接锁死 A。",
+            "cites": [
+              {
+                "p": 2,
+                "b": [
+                  0,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 29,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "你选 A（巴别鱼在当时被认为令人反感），大概率是看到“把活体塞进耳朵”凭直觉脑补了不适感。但原文第 3 句写的是 <em>devices that technology enthusiasts dream of long before they become practically realisable</em>——科技迷梦寐以求（dream of），与 undesirable 正面冲突，A 当场出局。",
+            "chain": "问“作者提《银河系漫游指南》暗示什么”，看段首主旨句＋类比落点：第 1 句先立论 <em>The idea of artificial speech translation has been around for a long time</em>，接着用 1979 年的巴别鱼类比挂壁薄电视——曾经只敢想象、如今水到渠成。既然概念早已有之、人们期盼已久，真机出现自然“算不上意外的发展”（not a surprising development）→ C。",
+            "cites": [
+              {
+                "p": 3,
+                "b": [
+                  0,
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 30,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "你选 C（未来不再需要这类设备），是把第 4 句“如果翻译耳机足够普及，陌生人耳朵里本来就戴着自己的那只”扭曲成了“不需要耳机设备”。恰恰相反，前提是人人都戴着耳机（<em>already have their own in their ears</em>），省掉的只是“把一只耳机塞给陌生人共用”，设备本身仍在！",
+            "chain": "盯住第 2–3 句：Ochoa 说“与陌生人共用一只耳机会有心理障碍（barrier）”，作者紧跟一句评语：<em>That can't have been totally unexpected.</em>（双重否定：这绝不可能是完全出乎意料的 ＝ 这种抗拒完全在情理之中）。<em>barrier</em> 改写为 <em>reluctance</em>，<em>can't have been totally unexpected</em> 改写为 <em>understandable</em> → B。",
+            "cites": [
+              {
+                "p": 5,
+                "b": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "cites": []
+      },
+      {
+        "id": "matching",
+        "kind": "matching",
+        "title": "句子结尾匹配 31–34",
+        "from": 31,
+        "to": 34,
+        "diag": "本组 4/4 全对。这组之所以稳，是因为句尾配对强迫你既看转折/因果连词（but / because / and / as），又核对后半句谓语——把这个动作迁移到单选和判断，正确率立刻能拉起来。",
+        "items": [
+          {
+            "no": 31,
+            "label": "why-right",
+            "tag": "句尾匹配",
+            "diag": "<em>developing fast in Japan</em> 对位第 6 段首句 <em>really taken off in countries such as Japan</em>；紧接着第 2 句转折 <em>There is still a long way to go, though</em> 正对 C（but they are far from perfect）。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 6,
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 32,
+            "label": "why-right",
+            "tag": "句尾匹配",
+            "diag": "电视采访同声传译覆盖原声（<em>translator's voice speaking over...</em>）之所以作为理想范本提出，核心就在句首形容词 <em>simultaneous</em>（同步即时的），无需说几句停下来干等 → E（because translation is immediate）。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 6,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 33,
+            "label": "why-right",
+            "tag": "句尾匹配",
+            "diag": "第 7 段前两句：系统需要具备社会情境意识、以恰当方式称呼他人（<em>addressing people in the right way</em>），在讲究学术辈分的文化里遵循礼貌（<em>only polite to respect this</em>）→ F（and have an awareness of good manners）。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 34,
+            "label": "why-right",
+            "tag": "句尾匹配",
+            "diag": "<em>maintain their local customs</em> 对位第 7 段末句 <em>preserve local customs</em>；原因在于礼仪敏感型翻译器减缓了国际英语动辄直呼其名等标准习惯的蔓延 → B（as systems do not need to conform to standard practices）。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  3
+                ]
+              }
+            ]
+          }
+        ],
+        "cites": []
+      },
+      {
+        "id": "ynng",
+        "kind": "ynng",
+        "title": "判断题 35–40",
+        "from": 35,
+        "to": 40,
+        "diag": "错的三题（35、36、38）代表了 Y/N/NG 最典型的三种失误：35 把“人类语言技能升值”读反成“翻译软件很有用”；36 被破折号后的特例带偏、丢了主句的 <em>open to question</em>；38 看到“口型不同步像配音片”就脑补“科学家正在考虑视觉层面”。",
+        "items": [
+          {
+            "no": 35,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "你在第 8 段高亮了 <em>not outsource</em> 和 <em>add value / skills</em>，却选了 YES——因为你把第 2 句 <em>it will actually add value to language skills</em> 的宾语看串了！升值的是“人类自己掌握外语的技能”，而不是软件在学术与职业界大有用武之地。第 1 句已经把话说死：教授和专业人士<b>不会</b>把语言意识外包给软件（<em>will not outsource language awareness to software</em>），与题干 <em>very useful throughout the academic and professional worlds</em> 直接冲突 → NO。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 36,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "第 8 段第 3 句主干：<em>Whether it will help people conduct their family lives or relationships is open to question</em>——是否有助于家庭生活“尚存疑问/未有定论”（<em>open to question</em> ＝ <em>yet to be shown</em>），这已经 100% 锁定 YES！你之所以选 NO，是因为被破折号后面的让步举例（<em>though one noteworthy possibility is...</em> 缓解移民隔代语言障碍）喧宾夺主了。记住：某一个潜在特例 ≠ 整体价值（overall value）已被证实。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 37,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "同一句明确指出自动翻译有望帮移民家庭<em>克服</em>代际语言障碍（<em>overcome the language barriers</em>），与题干 <em>make life more difficult</em> 方向相反 → NO。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 38,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "你高亮了第 9 段第 2 句的 <em>a dubbed movie</em>（即便变声技术模拟了嗓音，唇部动作也对不上，看着像配音电影）。但请拆解题干命题：主语是 <em>Visual aspects</em>（有了），谓语是 <em>are being considered by scientists</em>（科学家正在研究/考虑视觉层面的问题）——全文哪一个词提到科学家正在研究解决口型同步？零！作者只是用它论证机器永远比不上真人。主语命中、谓语无中生有 → NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 9,
+                "b": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 39,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 9 段第 4 句只说当今国际科学家用英语作通用语、正如前辈用拉丁语，完全没比较哪种语言“更容易被翻译成其他语言” → NG。这题你守住了比较级边界。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 9,
+                "b": [
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "no": 40,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 9 段第 5 句：<em>Though the practical need for a common language will diminish, the social value of sharing one will persist.</em> 实用需求减弱而社交价值长存，说明二者截然不同 → YES。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 9,
+                "b": [
+                  4
+                ]
+              }
+            ]
+          }
+        ],
+        "cites": []
+      }
+    ],
+    "diagnoses": [
+      {
+        "n": "病灶 01",
+        "t": "语气算子盲区",
+        "p": "27 漏看过去虚拟（<em>If we had... would have</em>）与同语提示（<em>as we are</em>），30 漏看双重否定评价（<em>can't have been totally unexpected</em>）。你把注意力全放在名词上，忽略了翻转句意真值的语法算子。"
+      },
+      {
+        "n": "病灶 02",
+        "t": "长句提前截断",
+        "p": "28 题的高亮停在并列第三项之前；36 题被破折号后的特例覆盖了主句谓语 <em>is open to question</em>。遇到含三并列或主从让步的句子，必须在读完最后一个分句、分清主句和从句后再选。"
+      },
+      {
+        "n": "病灶 03",
+        "t": "主语即谓语幻觉",
+        "p": "38 题看到 <em>lip movements / dubbed movie</em>（视觉表现）就直接判 YES，没查谓语 <em>are being considered by scientists</em> 是否存在。与剑 18 T4 P3 的 28 题错法完全同构。"
+      }
+    ],
+    "actions": [
+      "<b>虚拟与双否强制打标</b>：读到 <em>If + had done / would have</em> 立刻在脑中标一个「反」字（现实没发生）；读到 <em>not / can't + un-/in-</em> 直接划掉两个否定号还原肯定意。",
+      "<b>并列结构必读末项</b>：凡见 <em>A, B, and C</em>，强迫目光扫完 <em>and</em> 后的 C——剑雅单选 80% 的同义改写藏在最后一个并列项里（如本题 28）。",
+      "<b>主句优先于破折号/让步</b>：句子带 <em>— though ...</em> 或 <em>Although ...</em> 时，评价整件事的总体态度永远以主句谓语（如 <em>is open to question</em>）为准，举例不能推翻总括。",
+      "<b>NG 谓语独立核验</b>：题干定位词（如视觉、拉丁语）在文中出现，只完成了一半；必须单独指认“谁对它做了题干说的那个动作”（如 <em>considered by scientists</em>），找不到动作一律判 NG。"
+    ],
+    "end": "句尾匹配 4/4 全对证明你根本不缺读懂这段英文的能力；单选 0/4 只是因为你用“扫关键词”的粗粒度动作去做了考“语气与修辞”的细粒度题。把虚拟、双否、并列末项三个开关拧紧，这类科技评论 P3 至少能稳在 11/14 以上。"
+  },
+  "guide": {
+    "kicker": "读懂 · 剑桥雅思 19 · Test 3 · Passage 3 · Is the era of artificial speech translation upon us?",
+    "title": "翻译机越接近成熟，「自己懂一门外语」反而越值钱",
+    "lede": "标题是个问句：<b>人工语音翻译的时代真的来了吗？</b>作者的回答既不是盲目吹捧，也不是唱衰技术，而是一刀切开两件事：<b>应付实用沟通（住店、听课、问路），技术正在逼近；但建立信任、学术深交与身份认同，软件永远是隔靴搔痒的“配音片”。</b>",
+    "thesis": "语音翻译设备正从科幻走向实用，但仍受制于物理噪音、社交抗拒、同步离线与礼仪差异；即便未来技术无缝普及，它也只会消解学习外语的“工具性刚需”，反而凸显共享同一门语言的“社会与情感价值”。",
+    "structureTitle": "9 段分三幕：现实冷水 → 瓶颈清单 → 价值反转",
+    "band": [
+      {
+        "n": 1,
+        "f": "跨国通话冷水",
+        "s": "t"
+      },
+      {
+        "n": 2,
+        "f": "受控课堂特例",
+        "s": "g"
+      },
+      {
+        "n": 3,
+        "f": "科幻巴别鱼",
+        "s": "g"
+      },
+      {
+        "n": 4,
+        "f": "尝鲜玩具阶段",
+        "s": "t"
+      },
+      {
+        "n": 5,
+        "f": "共用耳机尴尬",
+        "s": "a"
+      },
+      {
+        "n": 6,
+        "f": "同传与离线关",
+        "s": "a"
+      },
+      {
+        "n": 7,
+        "f": "文化礼仪意识",
+        "s": "g"
+      },
+      {
+        "n": 8,
+        "f": "专业与家庭界限",
+        "s": "t"
+      },
+      {
+        "n": 9,
+        "f": "配音片与终局",
+        "s": "t"
+      }
+    ],
+    "legend": [
+      {
+        "s": "t",
+        "text": "作者核心判断与价值拆解（4 段）"
+      },
+      {
+        "s": "a",
+        "text": "技术与社交落地的现实障碍（2 段）"
+      },
+      {
+        "s": "g",
+        "text": "背景演进与局部应用现状（3 段）"
+      }
+    ],
+    "argument": {
+      "negativeTitle": "技术乐观派以为的「无障碍未来」",
+      "negative": [
+        {
+          "t": "巴别鱼幻象　",
+          "p": "（第 3 段）像《银河系漫游指南》那样往耳朵里塞个小装置，就能听懂全宇宙任何语言，打造“语言透明社会”。"
+        },
+        {
+          "t": "已有局部落地　",
+          "p": "（第 2、4、6 段）大学德语课实时英文字幕、酒店入住替代旅行英语、日本市场多款语音翻译系统起飞。"
+        }
+      ],
+      "positiveTitle": "作者层层剥开的「四道门槛与终局边界」",
+      "positive": [
+        {
+          "t": "第一道 · 物理与硬件　",
+          "p": "（第 1、6 段）京都车站的背景噪音连同语通话都听不清；还必须做到如电视同传般零停顿，且能离线运行以防云端隐私堆积。"
+        },
+        {
+          "t": "第二道 · 社交与礼仪　",
+          "p": "（第 5、7 段）没人愿意把入耳式耳机摘下来塞给陌生人；系统还得懂各国学术尊称与礼仪，而非一律套用美式直呼其名。"
+        },
+        {
+          "t": "第三道 · 职业与亲情　",
+          "p": "（第 8 段）教授与专业人士绝不会把语言分寸外包给软件；家庭关系中除了移民隔代沟通外，整体价值仍存疑。"
+        },
+        {
+          "t": "第四道 · 配音片效应　",
+          "p": "（第 9 段）就算克隆了本人音色，口型依旧对不上，面对面像看配音电影——实用需求越少，共同语言带来的归属感越珍贵。"
+        }
+      ],
+      "punch": "技术的终点不是消灭外语学习，而是把人从“生存英语”里解放出来，让真正掌握一门语言成为<b>高阶社交与深度理解的稀缺资产</b>。"
+    },
+    "rows": [
+      {
+        "n": 1,
+        "w": "作者",
+        "s": "t",
+        "d": "用京都站跨国电话开场：背景噪音＋渣音质让两个同样讲英语的人都听得费劲，直接给“未来已来”泼下第一盆冷水。"
+      },
+      {
+        "n": 2,
+        "w": "现状",
+        "s": "g",
+        "d": "举卡尔斯鲁厄理工学院的成功特例：德语授课实时转英文字幕——但前提是老师吐字清、无杂音、每年讲的内容高度重复。"
+      },
+      {
+        "n": 3,
+        "w": "背景",
+        "s": "g",
+        "d": "回溯 1979 年《银河系漫游指南》里的“巴别鱼”：如同挂壁电视一样，人工语音翻译是科技迷期盼已久的旧梦初醒。"
+      },
+      {
+        "n": 4,
+        "w": "作者",
+        "s": "t",
+        "d": "定性当前产品：只是吸睛的新奇玩具或酒店入住级别的“旅行英语替代品”；面对缺乏耐心的职场专业人士，厂商才刚准备升级。"
+      },
+      {
+        "n": 5,
+        "w": "阻碍",
+        "s": "a",
+        "d": "硬件推广的尴尬死结：陌生人不愿共用入耳式耳机；除非语音设备整体普及到人人耳中自带一只，否则难以破局。"
+      },
+      {
+        "n": 6,
+        "w": "阻碍",
+        "s": "a",
+        "d": "以日本为例肯定进展后立刻转折：真正可用必须做到像电视同传一样即时不打断，且支持离线运行、消除云端语音隐私顾虑。"
+      },
+      {
+        "n": 7,
+        "w": "现状",
+        "s": "g",
+        "d": "从物理挑战升级到文化挑战：翻译器必须懂尊卑礼仪，这反倒可能保护地方习俗、减缓国际英语“自来熟直呼其名”的同质化冲击。"
+      },
+      {
+        "n": 8,
+        "w": "作者",
+        "s": "t",
+        "d": "划清能力上限：专业学者绝不把语言感知外包给软件，技术成熟反而让人类语言能力升值；对家庭生活价值未定，唯独可能帮到移民隔代沟通。"
+      },
+      {
+        "n": 9,
+        "w": "作者",
+        "s": "t",
+        "d": "终极判断：模拟音色也救不了口型错位的“配音片感”；如同科学界从拉丁语到英语的通用语传统，工具性需求会降，共同体归属感永存。"
+      }
+    ],
+    "terms": [
+      {
+        "k": "Babel fish",
+        "en": "巴别鱼（科幻原型）",
+        "d": "出自《银河系漫游指南》，放入耳中即可听懂宇宙万语。文中用来说明实时语音翻译并非突发奇想，而是科技界酝酿数十年的老梦想。"
+      },
+      {
+        "k": "language-transparent society",
+        "en": "语言透明社会",
+        "d": "Waibel 提出的远景概念，指不同母语者完全无感切换交流的社会。作者认为目前的耳机产品离这一步还差得远，仅算新奇玩具。"
+      },
+      {
+        "k": "lingua franca",
+        "en": "通用语 / 共同交际语",
+        "d": "母语不同的人群共同使用的桥梁语言（古代欧洲学界用拉丁语，当代国际科学界用英语），承载的不仅是信息交换，更是圈层认同感。"
+      }
+    ],
+    "echo": {
+      "neg": "我们还没有抵达“未来”。如果真的到了那一步，魏贝尔就能在嘈杂的京都车站<b>更自在地用母语德语交流</b>，而我也能在万里之外用英语清晰听到他的话。",
+      "pos": "即便变声技术能模拟说话者的嗓音，<b>他们的唇部动作也不会同步，看起来就像置身一部配音电影</b>……软件永远无法替代掌握一门语言所带来的细微却致命的理解力。",
+      "note": "开头第 1 段用一场狼狈的电话证明“今天技术还不够好”，结尾第 9 段则把时间推到“哪怕技术彻底成熟的那一天”——就算第 1 段的噪音问题解决了，面对面的配音片割裂感依然在。首尾两道防线锁死了全文立场。"
+    },
+    "why": [
+      {
+        "t": "第 1 段：虚拟语气紧贴在事实句后面",
+        "p": "第 4 句刚用插入语 <em>as we are</em> 点明两人都在说英语，第 6 句立刻用 <em>If we had, Waibel would have...</em> 描绘德译英场景。扫读时极易把虚拟场景记成刚才发生的事实（27 题错根）。"
+      },
+      {
+        "t": "第 5 段：冷幽默式的双重否定评语",
+        "p": "引完 CEO 的话后，作者只甩了一句短短的 <em>That can't have been totally unexpected.</em> 这种英式冷幽默在快读时最容易滑过去，但它恰恰是第 30 题唯一考的作者态度。"
+      },
+      {
+        "t": "第 8 段：代词 it 与宾语 language skills 的反直觉关系",
+        "p": "常识会顺着想“AI 翻译成熟 → 学外语没用了”，但作者偏偏反着写：<em>it will actually add value to language skills</em>。带着常识预期去读，一眼就会把第 35 题判反。"
+      }
+    ],
+    "side": "<b>结合你最近三篇 P3 的对比看：</b><br>你在信息直给的说明文（如剑 18 T2 P3《理想城市》）能拿 11/14，一到这种带冷幽默、虚拟假设和辩证立场的英媒评论就掉到 7/14。接下来精读这类文章时，不要只划名词，专门拿一支笔圈出<b>态度副词与反事实结构（though / actually / even if / can't have been）</b>，一圈一个准。",
+    "end": "这篇 9 段回答了两个问题：前半篇问“技术离好用还差哪几口气”（抗噪、免共享、真同传、离线隐私、懂礼貌），后半篇问“技术真好用了人类还学不学外语”。把这两半拼起来，整篇文章的逻辑骨架就清清楚楚。"
+  }
+}

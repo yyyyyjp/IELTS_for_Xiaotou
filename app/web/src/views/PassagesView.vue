@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { api } from '../api'
 import { t } from '../i18n'
 import type { PackSummary } from '../types'
 import { fmtShort, pct } from '../utils/format'
+import AppButton from '../components/AppButton.vue'
 import Card from '../components/Card.vue'
 import Icon from '../components/Icon.vue'
 import PageHeader from '../components/PageHeader.vue'
+import ReviewImportModal from '../components/ReviewImportModal.vue'
 
+const router = useRouter()
 const loading = ref(true)
 const failed = ref(false)
 const packs = ref<PackSummary[]>([])
+const importOpen = ref(false)
 
 const ordered = computed(() =>
   [...packs.value]
@@ -64,12 +68,24 @@ async function load(): Promise<void> {
   }
 }
 
+function onImported(packId: string): void {
+  importOpen.value = false
+  router.push(`/read/${packId}`)
+}
+
 onMounted(load)
 </script>
 
 <template>
   <div class="page">
-    <PageHeader :eyebrow="t('read.count', { n: ordered.length })" :title="t('nav.read')" />
+    <PageHeader :eyebrow="t('read.count', { n: ordered.length })" :title="t('nav.read')">
+      <template #actions>
+        <AppButton variant="outline" size="sm" @click="importOpen = true">
+          <Icon name="upload" :size="14" />
+          {{ t('import.button') }}
+        </AppButton>
+      </template>
+    </PageHeader>
 
     <div v-if="loading" class="state">{{ t('common.loading') }}</div>
     <div v-else-if="failed" class="state">
@@ -110,6 +126,14 @@ onMounted(load)
 
       <div v-if="ordered.length === 0" class="empty">{{ t('read.empty') }}</div>
     </Card>
+
+    <ReviewImportModal
+      :open="importOpen"
+      initial-mode="export"
+      :packs="packs"
+      @close="importOpen = false"
+      @imported="onImported"
+    />
   </div>
 </template>
 

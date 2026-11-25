@@ -59,7 +59,7 @@ export function stopAudio(): void {
 export async function playUrl(url: string, fallbackText = ''): Promise<void> {
   const id = ++seq
   stopCurrent()
-  if (!url) {
+  if (!url || (!navigator.onLine && fallbackText)) {
     speak(fallbackText)
     return
   }

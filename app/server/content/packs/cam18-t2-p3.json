@@ -1,0 +1,918 @@
+{
+  "schemaVersion": 2,
+  "id": "cam18-t2-p3",
+  "kind": "reading",
+  "origin": "builtin",
+  "meta": {
+    "book": "剑桥雅思 18",
+    "test": "Test 2",
+    "passage": "Passage 3",
+    "title": "An ideal city",
+    "durationSec": 1573,
+    "score": "11 / 14",
+    "source": "idictation"
+  },
+  "attempt": {
+    "source": "idictation",
+    "submittedAt": "2026-11-23T13:54:26.000000Z",
+    "durationSec": 1573,
+    "score": 11,
+    "total": 14,
+    "answered": 14,
+    "blank": 0,
+    "wrong": 3,
+    "accuracy": 0.7857,
+    "byType": [
+      {
+        "label": "判断题(T/F/NG)",
+        "correct": 6,
+        "total": 7,
+        "accuracy": 0.8571
+      },
+      {
+        "label": "摘要填空",
+        "correct": 5,
+        "total": 7,
+        "accuracy": 0.7143
+      }
+    ]
+  },
+  "paragraphs": [
+    {
+      "no": 1,
+      "sentences": [
+        {
+          "id": "p1s1",
+          "en": "Leonardo da Vinci's ideal city was centuries ahead of its time",
+          "zh": "列奥纳多·达·芬奇的理想城市构想，比他所处的时代超前了数百年。"
+        },
+        {
+          "id": "p1s2",
+          "en": "The word 'genius' is universally associated with the name of Leonardo da Vinci.",
+          "zh": "“天才”一词在全球范围内都与列奥纳多·达·芬奇的名字紧密相连。"
+        },
+        {
+          "id": "p1s3",
+          "en": "A true Renaissance man, he embodied scientific spirit, artistic talent and humanist sensibilities.",
+          "zh": "作为一位名副其实的文艺复兴式全才，他兼具科学精神、艺术天赋与人文主义情怀。"
+        },
+        {
+          "id": "p1s4",
+          "en": "Five hundred years have passed since Leonardo died in his home at Château du Clos Lucé, outside Tours, France.",
+          "zh": "自列奥纳多在法国图尔市郊的克洛吕塞城堡（Château du Clos Lucé）住所去世以来，已过去五百年。"
+        },
+        {
+          "id": "p1s5",
+          "en": "Yet far from fading into insignificance, his thinking has carried down the centuries and still surprises today.",
+          "zh": "然而，他的思想非但没有湮没无闻，反而历经数百年流传至今，至今仍令人惊叹。"
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "sentences": [
+        {
+          "id": "p2s1",
+          "en": "The Renaissance marked the transition from the 15th century to modernity and took place after the spread of the plague in the 14th century, which caused a global crisis resulting in some 200 million deaths across Europe and Asia.",
+          "zh": "文艺复兴标志着从15世纪迈向现代性的过渡，它发生在14世纪瘟疫蔓延之后；那场瘟疫引发了全球性危机，导致欧洲和亚洲约两亿人死亡。"
+        },
+        {
+          "id": "p2s2",
+          "en": "Today, the world is on the cusp of a climate crisis, which is predicted to cause widespread displacement, extinctions and death, if left unaddressed.",
+          "zh": "如今，世界正处在气候危机的临界点；据预测，若不加以应对，这场危机将造成大规模流离失所、物种灭绝以及死亡。"
+        },
+        {
+          "id": "p2s3",
+          "en": "Then, as now, radical solutions were called for to revolutionise the way people lived and safeguard humanity against catastrophe.",
+          "zh": "当时如同现在，人们都迫切需要激进的解决方案，以彻底革新人们的生活方式，并保护人类免遭灾难。"
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "sentences": [
+        {
+          "id": "p3s1",
+          "en": "Around 1486 – after a pestilence that killed half the population in Milan, Italy – Leonardo turned his thoughts to urban planning problems.",
+          "zh": "大约在1486年前后——在一场瘟疫夺去意大利米兰一半人口之后——莱奥纳多开始把思考转向城市规划问题。"
+        },
+        {
+          "id": "p3s2",
+          "en": "Following a typical Renaissance trend, he began to work on an 'ideal city' project, which – due to its excessive costs – would remain unfulfilled.",
+          "zh": "顺应文艺复兴时期的典型潮流，他着手开展一个“理想城市”项目，但由于成本过于高昂，这一设想最终未能实现。"
+        },
+        {
+          "id": "p3s3",
+          "en": "Yet given that unsustainable urban models are a key cause of global climate change today, it's only natural to wonder how Leonardo might have changed the shape of modern cities.",
+          "zh": "然而，鉴于当今不可持续的城市模式是全球气候变化的关键诱因之一，人们自然会好奇：如果由莱奥纳多来规划，他或许会如何改变现代城市的面貌。"
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "sentences": [
+        {
+          "id": "p4s1",
+          "en": "Although the Renaissance is renowned as an era of incredible progress in art and architecture, it is rarely noted that the 15th century also marked the birth of urbanism as a true academic discipline.",
+          "zh": "尽管文艺复兴以艺术与建筑取得惊人进步的时代而闻名，但人们很少注意到，15世纪也标志着城市规划学作为一门真正的学术学科的诞生。"
+        },
+        {
+          "id": "p4s2",
+          "en": "The rigour and method behind the conscious conception of a city had been largely missing in Western thought until the moment when prominent Renaissance men pushed forward large-scale urban projects in Italy, such as the reconfiguration of the town of Pienza and the expansion of the city of Ferrara.",
+          "zh": "在西方思想中，围绕有意识地构想一座城市所需的严谨性与方法论长期以来几乎缺失，直到一些杰出的文艺复兴人物在意大利推动了大规模城市项目，例如对皮恩扎小镇的重新规划以及对费拉拉城的扩建。"
+        },
+        {
+          "id": "p4s3",
+          "en": "These works surely inspired Leonardo's decision to rethink the design of medieval cities, with their winding and overcrowded streets and with houses piled against one another.",
+          "zh": "这些工程无疑促使达·芬奇决定重新思考中世纪城市的设计——那些城市街道蜿蜒狭窄、人群拥挤，房屋彼此紧贴、层层堆叠。"
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "sentences": [
+        {
+          "id": "p5s1",
+          "en": "It is not easy to identify a coordinated vision of Leonardo's ideal city because of his disordered way of working with notes and sketches.",
+          "zh": "由于达·芬奇记录笔记和绘制草图的工作方式杂乱无章，要梳理出他“理想城市”的统一构想并不容易。"
+        },
+        {
+          "id": "p5s2",
+          "en": "But from the largest collection of Leonardo's papers ever assembled, a series of innovative thoughts can be reconstructed regarding the foundation of a new city along the Ticino River, which runs from Switzerland into Italy and is 248 kilometres long.",
+          "zh": "不过，依据迄今为止汇集规模最大的达·芬奇手稿，人们仍可复原出一系列富有创新性的设想：在提契诺河沿岸建立一座新城；该河自瑞士流入意大利，全长248公里。"
+        },
+        {
+          "id": "p5s3",
+          "en": "He designed the city for the easy transport of goods and clean urban spaces, and he wanted a comfortable and spacious city, with well-ordered streets and architecture.",
+          "zh": "他把这座城市设计成便于货物运输且拥有洁净的城市空间，并希望它舒适而宽敞，街道与建筑布局井然有序。"
+        },
+        {
+          "id": "p5s4",
+          "en": "He recommended 'high, strong walls', with 'towers and battlements of all necessary and pleasant beauty'.",
+          "zh": "他还建议修建“高大而坚固的城墙”，并配以“具备一切必要功能且赏心悦目的塔楼与城垛”。"
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "sentences": [
+        {
+          "id": "p6s1",
+          "en": "His plans for a modern and 'rational' city were consistent with Renaissance ideals.",
+          "zh": "他关于一座现代而“理性”的城市的规划，与文艺复兴时期的理想相一致。"
+        },
+        {
+          "id": "p6s2",
+          "en": "But, in keeping with his personality, Leonardo included several innovations in his urban design.",
+          "zh": "不过，为了契合他一贯的个性，达·芬奇在城市设计中加入了若干创新之举。"
+        },
+        {
+          "id": "p6s3",
+          "en": "Leonardo wanted the city to be built on several levels, linked with vertical outdoor staircases.",
+          "zh": "达·芬奇希望这座城市分层建造，并通过垂直的室外楼梯连接各层。"
+        },
+        {
+          "id": "p6s4",
+          "en": "This design can be seen in some of today's high-rise buildings but was unconventional at the time.",
+          "zh": "这种设计如今在一些高层建筑中仍可见到，但在当时却并不符合惯例。"
+        },
+        {
+          "id": "p6s5",
+          "en": "Indeed, this idea of taking full advantage of the interior spaces wasn't implemented until the 1920s and 1930s, with the birth of the Modernist movement.",
+          "zh": "事实上，直到20世纪20年代和30年代，随着现代主义运动的兴起，这种充分利用内部空间的理念才得以付诸实践。"
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "sentences": [
+        {
+          "id": "p7s1",
+          "en": "While in the upper layers of the city, people could walk undisturbed between elegant palaces and streets, the lower layer was the place for services, trade, transport and industry.",
+          "zh": "在城市的上层，人们可以在雅致的宫殿与街道之间不受干扰地行走；而下层则用于公共服务、商业、运输与工业活动。"
+        },
+        {
+          "id": "p7s2",
+          "en": "But the true originality of Leonardo's vision was its fusion of architecture and engineering.",
+          "zh": "然而，列奥纳多设想真正的独创之处，在于他将建筑与工程融为一体。"
+        },
+        {
+          "id": "p7s3",
+          "en": "Leonardo designed extensive hydraulic plants to create artificial canals throughout the city.",
+          "zh": "列奥纳多设计了规模庞大的水利设施，以在全城开凿人工运河。"
+        },
+        {
+          "id": "p7s4",
+          "en": "The canals, regulated by clocks and basins, were supposed to make it easier for boats to navigate inland.",
+          "zh": "这些运河通过计时装置和蓄水池进行调控，旨在让船只更便捷地驶入内陆。"
+        },
+        {
+          "id": "p7s5",
+          "en": "Leonardo also thought that the width of the streets ought to match the average height of the adjacent houses: a rule still followed in many contemporary cities across Italy, to allow access to sun and reduce the risk of damage from earthquakes.",
+          "zh": "列奥纳多还认为，道路的宽度应与两侧相邻房屋的平均高度相匹配：这一准则在当今意大利许多城市仍被沿用，以保证日照进入并降低地震造成损害的风险。"
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "sentences": [
+        {
+          "id": "p8s1",
+          "en": "Although some of these features existed in Roman cities, before Leonardo's drawings there had never been a multi-level, compact modern city which was thoroughly technically conceived.",
+          "zh": "尽管其中一些特征在罗马城市中曾经出现过，但在达·芬奇的图纸问世之前，从未有过一座在技术层面被彻底、系统构想的多层级、紧凑型现代城市。"
+        },
+        {
+          "id": "p8s2",
+          "en": "Indeed, it wasn't until the 19th century that some of his ideas were applied.",
+          "zh": "事实上，直到19世纪，他的一些设想才得以付诸实践。"
+        },
+        {
+          "id": "p8s3",
+          "en": "For example, the subdivision of the city by function – with services and infrastructures located in the lower levels and wide and well-ventilated boulevards and walkways above for residents – is an idea that can be found in Georges-Eugène Haussmann's renovation of Paris under Emperor Napoleon III between 1853 and 1870.",
+          "zh": "例如，按功能对城市进行分区——将服务设施与基础建设布置在较低层，而在上方为居民设置宽阔、通风良好的林荫大道与步行通道——这一理念就可以在1853年至1870年拿破仑三世统治时期，乔治-欧仁·奥斯曼对巴黎的改造中找到。"
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "sentences": [
+        {
+          "id": "p9s1",
+          "en": "Today, Leonardo's ideas are not simply valid, they actually suggest a way forward for urban planning.",
+          "zh": "如今，达·芬奇的理念不仅依然适用，实际上还为城市规划指出了一条前进的方向。"
+        },
+        {
+          "id": "p9s2",
+          "en": "Many scholars think that the compact city, built upwards instead of outwards, integrated with nature (especially water systems), with efficient transport infrastructure, could help modern cities become more efficient and sustainable.",
+          "zh": "许多学者认为，紧凑型城市若选择向上而非向外扩张，并与自然（尤其是水系统）相融合，同时配备高效的交通基础设施，就可能帮助现代城市变得更高效、更可持续。"
+        },
+        {
+          "id": "p9s3",
+          "en": "This is yet another reason why Leonardo was aligned so closely with modern urban planning and centuries ahead of his time.",
+          "zh": "这也进一步说明，达·芬奇与现代城市规划在理念上高度契合，并且远远走在他所处时代之前，领先了数个世纪。"
+        }
+      ]
+    }
+  ],
+  "questionGroups": [
+    {
+      "id": "reading:6:15",
+      "type": "tfng",
+      "from": 27,
+      "to": 33,
+      "instruction": "Questions 27–33 Do the following statements agree with the information given in Reading Passage 3? In boxes 27-33 on your answer sheet, write TRUE if the statement agrees with the information FALSE if the statement contradicts the information NOT GIVEN if there is no information on this",
+      "items": [
+        {
+          "no": 27,
+          "stem": "People first referred to Leonardo da Vinci as a genius 500 years ago.",
+          "answer": "NG",
+          "mine": "NG",
+          "correct": true
+        },
+        {
+          "no": 28,
+          "stem": "The current climate crisis is predicted to cause more deaths than the plague.",
+          "answer": "NG",
+          "mine": "NG",
+          "correct": true
+        },
+        {
+          "no": 29,
+          "stem": "Some of the challenges we face today can be compared to those of earlier times.",
+          "answer": "T",
+          "mine": "T",
+          "correct": true
+        },
+        {
+          "no": 30,
+          "stem": "Leonardo da Vinci's 'ideal city' was constructed in the 15th century.",
+          "answer": "F",
+          "mine": "F",
+          "correct": true
+        },
+        {
+          "no": 31,
+          "stem": "Poor town planning is a major contributor to climate change.",
+          "answer": "T",
+          "mine": "NG",
+          "correct": false
+        },
+        {
+          "no": 32,
+          "stem": "In Renaissance times, local people fought against the changes to Pienza and Ferrara.",
+          "answer": "NG",
+          "mine": "NG",
+          "correct": true
+        },
+        {
+          "no": 33,
+          "stem": "Leonardo da Vinci kept a neat, organised record of his designs.",
+          "answer": "F",
+          "mine": "F",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "reading:6:16",
+      "type": "summary",
+      "from": 34,
+      "to": 40,
+      "instruction": "Questions 34–40 Complete the summary below. Choose ONE WORD ONLY from the passage for each answer.",
+      "title": "Leonardo da Vinci's ideal city",
+      "text": "A collection of Leonardo da Vinci's paperwork reveals his design of a new city beside the Ticino River. This was to provide better {{34}} for trade and a less polluted environment. Although Leonardo da Vinci's city shared many of the ideals of his time, some of his innovations were considered unconventional in their design. They included features that can be seen in some tower blocks today, such as {{35}} on the exterior of a building. Leonardo da Vinci wasn't only an architect. His expertise in {{36}} was evident in his plans for artificial canals within his ideal city. He also believed that the height of houses should relate to the width of streets in case earthquakes occurred. The design of many cities in Italy today follows this {{37}}. While some cities from {{38}} times have aspects that can also be found in Leonardo's designs, his ideas weren't put into practice until long after his death. {{39}} is one example of a city that was redesigned in the 19th century in the way that Leonardo had envisaged. His ideas are also relevant to today's world, where building {{40}} no longer seems to be the best approach.",
+      "items": [
+        {
+          "no": 34,
+          "answer": "transport",
+          "mine": "transport",
+          "correct": true
+        },
+        {
+          "no": 35,
+          "answer": "staircases",
+          "mine": "staircases",
+          "correct": true
+        },
+        {
+          "no": 36,
+          "answer": "engineering",
+          "mine": "engineering",
+          "correct": true
+        },
+        {
+          "no": 37,
+          "answer": "rule",
+          "mine": "rule",
+          "correct": true
+        },
+        {
+          "no": 38,
+          "answer": "Roman",
+          "mine": "19th",
+          "correct": false
+        },
+        {
+          "no": 39,
+          "answer": "Paris",
+          "mine": "Subdivision",
+          "correct": false
+        },
+        {
+          "no": 40,
+          "answer": "outwards",
+          "mine": "outwards",
+          "correct": true
+        }
+      ]
+    }
+  ],
+  "lexicon": {
+    "embody": "v. 体现；集……于一身",
+    "sensibility": "n. 敏锐度；人文情怀",
+    "insignificance": "n. 微不足道；湮没无闻",
+    "plague": "n. 瘟疫；黑死病",
+    "cusp": "n. 临界点；交界处（on the cusp of）",
+    "displacement": "n. 流离失所；被迫迁徙",
+    "unaddressed": "adj. 未加应对的；未解决的",
+    "radical": "adj. 激进的；根本性的",
+    "safeguard": "v. 保护；捍卫",
+    "catastrophe": "n. 大灾难；浩劫",
+    "pestilence": "n. 瘟疫；疫病",
+    "excessive": "adj. 过高的；过度的",
+    "unfulfilled": "adj. 未实现的；未落地的",
+    "unsustainable": "adj. 不可持续的",
+    "renowned": "adj. 著名的；享有盛誉的",
+    "urbanism": "n. 城市规划学；城市主义",
+    "rigour": "n. 严谨性；严密",
+    "conception": "n. 构想；构思",
+    "prominent": "adj. 杰出的；显赫的",
+    "reconfiguration": "n. 重新规划；重构布局",
+    "medieval": "adj. 中世纪的",
+    "winding": "adj. 蜿蜒曲折的",
+    "overcrowded": "adj. 过度拥挤的",
+    "coordinated": "adj. 协调统一的",
+    "disordered": "adj. 杂乱无章的",
+    "reconstruct": "v. 复原；重建",
+    "battlement": "n. 城垛；雉堞",
+    "rational": "adj. 理性的；合理的",
+    "unconventional": "adj. 打破常规的；非传统的",
+    "implement": "v. 实施；付诸实践",
+    "undisturbed": "adj. 不受干扰的",
+    "fusion": "n. 融合；结合",
+    "hydraulic": "adj. 水力的；水利的",
+    "regulate": "v. 调控；调节",
+    "basin": "n. 蓄水池；水盆；流域",
+    "navigate": "v. 航行；通航",
+    "adjacent": "adj. 毗邻的；邻近的",
+    "compact": "adj. 紧凑的；集约的",
+    "conceive": "v. 构想；设计",
+    "subdivision": "n. 细分；功能分区",
+    "ventilated": "adj. 通风的",
+    "boulevard": "n. 林荫大道",
+    "renovation": "n. 翻新改造；重建",
+    "envisage": "v. 设想；展望",
+    "align": "v. 契合；保持一致"
+  },
+  "review": {
+    "kicker": "复盘 · 剑桥雅思 18 · Test 2 · Passage 3",
+    "title": "11/14 高分收官：仅剩的 3 分全丢在「预设从句」与「槽位验算」",
+    "lede": "这篇用时 26 分 13 秒、11/14（79%），是你近期节奏最稳、性价比最高的一篇 P3——尤其 27、28、32 三道极易脑补错的 NG 题全部精准拿下！仅有的 3 道错题（31、38、39）暴露的不是理解障碍，而是两个纯技术细节：<b>一是漏读了藏在 <em>given that</em> 预设从句里的同义改写（31），二是原词填空填完后没做“语法搭配＋语义类别”验算（38 填出 <em>from 19th times</em>、39 把概念名词 <em>Subdivision</em> 当成城市名 <em>a city</em>）。</b>",
+    "stats": [
+      [
+        "11 / 14",
+        "得分",
+        0
+      ],
+      [
+        "26:13",
+        "用时",
+        0
+      ],
+      [
+        "6 / 7",
+        "判断题",
+        0
+      ],
+      [
+        "5 / 7",
+        "摘要填空",
+        1
+      ]
+    ],
+    "bars": [
+      [
+        "判断 27–33",
+        86,
+        "6/7"
+      ],
+      [
+        "摘要 34–40",
+        71,
+        "5/7"
+      ]
+    ],
+    "sections": [
+      {
+        "id": "tfng",
+        "kind": "tfng",
+        "title": "判断题 27–33",
+        "from": 27,
+        "to": 33,
+        "diag": "7 对 6，边界感极佳（27 的 first、28 的死亡人数比较、32 的民众反抗全部稳稳识破为 NG）。唯一失手的 31 题，是因为核心命题被作者塞进了句首的 <em>given that</em> 状语从句里。",
+        "items": [
+          {
+            "no": 27,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 1 段只说“天才”一词普遍与达·芬奇相连、以及他去世已满 500 年，从未交代人们是不是在“500 年前<b>首次（first）</b>”称他为天才 → NG。抓限定词 <em>first</em> 非常准。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 1,
+                "b": [
+                  1,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "no": 28,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 2 段分别提到了 14 世纪黑死病致死约 2 亿人、当代气候危机若放任也会导致死亡，但全文从未比较两者“谁造成的死亡人数更多（<em>more deaths than</em>）” → NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 2,
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 29,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 2 段末句 <em>Then, as now, radical solutions were called for...</em>（当时如同现在，都呼唤激进变革以抵御灾难），明确将今日挑战与早期危机并置类比 → TRUE。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 2,
+                "b": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 30,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 3 段第 2 句写明他的“理想城市”项目因造价过高而<b>未能实现（remain unfulfilled）</b>，与题干“在 15 世纪建成（was constructed）”正面冲突 → FALSE。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 3,
+                "b": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 31,
+            "label": "why-wrong",
+            "tag": "判断题",
+            "diag": "从高亮记录看，你在第 3 段划了上一句的 <em>unfulfilled</em> 和本句后半截的 <em>natural</em>，眼睛直接跨过了句首的预设状语从句：<em>Yet given that unsustainable urban models are a key cause of global climate change today...</em>！三组词严丝合缝一一对应：<em>unsustainable urban models</em> ＝ <em>Poor town planning</em>，<em>are a key cause of</em> ＝ <em>is a major contributor to</em>，<em>global climate change</em> ＝ <em>climate change</em> → TRUE。英语里的 <em>given that X</em>（鉴于 X 这一既定事实）是比普通陈述更强的作者肯定！",
+            "chain": "",
+            "cites": [
+              {
+                "p": 3,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 32,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 4 段第 2 句只提文艺复兴名流推动了皮恩扎改造与费拉拉扩建，至于“当地民众是否抵制抗议（<em>local people fought against</em>）”只字未提 → NG。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 4,
+                "b": [
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 33,
+            "label": "why-right",
+            "tag": "判断题",
+            "diag": "第 5 段首句 <em>his disordered way of working with notes and sketches</em>（笔记草图杂乱无章）直接反驳题干 <em>neat, organised record</em> → FALSE。",
+            "chain": "",
+            "cites": [
+              {
+                "p": 5,
+                "b": [
+                  0
+                ]
+              }
+            ]
+          }
+        ],
+        "cites": []
+      },
+      {
+        "id": "summary",
+        "kind": "summary",
+        "title": "摘要填空 34–40",
+        "from": 34,
+        "to": 40,
+        "items": [],
+        "rows": [
+          {
+            "no": 34,
+            "minePhrase": "transport",
+            "corPhrase": "transport",
+            "src": "He designed the city for the easy transport of goods and clean urban spaces",
+            "diag": "<em>goods</em> 对应 <em>trade</em>，<em>clean urban spaces</em> 对应 <em>less polluted environment</em>，精准取出原词 transport。",
+            "cites": [
+              {
+                "p": 5,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 35,
+            "minePhrase": "staircases",
+            "corPhrase": "staircases",
+            "src": "linked with vertical outdoor staircases ... seen in some of today's high-rise buildings",
+            "diag": "<em>today's high-rise buildings</em> 对应 <em>tower blocks today</em>，<em>outdoor</em> 对应 <em>on the exterior of a building</em>，精准锁死 staircases。",
+            "cites": [
+              {
+                "p": 6,
+                "b": [
+                  2,
+                  3
+                ]
+              }
+            ]
+          },
+          {
+            "no": 36,
+            "minePhrase": "engineering",
+            "corPhrase": "engineering",
+            "src": "its fusion of architecture and engineering. Leonardo designed extensive hydraulic plants to create artificial canals",
+            "diag": "题干说“他不仅是建筑师（architect）”，并列搭档词正是 engineering，后句紧跟人工运河佐证。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  1,
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 37,
+            "minePhrase": "rule",
+            "corPhrase": "rule",
+            "src": "a rule still followed in many contemporary cities across Italy",
+            "diag": "指示代词 <em>this ___</em> 回指前一句“街宽匹配房高”的准则，原文冒号后直接给出同位概括词 rule。",
+            "cites": [
+              {
+                "p": 7,
+                "b": [
+                  4
+                ]
+              }
+            ]
+          },
+          {
+            "no": 38,
+            "minePhrase": "19th",
+            "corPhrase": "Roman",
+            "src": "Although some of these features existed in Roman cities ... it wasn't until the 19th century that some of his ideas were applied.",
+            "diag": "你在第 8 段连划了两次 <em>19th</em>，把主句时间填进了让步从句！两秒钟就能验出 <em>19th</em> 必错：① 语法不通：英语只说 <em>the 19th century</em>，绝不说 <em>from 19th times</em>（而 <em>from Roman times</em> 完美成立）；② 时序倒置：题干后半句 <em>weren't put into practice until long after his death</em> 已经对应了第 2 句的 <em>until the 19th century</em>，那前半句 <em>While some cities from ___ times</em> 只能对应第 1 句的 <em>Although ... existed in Roman cities</em> → Roman！",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  0,
+                  1
+                ]
+              }
+            ]
+          },
+          {
+            "no": 39,
+            "minePhrase": "Subdivision",
+            "corPhrase": "Paris",
+            "src": "For example, the subdivision of the city by function – ... – is an idea that can be found in Georges-Eugène Haussmann's renovation of Paris under Emperor Napoleon III between 1853 and 1870.",
+            "diag": "最典型的“抢填句首名词”失误！一看到 <em>For example,</em> 紧跟着 <em>the subdivision</em> 就抄上去了，根本没看空后面的表语类别词：<em>___ is one example of a <b>city</b> that was redesigned in the 19th century</em>！Subdivision（功能分区）是个“理念（an idea）”，怎么可能是一座“城市（a city）”？跨过中间两个破折号插入语读到句尾，1853–1870 年（19 世纪）被奥斯曼改造的那座城市是 <b>Paris</b>！",
+            "cites": [
+              {
+                "p": 8,
+                "b": [
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "no": 40,
+            "minePhrase": "outwards",
+            "corPhrase": "outwards",
+            "src": "the compact city, built upwards instead of outwards",
+            "diag": "<em>instead of outwards</em> 精确改写为题干 <em>building outwards no longer seems to be the best approach</em>，收官很漂亮。",
+            "cites": [
+              {
+                "p": 9,
+                "b": [
+                  1
+                ]
+              }
+            ]
+          }
+        ],
+        "diag": "7 空对 5 空，前 4 空和最后 1 空定位极准。唯独第 8 段连丢 38、39 两空：38 是让步从句与主句的时间线串位，39 是没核对空后表语 <em>a city</em> 的语义类别、被双破折号长句拦在了半路。",
+        "note": "ONE WORD ONLY 原词填空有两条铁律：① 填完连读空前空后（<em>from Roman times</em> ✓ / <em>from 19th times</em> ×）；② 查主表同范畴（<em>___ is one example of a city</em> → 空格必须是专有城市名，绝对不能填抽象名词）。",
+        "cites": [
+          {
+            "p": 8,
+            "b": [
+              0,
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    ],
+    "diagnoses": [
+      {
+        "n": "病灶 01",
+        "t": "预设从句漏扫",
+        "p": "31 题答案原封不动躺在 <em>Yet given that...</em> 从句里。做阅读时遇到 <em>given that / considering that / since</em> 引导的已知背景分句，不能当废话跳读，剑雅极爱把 T/F 考点藏在预设前提里。"
+      },
+      {
+        "n": "病灶 02",
+        "t": "主从时间串位",
+        "p": "38 题题干用 <em>While A, not B until...</em> 对应原文两句话（<em>Although A [Roman]...</em> ＋ <em>not until B [19th century]...</em>）。只抓显眼数字 <em>19th</em> 没对准主从句结构，就会把 B 塞进 A 的槽里。"
+      },
+      {
+        "n": "病灶 03",
+        "t": "破折号截胡与范畴失检",
+        "p": "39 题被双破折号插入语挡住视线，看到 <em>For example</em> 后的第一个名词 <em>subdivision</em> 就填，忽略了空格在句中充当 <em>is one example of a city</em> 的主语——语义范畴校验只需 1 秒就能拦住这个错。"
+      }
+    ],
+    "actions": [
+      "<b>原词填空必做「范畴验算」</b>：看到 <em>___ is a type/example of X</em> 或 <em>such as ___</em>，先在心里喊出 X 是“人名、地名、年代还是动作”，范畴不对绝不落笔（城市 ≠ subdivision）。",
+      "<b>双破折号先跳读括注</b>：原文出现 <em>A – ... – is B</em> 时，先把两个破折号之间的解释整块括起来跳过，先读通主干 <em>the subdivision ... is an idea found in ... Paris</em>，结构瞬间透明。",
+      "<b>连读检验词法合法性</b>：填完把单词代回原句默读三个词（<em>from 19th times</em> 一读就别扭），序数词绝不直接修饰复数 <em>times</em>。",
+      "<b>紧盯 given that 预设句</b>：凡见 <em>given that + 陈述句</em>，标记为「作者已确认的事实前提」，判断题问到一律按明确信息处理。"
+    ],
+    "end": "26 分钟拿 11/14，这篇证明只要你稳住节奏，T/F/NG 的“未提及”边界其实抓得非常准。把第 8 段那两空“范畴核对＋跨破折号读主干”补上，这篇完全是 13–14 分的满格水平。"
+  },
+  "guide": {
+    "kicker": "读懂 · 剑桥雅思 18 · Test 2 · Passage 3 · An ideal city",
+    "title": "五百年前因瘟疫画在纸上的「立体水城」，恰好是今天气候危机的解药",
+    "lede": "达·芬奇大家都熟，但很少有人知道他还是一位超前数百年思考<b>城市规划（urbanism）</b>的工程师。文章用一场跨越五百年的危机对照串起全文：<b>14–15 世纪的黑死病逼着达·芬奇重新设计拥挤肮脏的中世纪城市；21 世纪的气候危机，又逼着现代学者回头从他的手稿里找答案。</b>",
+    "thesis": "在米兰瘟疫与文艺复兴城市革新启发下，达·芬奇构想了一座融合建筑与水利工程的多层紧凑型“理想城市”；尽管当年因造价高昂未能落地，但其立体功能分区、水网协同与向上生长的理念，在 19–20 世纪逐步应验，并为今日可持续城市规划指明了方向。",
+    "structureTitle": "9 段直线推进：双危机引子 → 历史契机 → 三大硬核设计 → 后世回响",
+    "band": [
+      {
+        "n": 1,
+        "f": "逝世五百年",
+        "s": "g"
+      },
+      {
+        "n": 2,
+        "f": "瘟疫对标气候",
+        "s": "t"
+      },
+      {
+        "n": 3,
+        "f": "米兰疫后立项",
+        "s": "g"
+      },
+      {
+        "n": 4,
+        "f": "城市学诞生",
+        "s": "g"
+      },
+      {
+        "n": 5,
+        "f": "提契诺河手稿",
+        "s": "t"
+      },
+      {
+        "n": 6,
+        "f": "多层与外挂楼梯",
+        "s": "t"
+      },
+      {
+        "n": 7,
+        "f": "运河水利与街宽",
+        "s": "t"
+      },
+      {
+        "n": 8,
+        "f": "罗马至巴黎印证",
+        "s": "g"
+      },
+      {
+        "n": 9,
+        "f": "当代紧凑城解药",
+        "s": "t"
+      }
+    ],
+    "legend": [
+      {
+        "s": "t",
+        "text": "核心论点与达·芬奇的独创城市方案（5 段）"
+      },
+      {
+        "s": "g",
+        "text": "历史背景与后世演进坐标（4 段）"
+      }
+    ],
+    "argument": {
+      "negativeTitle": "传统与现代城市的「双重病灶」",
+      "negative": [
+        {
+          "t": "中世纪老城　",
+          "p": "（第 3–4 段）街道蜿蜒狭窄、人口过度拥挤、房屋层层紧贴堆叠，导致米兰一场瘟疫就夺走全城一半人口。"
+        },
+        {
+          "t": "现代摊大饼　",
+          "p": "（第 3、9 段）向外无序扩张（built outwards）的不可持续城市模式，已成为今日全球气候变化的关键诱因。"
+        }
+      ],
+      "positiveTitle": "达·芬奇「理想城市」的三大超前解法",
+      "positive": [
+        {
+          "t": "解法一 · 垂直立体分层　",
+          "p": "（第 6–7 段）城市分多层建造，用室外垂直楼梯相连；上层供居民在宫殿与宽敞街道间安静漫步，下层专走商业、货运、服务与工业。"
+        },
+        {
+          "t": "解法二 · 建筑融合水利　",
+          "p": "（第 7 段）真正独创之处在于工程化：建大型水利设施引人工运河穿城，用计时装置与蓄水池调控水位，便于船只深入内陆运输。"
+        },
+        {
+          "t": "解法三 · 几何防灾尺度　",
+          "p": "（第 7 段）街道宽度严格匹配两侧房屋平均高度，既保证采光通风，又降低地震坍塌伤亡——至今仍是意大利多城沿用的准则。"
+        }
+      ],
+      "punch": "罗马古城只有零散特征，19 世纪奥斯曼改造巴黎、20 世纪现代主义高楼才陆续局部实现——而在技术上把<b>立体、紧凑、亲水</b>彻底想通的现代城市蓝图，达·芬奇五百年前就画完了。"
+    },
+    "rows": [
+      {
+        "n": 1,
+        "w": "引子",
+        "s": "g",
+        "d": "达·芬奇逝世五百年，作为兼具科学、艺术与人文精神的文艺复兴全才，其思想至今仍令人惊叹。"
+      },
+      {
+        "n": 2,
+        "w": "作者",
+        "s": "t",
+        "d": "架起全篇核心类比：14 世纪黑死病致死两亿催生现代转型，今日气候危机同样迫在眉睫，两代人都急需革新居住方式的激进方案。"
+      },
+      {
+        "n": 3,
+        "w": "背景",
+        "s": "g",
+        "d": "1486 年米兰瘟疫夺命过半后，达·芬奇投身“理想城市”规划；虽因造价太高未建成，但在城市模式加剧气候变化的今天极具启发。"
+      },
+      {
+        "n": 4,
+        "w": "背景",
+        "s": "g",
+        "d": "指出被忽视的学科史：15 世纪也是城市规划学（urbanism）的诞生期，皮恩扎与费拉拉改造启发他重构拥挤杂乱的中世纪城市。"
+      },
+      {
+        "n": 5,
+        "w": "方案",
+        "s": "t",
+        "d": "尽管手稿笔记杂乱，学者仍从最大规模手稿集中复原出提契诺河新城方案：核心诉求是货运便捷、空间洁净宽敞、街巷井然、城防坚美。"
+      },
+      {
+        "n": 6,
+        "w": "方案",
+        "s": "t",
+        "d": "既合乎文艺复兴理性理想，又融入个人创新：多层立体城市＋室外垂直楼梯，这一内部空间利用理念直到 1920–30 年代现代主义才落地。"
+      },
+      {
+        "n": 7,
+        "w": "方案",
+        "s": "t",
+        "d": "上下层人货分流后，点明最大独创是“建筑＋工程”合一：水闸运河网通航内陆，街宽等于房高以采光抗震（意大利沿用至今）。"
+      },
+      {
+        "n": 8,
+        "w": "印证",
+        "s": "g",
+        "d": "历史坐标定位：罗马城市仅有局部元素，达·芬奇首次系统构想立体紧凑现代城；19 世纪奥斯曼改造巴黎印证了其上下层功能分区思想。"
+      },
+      {
+        "n": 9,
+        "w": "作者",
+        "s": "t",
+        "d": "回到当下收束：向上而非向外建造、与水系自然融合、配高效交通的紧凑型城市，正是现代城市走向高效与可持续的前进方向。"
+      }
+    ],
+    "terms": [
+      {
+        "k": "urbanism",
+        "en": "城市规划学；城市主义",
+        "d": "第 4 段指出，15 世纪文艺复兴不仅繁荣了艺术建筑，更首次将“有意识、讲严谨方法论地构想整座城市”确立为一门真正的学术学科。"
+      },
+      {
+        "k": "hydraulic plants",
+        "en": "水利工程设施",
+        "d": "达·芬奇将工程学融入建筑的代表设计：配合蓄水池（basins）与计时器（clocks）调节人工运河水位，把水系变成城市货运主动脉。"
+      },
+      {
+        "k": "compact city",
+        "en": "紧凑型城市",
+        "d": "末段核心现代规划术语：主张城市纵向向上生长（built upwards）而非横向摊大饼（outwards），兼顾生态水系融合与高密度集约交通。"
+      }
+    ],
+    "echo": {
+      "neg": "鉴于当今<b>不可持续的城市模式是全球气候变化的关键诱因</b>，人们自然会好奇：如果由达·芬奇来规划，他会如何改变现代城市的面貌？（第 3 段）",
+      "pos": "许多学者认为，<b>向上而非向外扩张、与自然（尤其是水系）融合、具备高效交通的紧凑型城市</b>，能帮助现代城市变得更高效、更可持续。（第 9 段）",
+      "note": "第 3 段抛出的悬念（达·芬奇能怎么救今天的气候型城市病），经过第 5–8 段的手稿拆解与巴黎印证，在第 9 段给出了精确答案——整篇文章是一个严丝合缝的闭环。"
+    },
+    "why": [
+      {
+        "t": "第 3 段末句：把核心因果藏进 given that 从句",
+        "p": "作者为了引出“我们不禁好奇达·芬奇会怎么做”，顺手把“不可持续的城市规划导致气候变化”写成了 <em>given that</em> 背景前提，结果直接考成了第 31 题。"
+      },
+      {
+        "t": "第 8 段：三百年时间轴压进三句话",
+        "p": "短短三句横跨古罗马（曾有零星特征）、15 世纪（达·芬奇图纸）、19 世纪（1853–1870 奥斯曼改造巴黎）。时间锚点一多，粗读极易像第 38 题那样把年代张冠李戴。"
+      },
+      {
+        "t": "第 8 段末句：长达 49 词的双破折号主系表句",
+        "p": "主语 <em>the subdivision of the city by function</em> 后面塞了 22 个词的破折号解释才出系动词 <em>is an idea...</em>，最后才落到专有名词 <em>Paris</em>，是专门拦截“只看前半句填词”的长难句关卡。"
+      }
+    ],
+    "side": "<b>这篇非常适合作为你的「高分基准线模板」：</b><br>回想一下你做这篇时的手感——26 分钟、不恋战、NG 题严格卡死原文有没有比较级和首次限定。每次做其他 P3 超过 28 分钟开始心慌时，就切回这篇的判定标准：<b>有同义改写就认账，没提比较和动作就果断 NG。</b>",
+    "end": "一篇非常清爽的工程史说明文：瘟疫催生构想 → 手稿复原三招（立体分层、运河水利、街宽等高） → 巴黎印证 → 当代可持续紧凑城。顺着时间线读，全篇零废话。"
+  }
+}

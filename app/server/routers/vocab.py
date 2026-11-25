@@ -122,6 +122,7 @@ def row_out(r) -> dict:
         "lastReviewedAt": r["last_reviewed_at"],
         "createdAt": r["created_at"],
         "updatedAt": r["updated_at"],
+        "deletedAt": r["deleted_at"] if "deleted_at" in r.keys() else 0,
         "audioUrl": f"/api/audio/{audio_name}" if audio_name else "",
         "audioCached": bool(audio_name),
     }
@@ -157,21 +158,33 @@ def upsert(payload: VocabIn, pack_id: str = "") -> tuple[int, bool]:
     if pack_id and not payload.packId:
         payload.packId = pack_id
     ctx = _context_of(payload)
-    row = db.one("SELECT * FROM vocab WHERE lemma=?", (lemma,))
-    if row:
-        _merge(row, payload, ctx)
-        return int(row["id"]), False
-
     ts = payload.createdAt
     if ts is None and payload.ts:
         ts = int(payload.ts / 1000) if payload.ts > 10_000_000_000 else int(payload.ts)
     now = db.now()
     created = ts or now
+
+    row = db.one("SELECT * FROM vocab WHERE lemma=?", (lemma,))
+    if row:
+        if (row["deleted_at"] or 0) > 0:
+            # 曾软删除过的词重新收录：复活并重置为新卡
+            db.execute(
+                "UPDATE vocab SET word=?,gloss=?,pos=?,phonetic=?,note=?,tags=?,contexts=?,source=?,"
+                "state='new',due_at=?,interval_days=0,ease=2.4,reps=0,lapses=0,last_reviewed_at=0,"
+                "created_at=?,updated_at=?,deleted_at=0 WHERE id=?",
+                (payload.word or payload.lemma, payload.gloss, payload.pos, payload.phonetic,
+                 payload.note, jdump(payload.tags), jdump([ctx] if ctx else []),
+                 payload.source or payload.src, created, created, now, row["id"]),
+            )
+            return int(row["id"]), True
+        _merge(row, payload, ctx)
+        return int(row["id"]), False
+
     try:
         cur = db.execute(
             "INSERT INTO vocab(lemma,word,gloss,pos,phonetic,note,tags,contexts,source,state,"
-            "due_at,interval_days,ease,reps,lapses,last_reviewed_at,created_at,updated_at)"
-            " VALUES(?,?,?,?,?,?,?,?,?,'new',?,0,2.4,0,0,0,?,?)",
+            "due_at,interval_days,ease,reps,lapses,last_reviewed_at,created_at,updated_at,deleted_at)"
+            " VALUES(?,?,?,?,?,?,?,?,?,'new',?,0,2.4,0,0,0,?,?,0)",
             (lemma, payload.word or payload.lemma, payload.gloss, payload.pos, payload.phonetic,
              payload.note, jdump(payload.tags), jdump([ctx] if ctx else []),
              payload.source or payload.src, created, created, now),
@@ -195,7 +208,7 @@ def list_vocab(
     limit: int = Query(default=200, ge=1, le=1000),
     offset: int = Query(default=0, ge=0),
 ):
-    where, params = [], []
+    where, params = ["deleted_at = 0"], []
     if q:
         where.append("(lemma LIKE ? OR gloss LIKE ? OR contexts LIKE ?)")
         kw = f"%{q}%"
@@ -232,7 +245,7 @@ def add_vocab(payload: VocabIn):
 
 @router.patch("/vocab/{vid}")
 def patch_vocab(vid: int, payload: VocabPatch):
-    row = db.one("SELECT * FROM vocab WHERE id=?", (vid,))
+    row = db.one("SELECT * FROM vocab WHERE id=? AND deleted_at=0", (vid,))
     if not row:
         raise HTTPException(404, "生词不存在")
     sets, params = [], []
@@ -259,7 +272,11 @@ def patch_vocab(vid: int, payload: VocabPatch):
 
 @router.delete("/vocab/{vid}")
 def delete_vocab(vid: int):
-    cur = db.execute("DELETE FROM vocab WHERE id=?", (vid,))
+    now = db.now()
+    cur = db.execute(
+        "UPDATE vocab SET deleted_at=?, updated_at=? WHERE id=? AND deleted_at=0",
+        (now, now, vid),
+    )
     if cur.rowcount == 0:
         raise HTTPException(404, "生词不存在")
     return {"ok": True}
@@ -267,7 +284,7 @@ def delete_vocab(vid: int):
 
 @router.get("/vocab/review")
 def review_queue(limit: int = Query(default=20, ge=1, le=200), includeNew: bool = True):
-    where = "state != 'suspended' AND due_at <= ?"
+    where = "deleted_at = 0 AND state != 'suspended' AND due_at <= ?"
     if not includeNew:
         where += " AND state != 'new'"
     rows = db.query(
@@ -279,7 +296,7 @@ def review_queue(limit: int = Query(default=20, ge=1, le=200), includeNew: bool 
 
 @router.post("/vocab/{vid}/review")
 def review_vocab(vid: int, payload: ReviewIn):
-    row = db.one("SELECT * FROM vocab WHERE id=?", (vid,))
+    row = db.one("SELECT * FROM vocab WHERE id=? AND deleted_at=0", (vid,))
     if not row:
         raise HTTPException(404, "生词不存在")
     now = db.now()
@@ -316,12 +333,15 @@ def review_vocab(vid: int, payload: ReviewIn):
 @router.get("/vocab/stats")
 def vocab_stats():
     now = db.now()
-    total = db.scalar("SELECT COUNT(*) FROM vocab")
-    rows = db.query("SELECT state, COUNT(*) n FROM vocab GROUP BY state")
+    total = db.scalar("SELECT COUNT(*) FROM vocab WHERE deleted_at = 0")
+    rows = db.query("SELECT state, COUNT(*) n FROM vocab WHERE deleted_at = 0 GROUP BY state")
     by_state = {r["state"]: r["n"] for r in rows}
-    due_now = db.scalar("SELECT COUNT(*) FROM vocab WHERE state != 'suspended' AND due_at <= ?", (now,))
+    due_now = db.scalar(
+        "SELECT COUNT(*) FROM vocab WHERE deleted_at = 0 AND state != 'suspended' AND due_at <= ?",
+        (now,),
+    )
     added_today = db.scalar(
-        "SELECT COUNT(*) FROM vocab WHERE date(created_at,'unixepoch','localtime')"
+        "SELECT COUNT(*) FROM vocab WHERE deleted_at = 0 AND date(created_at,'unixepoch','localtime')"
         " = date('now','localtime')"
     )
     return {
@@ -350,7 +370,7 @@ def import_vocab(payload: ImportIn):
 
 @router.get("/vocab/export")
 def export_vocab(format: str = Query(default="json", pattern="^(json|csv)$")):
-    rows = db.query("SELECT * FROM vocab ORDER BY created_at ASC")
+    rows = db.query("SELECT * FROM vocab WHERE deleted_at = 0 ORDER BY created_at ASC")
     if format == "json":
         return {"items": [row_out(r) for r in rows]}
 

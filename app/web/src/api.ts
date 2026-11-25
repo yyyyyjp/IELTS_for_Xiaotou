@@ -1,10 +1,34 @@
+import {
+  apiBaseUrl,
+  authHeaders,
+  cachePackDetail,
+  invalidatePackCache,
+  localPackDetail,
+  localPacksList,
+  localStatsDaily,
+  localStatsOverview,
+  localStatsPacks,
+  localStatsWeak,
+  localVocabAdd,
+  localVocabDelete,
+  localVocabList,
+  localVocabPatch,
+  localVocabReview,
+  localVocabReviewQueue,
+  localVocabStats,
+  syncNow,
+} from './sync'
 import type {
   DailyItem,
   DictAnswerResult,
+  DictLookupResult,
   DictSession,
+  DictStatus,
   DictSummary,
   Overview,
   PackDetail,
+  PackImportResult,
+  PackPromptResult,
   PackStats,
   PackSummary,
   ReadingSubmit,
@@ -13,8 +37,6 @@ import type {
   VocabStats,
   WeakWord,
 } from './types'
-
-const BASE = '/api'
 
 export class ApiError extends Error {
   status: number
@@ -26,9 +48,13 @@ export class ApiError extends Error {
 }
 
 async function req<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(BASE + path, {
+  const res = await fetch(apiBaseUrl() + path, {
     ...init,
-    headers: { 'Content-Type': 'application/json', ...(init?.headers ?? {}) },
+    headers: {
+      'Content-Type': 'application/json',
+      ...authHeaders(),
+      ...(init?.headers ?? {}),
+    },
   })
   if (!res.ok) {
     let message = `HTTP ${res.status}`
@@ -57,8 +83,14 @@ function query(params: Record<string, string | number | boolean | undefined>): s
 }
 
 export const api = {
-  packs: () => req<{ items: PackSummary[] }>('/packs'),
+  packs: () => localPacksList(() => req<{ items: PackSummary[] }>('/packs')),
+
   pack: (id: string, answers = false) =>
+    localPackDetail(id, answers, () =>
+      req<PackDetail>(`/packs/${encodeURIComponent(id)}${answers ? '?answers=1' : ''}`),
+    ),
+
+  packNetwork: (id: string, answers = true) =>
     req<PackDetail>(`/packs/${encodeURIComponent(id)}${answers ? '?answers=1' : ''}`),
 
   vocabList: (params: {
@@ -68,13 +100,14 @@ export const api = {
     due?: boolean
     limit?: number
     offset?: number
-  }) => req<{ total: number; items: VocabItem[] }>(`/vocab${query(params)}`),
+  }) => localVocabList(params),
 
   vocabAdd: (payload: {
     lemma: string
     word?: string
     gloss?: string
     pos?: string
+    phonetic?: string
     source?: string
     context?: {
       packId?: string
@@ -83,30 +116,21 @@ export const api = {
       zh?: string
       para?: number
     }
-  }) =>
-    req<{ created: boolean; item: VocabItem }>('/vocab', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-    }),
+  }) => localVocabAdd(payload),
 
-  vocabPatch: (id: number, payload: { note?: string; gloss?: string; tags?: string[] }) =>
-    req<{ item: VocabItem }>(`/vocab/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(payload),
-    }),
+  vocabPatch: (
+    id: number,
+    payload: { note?: string; gloss?: string; tags?: string[]; state?: VocabItem['state'] },
+  ) => localVocabPatch(id, payload),
 
-  vocabDelete: (id: number) => req<{ ok: true }>(`/vocab/${id}`, { method: 'DELETE' }),
+  vocabDelete: (id: number) => localVocabDelete(id),
 
-  vocabReviewQueue: (limit = 20) =>
-    req<{ items: VocabItem[] }>(`/vocab/review?limit=${limit}`),
+  vocabReviewQueue: (limit = 20) => localVocabReviewQueue(limit),
 
   vocabReview: (id: number, grade: ReviewGrade, durationMs = 0) =>
-    req<{ item: VocabItem; nextDueAt: number; intervalDays: number; state: string }>(
-      `/vocab/${id}/review`,
-      { method: 'POST', body: JSON.stringify({ grade, durationMs }) },
-    ),
+    localVocabReview(id, grade, durationMs),
 
-  vocabStats: () => req<VocabStats>('/vocab/stats'),
+  vocabStats: () => localVocabStats(),
 
   dictationSession: (payload: {
     packId: string
@@ -119,17 +143,24 @@ export const api = {
       body: JSON.stringify(payload),
     }),
 
-  dictationAnswer: (
+  dictationAnswer: async (
     sessionId: string,
     payload: { itemId: string; input: string | string[]; replays?: number; durationMs?: number },
-  ) =>
-    req<DictAnswerResult>(`/dictation/sessions/${sessionId}/answer`, {
+  ) => {
+    const res = await req<DictAnswerResult>(`/dictation/sessions/${sessionId}/answer`, {
       method: 'POST',
       body: JSON.stringify(payload),
-    }),
+    })
+    return res
+  },
 
-  dictationFinish: (sessionId: string) =>
-    req<DictSummary>(`/dictation/sessions/${sessionId}/finish`, { method: 'POST' }),
+  dictationFinish: async (sessionId: string) => {
+    const res = await req<DictSummary>(`/dictation/sessions/${sessionId}/finish`, {
+      method: 'POST',
+    })
+    void syncNow()
+    return res
+  },
 
   readingSession: (packId: string, nos: number[] = []) =>
     req<{
@@ -142,19 +173,82 @@ export const api = {
       body: JSON.stringify({ packId, nos }),
     }),
 
-  readingSubmit: (sessionId: string, answers: Record<string, string>, durationMs: number) =>
-    req<ReadingSubmit>(`/reading/sessions/${sessionId}/submit`, {
+  readingSubmit: async (
+    sessionId: string,
+    answers: Record<string, string>,
+    durationMs: number,
+  ) => {
+    const res = await req<ReadingSubmit>(`/reading/sessions/${sessionId}/submit`, {
       method: 'POST',
       body: JSON.stringify({ answers, durationMs }),
+    })
+    if (res.pack) {
+      await cachePackDetail(res.pack, true)
+    }
+    void syncNow()
+    return res
+  },
+
+  statsOverview: (): Promise<Overview> => localStatsOverview(),
+  statsDaily: (days = 30): Promise<{ from: string; to: string; items: DailyItem[] }> =>
+    localStatsDaily(days),
+  statsPacks: (): Promise<{ items: PackStats[] }> => localStatsPacks(),
+  statsWeak: (limit = 12): Promise<{ items: WeakWord[] }> => localStatsWeak(limit),
+
+  dictStatus: () => req<DictStatus>('/dict/status'),
+  dictLookup: (q: string, packId?: string) =>
+    req<DictLookupResult>(`/dict/lookup${query({ q, packId })}`),
+
+  packImportFromExport: async (payload: {
+    passage: Record<string, unknown>
+    questions: Record<string, unknown>[]
+    groups: Record<string, unknown>[]
+    attempt?: Record<string, unknown> | null
+    analysisText?: string
+    id?: string
+    keepLexicon?: boolean
+    recordHistory?: boolean
+    dryRun?: boolean
+  }) => {
+    const res = await req<PackImportResult>('/packs/from-export', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+    if (!payload.dryRun) {
+      await invalidatePackCache(res.id)
+    }
+    return res
+  },
+
+  packExportPrompt: (payload: {
+    passage: Record<string, unknown>
+    questions: Record<string, unknown>[]
+    groups: Record<string, unknown>[]
+    attempt?: Record<string, unknown> | null
+  }) =>
+    req<PackPromptResult>('/packs/export-prompt', {
+      method: 'POST',
+      body: JSON.stringify(payload),
     }),
 
-  statsOverview: () => req<Overview>('/stats/overview'),
-  statsDaily: (days = 30) =>
-    req<{ from: string; to: string; items: DailyItem[] }>(`/stats/daily?days=${days}`),
-  statsPacks: () => req<{ items: PackStats[] }>('/stats/packs'),
-  statsWeak: (limit = 12) => req<{ items: WeakWord[] }>(`/stats/weak-words?limit=${limit}`),
+  packUpdateAnalysis: async (
+    packId: string,
+    payload: { analysisText: string; keepLexicon?: boolean; dryRun?: boolean },
+  ) => {
+    const res = await req<PackImportResult>(`/packs/${encodeURIComponent(packId)}/analysis`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
+    if (!payload.dryRun) {
+      await invalidatePackCache(res.id)
+    }
+    return res
+  },
+
+  packPrompt: (packId: string) =>
+    req<PackPromptResult>(`/packs/${encodeURIComponent(packId)}/prompt`),
 }
 
 export function ttsUrl(text: string, voice = 'en-GB-SoniaNeural'): string {
-  return `${BASE}/tts/audio?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(voice)}`
+  return `${apiBaseUrl()}/tts/audio?text=${encodeURIComponent(text)}&voice=${encodeURIComponent(voice)}`
 }

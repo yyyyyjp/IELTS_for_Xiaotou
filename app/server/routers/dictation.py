@@ -26,7 +26,7 @@ Source = Literal["vocab", "pack", "auto"]
 
 # ---------------------------------------------------------------- 题目生成
 def _vocab_rows(pack_id: str) -> list:
-    rows = db.query("SELECT * FROM vocab WHERE state != 'suspended' ORDER BY due_at ASC, id ASC")
+    rows = db.query("SELECT * FROM vocab WHERE deleted_at = 0 AND state != 'suspended' ORDER BY due_at ASC, id ASC")
     if not pack_id:
         return list(rows)
     needle = f'"packId":"{pack_id}"'
@@ -155,9 +155,9 @@ def create_session(payload: SessionIn):
     now = db.now()
     meta = {"items": [i.stored() for i in items], "voice": payload.voice, "answers": {}}
     db.execute(
-        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at)"
-        " VALUES(?,?,?,?,?,0,0,?,?)",
-        (sid, "dictation", pack.id, payload.mode, len(items), json.dumps(meta, ensure_ascii=False), now),
+        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at,updated_at)"
+        " VALUES(?,?,?,?,?,0,0,?,?,?)",
+        (sid, "dictation", pack.id, payload.mode, len(items), json.dumps(meta, ensure_ascii=False), now, now),
     )
     return {
         "sessionId": sid,
@@ -239,13 +239,13 @@ def answer(sid: str, payload: AnswerIn):
     )
     if prev is None:
         db.execute(
-            "UPDATE sessions SET answered=answered+1, correct=correct+?, meta=? WHERE id=?",
-            (1 if result["ok"] else 0, json.dumps(meta, ensure_ascii=False), sid),
+            "UPDATE sessions SET answered=answered+1, correct=correct+?, meta=?, updated_at=? WHERE id=?",
+            (1 if result["ok"] else 0, json.dumps(meta, ensure_ascii=False), now, sid),
         )
     else:
         db.execute(
-            "UPDATE sessions SET correct=correct+?, meta=? WHERE id=?",
-            (delta, json.dumps(meta, ensure_ascii=False), sid),
+            "UPDATE sessions SET correct=correct+?, meta=?, updated_at=? WHERE id=?",
+            (delta, json.dumps(meta, ensure_ascii=False), now, sid),
         )
 
     return {
@@ -264,7 +264,7 @@ def finish_session(sid: str):
     now = db.now()
     ended = row["ended_at"] or now
     if not row["ended_at"]:
-        db.execute("UPDATE sessions SET ended_at=? WHERE id=?", (ended, sid))
+        db.execute("UPDATE sessions SET ended_at=?, updated_at=? WHERE id=?", (ended, now, sid))
 
     answers = meta.get("answers", {})
     items = meta.get("items", [])

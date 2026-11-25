@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 import content.loader as loader
 import db
 import parser
+import services.pack_importer as pack_importer
 from content.loader import DeckItem, Pack, PackMeta
 
 router = APIRouter(tags=["packs"])
@@ -115,3 +116,93 @@ def delete_pack(pack_id: str):
     pack.path.unlink(missing_ok=True)
     loader.load_all(force=True)
     return {"ok": True}
+
+
+class ExportPackIn(BaseModel):
+    passage: dict = Field(default_factory=dict)
+    questions: list[dict] = Field(default_factory=list)
+    groups: list[dict] = Field(default_factory=list)
+    attempt: dict | None = None
+    analysisText: str = ""
+    id: str = ""
+    keepLexicon: bool = True
+    recordHistory: bool = True
+    dryRun: bool = False
+
+
+class ExportPromptIn(BaseModel):
+    passage: dict = Field(default_factory=dict)
+    questions: list[dict] = Field(default_factory=list)
+    groups: list[dict] = Field(default_factory=list)
+    attempt: dict | None = None
+
+
+class AnalysisIn(BaseModel):
+    analysisText: str = Field(min_length=1, max_length=1_500_000)
+    keepLexicon: bool = True
+    dryRun: bool = False
+
+
+@router.post("/packs/from-export")
+def import_from_export(req: ExportPackIn):
+    """从 ielts-practice-export 的单篇数据 + 可选 AI 复盘文本新建或更新精读内容包。"""
+    try:
+        return pack_importer.import_from_export(
+            passage=req.passage,
+            questions=req.questions,
+            groups=req.groups,
+            attempt=req.attempt,
+            analysis_text=req.analysisText,
+            pack_id_override=req.id,
+            keep_lexicon=req.keepLexicon,
+            record_history=req.recordHistory,
+            dry_run=req.dryRun,
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@router.post("/packs/export-prompt")
+def build_export_prompt(req: ExportPromptIn):
+    """根据尚未入库的导出单篇数据，生成发给 AI 的复盘指令（含句序与高亮轨迹）。"""
+    try:
+        return pack_importer.build_prompt_from_export(
+            passage=req.passage,
+            questions=req.questions,
+            groups=req.groups,
+            attempt=req.attempt,
+        )
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@router.post("/packs/{pack_id}/analysis")
+def update_pack_analysis(pack_id: str, req: AnalysisIn):
+    """对站内已有精读内容包注入或更新 AI 复盘（review / guide / lexicon）。"""
+    try:
+        return pack_importer.apply_analysis_to_pack(
+            pack_id=pack_id,
+            analysis_text=req.analysisText,
+            keep_lexicon=req.keepLexicon,
+            dry_run=req.dryRun,
+        )
+    except LookupError as exc:
+        raise HTTPException(404, str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@router.get("/packs/{pack_id}/prompt")
+def get_pack_prompt(pack_id: str):
+    """生成已有内容包的 AI 复盘提示词。"""
+    pack = loader.get(pack_id)
+    if not pack:
+        raise HTTPException(404, "内容包不存在")
+    if pack.doc.kind != "reading":
+        raise HTTPException(400, "只有精读篇目支持生成复盘提示词")
+    return {
+        "id": pack.id,
+        "title": pack.doc.meta.title,
+        "label": pack.doc.meta.label,
+        "prompt": pack_importer.build_prompt_for_pack(pack.doc),
+    }

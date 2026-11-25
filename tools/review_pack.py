@@ -2,7 +2,7 @@
 
 数据来源有两类：
 1. 旧版单文件精读页（const DATA + const REV + const MEANS），字段是作者手写的；
-2. AI 直接产出的 analysis.json（推荐路径，骨架见 docs/AI.md「写作提示词」第 4 节）。
+2. AI 直接产出的 analysis.json（推荐路径，骨架见 docs/AI.md「analysis.json 格式」）。
 
 归一后的结构是渲染层唯一的输入，两边必须对齐。字段设计原则：
 - 题干、选项、对错留在 questionGroups，复盘只存「分析」；

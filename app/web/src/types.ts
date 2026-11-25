@@ -237,6 +237,7 @@ export interface VocabItem {
   lastReviewedAt: number
   createdAt: number
   updatedAt: number
+  deletedAt?: number
   audioUrl: string
   audioCached: boolean
 }
@@ -371,4 +372,129 @@ export interface VocabStats {
   byState: Record<'new' | 'learning' | 'review' | 'suspended', number>
   dueNow: number
   addedToday: number
+}
+
+export interface DictLookupToken {
+  word: string
+  lemma: string
+  phonetic: string
+  pos: string
+  gloss: string
+  formNote: string
+}
+
+export interface DictLookupResult {
+  query: string
+  found: boolean
+  source: 'pack' | 'ecdict' | 'tokens' | 'none'
+  word: string
+  lemma: string
+  phonetic: string
+  pos: string
+  gloss: string
+  dictGloss: string
+  definition: string
+  tags: string[]
+  collins: number
+  oxford: boolean
+  formNote: string
+  tokens: DictLookupToken[]
+  saved: boolean
+  vocabId: number | null
+  dictReady: boolean
+}
+
+export interface DictStatus {
+  ready: boolean
+  entries: number
+  path: string
+}
+
+export interface AnalysisSummary {
+  hasReview: boolean
+  reviewTitle: string
+  sectionCount: number
+  coveredQuestions: number
+  diagnosisCount: number
+  hasGuide: boolean
+  guideTitle: string
+  bandCount: number
+  lexiconCount: number
+}
+
+export interface PackImportResult {
+  id: string
+  exists: boolean
+  created?: boolean
+  dryRun: boolean
+  meta: PackMeta
+  counts?: {
+    paragraphs: number
+    sentences: number
+    questions: number
+    words: number
+  }
+  attempt?: Attempt | null
+  analysis: AnalysisSummary
+  warnings: string[]
+  historyRecorded?: boolean
+}
+
+export interface PackPromptResult {
+  id: string
+  title: string
+  label: string
+  prompt: string
+}
+
+export interface SyncCursor {
+  vocab: number
+  sessions: number
+  attempts: number
+  packs: number
+}
+
+export interface SyncSessionRecord {
+  id: string
+  kind: 'dictation' | 'reading' | string
+  packId: string
+  mode: string
+  planned: number
+  answered: number
+  correct: number
+  meta: Record<string, unknown>
+  startedAt: number
+  endedAt: number | null
+  updatedAt: number
+}
+
+export interface SyncAttemptRecord {
+  seq?: number
+  clientId: string
+  kind: string
+  ref: string
+  packId: string
+  sessionId: string
+  input: string
+  expected: string
+  correct: number
+  durationMs: number
+  meta: Record<string, unknown>
+  createdAt: number
+}
+
+export interface SyncResponse {
+  ok: boolean
+  serverTs: number
+  authRequired: boolean
+  pushed: { vocab: number; sessions: number; attempts: number }
+  pull: {
+    vocab: VocabItem[]
+    sessions: SyncSessionRecord[]
+    attempts: SyncAttemptRecord[]
+    packs: { id: string; mtime: number; summary: PackSummary }[]
+    allPackIds: string[]
+    hasMore: boolean
+  }
+  cursor: SyncCursor
 }

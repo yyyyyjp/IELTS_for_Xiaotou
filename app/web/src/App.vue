@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
+import GlobalLookup from './components/GlobalLookup.vue'
 import SideNav from './components/SideNav.vue'
 import Toast from './components/Toast.vue'
+import { bootstrapSync } from './sync'
 
 const route = useRoute()
 /** 阅读视图是沉浸式的：不显示全局侧栏，内容自己负责返回入口。 */
 const immersive = computed(() => route.meta.immersive === true)
+
+onMounted(bootstrapSync)
 </script>
 
 <template>
@@ -19,6 +23,7 @@ const immersive = computed(() => route.meta.immersive === true)
         </Transition>
       </RouterView>
     </main>
+    <GlobalLookup />
     <Toast />
   </div>
 </template>

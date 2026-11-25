@@ -2,7 +2,7 @@
 """idictation 导出数据集 + AI 复盘 → 内容包 v2。
 
 这是「阅读复盘」的主路径：先跑 ielts-practice-export 拿到 JSONL，再让 AI
-产出 analysis.json（骨架见 docs/AI.md「写作提示词」第 4 节），最后由本脚本合并成站内内容包。
+产出 analysis.json（骨架见 docs/AI.md「analysis.json 格式」），最后由本脚本合并成站内内容包。
 
     python tools/pack_from_export.py --export ./ielts-data \
         --book 剑雅18 --test "Test 4" --part "Passage 1" \
@@ -189,26 +189,50 @@ def build_groups(questions: list[dict], groups: dict[str, dict]) -> list[Questio
         qtype = meta.get("question_type") or items[0].get("question_type") or "other"
         ptype = TYPE_MAP.get(qtype, "gap")
 
+        sorted_qs = sorted(
+            [q for q in items if q.get("q_number") is not None],
+            key=lambda x: int(x["q_number"]),
+        )
+        qid_to_no: dict[str, int] = {}
+        valid_nos: set[int] = set()
+        for q in sorted_qs:
+            qno = int(q["q_number"])
+            valid_nos.add(qno)
+            qid_tail = str(q.get("question_id") or "").rsplit(":", 1)[-1]
+            if qid_tail.isdigit():
+                qid_to_no[qid_tail] = qno
+
+        def _replace_blank(m: re.Match[str]) -> str:
+            raw_n = m.group(1)
+            if raw_n in qid_to_no:
+                resolved = qid_to_no[raw_n]
+            elif int(raw_n) in valid_nos:
+                resolved = int(raw_n)
+            elif 1 <= int(raw_n) <= len(sorted_qs):
+                resolved = int(sorted_qs[int(raw_n) - 1]["q_number"])
+            else:
+                resolved = int(raw_n)
+            return f"{{{{{resolved}}}}}"
+
         body = plain(meta.get("body"))
-        text = re.sub(r"\$(\d+)\$", r"{{\1}}", body)
+        text = re.sub(r"\$(\d+)\$", _replace_blank, body)
+        text = re.sub(r"([A-Za-z0-9])(\{\{\d+\}\})", r"\1 \2", text)
+        text = re.sub(r"(\{\{\d+\}\})([A-Za-z0-9])", r"\1 \2", text)
         if ptype == "summary" and "{{" not in text:
             # 没有正文就别硬装成摘要；退回卡片式，题干仍能读。
             ptype = "gap"
             text = ""
 
         q_items = []
-        for q in sorted(items, key=lambda x: (x.get("q_number") or 0)):
-            no = q.get("q_number")
-            if no is None:
-                continue
-            no = int(no)
+        for q in sorted_qs:
+            no = int(q["q_number"])
             answer: str | list[str] = str(q.get("correct_answer") or "").strip()
             if q.get("question_type") == "mcq_multi" and "," in answer:
                 answer = [part.strip() for part in answer.split(",") if part.strip()]
             q_items.append({
                 "no": no,
-                "stem": plain(q.get("stem")),
-                "options": option_list(q.get("options")),
+                "stem": plain(q.get("stem")) if ptype != "summary" else "",
+                "options": option_list(q.get("options")) if ptype == "mcq" else [],
                 "answer": answer,
                 "mine": str(q.get("yours") or "").strip(),
                 "correct": q.get("is_correct"),

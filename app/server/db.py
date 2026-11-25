@@ -109,7 +109,21 @@ CREATE INDEX IF NOT EXISTS idx_q_book ON questions(book_id, ord);
 CREATE INDEX IF NOT EXISTS idx_q_audio ON questions(audio);
 """
 
-MIGRATIONS = [MIGRATION_1]
+MIGRATION_2 = """
+ALTER TABLE vocab ADD COLUMN deleted_at INTEGER NOT NULL DEFAULT 0;
+CREATE INDEX IF NOT EXISTS ix_vocab_updated ON vocab(updated_at);
+
+ALTER TABLE sessions ADD COLUMN updated_at INTEGER NOT NULL DEFAULT 0;
+UPDATE sessions SET updated_at = COALESCE(ended_at, started_at) WHERE updated_at = 0;
+CREATE INDEX IF NOT EXISTS ix_sessions_updated ON sessions(updated_at);
+
+ALTER TABLE attempts ADD COLUMN client_id TEXT NOT NULL DEFAULT '';
+UPDATE attempts SET client_id = 'legacy-' || id WHERE client_id = '';
+CREATE UNIQUE INDEX IF NOT EXISTS ux_attempts_client_id
+  ON attempts(client_id) WHERE client_id <> '';
+"""
+
+MIGRATIONS = [MIGRATION_1, MIGRATION_2]
 
 _conn = sqlite3.connect(DB_PATH, check_same_thread=False)
 _conn.row_factory = sqlite3.Row
@@ -151,8 +165,10 @@ def executemany(sql: str, seq) -> None:
 
 
 def insert_attempt(**kw) -> int:
-    """写一条作答记录。字段缺省即用默认值，避免每个调用点重复。"""
+    """写一条作答记录。支持幂等 client_id 去重。"""
+    cid = kw.get("client_id") or new_id("att_")
     row = {
+        "client_id": cid,
         "kind": "",
         "ref": "",
         "pack_id": "",
@@ -165,12 +181,17 @@ def insert_attempt(**kw) -> int:
         "created_at": now(),
     }
     row.update({k: v for k, v in kw.items() if v is not None})
+    if not row["client_id"]:
+        row["client_id"] = new_id("att_")
     cur = execute(
-        "INSERT INTO attempts(kind,ref,pack_id,session_id,input,expected,correct,"
-        "duration_ms,meta,created_at) VALUES(:kind,:ref,:pack_id,:session_id,:input,"
+        "INSERT OR IGNORE INTO attempts(client_id,kind,ref,pack_id,session_id,input,expected,correct,"
+        "duration_ms,meta,created_at) VALUES(:client_id,:kind,:ref,:pack_id,:session_id,:input,"
         ":expected,:correct,:duration_ms,:meta,:created_at)",
         row,
     )
+    if cur.rowcount == 0:
+        existing = one("SELECT id FROM attempts WHERE client_id=?", (row["client_id"],))
+        return int(existing["id"]) if existing else 0
     return int(cur.lastrowid or 0)
 
 

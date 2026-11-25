@@ -16,6 +16,9 @@ CONTENT_DIR = Path(os.getenv("XIAOTOU_CONTENT_DIR") or BASE_DIR / "content")
 AUDIO_DIR = DATA_DIR / "audio"
 PACK_DIR = CONTENT_DIR / "packs"
 DB_PATH = DATA_DIR / "app.db"
+DICT_DB_PATH = Path(os.getenv("XIAOTOU_DICT_DB") or DATA_DIR / "ecdict.db")
+CORE_DICT_PATH = Path(os.getenv("XIAOTOU_CORE_DICT") or DATA_DIR / "core_dict.json.gz")
+SYNC_TOKEN = os.getenv("XIAOTOU_SYNC_TOKEN", "").strip()
 WEB_DIST = BASE_DIR.parent / "web" / "dist"
 
 DEFAULT_VOICE = "en-GB-SoniaNeural"

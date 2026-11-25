@@ -1,7 +1,7 @@
 # 小头雅思 · 备考记录
 
 精读、生词本、听写、作答记录，共用一套后端。前端在 `app/web/`，构建产物由后端直接托管。
-接口契约、复盘流程与写作提示词都在 [docs/AI.md](docs/AI.md)（那份是给 AI 的，人看本文即可）。
+接口契约与复盘导入流程都在 [docs/AI.md](docs/AI.md)（那份是给 AI 的，人看本文即可）。
 
 - [快速开始](#快速开始)
 - [目录结构](#目录结构)
@@ -124,7 +124,7 @@ server/
 
 1. 在 idictation 上做完一篇；
 2. 用 `ielts-practice-export` 导出 JSONL；
-3. 让 AI 按 [docs/AI.md](docs/AI.md)「写作提示词」一节写一份 `analysis.json`；
+3. 让 AI 写一份 `analysis.json`，格式见 [docs/AI.md](docs/AI.md)「analysis.json 格式」；
 4. 合并成内容包，站内只负责「读」和「复盘」。
 
 ```bat
@@ -266,7 +266,7 @@ npm run build      :: 产出 dist，后端同端口托管
 
 | 文档 | 讲什么 |
 |---|---|
-| [docs/AI.md](docs/AI.md) | 给 AI 的工程参考：接口契约、复盘流水线、复盘写作提示词 |
+| [docs/AI.md](docs/AI.md) | 给 AI 的工程参考：接口契约、复盘流水线、analysis.json 格式 |
 | [docs/reference/claude-design-system.md](docs/reference/claude-design-system.md) | 设计系统原始记录（给 AI 用，非本项目规范） |
 
 ## 设计规范

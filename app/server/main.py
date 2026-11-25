@@ -16,8 +16,19 @@ from fastapi.staticfiles import StaticFiles
 import config
 import content.loader as loader
 import db
+import services.dictionary as dictionary
 import tts_service
-from routers import dictation, legacy, media, packs, reading, stats, vocab
+from routers import (
+    dictation,
+    dictionary as dictionary_router,
+    legacy,
+    media,
+    packs,
+    reading,
+    stats,
+    sync as sync_router,
+    vocab,
+)
 
 
 @asynccontextmanager
@@ -25,7 +36,9 @@ async def lifespan(app: FastAPI):
     db.init_db()
     legacy.seed()
     loaded = loader.load_all(force=True)
-    print(f"[xiaotou] 内容包 {len(loaded)} 个；音频缓存目录 {config.AUDIO_DIR}")
+    dstat = dictionary.status()
+    dict_msg = f"离线词典 {dstat['entries']:,} 条" if dstat["ready"] else "离线词典未安装（仅用文章词表）"
+    print(f"[xiaotou] 内容包 {len(loaded)} 个；{dict_msg}；音频缓存目录 {config.AUDIO_DIR}")
     for name, err in loader.errors().items():
         print(f"[xiaotou] 内容包有误 {name}: {err}")
     legacy.resume_pending()   # 上次没生成完的音频接着来
@@ -41,17 +54,20 @@ app.add_middleware(
 )
 
 for _router in (packs.router, vocab.router, dictation.router, reading.router,
-                stats.router, media.router, legacy.router):
+                stats.router, media.router, dictionary_router.router, sync_router.router,
+                legacy.router):
     app.include_router(_router, prefix="/api")
 
 
 @app.get("/api/health")
 def health():
+    dstat = dictionary.status()
     return {
         "ok": True,
         "ts": int(time.time()),
         "dbVersion": db.db_version(),
         "packs": {"loaded": len(loader.all_packs()), "errors": loader.errors()},
+        "dict": {"ready": dstat["ready"], "entries": dstat["entries"]},
         "audio": {
             "defaultVoice": tts_service.DEFAULT_VOICE,
             "cached": len(list(config.AUDIO_DIR.glob("*.mp3"))),

@@ -103,10 +103,10 @@ def create_session(payload: CreateIn):
     sid = db.new_id("rs")
     now = db.now()
     db.execute(
-        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at)"
-        " VALUES(?,?,?,?,?,0,0,?,?)",
+        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at,updated_at)"
+        " VALUES(?,?,?,?,?,0,0,?,?,?)",
         (sid, "reading", pack.id, "practice", len(nos),
-         json.dumps({"nos": nos}, ensure_ascii=False), now),
+         json.dumps({"nos": nos}, ensure_ascii=False), now, now),
     )
     return {
         "sessionId": sid,
@@ -134,10 +134,10 @@ def submit(sid: str, payload: SubmitIn):
     duration_ms = payload.durationMs or max(0, now - row["started_at"]) * 1000
 
     db.execute(
-        "UPDATE sessions SET answered=?, correct=?, ended_at=?, meta=? WHERE id=?",
+        "UPDATE sessions SET answered=?, correct=?, ended_at=?, meta=?, updated_at=? WHERE id=?",
         (graded["total"], graded["score"], now,
          json.dumps({**meta, "answers": payload.answers, "durationMs": duration_ms},
-                    ensure_ascii=False), sid),
+                    ensure_ascii=False), now, sid),
     )
     return {
         "sessionId": sid,
@@ -159,18 +159,19 @@ def import_history(payload: HistoryIn):
     nos = sorted(pack.question_index())
     sid = db.new_id("rs")
 
+    now = db.now()
     db.execute(
-        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at,ended_at)"
-        " VALUES(?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO sessions(id,kind,pack_id,mode,planned,answered,correct,meta,started_at,ended_at,updated_at)"
+        " VALUES(?,?,?,?,?,?,?,?,?,?,?)",
         (sid, "reading", pack.id, "history", len(nos), 0, 0,
-         json.dumps({"nos": nos, "imported": True}, ensure_ascii=False), started, finished),
+         json.dumps({"nos": nos, "imported": True}, ensure_ascii=False), started, finished, now),
     )
     graded = _grade(pack, nos, payload.answers, sid, finished)
     db.execute(
-        "UPDATE sessions SET answered=?, correct=?, meta=? WHERE id=?",
+        "UPDATE sessions SET answered=?, correct=?, meta=?, updated_at=? WHERE id=?",
         (graded["total"], graded["score"],
          json.dumps({"nos": nos, "imported": True, "answers": payload.answers,
-                     "durationMs": duration_ms}, ensure_ascii=False), sid),
+                     "durationMs": duration_ms}, ensure_ascii=False), now, sid),
     )
     return {"sessionId": sid, **graded}
 

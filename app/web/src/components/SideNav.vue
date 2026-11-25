@@ -5,6 +5,7 @@ import { lang, setLang, t } from '../i18n'
 import { dueCount, refreshVocabCounts } from '../state'
 import { setTheme, theme } from '../theme'
 import Icon from './Icon.vue'
+import SyncStatus from './SyncStatus.vue'
 import type { IconName } from '../icons'
 
 const route = useRoute()
@@ -44,6 +45,10 @@ watch(() => route.fullPath, refreshVocabCounts)
         <i v-if="link.path === '/vocab' && dueCount > 0" class="dot" aria-hidden="true" />
       </RouterLink>
     </nav>
+
+    <div class="sync-slot">
+      <SyncStatus />
+    </div>
 
     <div class="prefs">
       <div class="seg" role="group" :aria-label="t('theme.label')">
@@ -156,6 +161,10 @@ watch(() => route.fullPath, refreshVocabCounts)
   background: var(--accent);
 }
 
+.sync-slot {
+  margin-bottom: 8px;
+}
+
 .prefs {
   display: flex;
   align-items: center;
@@ -259,6 +268,11 @@ watch(() => route.fullPath, refreshVocabCounts)
     gap: 6px;
     padding: 0;
     border: 0;
+  }
+
+  .sync-slot {
+    margin-bottom: 0;
+    margin-left: auto;
   }
 
   .seg button {

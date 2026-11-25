@@ -124,9 +124,9 @@ def overview():
         },
         "streak": {"current": current, "longest": longest, "studyDays": len(all_days)},
         "totals": {
-            "words": db.scalar("SELECT COUNT(*) FROM vocab"),
+            "words": db.scalar("SELECT COUNT(*) FROM vocab WHERE deleted_at = 0"),
             "dueNow": db.scalar(
-                "SELECT COUNT(*) FROM vocab WHERE state != 'suspended' AND due_at <= ?", (now,)),
+                "SELECT COUNT(*) FROM vocab WHERE deleted_at = 0 AND state != 'suspended' AND due_at <= ?", (now,)),
             "attempts": db.scalar("SELECT COUNT(*) FROM attempts"),
             "correct": db.scalar("SELECT COALESCE(SUM(correct),0) FROM attempts"),
             "dictationAttempts": db.scalar(
@@ -208,7 +208,7 @@ def weak_words(limit: int = Query(default=20, ge=1, le=100)):
 
     out = []
     for item in ranked:
-        v = db.one("SELECT id, lemma, word, gloss, pos, state FROM vocab WHERE lemma=?",
+        v = db.one("SELECT id, lemma, word, gloss, pos, state FROM vocab WHERE lemma=? AND deleted_at=0",
                    (item["word"],))
         out.append({**item,
                     "gloss": v["gloss"] if v else "",

@@ -4,7 +4,14 @@ import { t } from '../i18n'
 import type { GuideDoc } from '../types'
 import { rich } from '../utils/rich'
 
-const props = defineProps<{ guide: GuideDoc | null }>()
+const props = defineProps<{
+  guide: GuideDoc | null
+  activePara?: number | null
+}>()
+
+const emit = defineEmits<{
+  (event: 'jump-para', no: number): void
+}>()
 
 const band = computed(() => props.guide?.band ?? [])
 const legend = computed(() => props.guide?.legend ?? [])
@@ -40,10 +47,18 @@ const positive = computed(() => argument.value.positive ?? [])
           <span class="cnt">{{ band.length }}</span>
         </div>
         <div class="band">
-          <div v-for="cell in band" :key="cell.n" class="cell" :class="cell.s">
+          <button
+            v-for="cell in band"
+            :key="cell.n"
+            type="button"
+            class="cell"
+            :class="[cell.s, { active: activePara === cell.n }]"
+            :aria-pressed="activePara === cell.n"
+            @click="emit('jump-para', cell.n)"
+          >
             <b>{{ cell.n }}</b>
             <span>{{ cell.f }}</span>
-          </div>
+          </button>
         </div>
         <div v-if="legend.length" class="legend">
           <span v-for="item in legend" :key="item.text">
@@ -87,11 +102,19 @@ const positive = computed(() => argument.value.positive ?? [])
           <span class="cnt">{{ rows.length }}</span>
         </div>
         <div class="table">
-          <div v-for="row in rows" :key="row.n" class="row">
+          <button
+            v-for="row in rows"
+            :key="row.n"
+            type="button"
+            class="row"
+            :class="{ active: activePara === row.n }"
+            :aria-pressed="activePara === row.n"
+            @click="emit('jump-para', row.n)"
+          >
             <div class="n">{{ row.n }}</div>
             <div class="d" v-html="rich(row.d)"></div>
             <div class="w" :class="row.s">{{ row.w }}</div>
-          </div>
+          </button>
         </div>
       </template>
 
@@ -152,15 +175,13 @@ const positive = computed(() => argument.value.positive ?? [])
 
 <style scoped>
 .guide {
-  max-width: var(--measure-prose);
-  margin: 0 auto;
-  padding: 8px 0 96px;
+  padding: 2px 2px 40px;
   font-family: var(--font-serif);
   color: var(--fg);
 }
 
 .kicker {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: var(--fg-3);
   font-family: var(--font-sans);
   font-size: 11px;
@@ -168,19 +189,19 @@ const positive = computed(() => argument.value.positive ?? [])
 }
 
 h2 {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   font-family: var(--font-serif);
-  font-size: clamp(26px, 2.4vw, 34px);
+  font-size: 24px;
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.012em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .lede {
-  margin: 0 0 26px;
+  margin: 0 0 20px;
   color: var(--fg-2);
-  font-size: 15.5px;
-  line-height: 1.95;
+  font-size: 15px;
+  line-height: 1.9;
 }
 
 .lede :deep(b),
@@ -257,18 +278,34 @@ h2 {
 
 .band {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
-  gap: 3px;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 5px;
 }
 
 .cell {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2px;
-  padding: 8px 7px;
+  padding: 8px 6px;
   border: 0.5px solid transparent;
-  border-radius: 5px;
+  border-radius: 6px;
   text-align: center;
+  cursor: pointer;
+  transition:
+    transform 0.14s var(--ease-out-cubic),
+    border-color 0.14s var(--ease-out-cubic),
+    box-shadow 0.14s var(--ease-out-cubic);
+}
+
+.cell:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+}
+
+.cell.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .cell b {
@@ -341,8 +378,8 @@ h2 {
 
 .duel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px 24px;
 }
 
 .col h4 {
@@ -428,8 +465,22 @@ h2 {
   display: grid;
   grid-template-columns: 24px minmax(0, 1fr) 54px;
   gap: 12px;
-  padding: 12px 0;
+  width: 100%;
+  padding: 12px 6px;
   border-bottom: 0.5px solid var(--line-hair);
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.14s var(--ease-out-cubic);
+}
+
+.row:hover {
+  background: var(--bg-subtle);
+}
+
+.row.active {
+  background: color-mix(in srgb, var(--hl-answer) 45%, var(--bg-page));
+  box-shadow: inset 2px 0 0 var(--hl-line);
 }
 
 .row .n {
@@ -474,8 +525,8 @@ h2 {
 
 .terms {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 12px;
 }
 
 .term {
@@ -513,8 +564,8 @@ h2 {
 
 .echo {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px 20px;
 }
 
 .echo blockquote {

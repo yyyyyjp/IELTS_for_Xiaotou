@@ -1,6 +1,6 @@
 # 小头雅思 · AI 参考
 
-给 AI 读的工程文档，三节：接口契约、复盘生产流水线、复盘写作提示词。
+给 AI 读的工程文档，两节：接口契约、复盘流水线（导出 → 写 analysis.json → 合并）。
 人读的说明在 [README](../README.md)，设计系统原始记录在
 [reference/claude-design-system.md](reference/claude-design-system.md)。
 下文所有命令都在**仓库根**执行。
@@ -71,7 +71,7 @@
 #### 复盘扩展（v2）
 
 阅读不做站内作答时，内容包可以带一次**站外作答**和两份**AI 复盘**。三者都是可选的，
-旧包不受影响。字段格式见「写作提示词」第 4 节，生产流程见「复盘流水线」。
+旧包不受影响。字段格式与导入流程见「复盘流水线」。
 
 ```jsonc
 {
@@ -94,7 +94,7 @@
 - `GET /packs/{id}`：始终带 `attempt` 与两个布尔值 `hasReview` / `hasGuide`；`review` / `guide`
   两个 key 也始终存在，只是值为 `null`，避免做题时看到答案。
 - `GET /packs/{id}?answers=1`：带完整 `review` / `guide`，供复盘页渲染。
-- `review` / `guide` 是自由结构，字段缺失时前端逐块降级，不会白屏。骨架见「写作提示词」第 4 节。
+- `review` / `guide` 是自由结构，字段缺失时前端逐块降级，不会白屏。骨架见「复盘流水线」第 3 节。
 
 #### 复盘页路由
 
@@ -118,6 +118,22 @@
 #### DELETE /packs/{id}
 
 仅 `origin=custom` 可删；删除即删 JSON 文件。
+
+#### POST /packs/from-export
+
+从 `ielts-practice-export` 导出的单篇数据（`passage / attempt / questions / groups`）与可选 `analysisText`（AI 生成的 JSON，自动剥离 Markdown 代码块）新建或更新内容包。支持 `dryRun=true` 仅做预览与引文/题号校验，`recordHistory=true` 幂等补录历史成绩。
+
+#### POST /packs/export-prompt
+
+根据尚未入库的单篇导出数据（含 `attempt.marks` 高亮与笔记轨迹）生成发给 AI 的标准复盘提示词。
+
+#### POST /packs/{id}/analysis
+
+向站内已有精读内容包注入或更新 AI 复盘（`review / guide / lexicon`），支持 `dryRun=true` 预览校验。
+
+#### GET /packs/{id}/prompt
+
+生成已有精读内容包的 AI 复盘提示词（带 `[p段号, b=段内0起句序]` 标号与作答详情）。
 
 ---
 
@@ -416,7 +432,41 @@ CSV 带 UTF-8 BOM，Excel 直接打开不乱码。
 
 ---
 
-### 7. 系统
+### 7. 离线词典 dict
+
+全站划词/点词查词接口，基于本地 ECDICT SQLite（`app/server/data/ecdict.db`，由 `tools/setup_ecdict.py` 构建）。
+
+#### GET /dict/lookup?q=&packId=
+
+分层查词：若传入 `packId` 且该文章包 `lexicon` 命中，优先返回本文语境释义并由 ECDICT 补全音标/标签/词典全义；否则查本地 ECDICT（含 `exchange` 不规则词根还原、英美拼写转换与短语拆词兜底），并附带当前生词本的 `saved` / `vocabId` 状态。
+
+#### GET /dict/status
+
+返回 `{ready, entries, path, coreReady, coreSize}`。
+
+#### GET /dict/bundle
+
+返回预压缩的核心离线词库（`core_dict.json.gz`，约 6.6 万词 / ~2MB gzip），供前端缓存至 IndexedDB 实现 0ms 离线查词。
+
+---
+
+### 8. 本地优先同步 sync
+
+#### POST /sync
+
+单往返增量双向同步：批量推送本地 `outbox`（`vocab` 集合并集 + LWW + `deletedAt` 墓碑、`sessions` LWW、`attempts` 按 `clientId` 幂等追加），并基于 `cursor` 增量拉取变更。配置环境变量 `XIAOTOU_SYNC_TOKEN` 后启用 Bearer / `X-Sync-Token` 口令校验。
+
+#### GET /sync/export
+
+导出全量学习状态快照 JSON（`vocab / sessions / attempts`）。
+
+#### POST /sync/import
+
+幂等合并恢复全量快照 JSON。
+
+---
+
+### 8. 系统
 
 #### GET /api/health
 
@@ -425,12 +475,13 @@ CSV 带 UTF-8 BOM，Excel 直接打开不乱码。
 ```json
 {"ok": true, "ts": 1795450257, "dbVersion": 1,
  "packs": {"loaded": 1, "errors": {}},
+ "dict": {"ready": true, "entries": 770611},
  "audio": {"defaultVoice": "en-GB-SoniaNeural", "cached": 11}}
 ```
 
 ---
 
-### 8. 旧接口（冻结）
+### 9. 旧接口（冻结）
 
 旧版句子听写页用的 `/books`、`/parse`、`/progress`，行为与之前一致，仅作过渡。
 新前端不再调用，`app/server/routers/legacy.py` 已冻结，只修 bug 不加功能：
@@ -471,7 +522,7 @@ CSV 带 UTF-8 BOM，Excel 直接打开不乱码。
   ],
   "lexicon": {"deposit": "n. 押金；存款"},
   "review": {"title": "9 道错题：5 道指错了地方", "sections": [{"kind": "mcq"}]},
-  // 这里只示意顶层 key；完整骨架与字段约定见「写作提示词」第 4 节
+  // 这里只示意顶层 key；完整骨架与字段约定见「复盘流水线」第 3–5 节
   "guide": {"title": "它在为「混合能力班级」辩护", "band": [{"n": 1, "f": "样板课", "s": "t"}]}
 }
 ```
@@ -504,7 +555,7 @@ grep -oE '^#### (GET|POST|PATCH|DELETE) [^ ?]*' docs/AI.md | awk '{print $3}' | 
 idictation 做题
    ↓  ielts-practice-export（JSONL）
 passages / questions / groups / attempts
-   ↓  AI 按「写作提示词」写 analysis.json
+   ↓  AI 写 analysis.json
 tools/pack_from_export.py
    ↓
 app/server/content/packs/<id>.json
@@ -525,21 +576,132 @@ python3 scripts/validate.py --in ./ielts-data
 产物里复盘只需要四个文件：`passages.jsonl`、`questions.jsonl`、`groups.jsonl`、
 `attempts.jsonl`。脚本默认取该篇**最新一次**提交；要指定某一次，传 `--attempt-id`。
 
-### 2. 分析
+### 2. 写 analysis.json
 
-把「写作提示词」整节、以及该篇对应的几行 JSON 交给 AI，要求它
-**只输出一个 JSON 对象**。这个对象的 `review` / `guide` 会原样进入内容包。
+把该篇的四个 JSONL 对应行（或整个文件，让 AI 自己按 `part_id` 筛）交给 AI，要求它**只输出
+一个 JSON 对象**，保存为 `analysis.json`。这个对象的 `review` / `guide` 会原样进入内容包。
 
-判断标准只有一条：**读者能不能照着它改下一个动作**。所以：
+怎么分析、诊断写到什么程度，由你自己决定，本仓库不做规定。唯一的硬约束是下一节的结构：
+字段名、题型取值、题号范围、`cites` 编号错一个，导入后就读不出来。
 
-- 诊断「动作」，不诊断「知识」。「指错了主语」有用，「词汇量不够」没用。
-- 每道错题都给原文出处；给不出出处的诊断，一律不写。
-- 答对的题只在「方法值得复用」时写（`label: why-right`），不要凑字数。
-- 结论必须能被原文反驳；不要写「多读多练」这种无法执行的建议。
+### 3. analysis.json 格式
 
-字数和文风的要求写在「写作提示词」第 3 节，这里不再复述。
+只输出一个 JSON 对象，不要 Markdown 代码块，不要解释。除 `review.title`、`items[].no` 外
+都可缺省，缺了只是少一块，不会白屏：
 
-### 3. 合并
+```json
+{
+  "review": {
+    "kicker": "复盘 · 书名 · Test · Passage",
+    "title": "一句话标题",
+    "lede": "总述文字。",
+    "stats": [["5 / 14", "得分", 1], ["30:09", "用时", 0], ["9", "错题数", 1]],
+    "bars": [["选择 27–30", 25, "1/4"], ["摘要 31–35", 60, "3/5"]],
+    "sections": [
+      {
+        "kind": "mcq",
+        "title": "选择题 27–30",
+        "from": 27,
+        "to": 30,
+        "diag": "本组共性，可空",
+        "items": [
+          {
+            "no": 27,
+            "label": "why-wrong",
+            "tag": "选择题",
+            "diag": "诊断文字",
+            "chain": "正确链条",
+            "cites": [{"p": 1, "b": [3, 5, 6]}]
+          }
+        ]
+      },
+      {
+        "kind": "summary",
+        "title": "摘要填空 31–35",
+        "from": 31,
+        "to": 35,
+        "diag": "本组共性",
+        "note": "本组补充，可空",
+        "cites": [{"p": 7, "b": [2, 3]}],
+        "rows": [
+          {
+            "no": 32,
+            "minePhrase": "wrong classes",
+            "corPhrase": "bottom sets",
+            "src": "原文依据短语",
+            "diag": "诊断文字",
+            "cites": [{"p": 7, "b": [2]}]
+          }
+        ]
+      },
+      {
+        "kind": "ynng",
+        "title": "判断题 36–40",
+        "from": 36,
+        "to": 40,
+        "diag": "本组共性",
+        "items": [
+          {"no": 37, "label": "why-wrong", "diag": "诊断文字", "cites": [{"p": 9, "b": [1, 2]}]}
+        ]
+      },
+      {"kind": "tfng", "title": "判断题 36–40", "from": 36, "to": 40, "diag": "本组共性",
+       "items": [{"no": 36, "label": "why-wrong", "diag": "诊断文字", "cites": [{"p": 6, "b": [4, 5]}]}]},
+      {"kind": "gap", "title": "填空题 21–26", "from": 21, "to": 26, "diag": "本组共性",
+       "items": [{"no": 21, "label": "why-wrong", "diag": "诊断文字", "cites": [{"p": 2, "b": [1]}]}]},
+      {"kind": "matching", "title": "匹配题 14–19", "from": 14, "to": 19, "diag": "本组共性",
+       "items": [{"no": 14, "label": "why-wrong", "diag": "诊断文字", "cites": [{"p": 4, "b": [0]}]}]}
+    ],
+    "diagnoses": [{"n": "病灶 01", "t": "对象漂移", "p": "……"}],
+    "actions": ["可执行动作……"],
+    "end": "收尾一段。"
+  },
+  "guide": {
+    "kicker": "读懂 · 书名 · Test · Passage",
+    "title": "这篇文章在干什么",
+    "lede": "总述文字。",
+    "thesis": "一句话主旨。",
+    "structureTitle": "N 段里，有 M 段不是作者在说话",
+    "band": [{"n": 1, "f": "样板课", "s": "t"}],
+    "legend": [{"s": "t", "text": "作者本人（6 段）"}],
+    "argument": {
+      "negativeTitle": "反方",
+      "negative": [{"t": "反问　", "p": "（第 2 段）……"}],
+      "positiveTitle": "作者",
+      "positive": [{"t": "第一刀 · 实证　", "p": "（第 7 段）……"}],
+      "punch": "论证落点。"
+    },
+    "rows": [{"n": 1, "w": "作者", "s": "t", "d": "这一段在干什么。"}],
+    "terms": [{"k": "ZPD", "en": "zone of proximal development", "d": "……"}],
+    "echo": {"neg": "开头的说法", "pos": "结尾的回应", "note": "为什么这是呼应"},
+    "why": [{"t": "第 5 段：整段没有归属标记", "p": "……"}],
+    "side": "顺带的建议，可空。",
+    "end": "收尾一段。"
+  }
+}
+```
+
+约定：
+
+- `kind` 只有六个值，决定右栏怎么渲染：
+
+  | kind | 渲染 | 内容放哪 |
+  |---|---|---|
+  | `mcq` | 选择题卡（选项 + 对错标记） | `items[]` |
+  | `summary` | 摘要正文 + 逐空行 | `rows[]`（每空一行），组级 `cites` 兜底 |
+  | `ynng` | Y/N/NG 题卡 | `items[]` |
+  | `tfng` | T/F/NG 题卡 | `items[]` |
+  | `gap` | 普通填空题卡 | `items[]` |
+  | `matching` | 匹配题（先列选项池，再逐题） | `items[]` |
+
+- `summary` 之外都用 `items[]`；`summary` 的每一空写进 `rows[]`，`no` 必须与题号一致。
+- `cites` 两种写法都接受：`{"p": 1, "b": [3, 5]}`（段号 1 起、段内句序 0 起），或
+  `"p1s4"`（句序从 1 起）。构建时 `clean_cites` 会把后者转成前者，优先写对象形式。
+- `stats` / `bars` 可以省略：**前端**（`ReviewOverview.vue`）会按 `attempt` 与 `byType` 兜底，
+  构建脚本只负责透传。
+- `band[].s` 只能是 `t`（作者）、`a`（反方/假设）、`g`（中立定义）。
+- `sections[].title` 可省略，前端会按 `kind` 和 `from/to` 生成标题。
+
+### 4. 合并
 
 ```bat
 app\server\.venv\Scripts\python.exe tools\pack_from_export.py ^
@@ -556,10 +718,9 @@ app\server\.venv\Scripts\python.exe tools\pack_from_export.py ^
 
 服务运行中不需要重启，下一次请求会按文件 mtime 重新加载；也可以用 `POST /api/packs/reload`。
 
-### 4. 字段规则
+### 5. 字段规则
 
-完整 JSON 骨架**只维护在「写作提示词」第 4 节**，这里只列字段约定，
-避免同一份结构写两遍再各自漂移。
+骨架与题型取值见上一节，这里只列字段约定。
 
 | 字段 | 说明 |
 |---|---|
@@ -595,7 +756,7 @@ app\server\.venv\Scripts\python.exe tools\pack_from_export.py ^
 + 段落序号左侧一条 clay 竖线（`--hl-line`），其余句子保持纸面原样。点「原文出处」或摘要空位
 会滚到对应答案句；摘要空位被点时，右栏对应行展开「答案句」块（英文 + 译文）。
 
-### 5. 旧 HTML 页面
+### 6. 旧 HTML 页面
 
 以前那种单文件精读页（`const DATA` + `REV` + `MEANS`）也能直接转：
 
@@ -606,7 +767,7 @@ app\server\.venv\Scripts\python.exe tools\pack_from_html.py "剑雅18-Test3-Pass
 它会把 `mine`、`REV`、`MEANS` 一起带进来；`--analysis` 可以用外部 JSON 覆盖页面内嵌的
 复盘。`cam18-t3-p3` 就是这样生成的。
 
-### 6. 排查
+### 7. 排查
 
 | 现象 | 原因 | 处理 |
 |---|---|---|
@@ -617,180 +778,3 @@ app\server\.venv\Scripts\python.exe tools\pack_from_html.py "剑雅18-Test3-Pass
 | 词表是空的 | 导出不带词表 | 用 `--lexicon`、`analysis.lexicon`，或沿用旧包 |
 | 记录页没有这次成绩 | 没传 `--post` | 重新跑并加 `--post http://127.0.0.1:8000` |
 | 统计条/进度条不显示 | 没有 `attempt` 或 `byType` | 前端兜底也依赖它们；补 `attempt` 或手写 `stats`/`bars` |
-
-## 三、复盘写作提示词
-
-把 `---` 以下整段复制给 AI，附上该篇的 `passages.jsonl` / `questions.jsonl` / `groups.jsonl` /
-`attempts.jsonl` 对应行（或整个文件，让它自己筛 `part_id`）。产出应当是一个 JSON 对象，
-保存为 `analysis.json` 后交给 `tools/pack_from_export.py --analysis`——命令在仓库根执行，
-参数见「复盘流水线」第 3 节。
-
-提示词自带输出骨架，**不需要再附其他文档**；「复盘流水线」是流程说明，不是提示词的一部分。
-
----
-
-你是一名雅思阅读教练。学生刚在 idictation 上做完一篇阅读，下面是这次练习的完整数据：
-原文逐句（含官方译文）、题目与选项、官方答案、他的作答、官方解析（定位词/同义替换/中心句）。
-
-你的任务不是复述原文，也不是讲知识点，而是**指出他在这篇上具体做错了哪个动作**，并写成
-一份他能慢慢读、下一次能照着改的复盘。
-
-### 1. 先算清事实
-
-1. 以 `questions.jsonl` 的 `yours` / `correct_answer` / `is_correct` 为准。`is_correct`
-   为 `null` 表示没有作答记录，不要当成错。
-2. `state=blank` 是交卷没填（策略问题），`wrong` 是答错（动作问题），不要合并。
-3. 题号、题干、选项从 `questions.jsonl` 取；组指令、摘要/笔记正文从 `groups.jsonl` 取。
-4. 原文句子按 `passages.sentences[].paragraph` 分组。引用写成
-   `{"p": 段号(1 起), "b": [段内句序(0 起)]}`。不要用全文序号 `i`。
-
-### 2. 诊断的三条硬规则
-
-1. **诊断动作，不诊断知识。**
-   - 好：「题干问 purpose，你答了 content」「主语换人了」「短语找对了但挂错空」。
-   - 坏：「词汇量不足」「阅读能力有待提高」「要多练」。
-2. **每道错题必须给得出原文那一句。** 给不出就不要写这道题。引文要正好是判断依据，
-   不要把整段都标上。
-3. **答对的题只在方法可复用时写**（`label: "why-right"`）。不要为了对称硬写。
-
-### 3. 写作要求
-
-- 先写 `review`（逐题），再写 `guide`（读懂这篇）。
-- `review.lede`：2–4 句，说清这篇的错误集中在哪 2–3 个动作上，不要罗列题号流水账。
-- 每题 `diag`：先点破「题干问的是什么／你答的是什么」，再给原文证据，最后说清干扰项为什么错。
-  120–220 字，允许 `<em>` 强调关键词，不要用 Markdown。
-- 每题 `chain`：正确链条，说明从原文到答案的推理，80–150 字。可空。
-- `review.diagnoses`：把逐题错误归并成 3 个反复出现的「病灶」，每个 80–150 字。
-- `review.actions`：4–6 条可执行动作，每条以动词开头，必须能下一次直接照做。
-- `guide`：讲这篇文章的**结构**和**论证**，不是逐句翻译。必须回答：
-  哪几段是作者本人、哪几段是反方或假设、作者在哪一段翻盘、结尾如何回应开头。
-- 语气：像一个了解他水平的教练当面讲，直接、具体、不客套。不要用「同学你好」。
-- 不要编造原文没有的事实；不确定就不写。
-- 摘要填空每一空尽量给 `cites`（答案句所在段/句），读者点这个空位时才能看到答案句。
-
-### 4. 输出
-
-只输出一个 JSON 对象，不要 Markdown 代码块，不要解释。结构如下（可缺省字段已标注）：
-
-```json
-{
-  "review": {
-    "kicker": "复盘 · 书名 · Test · Passage",
-    "title": "一句话概括这篇的错误类型",
-    "lede": "2–4 句总述。",
-    "stats": [["5 / 14", "得分", 1], ["30:09", "用时", 0], ["9", "错题数", 1]],
-    "bars": [["选择 27–30", 25, "1/4"], ["摘要 31–35", 60, "3/5"]],
-    "sections": [
-      {
-        "kind": "mcq",
-        "title": "选择题 27–30",
-        "from": 27,
-        "to": 30,
-        "diag": "本组共性，可空",
-        "items": [
-          {
-            "no": 27,
-            "label": "why-wrong",
-            "tag": "选择题",
-            "diag": "错在哪 + 原文证据 + 干扰项为什么错",
-            "chain": "正确链条",
-            "cites": [{"p": 1, "b": [3, 5, 6]}]
-          }
-        ]
-      },
-      {
-        "kind": "summary",
-        "title": "摘要填空 31–35",
-        "from": 31,
-        "to": 35,
-        "diag": "本组共性",
-        "note": "本组补充，可空",
-        "cites": [{"p": 7, "b": [2, 3]}],
-        "rows": [
-          {
-            "no": 32,
-            "minePhrase": "wrong classes",
-            "corPhrase": "bottom sets",
-            "src": "原文依据短语",
-            "diag": "为什么这个空只能填它",
-            "cites": [{"p": 7, "b": [2]}]
-          }
-        ]
-      },
-      {
-        "kind": "ynng",
-        "title": "判断题 36–40",
-        "from": 36,
-        "to": 40,
-        "diag": "本组共性",
-        "items": [
-          {"no": 37, "label": "why-wrong", "diag": "……", "cites": [{"p": 9, "b": [1, 2]}]}
-        ]
-      },
-      {"kind": "tfng", "title": "判断题 36–40", "from": 36, "to": 40, "diag": "本组共性",
-       "items": [{"no": 36, "label": "why-wrong", "diag": "……", "cites": [{"p": 6, "b": [4, 5]}]}]},
-      {"kind": "gap", "title": "填空题 21–26", "from": 21, "to": 26, "diag": "本组共性",
-       "items": [{"no": 21, "label": "why-wrong", "diag": "……", "cites": [{"p": 2, "b": [1]}]}]},
-      {"kind": "matching", "title": "匹配题 14–19", "from": 14, "to": 19, "diag": "本组共性",
-       "items": [{"no": 14, "label": "why-wrong", "diag": "……", "cites": [{"p": 4, "b": [0]}]}]}
-    ],
-    "diagnoses": [{"n": "病灶 01", "t": "对象漂移", "p": "……"}],
-    "actions": ["判断题先压命题再判：……"],
-    "end": "收尾一段。"
-  },
-  "guide": {
-    "kicker": "读懂 · 书名 · Test · Passage",
-    "title": "这篇文章在干什么",
-    "lede": "2–3 段，指出真正的阅读障碍。",
-    "thesis": "一句话主旨。",
-    "structureTitle": "N 段里，有 M 段不是作者在说话",
-    "band": [{"n": 1, "f": "样板课", "s": "t"}],
-    "legend": [{"s": "t", "text": "作者本人在说话（6 段）"}],
-    "argument": {
-      "negativeTitle": "反方：前 5 段在说这个",
-      "negative": [{"t": "反问　", "p": "（第 2 段）……"}],
-      "positiveTitle": "作者：四刀拆掉它",
-      "positive": [{"t": "第一刀 · 实证　", "p": "（第 7 段）……"}],
-      "punch": "一句话点破论证的落点。"
-    },
-    "rows": [{"n": 1, "w": "作者", "s": "t", "d": "这一段在干什么。"}],
-    "terms": [{"k": "ZPD", "en": "zone of proximal development", "d": "……"}],
-    "echo": {"neg": "开头的说法", "pos": "结尾的回应", "note": "为什么这是呼应"},
-    "why": [{"t": "第 5 段：整段没有归属标记", "p": "……"}],
-    "side": "顺带的建议，可空。",
-    "end": "收尾一段。"
-  }
-}
-```
-
-##### 4.1 骨架之外的约定
-
-- `kind` 只有六个值，决定右栏怎么渲染：
-
-  | kind | 渲染 | 内容放哪 |
-  |---|---|---|
-  | `mcq` | 选择题卡（选项 + 对错标记） | `items[]` |
-  | `summary` | 摘要正文 + 逐空行 | `rows[]`（每空一行），组级 `cites` 兜底 |
-  | `ynng` | Y/N/NG 题卡 | `items[]` |
-  | `tfng` | T/F/NG 题卡 | `items[]` |
-  | `gap` | 普通填空题卡 | `items[]` |
-  | `matching` | 匹配题（先列选项池，再逐题） | `items[]` |
-
-- `summary` 之外都用 `items[]`；`summary` 的每一空写进 `rows[]`，`no` 必须与题号一致。
-- `cites` 两种写法都接受：`{"p": 1, "b": [3, 5]}`（段号 1 起、段内句序 0 起），或
-  `"p1s4"`（句序从 1 起）。构建时 `clean_cites` 会把后者转成前者，优先写对象形式。
-- `stats` / `bars` 可以省略：**前端**（`ReviewOverview.vue`）会按 `attempt` 与 `byType` 兜底，
-  构建脚本只负责透传。
-- `band[].s` 只能是 `t`（作者）、`a`（反方/假设）、`g`（中立定义）。
-- `sections[].title` 可省略，前端会按 `kind` 和 `from/to` 生成标题。
-
-### 5. 交稿前自检
-
-- [ ] 每道错题都有 `cites`，且 `p`/`b` 按段内序号数对了
-- [ ] 没有把答对的题写成「错在哪」
-- [ ] 没有「词汇量」「多读多练」这类无法执行的诊断
-- [ ] `diagnoses` 是 3 个动作，不是 3 个题型
-- [ ] `actions` 每条都能下一次直接照做
-- [ ] `guide` 说清了谁在说话、在哪翻盘、结尾怎么回应开头
-- [ ] `kind` 用对了结构：摘要用 `rows[]`，其余用 `items[]`
-- [ ] 输出是纯 JSON，能被 `json.loads` 直接解析
