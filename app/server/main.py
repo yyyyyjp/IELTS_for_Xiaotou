@@ -25,14 +25,14 @@ async def lifespan(app: FastAPI):
     db.init_db()
     legacy.seed()
     loaded = loader.load_all(force=True)
-    print(f"[tifo] 内容包 {len(loaded)} 个；音频缓存目录 {config.AUDIO_DIR}")
+    print(f"[xiaotou] 内容包 {len(loaded)} 个；音频缓存目录 {config.AUDIO_DIR}")
     for name, err in loader.errors().items():
-        print(f"[tifo] 内容包有误 {name}: {err}")
+        print(f"[xiaotou] 内容包有误 {name}: {err}")
     legacy.resume_pending()   # 上次没生成完的音频接着来
     yield
 
 
-app = FastAPI(title="Tifo · 雅思备考记录", version="2.0.0", lifespan=lifespan)
+app = FastAPI(title="小头雅思 · 备考记录", version="2.0.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config.CORS_ORIGINS,

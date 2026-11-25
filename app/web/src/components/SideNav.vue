@@ -27,7 +27,7 @@ watch(() => route.fullPath, refreshVocabCounts)
 
 <template>
   <aside class="nav">
-    <RouterLink to="/" class="brand" aria-label="tifo">tifo</RouterLink>
+    <RouterLink to="/" class="brand" aria-label="小头雅思">小头雅思</RouterLink>
 
     <nav class="links" :aria-label="t('nav.overview')">
       <RouterLink

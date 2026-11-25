@@ -1,4 +1,4 @@
-# Tifo · 雅思备考记录
+# 小头雅思 · 备考记录
 
 精读、生词本、听写、作答记录，共用一套后端。前端在 `app/web/`，构建产物由后端直接托管。
 接口契约、复盘流程与写作提示词都在 [docs/AI.md](docs/AI.md)（那份是给 AI 的，人看本文即可）。
@@ -46,7 +46,7 @@
 ## 目录结构
 
 ```
-tifo/
+xiaotou-ielts/
 ├─ app/
 │  ├─ start.bat          一键启动：检查依赖与 dist，缺什么装什么
 │  ├─ dev.bat            开发模式：uvicorn --reload + vite

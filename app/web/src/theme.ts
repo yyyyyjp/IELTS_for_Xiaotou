@@ -2,7 +2,7 @@ import { ref, watch } from 'vue'
 
 export type Theme = 'light' | 'dark'
 
-const STORAGE_KEY = 'tifo.theme'
+const STORAGE_KEY = 'xiaotou.theme'
 
 function initialTheme(): Theme {
   try {

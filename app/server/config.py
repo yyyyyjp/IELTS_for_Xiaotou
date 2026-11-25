@@ -1,8 +1,8 @@
 """运行期配置：路径与默认参数集中在这里，其他模块不再各自拼路径。
 
 路径均可通过环境变量覆盖，便于测试与部署：
-  TIFO_DATA_DIR     数据库与音频缓存目录（默认 server/data）
-  TIFO_CONTENT_DIR  内容包目录（默认 server/content）
+  XIAOTOU_DATA_DIR     数据库与音频缓存目录（默认 server/data）
+  XIAOTOU_CONTENT_DIR  内容包目录（默认 server/content）
 """
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
-DATA_DIR = Path(os.getenv("TIFO_DATA_DIR") or BASE_DIR / "data")
-CONTENT_DIR = Path(os.getenv("TIFO_CONTENT_DIR") or BASE_DIR / "content")
+DATA_DIR = Path(os.getenv("XIAOTOU_DATA_DIR") or BASE_DIR / "data")
+CONTENT_DIR = Path(os.getenv("XIAOTOU_CONTENT_DIR") or BASE_DIR / "content")
 AUDIO_DIR = DATA_DIR / "audio"
 PACK_DIR = CONTENT_DIR / "packs"
 DB_PATH = DATA_DIR / "app.db"

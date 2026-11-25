@@ -9,9 +9,9 @@ from pathlib import Path
 
 import pytest
 
-TMP = Path(tempfile.mkdtemp(prefix="tifo-test-"))
-os.environ["TIFO_DATA_DIR"] = str(TMP / "data")
-os.environ["TIFO_CONTENT_DIR"] = str(TMP / "content")
+TMP = Path(tempfile.mkdtemp(prefix="xiaotou-test-"))
+os.environ["XIAOTOU_DATA_DIR"] = str(TMP / "data")
+os.environ["XIAOTOU_CONTENT_DIR"] = str(TMP / "content")
 
 PACKS = TMP / "content" / "packs"
 PACKS.mkdir(parents=True, exist_ok=True)

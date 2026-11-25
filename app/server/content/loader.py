@@ -4,7 +4,7 @@
 1. 加一篇新剑雅，只加一个 JSON，不用改代码、不用数据库迁移；
 2. 记录表的改版不会碰教材，教材的改版也不会碰记录。
 
-文件位置：server/content/packs/*.json（可用 TIFO_CONTENT_DIR 覆盖）。
+文件位置：server/content/packs/*.json（可用 XIAOTOU_CONTENT_DIR 覆盖）。
 """
 from __future__ import annotations
 

@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#faf9f5" />
-  <title>tifo · 雅思备考</title>
+  <title>小头雅思 · 备考</title>
   <script>
     try {
-      var saved = localStorage.getItem('tifo.theme')
+      var saved = localStorage.getItem('xiaotou.theme')
       var theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
       document.documentElement.dataset.theme = theme
-      var lang = localStorage.getItem('tifo.lang')
+      var lang = localStorage.getItem('xiaotou.lang')
       if (lang) document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
     } catch (e) { }
   </script>

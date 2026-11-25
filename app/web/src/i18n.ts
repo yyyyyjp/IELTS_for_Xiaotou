@@ -2,7 +2,7 @@ import { ref, watch } from 'vue'
 
 export type Lang = 'zh' | 'en'
 
-const STORAGE_KEY = 'tifo.lang'
+const STORAGE_KEY = 'xiaotou.lang'
 
 const zh: Record<string, string> = {
   'nav.overview': '总览',
