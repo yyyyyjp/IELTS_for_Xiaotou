@@ -60,7 +60,6 @@ def upload_r2_object(wrangler_cmd: list[str], bucket: str, key: str, file_path: 
         "r2", "object", "put", f"{bucket}/{key}",
         "--file", str(file_path),
         "--content-type", content_type,
-        "--remote",
     ]
     if content_encoding:
         cmd += ["--content-encoding", content_encoding]
@@ -90,8 +89,12 @@ def main(argv: list[str] | None = None) -> int:
         print("[prepare_cloud] 离线准备完成。加 --upload 可直接上传词典分片和音频到 R2。")
         return 0
 
-    npx = shutil.which("npx.cmd") or shutil.which("npx") or "npx"
-    wrangler_cmd = [npx, "wrangler"]
+    local_wrangler = CLOUD / "node_modules" / ".bin" / ("wrangler.cmd" if sys.platform == "win32" else "wrangler")
+    if local_wrangler.exists():
+        wrangler_cmd = [str(local_wrangler)]
+    else:
+        npx = shutil.which("npx.cmd") or shutil.which("npx") or "npx"
+        wrangler_cmd = [npx, "wrangler"]
 
     t0 = time.time()
     print(f"[prepare_cloud] 上传核心词库 -> R2 {args.bucket}/dict/core_dict.json.gz ...")
