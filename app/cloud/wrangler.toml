@@ -18,4 +18,10 @@ database_id = "2782ef36-07ef-4928-8781-a9777b8f5c8b"
 binding = "BUCKET"
 bucket_name = "xiaotou-ielts"
 
-# 可选：通过 `npx wrangler secret put SYNC_TOKEN` 设置同步口令，不要把密钥写进此文件。
+[vars]
+ADMIN_GITHUB_LOGIN = "yyyyyjp"
+
+# 密钥全部通过 `npx wrangler secret put` 加密注入，不要把密钥写进此文件：
+# - GITHUB_CLIENT_ID
+# - GITHUB_CLIENT_SECRET
+# - JWT_SECRET

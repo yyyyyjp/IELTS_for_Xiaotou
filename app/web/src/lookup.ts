@@ -97,6 +97,12 @@ export function closeLookup(): void {
   lookupState.value = null
 }
 
+export function clearLookupCache(): void {
+  resultCache.clear()
+  currentScope.value = null
+  closeLookup()
+}
+
 function cacheKey(word: string, packId: string): string {
   return `${packId}::${word.trim().toLowerCase()}`
 }

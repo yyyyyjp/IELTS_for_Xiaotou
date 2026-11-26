@@ -483,6 +483,31 @@ export interface SyncAttemptRecord {
   createdAt: number
 }
 
+export interface AuthUser {
+  id: string
+  githubId: string
+  login: string
+  name: string
+  avatarUrl: string
+  role: 'admin' | 'user'
+  status: 'active' | 'pending'
+}
+
+export interface AuthMeResponse {
+  authEnabled: boolean
+  authenticated: boolean
+  user: AuthUser | null
+}
+
+export interface InviteRecord {
+  code: string
+  maxUses: number
+  usedCount: number
+  note: string
+  createdAt: number
+  revokedAt: number
+}
+
 export interface SyncResponse {
   ok: boolean
   serverTs: number

@@ -78,8 +78,20 @@ export function apiBaseUrl(): string {
 }
 
 export function authHeaders(): Record<string, string> {
+  try {
+    const jwt = localStorage.getItem('xiaotou.authToken')
+    if (jwt) return { Authorization: `Bearer ${jwt}` }
+  } catch {
+    /* ignore */
+  }
   if (!syncConfig.token) return {}
   return { Authorization: `Bearer ${syncConfig.token}` }
+}
+
+let onUnauthorized: (() => void) | null = null
+
+export function registerUnauthorizedHandler(fn: () => void): void {
+  onUnauthorized = fn
 }
 
 export type SyncPhase = 'synced' | 'syncing' | 'pending' | 'offline' | 'error'
@@ -164,6 +176,10 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
       ...(init?.headers ?? {}),
     },
   })
+  if (res.status === 401) {
+    onUnauthorized?.()
+    throw new Error('登录已失效，请重新登录')
+  }
   if (!res.ok) {
     let msg = `HTTP ${res.status}`
     try {
@@ -337,6 +353,24 @@ export async function ensureHydrated(): Promise<void> {
 }
 
 let bootstrapped = false
+let listenersAttached = false
+
+export function resetSyncRuntime(): void {
+  window.clearTimeout(debounceTimer)
+  window.clearTimeout(retryTimer)
+  bootstrapped = false
+  inFlight = null
+  hydratePromise = null
+  retryAttempt = 0
+  memSavedVocab.clear()
+  pendingCount.value = 0
+  lastSyncAt.value = null
+  lastSyncError.value = ''
+  localCounts.vocab = 0
+  localCounts.attempts = 0
+  localCounts.cachedPacks = 0
+  updatePhase()
+}
 
 export function bootstrapSync(): void {
   if (bootstrapped || typeof window === 'undefined') return
@@ -346,16 +380,19 @@ export function bootstrapSync(): void {
     lastSyncAt.value = await getMeta<number | null>('lastSyncAt', null)
     await refreshLocalCounts()
     await syncNow()
-    // 后台静默加载 1.96MB 核心离线词库到 IndexedDB，不阻塞首屏渲染
+    // 后台静默加载 1.96MB 核心离线词库到公共 IndexedDB，不阻塞首屏渲染
     void ensureCoreDict(() =>
       fetchJson<{ version: number; count: number; entries: CompactDictTuple[] }>('/dict/bundle'),
     )
   })()
 
+  if (listenersAttached) return
+  listenersAttached = true
+
   window.addEventListener('online', () => {
     isOnline.value = true
     lastSyncError.value = ''
-    void syncNow()
+    if (bootstrapped) void syncNow()
   })
 
   window.addEventListener('offline', () => {
@@ -364,7 +401,7 @@ export function bootstrapSync(): void {
   })
 
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && isOnline.value) {
+    if (bootstrapped && document.visibilityState === 'visible' && isOnline.value) {
       const elapsed = nowSec() - (lastSyncAt.value ?? 0)
       if (elapsed > 15 || pendingCount.value > 0) {
         void syncNow()
@@ -373,7 +410,7 @@ export function bootstrapSync(): void {
   })
 
   window.setInterval(() => {
-    if (document.visibilityState === 'visible' && isOnline.value) {
+    if (bootstrapped && document.visibilityState === 'visible' && isOnline.value) {
       void syncNow()
     }
   }, 60_000)

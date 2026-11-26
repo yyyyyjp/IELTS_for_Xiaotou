@@ -1,20 +1,42 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
+import { authState, initAuth } from './auth'
+import AuthGate from './components/AuthGate.vue'
 import GlobalLookup from './components/GlobalLookup.vue'
 import SideNav from './components/SideNav.vue'
 import Toast from './components/Toast.vue'
+import { t } from './i18n'
 import { bootstrapSync } from './sync'
 
 const route = useRoute()
 /** 阅读视图是沉浸式的：不显示全局侧栏，内容自己负责返回入口。 */
 const immersive = computed(() => route.meta.immersive === true)
 
-onMounted(bootstrapSync)
+onMounted(() => {
+  void initAuth()
+})
+
+watch(
+  authState,
+  (state) => {
+    if (state === 'authenticated') {
+      bootstrapSync()
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
-  <div class="shell" :class="{ immersive }">
+  <div v-if="authState === 'loading'" class="boot">
+    <span class="serif">小头雅思</span>
+    <span class="boot-sub">{{ t('common.loading') }}</span>
+  </div>
+
+  <AuthGate v-else-if="authState !== 'authenticated'" />
+
+  <div v-else class="shell" :class="{ immersive }">
     <SideNav v-if="!immersive" />
     <main class="main">
       <RouterView v-slot="{ Component }">
@@ -29,6 +51,23 @@ onMounted(bootstrapSync)
 </template>
 
 <style scoped>
+.boot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 100svh;
+  background: var(--bg-page);
+  color: var(--fg);
+  font-size: 24px;
+}
+
+.boot-sub {
+  color: var(--fg-3);
+  font-size: var(--text-xs);
+}
+
 .shell {
   min-height: 100svh;
 }

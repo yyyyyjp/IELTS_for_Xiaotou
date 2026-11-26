@@ -33,17 +33,33 @@ export interface OutboxRecord {
 
 export type CompactDictTuple = [string, string, string, string, number, string]
 
-const DB_NAME = 'xiaotou_local_v1'
+const USER_DB_PREFIX = 'xiaotou_local_v2_'
+const DICT_DB_NAME = 'xiaotou_dict_v1'
 const DB_VERSION = 1
 
-let dbPromise: Promise<IDBDatabase | null> | null = null
-const memFallback = new Map<StoreName, Map<string, unknown>>()
+const USER_STORES: StoreName[] = [
+  'meta',
+  'packs_summary',
+  'packs_detail',
+  'vocab',
+  'sessions',
+  'attempts',
+  'outbox',
+]
+
+let activeUserId = 'local'
+let userDbPromise: Promise<IDBDatabase | null> | null = null
+let userDbInstance: IDBDatabase | null = null
+let dictDbPromise: Promise<IDBDatabase | null> | null = null
+
+const memFallback = new Map<string, Map<string, unknown>>()
 
 function getMemStore(store: StoreName): Map<string, unknown> {
-  let map = memFallback.get(store)
+  const ns = store === 'dict_blob' ? 'dict:dict_blob' : `${activeUserId}:${store}`
+  let map = memFallback.get(ns)
   if (!map) {
     map = new Map()
-    memFallback.set(store, map)
+    memFallback.set(ns, map)
   }
   return map
 }
@@ -64,31 +80,39 @@ function keyFieldOf(store: StoreName): string {
   }
 }
 
-export function openLocalDb(): Promise<IDBDatabase | null> {
-  if (dbPromise) return dbPromise
-  if (typeof indexedDB === 'undefined') {
-    dbPromise = Promise.resolve(null)
-    return dbPromise
-  }
-  dbPromise = new Promise((resolve) => {
+/** 切换当前 IndexedDB 所属用户：关闭旧句柄并物理隔离到 xiaotou_local_v2_<userId>。 */
+export function setActiveLocalDbUser(userId: string): void {
+  const safe = (userId || 'local').replace(/[^a-zA-Z0-9_-]/g, '_')
+  if (safe === activeUserId && userDbPromise) return
+  if (userDbInstance) {
     try {
-      const req = indexedDB.open(DB_NAME, DB_VERSION)
+      userDbInstance.close()
+    } catch {
+      /* ignore */
+    }
+    userDbInstance = null
+  }
+  userDbPromise = null
+  activeUserId = safe
+}
+
+export function getActiveLocalDbUser(): string {
+  return activeUserId
+}
+
+function openDictDb(): Promise<IDBDatabase | null> {
+  if (dictDbPromise) return dictDbPromise
+  if (typeof indexedDB === 'undefined') {
+    dictDbPromise = Promise.resolve(null)
+    return dictDbPromise
+  }
+  dictDbPromise = new Promise((resolve) => {
+    try {
+      const req = indexedDB.open(DICT_DB_NAME, DB_VERSION)
       req.onupgradeneeded = () => {
         const db = req.result
-        const stores: StoreName[] = [
-          'meta',
-          'dict_blob',
-          'packs_summary',
-          'packs_detail',
-          'vocab',
-          'sessions',
-          'attempts',
-          'outbox',
-        ]
-        for (const name of stores) {
-          if (!db.objectStoreNames.contains(name)) {
-            db.createObjectStore(name, { keyPath: keyFieldOf(name) })
-          }
+        if (!db.objectStoreNames.contains('dict_blob')) {
+          db.createObjectStore('dict_blob', { keyPath: 'key' })
         }
       }
       req.onsuccess = () => resolve(req.result)
@@ -97,11 +121,45 @@ export function openLocalDb(): Promise<IDBDatabase | null> {
       resolve(null)
     }
   })
-  return dbPromise
+  return dictDbPromise
+}
+
+export function openLocalDb(): Promise<IDBDatabase | null> {
+  if (userDbPromise) return userDbPromise
+  if (typeof indexedDB === 'undefined') {
+    userDbPromise = Promise.resolve(null)
+    return userDbPromise
+  }
+  const dbName = `${USER_DB_PREFIX}${activeUserId}`
+  userDbPromise = new Promise((resolve) => {
+    try {
+      const req = indexedDB.open(dbName, DB_VERSION)
+      req.onupgradeneeded = () => {
+        const db = req.result
+        for (const name of USER_STORES) {
+          if (!db.objectStoreNames.contains(name)) {
+            db.createObjectStore(name, { keyPath: keyFieldOf(name) })
+          }
+        }
+      }
+      req.onsuccess = () => {
+        userDbInstance = req.result
+        resolve(req.result)
+      }
+      req.onerror = () => resolve(null)
+    } catch {
+      resolve(null)
+    }
+  })
+  return userDbPromise
+}
+
+function dbForStore(store: StoreName): Promise<IDBDatabase | null> {
+  return store === 'dict_blob' ? openDictDb() : openLocalDb()
 }
 
 export async function idbGet<T>(store: StoreName, key: string): Promise<T | undefined> {
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) return getMemStore(store).get(key) as T | undefined
   return new Promise((resolve) => {
     try {
@@ -116,7 +174,7 @@ export async function idbGet<T>(store: StoreName, key: string): Promise<T | unde
 }
 
 export async function idbGetAll<T>(store: StoreName): Promise<T[]> {
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) return Array.from(getMemStore(store).values()) as T[]
   return new Promise((resolve) => {
     try {
@@ -131,7 +189,7 @@ export async function idbGetAll<T>(store: StoreName): Promise<T[]> {
 }
 
 export async function idbCount(store: StoreName): Promise<number> {
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) return getMemStore(store).size
   return new Promise((resolve) => {
     try {
@@ -146,7 +204,7 @@ export async function idbCount(store: StoreName): Promise<number> {
 }
 
 export async function idbPut<T extends object>(store: StoreName, value: T): Promise<void> {
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) {
     const kf = keyFieldOf(store)
     const k = String((value as Record<string, unknown>)[kf] ?? '')
@@ -167,7 +225,7 @@ export async function idbPut<T extends object>(store: StoreName, value: T): Prom
 
 export async function idbPutMany<T extends object>(store: StoreName, values: T[]): Promise<void> {
   if (!values.length) return
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) {
     const kf = keyFieldOf(store)
     const m = getMemStore(store)
@@ -191,7 +249,7 @@ export async function idbPutMany<T extends object>(store: StoreName, values: T[]
 }
 
 export async function idbDelete(store: StoreName, key: string): Promise<void> {
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) {
     getMemStore(store).delete(key)
     return
@@ -210,7 +268,7 @@ export async function idbDelete(store: StoreName, key: string): Promise<void> {
 
 export async function idbDeleteMany(store: StoreName, keys: string[]): Promise<void> {
   if (!keys.length) return
-  const db = await openLocalDb()
+  const db = await dbForStore(store)
   if (!db) {
     const m = getMemStore(store)
     for (const k of keys) m.delete(k)

@@ -34,19 +34,19 @@ def sql_quote(s: str) -> str:
     return "'" + s.replace("'", "''") + "'"
 
 
-def generate_seed_sql(out_sql: Path) -> int:
+def generate_seed_sql(out_sql: Path, user_id: str = "u_admin") -> int:
     packs = loader.load_all(force=True)
-    lines = ["-- 自动生成：将本地精读内容包同步到 Cloudflare D1 packs 表", ""]
+    lines = [f"-- 自动生成：将本地精读内容包同步到 Cloudflare D1 packs 表（user_id={user_id}）", ""]
     for pid in sorted(packs):
         lp = packs[pid]
         summary = json.dumps(lp.summary(), ensure_ascii=False, separators=(",", ":"))
         detail = json.dumps(lp.public(with_answers=True), ensure_ascii=False, separators=(",", ":"))
         mt = int(lp.mtime)
         lines.append(
-            "INSERT INTO packs(id, kind, origin, title, mtime, summary_json, detail_json) VALUES("
-            f"{sql_quote(lp.id)}, {sql_quote(lp.doc.kind)}, {sql_quote(lp.doc.origin)}, "
+            "INSERT INTO packs(user_id, id, kind, origin, title, mtime, summary_json, detail_json) VALUES("
+            f"{sql_quote(user_id)}, {sql_quote(lp.id)}, {sql_quote(lp.doc.kind)}, {sql_quote(lp.doc.origin)}, "
             f"{sql_quote(lp.doc.meta.title)}, {mt}, {sql_quote(summary)}, {sql_quote(detail)}"
-            ") ON CONFLICT(id) DO UPDATE SET "
+            ") ON CONFLICT(user_id, id) DO UPDATE SET "
             "kind=excluded.kind, origin=excluded.origin, title=excluded.title, "
             "mtime=excluded.mtime, summary_json=excluded.summary_json, detail_json=excluded.detail_json;"
         )

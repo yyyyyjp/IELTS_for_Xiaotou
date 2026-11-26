@@ -75,6 +75,24 @@ def health():
     }
 
 
+@app.get("/api/auth/me")
+def local_auth_me():
+    """本地 FastAPI 单用户免登录模式，与云端认证契约对齐。"""
+    return {
+        "authEnabled": False,
+        "authenticated": True,
+        "user": {
+            "id": "local",
+            "githubId": "",
+            "login": "local",
+            "name": "本地模式",
+            "avatarUrl": "",
+            "role": "admin",
+            "status": "active",
+        },
+    }
+
+
 # 生产模式：同端口托管打包后的前端
 if config.WEB_DIST.exists():
     app.mount("/", StaticFiles(directory=str(config.WEB_DIST), html=True), name="web")
