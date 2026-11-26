@@ -8,6 +8,8 @@ export const coreDictCount = ref(0)
 const exactMap = new Map<string, CompactDictTuple>()
 const lowerMap = new Map<string, CompactDictTuple>()
 const swMap = new Map<string, CompactDictTuple>()
+const loadedShards = new Set<string>()
+const shardLoading = new Map<string, Promise<boolean>>()
 
 const TAG_ORDER = ['ielts', 'toefl', 'gre', 'cet6', 'cet4', 'ky', 'gk', 'zk']
 const POS_LINE_RE = /^([a-z]{1,6}\.(?:\s*\/\s*[a-z]{1,6}\.)*)\s+(.+)$/i
@@ -68,6 +70,59 @@ function indexEntries(entries: CompactDictTuple[]): void {
   }
   coreDictCount.value = entries.length
   coreDictStatus.value = entries.length > 0 ? 'ready' : 'unavailable'
+}
+
+function mergeShardEntries(entries: CompactDictTuple[]): void {
+  for (const tup of entries) {
+    const w = tup[0]
+    if (!exactMap.has(w)) exactMap.set(w, tup)
+    const low = w.toLowerCase()
+    if (!lowerMap.has(low)) lowerMap.set(low, tup)
+    const sw = stripWord(w)
+    if (sw && !swMap.has(sw)) swMap.set(sw, tup)
+  }
+}
+
+export function shardKeyFor(word: string): string {
+  const ch = (word.trim()[0] ?? '').toLowerCase()
+  return ch >= 'a' && ch <= 'z' ? ch : 'other'
+}
+
+export async function ensureDictShard(
+  wordOrLetter: string,
+  fetchShard: (letter: string) => Promise<{ entries: CompactDictTuple[] }>,
+): Promise<boolean> {
+  const letter = shardKeyFor(wordOrLetter)
+  if (loadedShards.has(letter)) return true
+  const inflight = shardLoading.get(letter)
+  if (inflight) return inflight
+
+  const p = (async () => {
+    const blobKey = `shard_${letter}`
+    const cached = await idbGet<{ key: string; entries: CompactDictTuple[] }>('dict_blob', blobKey)
+    if (cached?.entries?.length) {
+      mergeShardEntries(cached.entries)
+      loadedShards.add(letter)
+      return true
+    }
+    try {
+      const data = await fetchShard(letter)
+      if (data?.entries?.length) {
+        await idbPut('dict_blob', { key: blobKey, entries: data.entries })
+        mergeShardEntries(data.entries)
+        loadedShards.add(letter)
+        return true
+      }
+    } catch {
+      /* ignore */
+    }
+    return false
+  })().finally(() => {
+    shardLoading.delete(letter)
+  })
+
+  shardLoading.set(letter, p)
+  return p
 }
 
 interface CoreBundlePayload {

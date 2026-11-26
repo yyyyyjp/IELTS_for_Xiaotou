@@ -52,6 +52,32 @@ def dict_bundle(request: Request):
     )
 
 
+@router.get("/dict/shard/{letter}")
+def dict_shard(letter: str, request: Request):
+    """按首字母下发 R2/本地静态词典分片（用于 6.6 万核心库未命中的生僻词）。"""
+    clean = letter.lower()
+    if clean != "other" and (len(clean) != 1 or not ("a" <= clean <= "z")):
+        raise HTTPException(400, "非法分片名")
+    path = config.DATA_DIR / "dict_shards" / f"{clean}.json.gz"
+    if not path.exists():
+        raise HTTPException(404, "词典分片尚未生成（请运行 tools/build_dict_shards.py）")
+    raw_gz = path.read_bytes()
+    accept_enc = request.headers.get("accept-encoding", "")
+    if "gzip" in accept_enc.lower():
+        return Response(
+            content=raw_gz,
+            media_type="application/json; charset=utf-8",
+            headers={"Content-Encoding": "gzip", "Cache-Control": "public, max-age=604800"},
+        )
+    import gzip
+
+    return Response(
+        content=gzip.decompress(raw_gz),
+        media_type="application/json; charset=utf-8",
+        headers={"Cache-Control": "public, max-age=604800"},
+    )
+
+
 @router.get("/dict/lookup")
 def dict_lookup(
     q: str = Query(default="", max_length=200, description="待查单词或短语"),

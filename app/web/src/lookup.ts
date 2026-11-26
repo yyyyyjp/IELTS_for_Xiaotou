@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { api } from './api'
 import { t } from './i18n'
-import { lookupLocalCoreDict } from './localDict'
+import { ensureDictShard, lookupLocalCoreDict } from './localDict'
 import { refreshVocabCounts } from './state'
 import { findSavedVocabSync, isOnline } from './sync'
 import { toast } from './toast'
@@ -423,6 +423,32 @@ export async function openLookup(options: LookupOpenOptions): Promise<void> {
   }
 
   try {
+    // 优先尝试按首字母拉取 R2/本地词典分片并缓存在 IndexedDB，下次查同首字母生僻词 0ms 秒出
+    const firstWord = cleaned.split(/\s+/)[0] || cleaned
+    const shardOk = await ensureDictShard(firstWord, (letter) => api.dictShard(letter))
+    if (shardOk) {
+      const shardHit = lookupLocalCoreDict(
+        cleaned,
+        scope?.packId === packId ? scope.lexicon : null,
+        findSavedVocabSync,
+      )
+      if (shardHit && seq === requestSeq && lookupState.value) {
+        resultCache.set(key, shardHit)
+        const savedId = findSavedVocabSync(shardHit.lemma, cleaned)
+        lookupState.value = {
+          ...lookupState.value,
+          word: shardHit.word || cleaned,
+          lemma: shardHit.lemma || cleaned.toLowerCase(),
+          loading: false,
+          result: { ...shardHit, saved: savedId !== null, vocabId: savedId },
+          saved: savedId !== null,
+          vocabId: savedId,
+        }
+        return
+      }
+    }
+
+    // 若分片仍未命中（如部分短语拆词或本地 FastAPI 兜底），回退到 /api/dict/lookup
     const res = await api.dictLookup(cleaned, packId || undefined)
     if (seq !== requestSeq || !lookupState.value) return
     resultCache.set(key, res)

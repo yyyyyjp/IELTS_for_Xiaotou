@@ -196,6 +196,10 @@ export const api = {
   statsWeak: (limit = 12): Promise<{ items: WeakWord[] }> => localStatsWeak(limit),
 
   dictStatus: () => req<DictStatus>('/dict/status'),
+  dictShard: (letter: string) =>
+    req<{ version: number; shard: string; count: number; entries: [string, string, string, string, number, string][] }>(
+      `/dict/shard/${encodeURIComponent(letter)}`,
+    ),
   dictLookup: (q: string, packId?: string) =>
     req<DictLookupResult>(`/dict/lookup${query({ q, packId })}`),
 
