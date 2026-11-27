@@ -28,7 +28,7 @@ watch(() => route.fullPath, refreshVocabCounts)
 
 <template>
   <aside class="nav">
-    <RouterLink to="/" class="brand" aria-label="小头雅思">小头雅思</RouterLink>
+    <RouterLink to="/" class="brand" aria-label="Xiaotou IELTS">Xiaotou IELTS</RouterLink>
 
     <nav class="links" :aria-label="t('nav.overview')">
       <RouterLink
@@ -110,10 +110,11 @@ watch(() => route.fullPath, refreshVocabCounts)
 .brand {
   padding: 0 10px 32px;
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .links {
