@@ -6,7 +6,6 @@ import AuthGate from './components/AuthGate.vue'
 import GlobalLookup from './components/GlobalLookup.vue'
 import SideNav from './components/SideNav.vue'
 import Toast from './components/Toast.vue'
-import { t } from './i18n'
 import { bootstrapSync } from './sync'
 
 const route = useRoute()
@@ -30,8 +29,8 @@ watch(
 
 <template>
   <div v-if="authState === 'loading'" class="boot">
-    <span class="serif">小头雅思</span>
-    <span class="boot-sub">{{ t('common.loading') }}</span>
+    <span class="serif">Xiaotou IELTS</span>
+    <span class="boot-sub">Loading…</span>
   </div>
 
   <AuthGate v-else-if="authState !== 'authenticated'" />

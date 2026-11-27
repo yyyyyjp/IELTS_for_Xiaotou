@@ -587,7 +587,7 @@ async function handleGithubCallback(req: Request, env: Env, url: URL): Promise<R
 
 async function handleActivate(req: Request, env: Env): Promise<Response> {
   const user = await resolveAuthUser(req, env)
-  if (!user) return json({ detail: '请先登录 GitHub 账号' }, 401)
+  if (!user) return json({ detail: 'Please sign in with GitHub first.' }, 401)
   const jwtSecret = (env.JWT_SECRET ?? '').trim()
   if (user.status === 'active') {
     const token = await signJwt(user, jwtSecret)
@@ -596,7 +596,7 @@ async function handleActivate(req: Request, env: Env): Promise<Response> {
 
   const body = (await req.json().catch(() => ({}))) as { code?: string }
   const code = String(body.code ?? '').trim().toUpperCase()
-  if (!code) return json({ detail: '请输入邀请码' }, 400)
+  if (!code) return json({ detail: 'Please enter an invite code.' }, 400)
 
   const upd = await env.DB.prepare(
     'UPDATE invites SET used_count = used_count + 1 WHERE code=? AND revoked_at=0 AND used_count < max_uses',
@@ -604,7 +604,7 @@ async function handleActivate(req: Request, env: Env): Promise<Response> {
     .bind(code)
     .run()
   if ((upd.meta?.changes ?? 0) === 0) {
-    return json({ detail: '邀请码无效、已用完或已失效' }, 400)
+    return json({ detail: 'Invalid, exhausted, or revoked invite code.' }, 400)
   }
 
   const now = nowSec()

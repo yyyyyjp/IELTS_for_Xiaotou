@@ -8,7 +8,6 @@ import {
   logout,
   startGithubLogin,
 } from '../auth'
-import { t } from '../i18n'
 import AppButton from './AppButton.vue'
 
 const inviteCode = ref('')
@@ -19,15 +18,15 @@ const errorText = computed(() => {
   if (activateErr.value) return activateErr.value
   switch (authError.value) {
     case 'access_denied':
-      return t('auth.errDenied')
+      return 'GitHub sign-in was canceled.'
     case 'invalid_state':
-      return t('auth.errState')
+      return 'Sign-in verification expired. Please try again.'
     case 'session_expired':
-      return t('auth.errExpired')
+      return 'Session expired. Please sign in again.'
     case '':
       return ''
     default:
-      return `${t('auth.errGeneric')} (${authError.value})`
+      return `Sign-in failed (${authError.value}).`
   }
 })
 
@@ -38,7 +37,7 @@ async function submitInvite(): Promise<void> {
   try {
     await activateWithInvite(inviteCode.value)
   } catch (err) {
-    activateErr.value = err instanceof Error ? err.message : t('auth.errGeneric')
+    activateErr.value = err instanceof Error ? err.message : 'Activation failed.'
   } finally {
     submitting.value = false
   }
@@ -48,8 +47,7 @@ async function submitInvite(): Promise<void> {
 <template>
   <div class="gate" data-no-lookup>
     <div class="card">
-      <div class="brand serif">小头雅思</div>
-      <p class="sub">{{ t('auth.subtitle') }}</p>
+      <div class="brand serif">Xiaotou IELTS</div>
 
       <template v-if="authState === 'pending' && currentUser">
         <div class="user-chip">
@@ -65,8 +63,6 @@ async function submitInvite(): Promise<void> {
           </div>
         </div>
 
-        <p class="hint">{{ t('auth.inviteHint') }}</p>
-
         <form class="form" @submit.prevent="submitInvite">
           <input
             v-model="inviteCode"
@@ -74,30 +70,28 @@ async function submitInvite(): Promise<void> {
             class="code-input mono"
             autocomplete="off"
             spellcheck="false"
-            :placeholder="t('auth.invitePlaceholder')"
+            placeholder="Invite code (XT-XXXX-XXXX)"
           />
           <AppButton variant="primary" block :disabled="submitting || !inviteCode.trim()" type="submit">
-            {{ submitting ? t('common.loading') : t('auth.activateBtn') }}
+            {{ submitting ? 'Activating…' : 'Activate' }}
           </AppButton>
         </form>
 
         <p v-if="errorText" class="err">{{ errorText }}</p>
 
         <button type="button" class="switch-btn" @click="logout">
-          {{ t('auth.switchAccount') }}
+          Switch account
         </button>
       </template>
 
       <template v-else>
-        <p class="hint">{{ t('auth.loginHint') }}</p>
-
         <button type="button" class="gh-btn" @click="startGithubLogin">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
             <path
               d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.35 9.35 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.82-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.22 10.22 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"
             />
           </svg>
-          <span>{{ t('auth.githubLogin') }}</span>
+          <span>Continue with GitHub</span>
         </button>
 
         <p v-if="errorText" class="err">{{ errorText }}</p>
@@ -127,22 +121,10 @@ async function submitInvite(): Promise<void> {
 }
 
 .brand {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 1.1;
-}
-
-.sub {
-  margin-top: 8px;
-  color: var(--fg-3);
-  font-size: var(--text-sm);
-}
-
-.hint {
-  margin: 22px 0 16px;
-  color: var(--fg-2);
-  font-size: var(--text-xs);
-  line-height: 1.65;
+  letter-spacing: -0.01em;
 }
 
 .gh-btn {
@@ -152,6 +134,7 @@ async function submitInvite(): Promise<void> {
   gap: 10px;
   width: 100%;
   height: 44px;
+  margin-top: 26px;
   padding: 0 18px;
   border-radius: var(--radius-md);
   background: var(--bg-inverse);
@@ -202,6 +185,7 @@ async function submitInvite(): Promise<void> {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .code-input {
