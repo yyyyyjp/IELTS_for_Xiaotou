@@ -119,7 +119,7 @@ async function start(): Promise<void> {
     const data = await api.dictationSession({
       packId: packId.value,
       mode: mode.value,
-      source: 'auto',
+      source: 'vocab',
       limit: Number(limit.value),
     })
     session.value = data
