@@ -1,4 +1,9 @@
 import {
+  localDictationAnswer,
+  localDictationFinish,
+  localDictationStart,
+} from './localDictation'
+import {
   apiBaseUrl,
   authHeaders,
   cachePackDetail,
@@ -137,30 +142,19 @@ export const api = {
     mode: 'word' | 'word_in_context' | 'sentence'
     source?: 'vocab' | 'pack' | 'auto'
     limit?: number
-  }) =>
-    req<DictSession>('/dictation/sessions', {
-      method: 'POST',
-      body: JSON.stringify(payload),
+  }): Promise<DictSession> =>
+    localDictationStart(payload, {
+      fetchPackDetail: (id) => api.pack(id, true),
+      fetchPacksList: () => api.packs(),
+      buildTtsUrl: (text, voice) => ttsUrl(text, voice),
     }),
 
-  dictationAnswer: async (
+  dictationAnswer: (
     sessionId: string,
     payload: { itemId: string; input: string | string[]; replays?: number; durationMs?: number },
-  ) => {
-    const res = await req<DictAnswerResult>(`/dictation/sessions/${sessionId}/answer`, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-    })
-    return res
-  },
+  ): Promise<DictAnswerResult> => localDictationAnswer(sessionId, payload),
 
-  dictationFinish: async (sessionId: string) => {
-    const res = await req<DictSummary>(`/dictation/sessions/${sessionId}/finish`, {
-      method: 'POST',
-    })
-    void syncNow()
-    return res
-  },
+  dictationFinish: (sessionId: string): Promise<DictSummary> => localDictationFinish(sessionId),
 
   readingSession: (packId: string, nos: number[] = []) =>
     req<{

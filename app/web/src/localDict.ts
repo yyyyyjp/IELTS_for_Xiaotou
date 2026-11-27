@@ -355,13 +355,14 @@ export function lookupLocalCoreDict(
     }
   }
 
-  // 如果本地 66k 核心词库尚未加载完成，且文章词表也没命中，交给后端查询
-  if (coreDictStatus.value !== 'ready' && !packHit) {
+  // 如果内存里既没有核心词库也没有任何已加载分片，且文章词表没命中，交给后端极速查询
+  const hasLocalIndex = exactMap.size > 0
+  if (!hasLocalIndex && !packHit) {
     return null
   }
 
   let ecInfo: ReturnType<typeof tupleToInfo> | null = null
-  if (coreDictStatus.value === 'ready') {
+  if (hasLocalIndex) {
     const found = findTuple(cleanedQuery) ?? (packHit ? findTuple(packHit.lemma) : null)
     if (found) {
       ecInfo = tupleToInfo(found.tup, found.baseTup, found.formNote)
@@ -422,7 +423,7 @@ export function lookupLocalCoreDict(
     }
   }
 
-  // 多词短语本地拆词兜底
+  // 多词短语本地拆词兜底（只要 66k 核心词库已就绪，本地即可 0ms 拆词返回）
   if (coreDictStatus.value === 'ready' && cleanedQuery.includes(' ')) {
     const rawWords = cleanedQuery.match(WORD_TOKEN_RE) ?? []
     if (rawWords.length >= 2 && rawWords.length <= 8) {
@@ -446,8 +447,7 @@ export function lookupLocalCoreDict(
         })
         if (tokens.length >= 6) break
       }
-      // 在离线状态下直接返回拆词结果；在线时若整条短语未在 66k 核心库中命中，允许再问一次 77 万全量词库
-      if (!navigator.onLine && tokens.length) {
+      if (tokens.length) {
         const lemma = cleanedQuery.toLowerCase()
         const vocabId = findSavedId ? findSavedId(lemma, cleanedQuery) : null
         return {

@@ -1,3 +1,5 @@
+import { authEnabled } from '../auth'
+
 let current: HTMLAudioElement | null = null
 let seq = 0
 let cachedVoices: SpeechSynthesisVoice[] = []
@@ -59,7 +61,10 @@ export function stopAudio(): void {
 export async function playUrl(url: string, fallbackText = ''): Promise<void> {
   const id = ++seq
   stopCurrent()
-  if (!url || (!navigator.onLine && fallbackText)) {
+  // 云端模式对动态 /api/tts/audio 优先走浏览器原生英音朗读，避免等一次 404 往返；
+  // 静态 /api/audio/* 或本地 FastAPI 模式则优先播高质量音频，失败再降级。
+  const isDynamicCloudTts = authEnabled.value && url.includes('/tts/audio')
+  if (!url || isDynamicCloudTts || (!navigator.onLine && fallbackText)) {
     speak(fallbackText)
     return
   }
@@ -67,10 +72,17 @@ export async function playUrl(url: string, fallbackText = ''): Promise<void> {
     const audio = new Audio(url)
     audio.preload = 'auto'
     current = audio
+    let started = false
+    audio.onplaying = () => {
+      started = true
+    }
     await audio.play()
     await new Promise<void>((resolve) => {
       audio.onended = () => resolve()
-      audio.onerror = () => resolve()
+      audio.onerror = () => {
+        if (!started && id === seq && fallbackText) speak(fallbackText)
+        resolve()
+      }
     })
     if (id === seq) current = null
   } catch {

@@ -28,6 +28,7 @@ import { fmtDuration, fmtShort } from '../utils/format'
 import AppButton from '../components/AppButton.vue'
 import GuidePane from '../components/GuidePane.vue'
 import Icon from '../components/Icon.vue'
+import LoadingStage from '../components/LoadingStage.vue'
 import QuestionRail from '../components/QuestionRail.vue'
 import ReviewOverview from '../components/ReviewOverview.vue'
 import ReviewImportModal from '../components/ReviewImportModal.vue'
@@ -434,7 +435,7 @@ watch(railMode, (value) => {
 
 <template>
   <div class="reader">
-    <div v-if="loading" class="state">{{ t('common.loading') }}</div>
+    <LoadingStage v-if="loading" />
     <div v-else-if="failed" class="state">
       {{ t('toast.loadFailed') }}
       <button class="retry" @click="load">{{ t('common.retry') }}</button>

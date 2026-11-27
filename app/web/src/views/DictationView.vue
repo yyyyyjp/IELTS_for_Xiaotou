@@ -11,7 +11,8 @@ import type {
   DictSummary,
   PackSummary,
 } from '../types'
-import { fmtDuration, pct } from '../utils/format'
+import { ALL_PACKS_ID } from '../localDictation'
+import { fmtDuration, formatPackCode, formatPackOption, pct } from '../utils/format'
 import { playUrl, prefetch, stopAudio } from '../utils/audio'
 import AppButton from '../components/AppButton.vue'
 import Card from '../components/Card.vue'
@@ -25,7 +26,7 @@ type Mode = 'word' | 'word_in_context' | 'sentence'
 
 const phase = ref<Phase>('setup')
 const packs = ref<PackSummary[]>([])
-const packId = ref('')
+const packId = ref(ALL_PACKS_ID)
 const mode = ref<Mode>('word')
 const limit = ref('20')
 const starting = ref(false)
@@ -46,9 +47,10 @@ const inputEls = new Map<number, HTMLInputElement>()
 const item = computed<DictItem | null>(() => session.value?.items[index.value] ?? null)
 const selectedPack = computed(() => packs.value.find((pack) => pack.id === packId.value))
 const selectedSource = computed(() => {
+  if (packId.value === ALL_PACKS_ID) return t('dictate.allPacks')
   const meta = selectedPack.value?.meta
   if (!meta) return ''
-  return [meta.book, meta.test, meta.passage].filter(Boolean).join(' · ')
+  return formatPackCode(meta) || [meta.book, meta.test, meta.passage].filter(Boolean).join(' · ')
 })
 const total = computed(() => session.value?.items.length ?? 0)
 const progress = computed(() => (total.value ? index.value / total.value : 0))
@@ -89,13 +91,8 @@ async function loadPacks(): Promise<void> {
   try {
     const data = await api.packs()
     packs.value = data.items
-    if (!packId.value && data.items.length) {
-      const readings = data.items.filter((pack) => pack.kind === 'reading')
-      const pool = readings.length ? readings : data.items
-      const recent = [...pool].sort(
-        (a, b) => (b.progress?.lastAt ?? 0) - (a.progress?.lastAt ?? 0),
-      )[0]
-      packId.value = recent?.id ?? ''
+    if (!packId.value) {
+      packId.value = ALL_PACKS_ID
     }
   } catch {
     error.value = t('toast.loadFailed')
@@ -243,9 +240,10 @@ onBeforeUnmount(() => {
         <div class="field">
           <label for="pack" class="label">{{ t('dictate.pack') }}</label>
           <div class="select">
-            <select id="pack" v-model="packId">
+            <select id="pack" v-model="packId" @change="error = ''">
+              <option :value="ALL_PACKS_ID">{{ t('dictate.allPacks') }}</option>
               <option v-for="pack in packs" :key="pack.id" :value="pack.id">
-                {{ pack.meta.title }}
+                {{ formatPackOption(pack) }}
               </option>
             </select>
             <Icon name="chevronDown" :size="15" class="select-icon" />
@@ -261,7 +259,7 @@ onBeforeUnmount(() => {
               type="button"
               class="mode"
               :class="{ on: mode === option.value }"
-              @click="mode = option.value"
+              @click="mode = option.value; error = ''"
             >
               <Icon :name="option.icon" :size="18" />
               <span class="mode-label">{{ t(option.label) }}</span>
@@ -280,7 +278,19 @@ onBeforeUnmount(() => {
           </AppButton>
         </div>
 
-        <p v-if="error" class="error">{{ error }}</p>
+        <div v-if="error" class="alert" role="alert">
+          <div class="alert-inner">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="alert-ico">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span class="alert-text">{{ error }}</span>
+          </div>
+          <button type="button" class="alert-close" :aria-label="t('common.close')" @click="error = ''">
+            <Icon name="x" :size="14" />
+          </button>
+        </div>
       </Card>
     </template>
 
@@ -291,7 +301,7 @@ onBeforeUnmount(() => {
             <Icon name="arrowLeft" :size="17" />
           </button>
           <span class="run-count num">{{ index + 1 }} / {{ total }}</span>
-          <span class="run-mode">{{ t(`dictate.mode.${mode}`) }}</span>
+          <span class="run-mode">{{ t(mode === 'word_in_context' ? 'dictate.mode.context' : `dictate.mode.${mode}`) }}</span>
         </div>
         <ProgressBar :value="index" :total="total" :height="2" />
 
@@ -503,10 +513,52 @@ onBeforeUnmount(() => {
   margin: 0;
 }
 
-.error {
-  margin-top: 14px;
+.alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 14px 38px;
+  border: 1px solid var(--bad-line);
+  border-radius: var(--radius-md);
+  background: var(--bad-bg);
   color: var(--bad);
+  text-align: center;
+  animation: panel-in 0.16s var(--ease-out-quart);
+}
+
+.alert-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.alert-ico {
+  flex-shrink: 0;
+}
+
+.alert-close {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  color: var(--bad);
+  opacity: 0.72;
+}
+
+.alert-close:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--bad) 12%, transparent);
 }
 
 .run {

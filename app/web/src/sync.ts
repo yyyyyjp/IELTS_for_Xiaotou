@@ -376,14 +376,15 @@ export function bootstrapSync(): void {
   if (bootstrapped || typeof window === 'undefined') return
   bootstrapped = true
 
+  // 立即并发预热公共离线词库（已缓存时 <150ms 从 IndexedDB 就绪，不等待 syncNow 网络往返）
+  void ensureCoreDict(() =>
+    fetchJson<{ version: number; count: number; entries: CompactDictTuple[] }>('/dict/bundle'),
+  )
+
   void (async () => {
     lastSyncAt.value = await getMeta<number | null>('lastSyncAt', null)
     await refreshLocalCounts()
     await syncNow()
-    // 后台静默加载 1.96MB 核心离线词库到公共 IndexedDB，不阻塞首屏渲染
-    void ensureCoreDict(() =>
-      fetchJson<{ version: number; count: number; entries: CompactDictTuple[] }>('/dict/bundle'),
-    )
   })()
 
   if (listenersAttached) return

@@ -17,6 +17,7 @@ import {
   verifyJwt,
   type AuthUser,
 } from './auth'
+import { lookupInD1 } from './dict'
 import {
   buildPackFromExportData,
   buildPromptText,
@@ -816,7 +817,13 @@ async function routeApi(req: Request, env: Env, url: URL): Promise<Response> {
     })
   }
   if (path === '/dict/bundle' && method === 'GET') {
-    return serveR2Gzip(req, env.BUCKET, 'dict/core_dict.json.gz', 86400)
+    return serveR2Gzip(req, env.BUCKET, 'dict/core_dict.json.gz', 604800)
+  }
+  if (path === '/dict/lookup' && method === 'GET') {
+    const q = (url.searchParams.get('q') ?? '').trim()
+    if (!q) return json({ detail: 'missing q' }, 400)
+    const result = await lookupInD1(env.DB, q)
+    return json(result, 200, { 'Cache-Control': 'public, max-age=604800' })
   }
   const shardMatch = /^\/dict\/shard\/([a-z]|other)$/.exec(path)
   if (shardMatch && method === 'GET') {

@@ -34,3 +34,54 @@ export function fmtDuration(seconds: number): string {
   const rest = total % 60
   return `${minutes}:${String(rest).padStart(2, '0')}`
 }
+
+function shortenBookToken(raw: string): string {
+  const s = raw.trim()
+  if (!s) return ''
+  const cam = /^(?:Cambridge(?:\s+IELTS)?|Cam|剑桥(?:雅思)?|剑雅|剑)\s*(\d+)$/i.exec(s)
+  if (cam) return `C${cam[1]}`
+  return s
+}
+
+function shortenTestToken(raw: string): string {
+  const s = raw.trim()
+  if (!s) return ''
+  const m = /^(?:Test|T)\s*(\d+)$/i.exec(s)
+  if (m) return `T${m[1]}`
+  return s
+}
+
+function shortenPassageToken(raw: string): string {
+  const s = raw.trim()
+  if (!s) return ''
+  const m = /^(?:Reading\s*)?(?:Passage|Section|Part|P)\s*(\d+)$/i.exec(s)
+  if (m) return `P${m[1]}`
+  return s
+}
+
+/**
+ * 动态生成篇目前缀编号，不写死剑雅格式：
+ * - 剑桥雅思 18 / Test 4 / Passage 3 -> C18-T4-P3
+ * - 机经 / 真题 / 自定义来源 -> 原样保留并拼接（如 2026机经-P2）
+ */
+export function formatPackCode(meta: {
+  book?: string
+  test?: string
+  passage?: string
+  source?: string
+}): string {
+  const parts = [
+    shortenBookToken(meta.book ?? ''),
+    shortenTestToken(meta.test ?? ''),
+    shortenPassageToken(meta.passage ?? ''),
+  ].filter(Boolean)
+  if (parts.length) return parts.join('-')
+  return (meta.source ?? '').trim()
+}
+
+export function formatPackOption(pack: {
+  meta: { book?: string; test?: string; passage?: string; source?: string; title: string }
+}): string {
+  const code = formatPackCode(pack.meta)
+  return code ? `${code} · ${pack.meta.title}` : pack.meta.title
+}

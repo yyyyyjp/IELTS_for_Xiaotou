@@ -102,3 +102,14 @@ CREATE TABLE IF NOT EXISTS packs (
   PRIMARY KEY (user_id, id)
 );
 CREATE INDEX IF NOT EXISTS ix_packs_user_mtime ON packs(user_id, mtime);
+
+-- 公共只读核心词典（6.6 万高频/雅思/学术词），支持云端 ~250B 极速单次查词
+CREATE TABLE IF NOT EXISTS dict (
+  word_lower TEXT    PRIMARY KEY,
+  word       TEXT    NOT NULL,
+  phonetic   TEXT    NOT NULL DEFAULT '',
+  trans      TEXT    NOT NULL DEFAULT '',
+  tag        TEXT    NOT NULL DEFAULT '',
+  flags      INTEGER NOT NULL DEFAULT 0,
+  exchange   TEXT    NOT NULL DEFAULT ''
+);

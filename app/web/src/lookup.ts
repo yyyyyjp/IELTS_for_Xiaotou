@@ -429,16 +429,37 @@ export async function openLookup(options: LookupOpenOptions): Promise<void> {
   }
 
   try {
-    // 优先尝试按首字母拉取 R2/本地词典分片并缓存在 IndexedDB，下次查同首字母生僻词 0ms 秒出
+    // 1. 优先走超轻量单次查词接口（云端 D1 仅 ~250B / <0.3s；本地 FastAPI 77 万库 ~5ms），
+    //    避免首访未缓存 2MB 离线核心词库时苦等大文件下载
+    const res = await api.dictLookup(cleaned, packId || undefined)
+    if (seq !== requestSeq || !lookupState.value) return
+    if (res.found) {
+      resultCache.set(key, res)
+      const localSavedId = findSavedVocabSync(res.lemma || cleaned, cleaned)
+      const finalSavedId = localSavedId ?? res.vocabId
+      lookupState.value = {
+        ...lookupState.value,
+        word: res.word || cleaned,
+        lemma: res.lemma || cleaned.toLowerCase(),
+        loading: false,
+        result: { ...res, saved: finalSavedId !== null, vocabId: finalSavedId },
+        saved: finalSavedId !== null,
+        vocabId: finalSavedId,
+      }
+      return
+    }
+
+    // 2. 6.6 万核心库未命中的极生僻词：再按首字母拉取 R2 全量 77 万分片并缓存到 IndexedDB
     const firstWord = cleaned.split(/\s+/)[0] || cleaned
     const shardOk = await ensureDictShard(firstWord, (letter) => api.dictShard(letter))
+    if (seq !== requestSeq || !lookupState.value) return
     if (shardOk) {
       const shardHit = lookupLocalCoreDict(
         cleaned,
         scope?.packId === packId ? scope.lexicon : null,
         findSavedVocabSync,
       )
-      if (shardHit && seq === requestSeq && lookupState.value) {
+      if (shardHit) {
         resultCache.set(key, shardHit)
         const savedId = findSavedVocabSync(shardHit.lemma, cleaned)
         lookupState.value = {
@@ -454,9 +475,6 @@ export async function openLookup(options: LookupOpenOptions): Promise<void> {
       }
     }
 
-    // 若分片仍未命中（如部分短语拆词或本地 FastAPI 兜底），回退到 /api/dict/lookup
-    const res = await api.dictLookup(cleaned, packId || undefined)
-    if (seq !== requestSeq || !lookupState.value) return
     resultCache.set(key, res)
     const localSavedId = findSavedVocabSync(res.lemma || cleaned, cleaned)
     const finalSavedId = localSavedId ?? res.vocabId
