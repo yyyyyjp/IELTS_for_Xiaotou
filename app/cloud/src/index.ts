@@ -822,7 +822,8 @@ async function routeApi(req: Request, env: Env, url: URL): Promise<Response> {
   if (path === '/dict/lookup' && method === 'GET') {
     const q = (url.searchParams.get('q') ?? '').trim()
     if (!q) return json({ detail: 'missing q' }, 400)
-    const result = await lookupInD1(env.DB, q)
+    const uiLang = url.searchParams.get('lang') === 'en' ? 'en' : 'zh'
+    const result = await lookupInD1(env.DB, q, uiLang)
     return json(result, 200, { 'Cache-Control': 'public, max-age=604800' })
   }
   const shardMatch = /^\/dict\/shard\/([a-z]|other)$/.exec(path)

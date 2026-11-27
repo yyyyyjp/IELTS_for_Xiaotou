@@ -1,3 +1,4 @@
+import { lang } from './i18n'
 import {
   localDictationAnswer,
   localDictationFinish,
@@ -195,7 +196,7 @@ export const api = {
       `/dict/shard/${encodeURIComponent(letter)}`,
     ),
   dictLookup: (q: string, packId?: string) =>
-    req<DictLookupResult>(`/dict/lookup${query({ q, packId })}`),
+    req<DictLookupResult>(`/dict/lookup${query({ q, packId, lang: lang.value })}`),
 
   packImportFromExport: async (payload: {
     passage: Record<string, unknown>

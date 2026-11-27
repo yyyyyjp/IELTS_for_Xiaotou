@@ -11,7 +11,7 @@ import type {
   DictSummary,
   PackSummary,
 } from '../types'
-import { ALL_PACKS_ID } from '../localDictation'
+import { ALL_PACKS_ID, DictationI18nError } from '../localDictation'
 import { fmtDuration, formatPackCode, formatPackOption, pct } from '../utils/format'
 import { playUrl, prefetch, stopAudio } from '../utils/audio'
 import AppButton from '../components/AppButton.vue'
@@ -30,7 +30,14 @@ const packId = ref(ALL_PACKS_ID)
 const mode = ref<Mode>('word')
 const limit = ref('20')
 const starting = ref(false)
-const error = ref('')
+const errorKey = ref('')
+const errorRaw = ref('')
+const error = computed(() => (errorKey.value ? t(errorKey.value) : errorRaw.value))
+
+function clearError(): void {
+  errorKey.value = ''
+  errorRaw.value = ''
+}
 
 const session = ref<DictSession | null>(null)
 const index = ref(0)
@@ -95,7 +102,7 @@ async function loadPacks(): Promise<void> {
       packId.value = ALL_PACKS_ID
     }
   } catch {
-    error.value = t('toast.loadFailed')
+    errorKey.value = 'toast.loadFailed'
   }
 }
 
@@ -114,7 +121,7 @@ function resetItem(): void {
 async function start(): Promise<void> {
   if (!packId.value || starting.value) return
   starting.value = true
-  error.value = ''
+  clearError()
   try {
     const data = await api.dictationSession({
       packId: packId.value,
@@ -130,7 +137,13 @@ async function start(): Promise<void> {
     resetItem()
     afterItemChange(true)
   } catch (err) {
-    error.value = err instanceof Error ? err.message : t('toast.loadFailed')
+    if (err instanceof DictationI18nError) {
+      errorKey.value = err.key
+    } else if (err instanceof Error && err.message) {
+      errorRaw.value = err.message
+    } else {
+      errorKey.value = 'toast.loadFailed'
+    }
   } finally {
     starting.value = false
   }
@@ -240,7 +253,7 @@ onBeforeUnmount(() => {
         <div class="field">
           <label for="pack" class="label">{{ t('dictate.pack') }}</label>
           <div class="select">
-            <select id="pack" v-model="packId" @change="error = ''">
+            <select id="pack" v-model="packId" @change="clearError">
               <option :value="ALL_PACKS_ID">{{ t('dictate.allPacks') }}</option>
               <option v-for="pack in packs" :key="pack.id" :value="pack.id">
                 {{ formatPackOption(pack) }}
@@ -259,7 +272,7 @@ onBeforeUnmount(() => {
               type="button"
               class="mode"
               :class="{ on: mode === option.value }"
-              @click="mode = option.value; error = ''"
+              @click="mode = option.value; clearError()"
             >
               <Icon :name="option.icon" :size="18" />
               <span class="mode-label">{{ t(option.label) }}</span>
@@ -287,7 +300,7 @@ onBeforeUnmount(() => {
             </svg>
             <span class="alert-text">{{ error }}</span>
           </div>
-          <button type="button" class="alert-close" :aria-label="t('common.close')" @click="error = ''">
+          <button type="button" class="alert-close" :aria-label="t('common.close')" @click="clearError">
             <Icon name="x" :size="14" />
           </button>
         </div>

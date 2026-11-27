@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { t } from './i18n'
 import { idbGet, idbPut, type CompactDictTuple } from './localDb'
 import type { DictLookupResult, DictLookupToken, LexEntry } from './types'
 
@@ -24,14 +25,14 @@ const STOPWORDS = new Set([
   'his', 'their', 'our', 'not', 'no', 'so', 'than', 'then', 'into', 'onto',
 ])
 
-const FORM_LABELS: Record<string, string> = {
-  p: '过去式',
-  d: '过去分词',
-  i: '现在分词',
-  '3': '第三人称单数',
-  r: '比较级',
-  t: '最高级',
-  s: '复数',
+const FORM_KEYS: Record<string, string> = {
+  p: 'dict.form.p',
+  d: 'dict.form.d',
+  i: 'dict.form.i',
+  '3': 'dict.form.3',
+  r: 'dict.form.r',
+  t: 'dict.form.t',
+  s: 'dict.form.s',
 }
 
 const UK_TO_US: [string, string][] = [
@@ -239,10 +240,14 @@ function describeForm(lemma: string, code: string): string {
   if (!lemma || !code) return ''
   const labels: string[] = []
   for (const ch of code) {
-    const lbl = FORM_LABELS[ch]
+    const key = FORM_KEYS[ch]
+    if (!key) continue
+    const lbl = t(key)
     if (lbl && !labels.includes(lbl)) labels.push(lbl)
   }
-  return labels.length ? `${lemma} 的${labels.join('/')}` : `原型：${lemma}`
+  return labels.length
+    ? t('dict.formOf', { lemma, forms: labels.join('/') })
+    : t('dict.baseOf', { lemma })
 }
 
 function extractPos(trans: string): string {

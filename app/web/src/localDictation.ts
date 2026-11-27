@@ -1,3 +1,4 @@
+import { t } from './i18n'
 import { idbGet, idbGetAll, idbPut, type LocalVocab } from './localDb'
 import { ensureHydrated, queueOutbox, refreshLocalCounts, syncNow } from './sync'
 import type {
@@ -12,6 +13,15 @@ import type {
 } from './types'
 
 export const ALL_PACKS_ID = '__all__'
+
+export class DictationI18nError extends Error {
+  key: string
+
+  constructor(key: string) {
+    super(t(key))
+    this.key = key
+  }
+}
 
 type DictMode = 'word' | 'word_in_context' | 'sentence'
 type DictSource = 'vocab' | 'pack' | 'auto'
@@ -543,13 +553,13 @@ export async function localDictationStart(
   }
 
   if (!items.length) {
-    const msg =
+    const key =
       mode === 'sentence'
-        ? '当前篇目没有可用于整句听写的句子，请切换其他篇目或选择「全部篇目」。'
+        ? 'dictate.emptySentence'
         : isAll
-          ? '生词本里还没有收录任何生词，请先在精读页面划词收藏。'
-          : '这篇文章还没有收录任何生词，请先在精读页面划词收藏，或将篇目切换为「全部篇目」。'
-    throw new Error(msg)
+          ? 'dictate.emptyAllVocab'
+          : 'dictate.emptyPackVocab'
+    throw new DictationI18nError(key)
   }
 
   const sid = newId('ds')
@@ -592,7 +602,7 @@ async function loadSession(sessionId: string): Promise<SyncSessionRecord> {
   if (mem) return mem
   const stored = await idbGet<SyncSessionRecord>('sessions', sessionId)
   if (!stored || stored.kind !== 'dictation') {
-    throw new Error('听写会话不存在，请重新开始')
+    throw new DictationI18nError('dictate.errSessionMissing')
   }
   activeSessions.set(sessionId, stored)
   return stored
@@ -603,11 +613,11 @@ export async function localDictationAnswer(
   payload: { itemId: string; input: string | string[]; replays?: number; durationMs?: number },
 ): Promise<DictAnswerResult> {
   const session = await loadSession(sessionId)
-  if (session.endedAt) throw new Error('本次听写已结束')
+  if (session.endedAt) throw new DictationI18nError('dictate.errSessionEnded')
 
   const meta = session.meta as unknown as SessionMeta
   const item = (meta.items ?? []).find((it) => it.id === payload.itemId)
-  if (!item) throw new Error('题目不在本次听写中')
+  if (!item) throw new DictationI18nError('dictate.errItemMissing')
 
   const expected = item.answers ?? []
   const graded = compareAnswers(expected, payload.input)

@@ -240,7 +240,7 @@ async function handleFiles(files: FileList | null): Promise<void> {
     }
     const count = await ingestExportFiles(files)
     if (count === 0) {
-      toast('未识别到 passages / attempts / questions / groups.jsonl')
+      toast(t('import.noJsonlFound'))
     }
   } catch (err) {
     toast(err instanceof Error ? err.message : t('toast.loadFailed'))
@@ -563,8 +563,13 @@ onBeforeUnmount(() => {
                   {{ preview.exists ? t('import.previewUpdate') : t('import.previewNew') }}
                 </span>
                 <span v-if="preview.counts" class="pv-counts num">
-                  {{ preview.counts.paragraphs }} 段 · {{ preview.counts.sentences }} 句 ·
-                  {{ preview.counts.questions }} 题
+                  {{
+                    t('import.previewCounts', {
+                      p: preview.counts.paragraphs,
+                      s: preview.counts.sentences,
+                      q: preview.counts.questions,
+                    })
+                  }}
                 </span>
                 <span v-if="preview.attempt" class="pv-score num">
                   {{ preview.attempt.score }} / {{ preview.attempt.total }}
@@ -573,18 +578,24 @@ onBeforeUnmount(() => {
 
               <template v-if="preview.analysis.hasReview || preview.analysis.hasGuide || preview.analysis.lexiconCount">
                 <div v-if="preview.analysis.hasReview" class="pv-line">
-                  <b>{{ t('reader.rail.review') }}：</b>{{ preview.analysis.reviewTitle || '（无标题）' }}
+                  <b>{{ t('reader.rail.review') }}: </b>{{ preview.analysis.reviewTitle || t('import.untitled') }}
                   <span class="pv-sub num">
-                    （覆盖 {{ preview.analysis.coveredQuestions }} 题 ·
-                    {{ preview.analysis.diagnosisCount }} 条病灶）
+                    {{
+                      t('import.reviewCoverage', {
+                        q: preview.analysis.coveredQuestions,
+                        d: preview.analysis.diagnosisCount,
+                      })
+                    }}
                   </span>
                 </div>
                 <div v-if="preview.analysis.hasGuide" class="pv-line">
-                  <b>{{ t('reader.tab.guide') }}：</b>{{ preview.analysis.guideTitle || '已识别' }}
-                  <span class="pv-sub num">（{{ preview.analysis.bandCount }} 段结构带）</span>
+                  <b>{{ t('reader.tab.guide') }}: </b>{{ preview.analysis.guideTitle || t('import.detected') }}
+                  <span class="pv-sub num">
+                    {{ t('import.guideBandCount', { n: preview.analysis.bandCount }) }}
+                  </span>
                 </div>
                 <div v-if="preview.analysis.lexiconCount" class="pv-line">
-                  <b>新增语境词表：</b>+{{ preview.analysis.lexiconCount }} 词
+                  <b>{{ t('import.lexiconAdded') }}</b>{{ t('import.lexiconAddedCount', { n: preview.analysis.lexiconCount }) }}
                 </div>
               </template>
               <p v-else-if="mode === 'export'" class="pv-empty">

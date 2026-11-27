@@ -1,4 +1,5 @@
 import { reactive, ref } from 'vue'
+import { t } from './i18n'
 import {
   getMeta,
   idbCount,
@@ -178,7 +179,7 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   })
   if (res.status === 401) {
     onUnauthorized?.()
-    throw new Error('登录已失效，请重新登录')
+    throw new Error(t('auth.errExpired'))
   }
   if (!res.ok) {
     let msg = `HTTP ${res.status}`
@@ -501,7 +502,7 @@ export async function localVocabAdd(payload: {
 }): Promise<{ created: boolean; item: VocabItem }> {
   await ensureHydrated()
   const lemma = lemmaKey(payload.lemma || payload.word || '')
-  if (!lemma) throw new Error('缺少单词')
+  if (!lemma) throw new Error(t('vocab.errMissingWord'))
   const now = nowSec()
   const existing = await idbGet<LocalVocab>('vocab', lemma)
   const incomingCtx = payload.context ? [payload.context] : []
@@ -569,7 +570,7 @@ export async function localVocabPatch(
 ): Promise<{ item: VocabItem }> {
   await ensureHydrated()
   const row = await findLocalVocabById(id)
-  if (!row) throw new Error('生词不存在')
+  if (!row) throw new Error(t('vocab.errNotFound'))
   const now = nowSec()
   const next: LocalVocab = {
     ...row,
@@ -587,7 +588,7 @@ export async function localVocabPatch(
 export async function localVocabDelete(id: number): Promise<{ ok: true }> {
   await ensureHydrated()
   const row = await findLocalVocabById(id)
-  if (!row) throw new Error('生词不存在')
+  if (!row) throw new Error(t('vocab.errNotFound'))
   const now = nowSec()
   const next: LocalVocab = {
     ...row,
@@ -618,7 +619,7 @@ export async function localVocabReview(
 ): Promise<{ item: VocabItem; nextDueAt: number; intervalDays: number; state: string }> {
   await ensureHydrated()
   const row = await findLocalVocabById(id)
-  if (!row) throw new Error('生词不存在')
+  if (!row) throw new Error(t('vocab.errNotFound'))
   const now = nowSec()
   const nxt = reviewSrs(row, grade, now)
   const updated: LocalVocab = {

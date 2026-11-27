@@ -26,7 +26,7 @@ const STOPWORDS = new Set([
   'his', 'their', 'our', 'not', 'no', 'so', 'than', 'then', 'into', 'onto',
 ])
 
-const FORM_LABELS: Record<string, string> = {
+const FORM_LABELS_ZH: Record<string, string> = {
   p: '过去式',
   d: '过去分词',
   i: '现在分词',
@@ -34,6 +34,16 @@ const FORM_LABELS: Record<string, string> = {
   r: '比较级',
   t: '最高级',
   s: '复数',
+}
+
+const FORM_LABELS_EN: Record<string, string> = {
+  p: 'past tense',
+  d: 'past participle',
+  i: 'present participle',
+  '3': '3rd person singular',
+  r: 'comparative',
+  t: 'superlative',
+  s: 'plural',
 }
 
 const UK_TO_US: [string, string][] = [
@@ -124,12 +134,16 @@ function parseExchange(raw: string): Record<string, string> {
   return out
 }
 
-function describeForm(lemma: string, code: string): string {
+function describeForm(lemma: string, code: string, uiLang: 'zh' | 'en'): string {
   if (!lemma || !code) return ''
+  const map = uiLang === 'en' ? FORM_LABELS_EN : FORM_LABELS_ZH
   const labels: string[] = []
   for (const ch of code) {
-    const lbl = FORM_LABELS[ch]
+    const lbl = map[ch]
     if (lbl && !labels.includes(lbl)) labels.push(lbl)
+  }
+  if (uiLang === 'en') {
+    return labels.length ? `${labels.join('/')} of ${lemma}` : `Base: ${lemma}`
   }
   return labels.length ? `${lemma} 的${labels.join('/')}` : `原型：${lemma}`
 }
@@ -193,7 +207,7 @@ function rowToInfo(row: DictRow, baseRow: DictRow | null, formNote: string) {
   }
 }
 
-export async function lookupInD1(db: D1Database, rawQuery: string) {
+export async function lookupInD1(db: D1Database, rawQuery: string, uiLang: 'zh' | 'en' = 'zh') {
   const cleaned = cleanQuery(rawQuery)
   const empty = {
     query: cleaned,
@@ -260,7 +274,7 @@ export async function lookupInD1(db: D1Database, rawQuery: string) {
         const extra = await fetchDictRows(db, [baseName.toLowerCase()])
         baseRow = extra.get(baseName.toLowerCase()) ?? null
       }
-      formNote = describeForm(baseName, ex['1'] ?? '')
+      formNote = describeForm(baseName, ex['1'] ?? '', uiLang)
     }
     const info = rowToInfo(hit, baseRow, formNote)
     if (info.gloss) {

@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { t } from './i18n'
 import { setActiveLocalDbUser } from './localDb'
 import { clearLookupCache } from './lookup'
 import { apiBaseUrl, registerUnauthorizedHandler, resetSyncRuntime } from './sync'
@@ -89,7 +90,7 @@ export async function initAuth(): Promise<void> {
         id: 'local',
         githubId: '',
         login: 'local',
-        name: '本地模式',
+        name: t('auth.localMode'),
         avatarUrl: '',
         role: 'admin',
         status: 'active',

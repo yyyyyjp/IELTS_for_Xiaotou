@@ -231,7 +231,7 @@ onBeforeUnmount(() => {
         <div class="s-line">
           <span>{{ t('sync.localSummary') }}</span>
           <span class="num">
-            {{ localCounts.vocab }} {{ t('common.words') }} · {{ localCounts.attempts }} 条记录
+            {{ localCounts.vocab }} {{ t('common.words') }} · {{ t('sync.records', { n: localCounts.attempts }) }}
           </span>
         </div>
         <div class="s-line">
@@ -285,10 +285,10 @@ onBeforeUnmount(() => {
               :placeholder="t('auth.inviteNotePlaceholder')"
             />
             <select v-model.number="inviteMaxUses" class="cfg-select">
-              <option :value="1">1 次</option>
-              <option :value="3">3 次</option>
-              <option :value="5">5 次</option>
-              <option :value="10">10 次</option>
+              <option :value="1">{{ t('auth.inviteUses', { n: 1 }) }}</option>
+              <option :value="3">{{ t('auth.inviteUses', { n: 3 }) }}</option>
+              <option :value="5">{{ t('auth.inviteUses', { n: 5 }) }}</option>
+              <option :value="10">{{ t('auth.inviteUses', { n: 10 }) }}</option>
             </select>
             <AppButton size="sm" variant="primary" :disabled="creatingInvite" @click="createInvite">
               {{ t('auth.inviteNew') }}
